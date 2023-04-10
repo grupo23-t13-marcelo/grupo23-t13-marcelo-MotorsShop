@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { Input } from "@chakra-ui/react";
 
-export function InputComponents() {
+export function InputComponents({size , height}:any) {
   const [isFocused, setIsFocused] = useState(false);
   const handleFocus = () => setIsFocused(true);
   const handleBlur = () => setIsFocused(false);
@@ -15,13 +15,13 @@ export function InputComponents() {
         _placeholder={{ color: "gray.400" }}
         onFocus={handleFocus}
         onBlur={handleBlur}
-        w="315px"
-        h="48px"
+        w={size.size || "315px"}
+        h={height.height || "45px"}
       />
   );
 }
 
-export function InputComponentsBig(){
+export function InputComponentsBig({size , height}:any){
 
     const [isFocused, setIsFocused] = useState(false);
     const handleFocus = () => setIsFocused(true);
@@ -41,8 +41,9 @@ export function InputComponentsBig(){
         pl="4"
         paddingBottom="10"
         defaultValue=""
-        w="315px"
-        h="80px"
+        w={size.size || "315px"}
+        h={height.height || "80px"}
     />
     )
 }
+

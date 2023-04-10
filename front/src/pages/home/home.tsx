@@ -49,13 +49,13 @@ const HomePage = () => {
         </Box>
         <Box display={"flex"} flexDirection={{base: "column", md: "row-reverse"}} width={{base: "auto", md: "95%"}} maxWidth={"1600px"} margin={"20px auto 0 auto"} justifyContent={{md: "space-between"}} alignItems={{md: "flex-start"}} gap={{md: "10%"}}>
             <UnorderedList 
+                paddingRight={{base: "5px", md: "0px"}}
                 display="flex"
                 flexWrap={{base: "nowrap", md: "wrap"}}
                 overflowX={{base: "auto"}}
                 gap={{base: "15px", md: "35px"}}
                 listStyleType="none"
                 flex={{base: "auto", md: 1}}
-                // maxWidth={{base: "auto", md: "1252px"}}
                 maxWidth={{base: "auto", md: "auto"}}
             >
                 <CardCars/>

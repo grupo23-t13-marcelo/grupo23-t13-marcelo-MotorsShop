@@ -1,5 +1,11 @@
 
+import { Box, ChakraProvider } from "@chakra-ui/react"
+import HomePage from "./pages/home/home"
+import { LandingPage } from "./pages/landing/landing"
+
+
 import { Box, Center, ChakraProvider } from "@chakra-ui/react"
+
 import MotorTheme from "./styles/theme"
 
 import { RoutesMain } from "./routes/routes"
@@ -28,6 +34,11 @@ function App() {
   return (
     <ChakraProvider theme={MotorTheme}>
 
+      <Box>
+        <LandingPage/>
+      </Box>
+
+
 
     <Box display={"flex"}
     justifyContent={"center"} alignItems={"center"}>
@@ -39,6 +50,7 @@ function App() {
     </Box>
 
       <Box></Box>
+
 
     </ChakraProvider>
   );

@@ -1,11 +1,12 @@
 import { Request, Response } from "express"
-import { IAds, ICreateAds } from "../interfaces/ads"
+import { IAds, ICreateAds, IPatchAds } from "../interfaces/ads"
 import registerAdsService from "../services/ads/registerAds.service"
 import listAdsService from "../services/ads/listAds.service"
 import listUniqueAdService from "../services/ads/listUniqueAds.service"
 import deleteAdService from "../services/ads/deleteAds.service"
 import deactiveAdService from "../services/ads/deactiveAds.service"
 import activeAdService from "../services/ads/activeAds.service"
+import patchAdsService from "../services/ads/patchAds.service"
 
 
 
@@ -45,12 +46,11 @@ const activeAdsController = async (req:Request, res: Response) => {
 }
 
 const patchAdsController = async (req:Request, res: Response) => {
-    // const adData: IAds = req.ad
-    // const adPatchData: IPatchAds = req.body
-    // const adID: string = req.params.id
-    // const patchAD = await patchAdsService(adPatchData, adData, adID)
-    // return res.status(200).json(patchAD)
+    const adPatchData: IPatchAds = req.body
+    const adID: string = req.params.id
+    const patchAD = await patchAdsService(adPatchData, adID)
+    return res.status(200).json(patchAD)
 }
 
 
-export {createAdsController, listAdsController, listUniqueAdsController, deleteAdsController,deactiveAdsController,activeAdsController}
+export {createAdsController, listAdsController, listUniqueAdsController, deleteAdsController,deactiveAdsController,activeAdsController, patchAdsController}

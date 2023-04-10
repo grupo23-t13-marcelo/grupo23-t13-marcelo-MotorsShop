@@ -50,4 +50,4 @@ const adArraySerializer: SchemaOf<IAds[]> = yup.array(adSerializerResponse)
 
 
 
-export {adSerializerResponse, adSerializerRequest, adArraySerializer}
+export {adSerializerResponse, adSerializerRequest, adArraySerializer, adPatchSerializerResponse}

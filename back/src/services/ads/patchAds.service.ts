@@ -5,7 +5,7 @@ import { IAds, IPatchAds } from "../../interfaces/ads";
 import { adPatchSerializerResponse } from "../../schemas/ads";
 
 
-const patchAdsService = async (patchAdData: IPatchAds, adData: IAds, adID: string) => {
+const patchAdsService = async (patchAdData: IPatchAds, adID: string) => {
     const adsRepository = AppDataSource.getRepository(Ads)
 
     const adPatch = patchAdData
@@ -19,7 +19,7 @@ const patchAdsService = async (patchAdData: IPatchAds, adData: IAds, adID: strin
     }
 
     const adPatched = adsRepository.create({
-        ...adData,
+        ...ad,
         ...adPatch
     })
 

@@ -22,10 +22,6 @@ const MotorTheme = extendTheme({
     heading: "Lexend, serif"
   },
 
-
-    heading: "Lexend, serif",
-  },
-
   colors: {
     // Brand
     brand1: "#4529E6",
@@ -102,11 +98,6 @@ const MotorTheme = extendTheme({
     "6xl": "48px",
     "5xl": "36px",
     "4xl": "30px",
-
-    "xl": "20px",
-    "lg": "18px",
-    "md": "16px",
-
     xl: "20px",
     lg: "18px",
     md: "16px",
@@ -118,9 +109,6 @@ const MotorTheme = extendTheme({
     bold: 600,
     bolder: 700,
   },
-
-
-})
 
   components: {
     Button: {
@@ -159,12 +147,12 @@ const MotorTheme = extendTheme({
           bg: "brand1",
           _hover: {
             bg: "brand2",
-          },
+          }
         },
       },
     },
   },
-});
-
-
+})
+  
+  
 export default MotorTheme;

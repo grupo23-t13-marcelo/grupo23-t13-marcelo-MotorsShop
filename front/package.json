@@ -11,16 +11,14 @@
     "theme:watch": "chakra-cli tokens  ./src/styles/theme.ts --watch"
   },
   "dependencies": {
-    "@chakra-ui/icons": "^2.0.18",
+    "@chakra-ui/icons": "^2.0.13",
     "@chakra-ui/react": "^2.5.5",
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
-
     "@fontsource/inter": "^4.5.15",
     "@types/axios": "^0.14.0",
     "@types/styled-components": "^5.1.26",
     "axios": "^1.3.5",
-    "@types/styled-components": "^5.1.26",
     "framer-motion": "^10.10.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

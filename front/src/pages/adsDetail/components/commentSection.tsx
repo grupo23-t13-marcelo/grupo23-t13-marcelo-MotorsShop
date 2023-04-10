@@ -1,6 +1,6 @@
 import { Box, Button, Flex, Heading, Image, Text, Textarea } from "@chakra-ui/react"
 
-export const adCommentSection = (adToShow: any, display: Array<string | null>) => {
+export const AdCommentSection = (adToShow: any, display: Array<string | null>) => {
     return (
         <Box display={display}>
             <Box backgroundColor={'white'} width={'100%'} borderRadius={5} p={7} display={'flex'} flexDirection={'column'} gap={7}>

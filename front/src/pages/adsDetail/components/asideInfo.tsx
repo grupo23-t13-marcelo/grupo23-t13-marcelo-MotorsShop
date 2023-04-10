@@ -1,6 +1,12 @@
-import { Box, Button, Container, Flex, Image, SimpleGrid, Text } from "@chakra-ui/react"
+import {
+    Box, Button, Container, Flex, Image, SimpleGrid, Text, Modal,
 
-export const adAsideInfo = (adToShow: any) => {
+    useDisclosure,
+} from "@chakra-ui/react"
+
+export const AdAsideInfo = (adToShow: any) => {
+    const { isOpen, onOpen, onClose } = useDisclosure()
+
     return (
         <Container margin={0} p={0} marginRight={['0%', '0%', '3%', '7%']} width={['90%', '85%', '25%']} display={'flex'} flexDirection={'column'} alignItems={"center"}>
             <Flex marginTop={10} minWidth={'260px'} direction={'column'}>

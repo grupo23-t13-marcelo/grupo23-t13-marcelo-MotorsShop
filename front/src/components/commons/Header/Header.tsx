@@ -9,19 +9,22 @@ import {
 } from "@chakra-ui/react";
 import { CloseIcon, HamburgerIcon } from "@chakra-ui/icons";
 import logoMotors from "../../../assets/png/Motors shop.png";
+import { Outlet } from "react-router-dom";
+import { Footer } from "../Footer/Footer";
 
 export function Header() {
   
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
+    <>
     <Flex justify={"space-between"} p={"16px"}>
       <Image
         src={logoMotors}
         alt="Logo do header"
         maxW={"300px"}
         maxH={"30px"}
-      />
+        />
       <HStack
         display={{ base: "none", md: "flex" }}
         borderLeft={"2px"}
@@ -29,7 +32,7 @@ export function Header() {
         spacing={"16px"}
         w={"300px"}
         justify={"space-evenly"}
-      >
+        >
         <Link>Fazer Login</Link>
         <Button variant={"outline-1"}>Cadastrar</Button>
       </HStack>
@@ -39,19 +42,19 @@ export function Header() {
         display={{ base: "flex", md: "none" }}
         onClick={() => setIsMenuOpen(!isMenuOpen)}
         variant={"outline"}
-      />
+        />
       {isMenuOpen && (
         <Flex
-          direction={"column"}
-          boxShadow={"md"}
-          display={{ base: "flex", md: "none" }}
-          w={"100%"}
-          p={"16px"}
-          bg={"white"}
-          pos={"absolute"}
-          top={"100%"}
-          left={"0"}
-          gap={"30px"}
+        direction={"column"}
+        boxShadow={"md"}
+        display={{ base: "flex", md: "none" }}
+        w={"100%"}
+        p={"16px"}
+        bg={"white"}
+        pos={"absolute"}
+        top={"100%"}
+        left={"0"}
+        gap={"30px"}
         >
           <Button variant={"outline-1"}>Fazer Login</Button>
           <Button variant={"outline-1"} w={"100%"} alignSelf={"center"}>
@@ -59,8 +62,9 @@ export function Header() {
           </Button>
         </Flex>
       )}
-
-      
     </Flex>
+    <Outlet/>
+    <Footer/>
+    </>
   );
 }

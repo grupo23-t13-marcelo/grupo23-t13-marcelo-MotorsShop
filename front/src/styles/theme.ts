@@ -1,7 +1,7 @@
-
-import { extendTheme } from '@chakra-ui/react'
+import { extendTheme } from "@chakra-ui/react";
 
 const MotorTheme = extendTheme({
+
   styles: {
     global: {
       "#root": {
@@ -11,12 +11,19 @@ const MotorTheme = extendTheme({
       },
     },
   },
+
+
   config: {
     initialColorMode: "light",
   },
   fonts: {
     body: "Lexend, sans-serif",
+
     heading: "Lexend, serif"
+  },
+
+
+    heading: "Lexend, serif",
   },
 
   colors: {
@@ -38,6 +45,9 @@ const MotorTheme = extendTheme({
       700: "#495057",
       800: "#212529",
       900: "#0B0D0D",
+
+      whiteFixed: "#FFFFFF",
+
     },
 
     //Feedback
@@ -55,6 +65,7 @@ const MotorTheme = extendTheme({
 
     // Random Profile
 
+
     purple: {
       50: "#FDFDFD",
       100: "#F8F9FA",
@@ -69,14 +80,37 @@ const MotorTheme = extendTheme({
       100: "#FDD8D8",
       500: "#E34D8C",
     },
+
+    random:{
+      1: "#E34D8C",
+      2: "#C04277",
+      3: "#7D2A4D",
+      4: "#7000FF",
+      5: "#6200E3",
+      6: "#36007D",
+      7: "#349974",
+      8: "#2A7D5F",
+      9: "#153D2E",
+      10: "#6100FF",
+      11: "#5700E3",
+      12: "#30007D",
+
+    }
+
   },
   fontSizes: {
     "6xl": "48px",
     "5xl": "36px",
     "4xl": "30px",
+
     "xl": "20px",
     "lg": "18px",
     "md": "16px",
+
+    xl: "20px",
+    lg: "18px",
+    md: "16px",
+
   },
   fontWeights: {
     light: 300,
@@ -85,6 +119,52 @@ const MotorTheme = extendTheme({
     bolder: 700,
   },
 
+
 })
 
-export default MotorTheme
+  components: {
+    Button: {
+      variants: {
+        "outline-1": {
+          bg: "gray.whiteFixed",
+          color: "gray.900",
+          border: "2px",
+          borderColor: "gray.200",
+          _hover: {
+            bg: "gray.800",
+            color: "white",
+          },
+        },
+        "outline-2": {
+          bg: "gray.whiteFixed",
+          color: "gray.900",
+          border: "2px",
+          borderColor: "gray.200",
+          _hover: {
+            bg: "gray.800",
+            color: "white",
+          },
+        },
+        "gray-1": {
+          bg: "gray.300",
+          color: "gray.700",
+         
+         
+          _hover: {
+            bg: "gray.400",
+            color: "gray.700",
+          },
+        },
+        "button-sender": {
+          bg: "brand1",
+          _hover: {
+            bg: "brand2",
+          },
+        },
+      },
+    },
+  },
+});
+
+
+export default MotorTheme;

@@ -1,25 +1,15 @@
-import { Box, Center, ChakraProvider } from "@chakra-ui/react"
-// import { LandingPage } from "./pages/landing/landing"
-import MotorTheme from "./styles/theme"
-import { CardCars } from "./components/commons/Card"
-import { InputComponents, InputComponentsBig } from "./components/commons/Inputs"
-
-
-
+import { RoutesMain } from "./routes/routes"
 
 function App() {
-  
-
   return (
-    <ChakraProvider theme={MotorTheme}>
-
-    <Box display={"flex"}
-    justifyContent={"center"} alignItems={"center"}>
-      <Center>
-      </Center>
-    </Box>
-    </ChakraProvider>
+    <>
+      <RoutesMain />
+    </>
   )
+
+
+
+
 }
 
-export default App
+export default App;

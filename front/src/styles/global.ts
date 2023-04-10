@@ -40,5 +40,9 @@ export default createGlobalStyle`
         *{
             font-family: "Inter"
         }
+        body{
+            height: 100vh;
+            width: 100vw
+        }
     }
 `

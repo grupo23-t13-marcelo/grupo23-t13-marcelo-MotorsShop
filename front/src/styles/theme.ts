@@ -22,10 +22,6 @@ const MotorTheme = extendTheme({
     heading: "Lexend, serif"
   },
 
-
-    heading: "Lexend, serif",
-  },
-
   colors: {
     // Brand
     brand1: "#4529E6",
@@ -81,7 +77,7 @@ const MotorTheme = extendTheme({
       500: "#E34D8C",
     },
 
-    random:{
+    random: {
       1: "#E34D8C",
       2: "#C04277",
       3: "#7D2A4D",
@@ -102,11 +98,6 @@ const MotorTheme = extendTheme({
     "6xl": "48px",
     "5xl": "36px",
     "4xl": "30px",
-
-    "xl": "20px",
-    "lg": "18px",
-    "md": "16px",
-
     xl: "20px",
     lg: "18px",
     md: "16px",
@@ -118,9 +109,6 @@ const MotorTheme = extendTheme({
     bold: 600,
     bolder: 700,
   },
-
-
-})
 
   components: {
     Button: {
@@ -148,8 +136,8 @@ const MotorTheme = extendTheme({
         "gray-1": {
           bg: "gray.300",
           color: "gray.700",
-         
-         
+
+
           _hover: {
             bg: "gray.400",
             color: "gray.700",
@@ -159,12 +147,11 @@ const MotorTheme = extendTheme({
           bg: "brand1",
           _hover: {
             bg: "brand2",
-          },
+          }
         },
       },
     },
   },
-});
-
+})
 
 export default MotorTheme;

@@ -22,5 +22,5 @@ export interface IAdDetailContextProps {
 
 export interface IAdDetailContext {
     adToShow: object
-    setAdToShow: React.Dispatch<React.SetStateAction<object>>
+    setAdToShow: React.Dispatch<React.SetStateAction<object>>,
 }

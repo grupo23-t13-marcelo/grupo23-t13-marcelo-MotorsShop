@@ -4,9 +4,11 @@ import userImage from "./assets/Ellipse 2.png"
 import { adMainInfo } from "./components/mainInfo";
 import { AdAsideInfo } from "./components/asideInfo";
 import { AdCommentSection } from "./components/commentSection";
+import { useContext } from "react";
+import { AdDetailContext } from "../../context/adsDetail/adsDetailContext";
 
 
-const gallery = [carImage, carImage, carImage, carImage, carImage, carImage, carImage, carImage]
+const gallery = [carImage, userImage, carImage, userImage, carImage, carImage, carImage, carImage]
 
 const comment = {
     user: {
@@ -47,9 +49,10 @@ export const currency = function (number: number) {
 };
 
 export const AdsDetail = () => {
+    // const { adToShow } = useContext(AdDetailContext)
+
     return (
         <>
-
             <Box bgGradient={'linear(to-b, brand1 0px 500px, gray.100 500px 100%)'} w='100%' paddingBottom={10}>
                 <Flex gap={2} width={'100%'} justifyContent={{ md: 'space-between' }} direction={['column', null, 'row']} alignItems={["center", null, 'flex-start']}>
                     {adMainInfo(adToShow)}
@@ -59,8 +62,6 @@ export const AdsDetail = () => {
                     </Box>
                 </Flex >
             </Box >
-
         </>
     )
 }
-

@@ -1,11 +1,11 @@
 
 # Regra de Criação De Branch: 
 
- Ex: backFeat/login
-     backFeat/Register
+ Ex: <seuNome>backFeat/login
+     <seuNome>backFeat/Register
  
- Ex: frontFeat/DashBoardPage
-     frontFeat/LoginRegisterPage
+ Ex: <seuNome>frontFeat/DashBoardPage
+     <seuNome>frontFeat/LoginRegisterPage
      
      
 # Regra de Commit De Branch:

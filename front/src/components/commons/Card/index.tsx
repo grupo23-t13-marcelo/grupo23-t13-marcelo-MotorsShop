@@ -29,7 +29,7 @@ interface CardProps {
   price: string;
 }
 
-export function CardCars({status}:any) {
+export function CardCars({status}:CardProps) {
     return (
       <Card
   maxW="350px"

@@ -1,13 +1,31 @@
 import { extendTheme } from "@chakra-ui/react";
 
 const MotorTheme = extendTheme({
+
+  styles: {
+    global: {
+      "#root": {
+        display: 'flex',
+        flexDirection: 'column',
+        minHeight: "100vh",
+      },
+    },
+  },
+
+
   config: {
     initialColorMode: "light",
   },
   fonts: {
     body: "Lexend, sans-serif",
+
+    heading: "Lexend, serif"
+  },
+
+
     heading: "Lexend, serif",
   },
+
   colors: {
     // Brand
     brand1: "#4529E6",
@@ -27,7 +45,9 @@ const MotorTheme = extendTheme({
       700: "#495057",
       800: "#212529",
       900: "#0B0D0D",
+
       whiteFixed: "#FFFFFF",
+
     },
 
     //Feedback
@@ -45,6 +65,22 @@ const MotorTheme = extendTheme({
 
     // Random Profile
 
+
+    purple: {
+      50: "#FDFDFD",
+      100: "#F8F9FA",
+      200: "#E9ECEF",
+      300: "#DEE2E6",
+      700: "#495057",
+      800: "#212529",
+      900: "#0B0D0D",
+    },
+    pink: {
+      50: "#FFE5E5",
+      100: "#FDD8D8",
+      500: "#E34D8C",
+    },
+
     random:{
       1: "#E34D8C",
       2: "#C04277",
@@ -60,14 +96,21 @@ const MotorTheme = extendTheme({
       12: "#30007D",
 
     }
+
   },
   fontSizes: {
     "6xl": "48px",
     "5xl": "36px",
     "4xl": "30px",
+
+    "xl": "20px",
+    "lg": "18px",
+    "md": "16px",
+
     xl: "20px",
     lg: "18px",
     md: "16px",
+
   },
   fontWeights: {
     light: 300,
@@ -75,6 +118,9 @@ const MotorTheme = extendTheme({
     bold: 600,
     bolder: 700,
   },
+
+
+})
 
   components: {
     Button: {
@@ -119,5 +165,6 @@ const MotorTheme = extendTheme({
     },
   },
 });
+
 
 export default MotorTheme;

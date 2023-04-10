@@ -4,7 +4,7 @@ import FilterOptions from "../FilterOptions"
 
 const FilterType = () => {
 
-    const [filterChange] = useMediaQuery("(max-width: 768px)");
+    const [filterChange] = useMediaQuery("(max-width: 767px)");
     const [filterModal, setFilterModal] = useState<boolean>(false)
 
     return (

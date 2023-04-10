@@ -1,6 +1,7 @@
 import { Heading, Flex, Box, Text, Stack, Center, flexbox, UnorderedList, ListItem, Badge, Image, Button, Input } from "@chakra-ui/react"
 import homeCover from "../../assets/home_cover.png"
 import homeCoverMobile from "../../assets/home_cover_mobile.png"
+import { CardCars } from "../../components/commons/Card"
 
 
 const HomePage = () => {
@@ -46,7 +47,7 @@ const HomePage = () => {
                         A melhor plataforma de anúncios de carros do país</Text>
                 </Stack>
         </Box>
-        <Box display={"flex"} flexDirection={{base: "column", md: "row-reverse"}} width={{base: "auto", md: "95%"}} maxWidth={"1600px"} margin={"20px auto 0 auto"} justifyContent={{md: "space-between"}} alignItems={{md: "flex-start"}} gap={{md: "30px"}}>
+        <Box display={"flex"} flexDirection={{base: "column", md: "row-reverse"}} width={{base: "auto", md: "95%"}} maxWidth={"1600px"} margin={"20px auto 0 auto"} justifyContent={{md: "space-between"}} alignItems={{md: "flex-start"}} gap={{md: "10%"}}>
             <UnorderedList 
                 display="flex"
                 flexWrap={{base: "nowrap", md: "wrap"}}
@@ -54,9 +55,15 @@ const HomePage = () => {
                 gap={{base: "15px", md: "35px"}}
                 listStyleType="none"
                 flex={{base: "auto", md: 1}}
-                maxWidth={{base: "auto", md: "1252px"}}
+                // maxWidth={{base: "auto", md: "1252px"}}
+                maxWidth={{base: "auto", md: "auto"}}
             >
-                <ListItem>
+                <CardCars/>
+                <CardCars/>
+                <CardCars/>
+                <CardCars/>
+                <CardCars/>
+                {/* <ListItem>
                     <Box p="5" width={"280px"} maxW="350px" borderWidth="1px">
                         <Image borderRadius="md" src="https://bit.ly/2k1H1t6" />
                         <Flex align="baseline" mt={2}>
@@ -217,7 +224,7 @@ const HomePage = () => {
                             </Text>
                         </Flex>
                     </Box>
-                </ListItem>
+                </ListItem> */}
             </UnorderedList>
             {/* //////////////////////////////////////////////////////
             ////////////////////////////////////////////////////// */}

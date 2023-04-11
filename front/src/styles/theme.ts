@@ -17,9 +17,8 @@ const MotorTheme = extendTheme({
     initialColorMode: "light",
   },
   fonts: {
-    body: "Lexend, sans-serif",
-
-    heading: "Lexend, serif"
+    body: "Inter, sans-serif",
+    heading: "Inter, sans-serif"
   },
 
   colors: {

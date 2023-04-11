@@ -32,6 +32,7 @@ interface CardProps {
 export function CardCars({status}:CardProps) {
     return (
       <Card
+  minW="320px"
   maxW="350px"
   pointerEvents={!status ? "none" : "auto"}
   _hover={status ? { filter: "brightness(0.9)", cursor: "pointer" } : {}}

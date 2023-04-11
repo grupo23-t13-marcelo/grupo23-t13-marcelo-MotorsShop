@@ -1,6 +1,6 @@
 import { Box, Button, Container, Flex, Heading, Image, Text, Textarea } from "@chakra-ui/react"
 import { currency } from "../adsDetail"
-import { adCommentSection } from "./commentSection"
+import { AdCommentSection } from "./commentSection"
 
 export const adMainInfo = (adToShow: any) => {
     return (
@@ -30,7 +30,7 @@ export const adMainInfo = (adToShow: any) => {
                         {adToShow.description}
                     </Text>
                 </Box>
-                {adCommentSection(adToShow, ['none', null, 'block'])}
+                {AdCommentSection(adToShow, ['none', null, 'block'])}
             </Flex >
         </Box >
     )

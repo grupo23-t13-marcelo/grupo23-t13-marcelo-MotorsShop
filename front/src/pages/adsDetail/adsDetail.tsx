@@ -2,12 +2,13 @@ import { Container, Box, useBreakpointValue, Flex, Image, HStack, Link, Button, 
 import carImage from "./assets/EXTERIOR-frontSidePilotNear-1653845164710-removebg-preview 1.png"
 import userImage from "./assets/Ellipse 2.png"
 import { adMainInfo } from "./components/mainInfo";
-import { adAsideInfo } from "./components/asideInfo";
-import { adCommentSection } from "./components/commentSection";
+import { AdAsideInfo } from "./components/asideInfo";
+import { AdCommentSection } from "./components/commentSection";
+import { useContext } from "react";
+import { AdDetailContext } from "../../context/adsDetail/adsDetailContext";
 
 
-
-const gallery = [carImage, carImage, carImage, carImage, carImage, carImage, carImage, carImage]
+const gallery = [carImage, userImage, carImage, userImage, carImage, carImage, carImage, carImage]
 
 const comment = {
     user: {
@@ -36,7 +37,7 @@ const adToShow = {
         name: 'Samuel Leão'
     },
     gallery: gallery,
-    comments: [comment, comment, comment, comment, comment]
+    comments: [comment, comment, comment, comment]
 }
 
 export const currency = function (number: number) {
@@ -48,20 +49,19 @@ export const currency = function (number: number) {
 };
 
 export const AdsDetail = () => {
+    // const { adToShow } = useContext(AdDetailContext)
+
     return (
         <>
-            
             <Box bgGradient={'linear(to-b, brand1 0px 500px, gray.100 500px 100%)'} w='100%' paddingBottom={10}>
                 <Flex gap={2} width={'100%'} justifyContent={{ md: 'space-between' }} direction={['column', null, 'row']} alignItems={["center", null, 'flex-start']}>
                     {adMainInfo(adToShow)}
-                    {adAsideInfo(adToShow)}
+                    {AdAsideInfo(adToShow)}
                     <Box marginLeft={['0%', '0%', '3%', '7%']} marginTop={10} width={['90%', '85%', '57%']} marginRight={0} display={['block', null, 'none']}>
-                        {adCommentSection(adToShow, ['block', null, 'none'])}
+                        {AdCommentSection(adToShow, ['block', null, 'none'])}
                     </Box>
                 </Flex >
             </Box >
-            
         </>
     )
 }
-

@@ -76,7 +76,7 @@ const MotorTheme = extendTheme({
       500: "#E34D8C",
     },
 
-    random:{
+    random: {
       1: "#E34D8C",
       2: "#C04277",
       3: "#7D2A4D",
@@ -135,8 +135,8 @@ const MotorTheme = extendTheme({
         "gray-1": {
           bg: "gray.300",
           color: "gray.700",
-         
-         
+
+
           _hover: {
             bg: "gray.400",
             color: "gray.700",
@@ -152,6 +152,6 @@ const MotorTheme = extendTheme({
     },
   },
 })
-  
-  
+
+
 export default MotorTheme;

@@ -52,8 +52,8 @@ export function Header() {
           p={"16px"}
           bg={"white"}
           pos={"absolute"}
-          top={"3%"}
-          zIndex={1}
+         top={"70px"}
+          zIndex={9999}
           gap={"30px"}
         >
           <Button variant={"outline-1"}>Fazer Login</Button>

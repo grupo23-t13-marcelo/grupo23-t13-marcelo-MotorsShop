@@ -6,10 +6,7 @@ function App() {
       <RoutesMain />
     </>
   )
-
-
-
-
+  
 }
 
 export default App;

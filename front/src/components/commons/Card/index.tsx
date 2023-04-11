@@ -13,6 +13,7 @@ import {
   Button,
   Card,
   Avatar,
+  Spacer,
 } from "@chakra-ui/react";
 
 interface CardProps {
@@ -102,7 +103,7 @@ export function CardCars({status}:CardProps) {
         João Silva
       </Text>
     </Stack>
-    <Flex alignItems="center" justifyContent="space-between" marginTop={3}>
+    <Flex alignItems="center" justifyContent="start" marginTop={3} gap={2}> 
       <Box backgroundColor="#EDEAFD" p="1" borderRadius="md">
         <Text fontWeight="bold" color={" #4529E6"} fontSize="sm">
           30.000 km
@@ -113,7 +114,8 @@ export function CardCars({status}:CardProps) {
           2020
         </Text>
       </Box>
-      <Text color="black" fontSize="14" fontWeight="bold">
+      <Spacer  />
+      <Text color="black" fontSize="14" fontWeight="bold" marginLeft={10}>
         R$ 50.000,00
       </Text>
     </Flex>

@@ -136,8 +136,8 @@ const MotorTheme = extendTheme({
         "gray-1": {
           bg: "gray.300",
           color: "gray.700",
-         
-         
+
+
           _hover: {
             bg: "gray.400",
             color: "gray.700",

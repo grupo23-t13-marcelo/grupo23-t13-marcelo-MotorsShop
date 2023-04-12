@@ -8,7 +8,7 @@ const listAdsService = async () => {
     const adsRepository = AppDataSource.getRepository(Ads)
 
     const ads = await adsRepository.findBy({
-        is_activated: true
+        
     })
 
     

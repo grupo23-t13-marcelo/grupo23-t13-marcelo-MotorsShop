@@ -13,7 +13,7 @@ export const adMainInfo = (adToShow: any) => {
                     <Heading marginBottom={10} as='h2' size={'md'}>
                         {`${adToShow.brand} ${adToShow.model}`}
                     </Heading>
-                    <Box display={'flex'} justifyContent={'space-between'} alignItems={'center'}>
+                    <Box display={'flex'} flexDirection={['column', 'row']} justifyContent={'space-between'} alignItems={['flex-start', 'center']} gap={5}>
                         <Box display={'flex'} gap={3} alignItems={'center'}>
                             <Button h={'30px'} backgroundColor={'brand4'} color={'brand2'}>{adToShow.year}</Button>
                             <Button h={'30px'} backgroundColor={'brand4'} color={'brand2'}>{adToShow.mileage}</Button>

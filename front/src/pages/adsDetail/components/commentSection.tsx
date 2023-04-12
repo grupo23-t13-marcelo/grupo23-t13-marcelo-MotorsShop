@@ -30,15 +30,17 @@ export const AdCommentSection = (adToShow: any, display: Array<string | null>) =
                     <Text>{adToShow.user.name}</Text>
                 </Flex>
                 <Box position={'relative'}>
-                    <Flex>
+                    <Flex direction={['column', null, 'row']} gap={[5, null, 0]}>
                         <Textarea resize={'none'} placeholder="Carro muito confortável, foi uma ótima experiência de compra..." h={'100px'} />
-                        <Button backgroundColor={'brand1'} position={'absolute'} w={'130px'} h={'30px'} fontWeight={400} bottom={3} right={3} color={"white"}>Comentar</Button>
+                        <Button backgroundColor={'brand1'} position={['static', null, 'absolute']} w={'130px'} h={'30px'} fontWeight={400} bottom={3} right={3} color={"white"}>Comentar</Button>
                     </Flex>
                 </Box>
-                <Flex gap={1}>
-                    <Button backgroundColor={"gray.100"} color={"gray.500"} h={'20px'} borderRadius={'15'} fontSize={10}>Gostei Muito!</Button>
-                    <Button backgroundColor={"gray.100"} color={"gray.500"} h={'20px'} borderRadius={'15'} fontSize={10}>Incrível</Button>
-                    <Button backgroundColor={"gray.100"} color={"gray.500"} h={'20px'} borderRadius={'15'} fontSize={10}>Recomendarei para meus amigos</Button>
+                <Flex gap={3} direction={['column', 'row']}>
+                    <Box display={'flex'} flexDirection={'row'} gap={3}>
+                        <Button backgroundColor={"gray.100"} color={"gray.500"} h={'20px'} borderRadius={'15'} fontSize={10}>Gostei Muito!</Button>
+                        <Button backgroundColor={"gray.100"} color={"gray.500"} h={'20px'} borderRadius={'15'} fontSize={10}>Incrível</Button>
+                    </Box>
+                    <Button backgroundColor={"gray.100"} color={"gray.500"} h={'20px'} borderRadius={'15'} fontSize={10} maxWidth={'200px'}>Recomendarei para meus amigos</Button>
                 </Flex>
             </Box>
         </Box >

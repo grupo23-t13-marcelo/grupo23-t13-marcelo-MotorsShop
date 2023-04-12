@@ -69,11 +69,11 @@ const HomePage = () => {
                 flex={{base: "auto", md: 1}}
                 maxWidth={{base: "auto", md: "auto"}}
             >
-                <CardCars/>
-                <CardCars/>
-                <CardCars/>
-                <CardCars/>
-                <CardCars/>
+                <CardCars />
+                <CardCars />
+                <CardCars />
+                <CardCars />
+                <CardCars />
             </UnorderedList>
             <FilterType/>
         </Box>

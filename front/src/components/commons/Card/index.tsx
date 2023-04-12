@@ -29,10 +29,26 @@ interface CardProps {
   
 }
 
-export function CardCars({card}:CardProps) {
+export function CardCars() {
 
-  const {status,image,text, mileage,year,price,brand,title} = card
-    return (
+  // const {status,image,text, mileage,year,price,brand,title} = card
+
+  const mockedAd = {
+    brand: "Citroën 2",
+    model: "C4 LOUNGE Feel 1.6 Turbo Flex Aut.",
+    year: "2019",
+    fuel: "Flex",
+    mileage: 0,
+    color: "Cinza",
+    fipe_table_price: "R$ 110.000,00",
+    price: "R$ 79.988,00",
+    description: "Lorem Impsion",
+    cover_image: "https://www.automaistv.com.br/wp-content/uploads/2022/04/citroen_xsara_picasso_305_edited-750x450.jpg",
+    id: "3dbba177-0db7-4903-ba46-d7975ee81216",
+    is_activated: true
+  }
+
+  return (
       <Card
   minW="320px"
   maxW="350px"
@@ -78,8 +94,8 @@ export function CardCars({card}:CardProps) {
     </Box>
   )}
   <Image
-    src={image.url}
-    alt={image.alt}
+    src={mockedAd.cover_image}
+    alt={"image.alt"}
     objectFit="cover"
     width="350px"
     height="178.96px"
@@ -92,10 +108,10 @@ export function CardCars({card}:CardProps) {
         fontFamily={"Lexend"}
         marginBottom={2}
       >
-        {title}
+        {mockedAd.brand}
       </Text>
       <Text color={"#495057"} fontSize="sm" fontFamily={"inter"}>
-        {text}
+        {mockedAd.description}
       </Text>
     </Box>
     <Stack direction="row" alignItems="center">
@@ -107,17 +123,17 @@ export function CardCars({card}:CardProps) {
     <Flex alignItems="center" justifyContent="start" marginTop={3} gap={2}> 
       <Box backgroundColor="#EDEAFD" p="1" borderRadius="md">
         <Text fontWeight="bold" color={" #4529E6"} fontSize="sm">
-         {mileage}KM
+         {mockedAd.mileage}KM
         </Text>
       </Box>
       <Box backgroundColor="#EDEAFD" p="1" borderRadius="md">
         <Text fontWeight="bold" color={" #4529E6"} fontSize="sm">
-          {year}
+          {mockedAd.year}
         </Text>
       </Box>
       <Spacer  />
       <Text color="black" fontSize="14" fontWeight="bold" marginLeft={10}>
-        {price}
+        {mockedAd.price}
       </Text>
     </Flex>
   </CardBody>

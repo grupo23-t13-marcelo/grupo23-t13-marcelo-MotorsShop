@@ -17,9 +17,8 @@ const MotorTheme = extendTheme({
     initialColorMode: "light",
   },
   fonts: {
-    body: "Lexend, sans-serif",
-
-    heading: "Lexend, serif"
+    body: "Inter, sans-serif",
+    heading: "Inter, sans-serif"
   },
 
   colors: {
@@ -77,7 +76,7 @@ const MotorTheme = extendTheme({
       500: "#E34D8C",
     },
 
-    random:{
+    random: {
       1: "#E34D8C",
       2: "#C04277",
       3: "#7D2A4D",
@@ -154,6 +153,6 @@ const MotorTheme = extendTheme({
     },
   },
 })
-  
-  
+
+
 export default MotorTheme;

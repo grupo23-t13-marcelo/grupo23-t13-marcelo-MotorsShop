@@ -17,15 +17,15 @@ export function Footer() {
   };
 
   return (
-    <Flex bg={"gray.900"} justify={"space-between"} align={"center"} p={"16px"} height={height} direction={{base: "column", md:"row"}}>
-      <Image src={footerMotor} w={"150px"} h={"26px"} />
+    <Flex bg={"gray.900"} justify={"space-between"} align={"center"} p={"38px"} height={height} direction={{base: "column", md:"row"}}>
+      <Image src={footerMotor} w={"210px"} h={"32px"} />
       <HStack
-        w={"60%"}
+        w={"100%"}
         height={{base: "60%"}}
         color={"gray.whiteFixed"}
         justify={"space-between"}
         flexDir={{base: "column", md:"row"}}
-        p={"8px"}
+        p={"9px"}
       >
         <Text>© 2022 - Todos os direitos reservados.</Text>
         <Button

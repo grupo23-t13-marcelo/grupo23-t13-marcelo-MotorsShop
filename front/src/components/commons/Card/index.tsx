@@ -34,6 +34,7 @@ export function CardCars({card}:CardProps) {
   const {status,image,text, mileage,year,price,brand,title} = card
     return (
       <Card
+  minW="320px"
   maxW="350px"
   pointerEvents={!status ? "none" : "auto"}
   _hover={status ? { filter: "brightness(0.9)", cursor: "pointer" } : {}}

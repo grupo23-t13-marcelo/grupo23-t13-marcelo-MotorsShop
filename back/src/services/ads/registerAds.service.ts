@@ -1,7 +1,7 @@
 import { AppDataSource } from "../../data-source";
 import { Ads } from "../../entities/ads.entities";
 import { ICreateAds } from "../../interfaces/ads";
-import { adSerializerRequest} from "../../schemas/ads";
+import { adPatchSerializerResponse} from "../../schemas/ads";
 
 
 const registerAdsService = async (adsData: ICreateAds) => {
@@ -12,7 +12,7 @@ const registerAdsService = async (adsData: ICreateAds) => {
     
     await adsRepository.save(createdAd)
 
-    const validate = adSerializerRequest.validate(createdAd, {
+    const validate = adPatchSerializerResponse.validate(createdAd, {
         stripUnknown: true
     })
 

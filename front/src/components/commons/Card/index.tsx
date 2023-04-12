@@ -1,35 +1,37 @@
 import {
   Flex,
-  Heading,
   Image,
-  VStack,
   Text,
   Box,
-  HStack,
   Stack,
-  CardFooter,
   CardBody,
-  ButtonGroup,
-  Button,
   Card,
   Avatar,
+  Spacer,
 } from "@chakra-ui/react";
 
 interface CardProps {
-  title: string;
-  status: string;
-  brand: string;
-  image: {
-    url: string;
-    alt: string;
-  };
-  text: string;
-  mileage: string;
-  year: string;
-  price: string;
+  card:{
+
+    title: string,
+    status: boolean,
+    brand: boolean,
+    image: {
+      url: string;
+      alt: string;
+    },
+    text: string,
+    mileage: string,
+    year: string,
+    price: string
+  }
+
+  
 }
 
-export function CardCars({status}:CardProps) {
+export function CardCars({card}:CardProps) {
+
+  const {status,image,text, mileage,year,price,brand,title} = card
     return (
       <Card
   minW="320px"
@@ -76,8 +78,8 @@ export function CardCars({status}:CardProps) {
     </Box>
   )}
   <Image
-    src="https://source.unsplash.com/random/800x600"
-    alt="Imagem de exemplo"
+    src={image.url}
+    alt={image.alt}
     objectFit="cover"
     width="350px"
     height="178.96px"
@@ -90,11 +92,10 @@ export function CardCars({status}:CardProps) {
         fontFamily={"Lexend"}
         marginBottom={2}
       >
-        Carro muito bonito
+        {title}
       </Text>
-      <Text color="#495057;" fontSize="sm" fontFamily={"inter"}>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at elit
-        tincidunt, rhoncus turpis in, dictum dolor.
+      <Text color={"#495057"} fontSize="sm" fontFamily={"inter"}>
+        {text}
       </Text>
     </Box>
     <Stack direction="row" alignItems="center">
@@ -103,19 +104,20 @@ export function CardCars({status}:CardProps) {
         João Silva
       </Text>
     </Stack>
-    <Flex alignItems="center" justifyContent="space-between" marginTop={3}>
+    <Flex alignItems="center" justifyContent="start" marginTop={3} gap={2}> 
       <Box backgroundColor="#EDEAFD" p="1" borderRadius="md">
         <Text fontWeight="bold" color={" #4529E6"} fontSize="sm">
-          30.000 km
+         {mileage}KM
         </Text>
       </Box>
       <Box backgroundColor="#EDEAFD" p="1" borderRadius="md">
         <Text fontWeight="bold" color={" #4529E6"} fontSize="sm">
-          2020
+          {year}
         </Text>
       </Box>
-      <Text color="black" fontSize="14" fontWeight="bold">
-        R$ 50.000,00
+      <Spacer  />
+      <Text color="black" fontSize="14" fontWeight="bold" marginLeft={10}>
+        {price}
       </Text>
     </Flex>
   </CardBody>

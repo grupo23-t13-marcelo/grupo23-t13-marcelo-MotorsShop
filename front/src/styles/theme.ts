@@ -143,6 +143,7 @@ const MotorTheme = extendTheme({
           },
         },
         "button-sender": {
+          color:"gray.whiteFixed",
           bg: "brand1",
           _hover: {
             bg: "brand2",

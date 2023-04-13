@@ -20,7 +20,7 @@ export function Footer() {
     <Flex bg={"gray.900"} justify={"space-between"} align={"center"} p={"38px"} height={height} direction={{base: "column", md:"row"}}>
       <Image src={footerMotor} w={"210px"} h={"32px"} />
       <HStack
-        w={"100%"}
+        w={"60%"}
         height={{base: "60%"}}
         color={"gray.whiteFixed"}
         justify={"space-between"}

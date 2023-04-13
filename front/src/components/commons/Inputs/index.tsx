@@ -19,8 +19,8 @@ export function InputComponents({size , height,label}:any) {
       _placeholder={{ color: "gray.400" }}
       onFocus={handleFocus}
       onBlur={handleBlur}
-      w={size.size || "315px"}
-      h={height.height || "45px"}
+      w={size || "315px"}
+      h={height || "45px"}
     />
     </>
   );

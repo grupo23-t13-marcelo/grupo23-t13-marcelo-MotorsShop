@@ -1,9 +1,9 @@
 import { Text, Modal, ModalOverlay, ModalContent, Flex, Heading, Button, Stack, flatten } from "@chakra-ui/react"
-import { color } from "framer-motion"
-import { useState } from "react"
+import { useContext, useState } from "react"
+import { AccessContext } from "../../context/access/accessContext"
 
 const ModalRegister = () => {
-    const [modalstatus, setModalstatus] = useState<boolean>(true)
+    const { modalstatus, setModalstatus } = useContext(AccessContext)
 
     return (
         <Modal isOpen={modalstatus} onClose={() => setModalstatus(false)}>

@@ -2,6 +2,7 @@ import { createContext, useState } from "react";
 import { IAdDetail, IAdDetailContext, IAdDetailContextProps } from "./adsTypes";
 import { apiGetAdById } from "../../services/adsDetail/retrieveAdById";
 import axios from "axios";
+import { useDisclosure } from "@chakra-ui/hooks";
 
 export const AdDetailContext = createContext({} as IAdDetailContext)
 
@@ -23,7 +24,7 @@ export const AdDetailProvider = ({ children }: IAdDetailContextProps) => {
 
     const globalValues: IAdDetailContext = {
         adToShow: adToShow,
-        setAdToShow: setAdToShow
+        setAdToShow: setAdToShow,
     }
 
     return (

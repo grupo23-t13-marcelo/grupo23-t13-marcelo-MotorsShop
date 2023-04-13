@@ -10,7 +10,7 @@ adsRouters.post("/activate/:id", activeAdsController)
 adsRouters.post("", createAdsController)
 adsRouters.delete("/deactive/:id", deactiveAdsController)
 adsRouters.delete("/:id", deleteAdsController)
-adsRouters.patch("/:id", ensureAuthMiddleware,ensureUserIsAdOwner,patchAdsController)
+adsRouters.patch("/:id",patchAdsController)
 adsRouters.get("/:id", listUniqueAdsController)
 adsRouters.get("", listAdsController)
 

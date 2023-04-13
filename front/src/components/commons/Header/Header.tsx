@@ -9,12 +9,12 @@ import {
 } from "@chakra-ui/react";
 import { CloseIcon, HamburgerIcon } from "@chakra-ui/icons";
 import logoMotors from "../../../assets/png/Motors shop.png";
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import { Footer } from "../Footer/Footer";
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
+  const navigate = useNavigate()
   return (
     <>
       <Flex justify={"space-between"} p={"16px"}>
@@ -32,8 +32,8 @@ export function Header() {
           w={"300px"}
           justify={"space-evenly"}
         >
-          <Link>Fazer Login</Link>
-          <Button variant={"outline-1"}>Cadastrar</Button>
+          <Link href="/login">Fazer Login</Link>
+          <Button variant={"outline-1"} onClick={() => navigate('/register')} >Cadastrar</Button>
         </HStack>
         <IconButton
           aria-label="Abrir menu"

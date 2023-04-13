@@ -16,14 +16,18 @@
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
     "@fontsource/inter": "^4.5.15",
+    "@hookform/resolvers": "^3.0.1",
     "@types/axios": "^0.14.0",
     "@types/styled-components": "^5.1.26",
+    "@types/yup": "^0.32.0",
     "axios": "^1.3.5",
     "framer-motion": "^10.10.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-hook-form": "^7.43.9",
     "react-router-dom": "^6.10.0",
-    "styled-components": "^5.3.9"
+    "styled-components": "^5.3.9",
+    "yup": "^1.1.0"
   },
   "devDependencies": {
     "@chakra-ui/cli": "^2.3.0",

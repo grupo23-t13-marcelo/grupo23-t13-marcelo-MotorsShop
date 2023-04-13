@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-import { Input, TagLabel } from "@chakra-ui/react";
+import { FormLabel, Input, TagLabel } from "@chakra-ui/react";
 
 export function InputComponents({size , height,label}:any) {
   const [isFocused, setIsFocused] = useState(false);
@@ -9,9 +9,9 @@ export function InputComponents({size , height,label}:any) {
 
   return (
     <>
-      <TagLabel>
-        {label.label}
-      </TagLabel>
+      <FormLabel>
+        {label}
+      </FormLabel>
     <Input
       placeholder="Digite algo..."
       bg={isFocused ? "white" : "gray.100"}
@@ -19,8 +19,8 @@ export function InputComponents({size , height,label}:any) {
       _placeholder={{ color: "gray.400" }}
       onFocus={handleFocus}
       onBlur={handleBlur}
-      w={size.size || "315px"}
-      h={height.height || "45px"}
+      w={size || "315px"}
+      h={height || "45px"}
     />
     </>
   );
@@ -33,9 +33,9 @@ export function InputComponentsBig({size , height ,label}:any){
     const handleBlur = () => setIsFocused(false);
     return(
       <>
-      <TagLabel>
-        {label.label}
-      </TagLabel>
+      <FormLabel>
+        {label}
+      </FormLabel>
       <Input
           placeholder="Digite algo..."
           bg={isFocused ? "white" : "gray.100"}
@@ -49,8 +49,8 @@ export function InputComponentsBig({size , height ,label}:any){
           pl="4"
           paddingBottom="10"
           defaultValue=""
-          w={size.size || "315px"}
-          h={height.height || "80px"} />
+          w={size || "315px"}
+          h={height || "80px"} />
           </>
     )
 }

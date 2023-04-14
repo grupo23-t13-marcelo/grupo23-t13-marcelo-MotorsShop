@@ -9,9 +9,16 @@ const listUniqueAdService = async (AdID: string) => {
 
     const adsRepository = AppDataSource.getRepository(Ads)
 
-    const ad = await adsRepository.findOneBy({
-        id: AdID
+    const ad = await adsRepository.findOne({
+        where: {
+            id: AdID
+        },
+        relations : {
+            gallery: true
+        }
     })
+
+    console.log(ad)
 
     const validate = adSerializerResponse.validate(ad, {
         stripUnknown:true

@@ -7,8 +7,10 @@ const listAdsService = async () => {
 
     const adsRepository = AppDataSource.getRepository(Ads)
 
-    const ads = await adsRepository.findBy({
-        
+    const ads = await adsRepository.find({
+        relations: {
+            gallery: true
+        }
     })
 
     

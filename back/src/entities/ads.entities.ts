@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Gallery } from "./gallery.entities";
 
 
 @Entity("ads")
@@ -38,6 +39,9 @@ class Ads {
 
     @Column({default: true})
     is_activated : boolean
+
+    @OneToMany(() => Gallery, gallery => gallery.ad, {eager: true})
+    gallery: Gallery[]
 }
 
 

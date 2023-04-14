@@ -3,6 +3,11 @@ import { SchemaOf } from "yup";
 import { IAds, ICreateAds, IPatchAds } from "../../interfaces/ads"
 
 const adSerializerRequest: SchemaOf<ICreateAds> = yup.object().shape({
+    gallery: yup.array().of(
+        yup.object({
+            file_name: yup.string().required()
+        })
+    ).required(),
     cover_image: yup.string().required(),
     fipe_table_price: yup.string().required(),
     color: yup.string().required(),
@@ -16,6 +21,12 @@ const adSerializerRequest: SchemaOf<ICreateAds> = yup.object().shape({
 })
 
 const adSerializerResponse: SchemaOf<IAds> = yup.object().shape({
+    gallery: yup.array().of(
+        yup.object({
+            id: yup.string().notRequired(),
+            file_name: yup.string().notRequired(),
+        })
+    ).notRequired(),
     is_activated: yup.boolean().required(),
     cover_image: yup.string().required(),
     fipe_table_price: yup.string().required(),

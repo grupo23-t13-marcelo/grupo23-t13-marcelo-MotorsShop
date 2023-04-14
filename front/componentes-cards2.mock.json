@@ -1,0 +1,32 @@
+
+{
+    "cards_cars2":[
+        {
+            "brand":true,
+            "image":{
+                "url": "https://img.freepik.com/fotos-gratis/sedan-de-luxo-vermelho-na-estrada_114579-5079.jpg?w=1380&t=st=1680816948~exp=1680817548~hmac=c0012f166d0a2c4b30c60f88a7af9bf0269197eefa700f3be3c369d2fe765bae",
+                "alt":"carro vermelho"
+            },
+            "title":"carro 1",
+            "text":"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem...",
+            "advertiser":"advertiser",
+            "mileage":"0KM",
+            "year":"2020",
+            "price":"R$ 15.0000,000"
+        },
+        {
+            "brand":true,
+            "image":{
+                "url": "https://img.freepik.com/fotos-gratis/sedan-de-luxo-vermelho-na-estrada_114579-5079.jpg?w=1380&t=st=1680816948~exp=1680817548~hmac=c0012f166d0a2c4b30c60f88a7af9bf0269197eefa700f3be3c369d2fe765bae",
+                "alt":"carro vermelho"
+            },
+            "title":"carro 2",
+            "text":"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem...",
+            "advertiser":"advertiser",
+            "mileage":"0KM",
+            "year":"2021",
+            "price":"R$ 20.0000,000"
+        }
+    ]
+    
+}

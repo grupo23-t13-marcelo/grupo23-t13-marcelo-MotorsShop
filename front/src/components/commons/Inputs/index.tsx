@@ -1,6 +1,8 @@
 
 import { useState } from "react";
-import { FormLabel, Input, TagLabel } from "@chakra-ui/react";
+
+import { FormLabel, Input } from "@chakra-ui/react";
+
 
 export function InputComponents({size , height,label}:any) {
   const [isFocused, setIsFocused] = useState(false);

@@ -31,6 +31,7 @@ interface CardProps {
   showStatus: Boolean;
 }
 
+
 export function CardCars({
   card,
   showEditButton = true,
@@ -170,4 +171,4 @@ export function CardCars({
       </CardBody>
     </Card>
   );
-}
+

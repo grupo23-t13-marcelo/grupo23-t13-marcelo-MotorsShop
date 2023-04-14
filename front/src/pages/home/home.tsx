@@ -3,6 +3,7 @@ import { Heading, Flex, Box, Text, Stack, UnorderedList, Button } from "@chakra-
 import homeCover from "../../assets/Luxury-Car-PNG-Image-HD.png"
 import FilterType from "../../components/adFilter/FilterType";
 import { CardCars } from "../../components/commons/Card"
+import mock from "../../../componentes-cards.mock.json";
 
 
 const HomePage = () => {
@@ -70,11 +71,11 @@ const HomePage = () => {
                 flex={{base: "auto", md: 1}}
                 maxWidth={{base: "auto", md: "auto"}}
             >
+                {/* <CardCars />
                 <CardCars />
                 <CardCars />
                 <CardCars />
-                <CardCars />
-                <CardCars />
+                <CardCars /> */}
             </UnorderedList>
             <FilterType/>
         </Box>

@@ -23,6 +23,8 @@ export function Header() {
           alt="Logo do header"
           maxW={"300px"}
           maxH={"30px"}
+          onClick={() => navigate('/')}
+          cursor={'pointer'}
         />
         <HStack
           display={{ base: "none", md: "flex" }}

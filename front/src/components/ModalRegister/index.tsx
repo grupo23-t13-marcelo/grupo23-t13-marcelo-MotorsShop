@@ -1,9 +1,11 @@
 import { Text, Modal, ModalOverlay, ModalContent, Flex, Heading, Button, Stack, flatten } from "@chakra-ui/react"
 import { useContext, useState } from "react"
+import { useNavigate } from "react-router"
 import { AccessContext } from "../../context/access/accessContext"
 
 const ModalRegister = () => {
     const { modalstatus, setModalstatus } = useContext(AccessContext)
+    const navigate = useNavigate()
 
     return (
         <Modal isOpen={modalstatus} onClose={() => setModalstatus(false)}>
@@ -16,7 +18,7 @@ const ModalRegister = () => {
                     <Stack mt={"30px"} mb={"20px"} gap={"10px"}>
                         <Heading fontSize={"md"}>Sua conta foi criada com sucesso!</Heading>
                         <Text >Agora você poderá ver seus negócios crescendo em grande escala</Text>
-                        <Button width={"140px"} variant={"button-sender"} onClick={() => setModalstatus(false)}>Ir para o login</Button>
+                        <Button width={"140px"} variant={"button-sender"} onClick={() => (setModalstatus(false), navigate("/login"))}>Ir para o login</Button>
                     </Stack>
                 </ModalContent>
             </ModalOverlay>

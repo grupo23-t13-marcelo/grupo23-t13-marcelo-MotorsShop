@@ -40,7 +40,7 @@ class Ads {
     @Column({default: true})
     is_activated : boolean
 
-    @OneToMany(() => Gallery, gallery => gallery.ad, {eager: true})
+    @OneToMany(() => Gallery, gallery => gallery.ad)
     gallery: Gallery[]
 }
 

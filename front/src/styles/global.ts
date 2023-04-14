@@ -40,6 +40,5 @@ export default createGlobalStyle`
         *{
             font-family: "Inter"
         }
-
     }
 `

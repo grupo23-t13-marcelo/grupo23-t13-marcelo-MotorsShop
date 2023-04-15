@@ -40,6 +40,13 @@ export default createGlobalStyle`
         *{
             font-family: "Inter"
         }
+<<<<<<< HEAD
         
+=======
+        body{
+            height: 100vh;
+        }
+
+>>>>>>> ea340bbd5477f3bf7df8f5d5f7cba94ce31524e4
     }
 `

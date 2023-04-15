@@ -1,7 +1,9 @@
 import { Heading, Flex, Box, Text, Stack, UnorderedList, Button } from "@chakra-ui/react"
-import homeCover from "../../assets/home_cover.png"
+// import homeCover from "../../assets/home_cover.png"
+import homeCover from "../../assets/Luxury-Car-PNG-Image-HD.png"
 import FilterType from "../../components/adFilter/FilterType";
 import { CardCars } from "../../components/commons/Card"
+import mock from "../../../componentes-cards.mock.json";
 
 
 const HomePage = () => {
@@ -11,7 +13,7 @@ const HomePage = () => {
         <Box
             backgroundImage="linear-gradient(180deg, rgba(0, 0, 0, 0.29) 0%, #000000 100%)"
             width="100%"
-            height="450px" 
+            height="480px" 
             backgroundSize="cover"
             position="relative"
         >
@@ -69,11 +71,11 @@ const HomePage = () => {
                 flex={{base: "auto", md: 1}}
                 maxWidth={{base: "auto", md: "auto"}}
             >
-                <CardCars/>
-                <CardCars/>
-                <CardCars/>
-                <CardCars/>
-                <CardCars/>
+                {/* <CardCars />
+                <CardCars />
+                <CardCars />
+                <CardCars />
+                <CardCars /> */}
             </UnorderedList>
             <FilterType/>
         </Box>

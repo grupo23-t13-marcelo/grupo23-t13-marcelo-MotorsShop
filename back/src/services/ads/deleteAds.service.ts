@@ -20,12 +20,12 @@ const deleteAdService = async (adID: string) => {
     }
 
     
-    if(ad.gallery){
-        ad.gallery.forEach( async (element) => {
-            await galleryRepository.delete(element)
-        })
-    }
-    await adsRepository.delete(ad)
+    // if(ad.gallery){
+    //     ad.gallery.forEach( async (element) => {
+    //         await galleryRepository.delete(element)
+    //     })
+    // }
+    // await adsRepository.delete(ad)
 
 
     return {message: "Anúncio Deletado Com Sucesso!"}

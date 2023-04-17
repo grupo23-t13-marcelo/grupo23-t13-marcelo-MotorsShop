@@ -10,16 +10,16 @@ const dataSourceConfig = (): DataSourceOptions => {
 
     const dbUrl: string | undefined = process.env.DATABASE_URL
 
-    if(!dbUrl) {
+    if (!dbUrl) {
         throw new Error("ENV var DATABASE_URL does not exists")
     }
 
-    const nodeEnv: string | undefined  = process.env.NODE_ENV
+    const nodeEnv: string | undefined = process.env.NODE_ENV
 
-    if(nodeEnv === "test"){
+    if (nodeEnv === "test") {
         return {
             type: "sqlite",
-            database: ":memory",
+            database: path.join(__dirname, '/sqlite3.db'),
             synchronize: true,
             entities: [entitiesPath]
         }
@@ -28,7 +28,7 @@ const dataSourceConfig = (): DataSourceOptions => {
 
     return {
         type: "postgres",
-        url: process.env.DATABASE_URL!,
+        url: dbUrl,
         synchronize: false,
         logging: true,
         migrations: [migrationsPath],
@@ -38,4 +38,4 @@ const dataSourceConfig = (): DataSourceOptions => {
 
 const AppDataSource = new DataSource(dataSourceConfig())
 
-export {AppDataSource}
+export { AppDataSource }

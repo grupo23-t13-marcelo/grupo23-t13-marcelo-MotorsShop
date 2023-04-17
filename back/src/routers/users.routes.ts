@@ -7,6 +7,7 @@ import { UserSchema } from "../schemas/users";
 import { verifyIdMiddleware } from "../middlewares/users/verifyId.middleware";
 import { putUserController } from "../controllers/users/putUser.controller";
 import { verifyPatchBodyMiddleware } from "../middlewares/users/verifyPutBody.middleware";
+import { deleteUserController } from "../controllers/users/deleteUserController";
 
 const userRouter = Router();
 
@@ -25,4 +26,4 @@ userRouter.patch(
   verifyPatchBodyMiddleware,
   putUserController
 );
-userRouter.delete("");
+userRouter.delete("/:id", verifyIdMiddleware, deleteUserController);

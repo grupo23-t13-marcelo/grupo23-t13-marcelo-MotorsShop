@@ -3,7 +3,11 @@ import { AppDataSource } from "../../data-source";
 import { User } from "../../entities/users.entities";
 import { AppError } from "../../errors";
 
-export const verifyIdMiddleware = async (req: Request, res: Response, next: NextFunction) => {
+export const verifyIdMiddleware = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   const { id } = req.params;
   const userRepo = AppDataSource.getRepository(User);
 

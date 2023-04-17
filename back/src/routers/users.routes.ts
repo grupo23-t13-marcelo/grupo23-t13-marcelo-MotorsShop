@@ -18,7 +18,7 @@ userRouter.post(
   emailAndCpfMiddleware,
   createUserController
 );
-userRouter.get("", getUsersController)
+userRouter.get("", getUsersController);
 userRouter.get("/:id", getUserByIdController);
 userRouter.patch(
   "/:id",

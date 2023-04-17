@@ -111,9 +111,6 @@ export const ModalDashboardAddAd = () => {
 
     return (
         <>
-            <Button colorScheme='teal' onClick={() => { onOpen() }}>
-                Open
-            </Button>
             <Modal onClose={onClose} isOpen={isOpen} size={'lg'}>
                 <ModalOverlay />
                 <ModalContent>

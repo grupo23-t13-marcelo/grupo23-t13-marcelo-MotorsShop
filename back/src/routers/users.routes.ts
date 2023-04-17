@@ -4,13 +4,25 @@ import { emailAndCpfMiddleware } from "../middlewares/users/emailAndCpfAuth.midd
 import { getUserByIdController } from "../controllers/users/getUserById.controller";
 import { YupVerification } from "../middlewares/serializer/serializer.middleware";
 import { UserSchema } from "../schemas/users";
+import { verifyIdMiddleware } from "../middlewares/users/verifyId.middleware";
+import { putUserController } from "../controllers/users/putUser.controller";
+import { verifyPatchBodyMiddleware } from "../middlewares/users/verifyPutBody.middleware";
 
+const userRouter = Router();
 
-const userRouter = Router()
+userRouter.post(
+  "",
+  YupVerification(UserSchema),
+  emailAndCpfMiddleware,
+  createUserController
+);
+export default userRouter;
 
-userRouter.post("", YupVerification(UserSchema), emailAndCpfMiddleware, createUserController)
-export default userRouter
-
-userRouter.get("/:id", getUserByIdController)
-userRouter.patch("")
-userRouter.delete("")
+userRouter.get("/:id", getUserByIdController);
+userRouter.patch(
+  "/:id",
+  verifyIdMiddleware,
+  verifyPatchBodyMiddleware,
+  putUserController
+);
+userRouter.delete("");

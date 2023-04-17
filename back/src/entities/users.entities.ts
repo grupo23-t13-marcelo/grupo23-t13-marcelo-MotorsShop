@@ -1,7 +1,7 @@
 import { hashSync } from "bcryptjs";
 import { BeforeInsert, BeforeUpdate, Column, CreateDateColumn, DeleteDateColumn, Entity, JoinColumn, OneToMany, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { Ads } from "./ads.entities";
-import { Address } from "./contact.entities";
+import { Address } from "./address.entities";
 
 export enum UserType{
     Anunciante = 'Anunciante',

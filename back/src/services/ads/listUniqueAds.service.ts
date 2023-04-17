@@ -18,6 +18,7 @@ const listUniqueAdService = async (AdID: string) => {
             gallery: true
         }
     })
+    console.log(ad)
 
     if(!ad){
         throw new AppError("Anúncio Não Existe", 404)

@@ -17,7 +17,6 @@ const registerAdsService = async (adsData: ICreateAds) => {
         const createGallery = galleryRepository.create(element)
         createGallery.ad = newAds
        const newGallery = await galleryRepository.save(createGallery)
-       console.log(newGallery)
         newAds.gallery.push(newGallery) 
     })
 

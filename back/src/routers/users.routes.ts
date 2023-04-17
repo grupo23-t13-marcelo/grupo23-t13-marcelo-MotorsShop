@@ -29,7 +29,7 @@ userRouter.get(
   getUserByIdController
 );
 
-userRouter.patch(
+userRouter.put(
   "/:id",
   verifyTokenValidationMiddleware,
   verifyIdMiddleware,

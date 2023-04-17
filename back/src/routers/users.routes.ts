@@ -9,6 +9,8 @@ import { putUserController } from "../controllers/users/putUser.controller";
 import { verifyPatchBodyMiddleware } from "../middlewares/users/verifyPutBody.middleware";
 import { deleteUserController } from "../controllers/users/deleteUserController";
 import { getUsersController } from "../controllers/users/getUsers.controller";
+import { verifyTokenValidationMiddleware } from "../middlewares/login/verifyTokenValidation.Middleware";
+import { verifyPatchAndDeleteMiddleware } from "../middlewares/users/verifyPatchAndDelete.middleware";
 
 const userRouter = Router();
 
@@ -18,14 +20,30 @@ userRouter.post(
   emailAndCpfMiddleware,
   createUserController
 );
+
 userRouter.get("", getUsersController);
-userRouter.get("/:id", getUserByIdController);
+userRouter.get(
+  "/:id",
+  verifyTokenValidationMiddleware,
+  verifyIdMiddleware,
+  getUserByIdController
+);
+
 userRouter.patch(
   "/:id",
+  verifyTokenValidationMiddleware,
   verifyIdMiddleware,
   verifyPatchBodyMiddleware,
+  verifyPatchAndDeleteMiddleware,
   putUserController
 );
-userRouter.delete("/:id", verifyIdMiddleware, deleteUserController);
+
+userRouter.delete(
+  "/:id",
+  verifyTokenValidationMiddleware,
+  verifyIdMiddleware,
+  verifyPatchAndDeleteMiddleware,
+  deleteUserController
+);
 
 export default userRouter;

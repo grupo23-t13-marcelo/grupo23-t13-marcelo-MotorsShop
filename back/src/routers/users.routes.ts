@@ -8,6 +8,7 @@ import { verifyIdMiddleware } from "../middlewares/users/verifyId.middleware";
 import { putUserController } from "../controllers/users/putUser.controller";
 import { verifyPatchBodyMiddleware } from "../middlewares/users/verifyPutBody.middleware";
 import { deleteUserController } from "../controllers/users/deleteUserController";
+import { getUsersController } from "../controllers/users/getUsers.controller";
 
 const userRouter = Router();
 
@@ -17,8 +18,7 @@ userRouter.post(
   emailAndCpfMiddleware,
   createUserController
 );
-export default userRouter;
-
+userRouter.get("", getUsersController)
 userRouter.get("/:id", getUserByIdController);
 userRouter.patch(
   "/:id",
@@ -27,3 +27,5 @@ userRouter.patch(
   putUserController
 );
 userRouter.delete("/:id", verifyIdMiddleware, deleteUserController);
+
+export default userRouter;

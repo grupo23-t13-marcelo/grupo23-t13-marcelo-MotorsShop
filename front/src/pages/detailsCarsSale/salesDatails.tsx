@@ -29,9 +29,8 @@ export const CarsSalesDetail = () => {
           alignItems={["center", null, "flex-start"]}
         >
           <Box
-            marginLeft={["0%", "0%", "3%", "7%"]}
             marginTop={10}
-            width={["90%", "85%", "57%"]}
+            width={["90%",null ,"75%",null ,"60%" ]}
             marginRight={0}
             alignItems={"center"}
           >
@@ -82,13 +81,17 @@ export const CarsSalesDetail = () => {
                   aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
                 </Text>
                 <Button
-                  backgroundColor={"brand2"}
-                  w={"120px"}
-                  h={"40px"}
-                  color={"white"}
-                >
-                  Criar Anuncio
-                </Button>
+              fontSize={12}
+              w={120}
+              h={10}
+              border={"2px"}
+              color={"brand1"}
+              cursor={"pointer"}
+              borderColor={"brand1"}
+              backgroundColor={"whiteFixed"}
+            >
+              Criar anuncio
+            </Button>
               </Box>
 
               <Box
@@ -104,11 +107,12 @@ export const CarsSalesDetail = () => {
                   display="flex"
                   flexWrap={{ base: "nowrap", md: "wrap" }}
                   overflowX={{ base: "auto" }}
-                  gap={{ base: "25px", md: "30px" }}
+                  gap={{ base: "25px", md: "20px" }}
                   listStyleType="none"
                   flex={{ base: "auto", md: 1 }}
                   maxWidth={{ base: "auto", md: "auto" }}
                   style={{ width: "100%", paddingRight: "5px" }}
+                  justifyContent={"center"}
                 >
                   {cards.map((card, index) => (
                     <CardCars

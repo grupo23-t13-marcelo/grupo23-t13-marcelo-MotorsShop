@@ -11,6 +11,7 @@ import { CloseIcon, HamburgerIcon } from "@chakra-ui/icons";
 import logoMotors from "../../../assets/png/Motors shop.png";
 import { Outlet, useNavigate } from "react-router-dom";
 import { Footer } from "../Footer/Footer";
+import { Link as LinkDom } from "react-router-dom";
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -58,10 +59,12 @@ export function Header() {
           zIndex={9999}
           gap={"30px"}
         >
-          <Button variant={"outline-1"}>Fazer Login</Button>
-          <Link href="/register">
+          <LinkDom to="/login">
+            <Button variant={"outline-1"}>Fazer Login</Button>
+          </LinkDom>
+          <LinkDom to="/register">
             <Button w={"100%"} variant={"outline-1"}>Cadastrar</Button>
-          </Link>
+          </LinkDom>
         </Flex>
       )}
       <Outlet />

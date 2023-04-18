@@ -2,9 +2,11 @@ import { Heading, Flex, Box, Text, Stack, UnorderedList, Button } from "@chakra-
 import homeCover from "../../assets/home_cover.png"
 import FilterType from "../../components/adFilter/FilterType";
 import { CardCars } from "../../components/commons/Card"
+import mock from "../../../componentes-cards.mock.json";
 
 
 const HomePage = () => {
+    const cards = mock.cards_cars;
 
    return (
     <Box>
@@ -69,11 +71,15 @@ const HomePage = () => {
                 flex={{base: "auto", md: 1}}
                 maxWidth={{base: "auto", md: "auto"}}
             >
-                <CardCars />
-                <CardCars />
-                <CardCars />
-                <CardCars />
-                <CardCars />
+              {cards.map((card, index) => (
+                    <CardCars
+                      key={index}
+                      card={card}
+                      showEditButton={false}
+                      showPerfil={true}
+                      showStatus={true}
+                    />
+                  ))}
             </UnorderedList>
             <FilterType/>
         </Box>

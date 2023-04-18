@@ -8,11 +8,12 @@ import deleteAdService from "../../services/ads/deleteAds.service"
 
 
 import putAdsService from "../../services/ads/putAds.service"
+import { IUser } from "../../interfaces/users"
 
 
 
 const createAdsController = async (req:Request, res: Response) => {
-    const userID: string = req.user.id
+    const userID:string = req.user.id
     const adData: ICreateAds = req.body
     const newAd = await registerAdsService(adData, userID)
     return res.status(201).json(newAd)

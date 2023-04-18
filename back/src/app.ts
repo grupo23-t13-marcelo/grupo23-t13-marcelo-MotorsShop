@@ -4,7 +4,12 @@ import { handleError } from "./errors"
 import userRouter from "./routers/users.routes"
 import loginRouter from "./routers/login.routes"
 
+import cors from 'cors'
+
+
 const app: Application = express()
+
+app.use(cors())
 app.use(express.json())
 app.use("/login/", loginRouter)
 app.use("/users/", userRouter)

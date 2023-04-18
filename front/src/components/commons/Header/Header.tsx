@@ -24,6 +24,8 @@ export function Header() {
           alt="Logo do header"
           maxW={"300px"}
           maxH={"30px"}
+          onClick={() => navigate('/')}
+          cursor={'pointer'}
         />
         <HStack
           display={{ base: "none", md: "flex" }}
@@ -58,13 +60,15 @@ export function Header() {
          top={"70px"}
           zIndex={9999}
           gap={"30px"}
-        >
-          <LinkDom to="/login">
-            <Button variant={"outline-1"}>Fazer Login</Button>
+
+        > 
+          <LinkDom to='/login'>
+            <Button  variant={"outline-1"}>Fazer Login</Button>
           </LinkDom>
-          <LinkDom to="/register">
-            <Button w={"100%"} variant={"outline-1"}>Cadastrar</Button>
-          </LinkDom>
+          
+            <LinkDom to='/register'>
+              <Button  w={"100%"} variant={"outline-1"}>Cadastrar</Button>
+            </LinkDom>
         </Flex>
       )}
       <Outlet />

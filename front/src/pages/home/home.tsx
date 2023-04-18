@@ -8,6 +8,8 @@ import mock from "../../../componentes-cards.mock.json";
 
 const HomePage = () => {
 
+    const cards = mock.cards_cars;
+
    return (
     <Box>
         <Box
@@ -71,11 +73,37 @@ const HomePage = () => {
                 flex={{base: "auto", md: 1}}
                 maxWidth={{base: "auto", md: "auto"}}
             >
-                {/* <CardCars />
-                <CardCars />
-                <CardCars />
-                <CardCars />
-                <CardCars /> */}
+                {cards.length > 0 ? 
+                    cards.map((card, index) => (
+                        <CardCars
+                        key={index}
+                        card={card}
+                        showEditButton={false}
+                        showPerfil={true}
+                        showStatus={false}
+                        />
+                    ))
+                    :
+                    <Stack w={{base: "95%", md: "90%"}} h={{base: "200px", md: "600px"}} justify={"center"} align={"center"}>
+                        <Heading color={"brand1"} fontSize={{base: "xl", md: "4xl"}}>Nenhum anúncio encontrado</Heading>
+                    </Stack>
+                }
+
+
+                {/* // {cards.map((card, index) => (
+                //     <CardCars
+                //       key={index}
+                //       card={card}
+                //       showEditButton={false}
+                //       showPerfil={true}
+                //       showStatus={false}
+                //     />
+                // ))} */}
+                {/* <CardCars/>
+                <CardCars/>
+                <CardCars/>
+                <CardCars/>
+                <CardCars/> */}
             </UnorderedList>
             <FilterType/>
         </Box>

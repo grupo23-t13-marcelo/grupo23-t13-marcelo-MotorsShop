@@ -23,6 +23,8 @@ export function Header() {
           alt="Logo do header"
           maxW={"300px"}
           maxH={"30px"}
+          onClick={() => navigate('/')}
+          cursor={'pointer'}
         />
         <HStack
           display={{ base: "none", md: "flex" }}
@@ -33,7 +35,9 @@ export function Header() {
           justify={"space-evenly"}
         >
           <Link href="/login">Fazer Login</Link>
-          <Button variant={"outline-1"} onClick={() => navigate('/register')} >Cadastrar</Button>
+         <Link href="/register">
+            <Button variant={"outline-1"}>Cadastrar</Button>
+          </Link>
         </HStack>
         <IconButton
           aria-label="Abrir menu"
@@ -57,7 +61,9 @@ export function Header() {
           gap={"30px"}
         >
           <Button variant={"outline-1"}>Fazer Login</Button>
-          <Button variant={"outline-1"}>Cadastrar</Button>
+          <Link href="/register">
+            <Button w={"100%"} variant={"outline-1"}>Cadastrar</Button>
+          </Link>
         </Flex>
       )}
       <Outlet />

@@ -1,15 +1,16 @@
 import { Router } from "express";
-import { activeAdsController, createAdsController, deactiveAdsController, deleteAdsController, listAdsController, listUniqueAdsController,putAdsController } from "../controllers/ads.controller";
-import ensureAuthMiddleware from "../middlewares/ensureAuth.middleware";
-import { ensureUserIsAdOwner } from "../middlewares/ensureUserIsAdOwner.middleware";
+import { createAdsController, deleteAdsController, putAdsController, listUniqueAdsController, listAdsController } from "../controllers/ads/ads.controller";
+import { verifyTokenValidationMiddleware } from "../middlewares/login/verifyTokenValidation.Middleware";
+import { verifyUserIsAdOwner } from "../middlewares/ads/verifyUserIsAdOwner.middleware";
+
 
 
 const adsRouters = Router()
 
 
-adsRouters.post("", createAdsController)
-adsRouters.delete("/:id", deleteAdsController)
-adsRouters.put("/:id",putAdsController)
+adsRouters.post("", verifyTokenValidationMiddleware,createAdsController)
+adsRouters.delete("/:id",verifyTokenValidationMiddleware,verifyUserIsAdOwner,deleteAdsController)
+adsRouters.put("/:id",verifyTokenValidationMiddleware,verifyUserIsAdOwner,putAdsController)
 adsRouters.get("/:id", listUniqueAdsController)
 adsRouters.get("", listAdsController)
 

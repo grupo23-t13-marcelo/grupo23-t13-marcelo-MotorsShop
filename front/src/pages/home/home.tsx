@@ -68,10 +68,11 @@ const HomePage = () => {
                 display="flex"
                 flexWrap={{base: "nowrap", md: "wrap"}}
                 overflowX={{base: "auto"}}
-                gap={{base: "15px", md: "35px"}}
+                gap={{base: "25px", md: "45px"}}
                 listStyleType="none"
                 flex={{base: "auto", md: 1}}
                 maxWidth={{base: "auto", md: "auto"}}
+                marginLeft={{base: "5px", md: "16px"}}
             >
                 {cards.length > 0 ? 
                     cards.map((card, index) => (
@@ -88,22 +89,6 @@ const HomePage = () => {
                         <Heading color={"brand1"} fontSize={{base: "xl", md: "4xl"}}>Nenhum anúncio encontrado</Heading>
                     </Stack>
                 }
-
-
-                {/* // {cards.map((card, index) => (
-                //     <CardCars
-                //       key={index}
-                //       card={card}
-                //       showEditButton={false}
-                //       showPerfil={true}
-                //       showStatus={false}
-                //     />
-                // ))} */}
-                {/* <CardCars/>
-                <CardCars/>
-                <CardCars/>
-                <CardCars/>
-                <CardCars/> */}
             </UnorderedList>
             <FilterType/>
         </Box>

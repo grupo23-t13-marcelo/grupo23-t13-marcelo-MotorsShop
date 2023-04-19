@@ -11,6 +11,7 @@ import { deleteUserController } from "../controllers/users/deleteUserController"
 import { getUsersController } from "../controllers/users/getUsers.controller";
 import { verifyTokenValidationMiddleware } from "../middlewares/login/verifyTokenValidation.Middleware";
 import { verifyPatchAndDeleteMiddleware } from "../middlewares/users/verifyPatchAndDelete.middleware";
+import { getProfileUserController } from "../controllers/users/getProfileUser.controller";
 
 const userRouter = Router();
 
@@ -22,6 +23,7 @@ userRouter.post(
 );
 
 userRouter.get("", getUsersController);
+userRouter.get("/profile", verifyTokenValidationMiddleware, getProfileUserController);
 userRouter.get(
   "/:id",
   verifyTokenValidationMiddleware,

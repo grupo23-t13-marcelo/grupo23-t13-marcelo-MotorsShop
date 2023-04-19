@@ -7,7 +7,7 @@ export const loginService = async ({ email }: IUser) => {
   const userRepo = AppDataSource.getRepository(User);
   const userEmail = (await userRepo.findOne({
     where: { email: email },
-  })) as IUser;
+  })) as User;
 
   const token = jwt.sign(
     { email: userEmail.email, id: userEmail.id },

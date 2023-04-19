@@ -77,7 +77,7 @@ const HomePage = () => {
                 maxWidth={{base: "auto", md: "auto"}}
                 marginLeft={{base: "5px", md: "16px"}}
             >
-                {listAds.length > 0 ? 
+               {listAds.length > 0 ? 
                     listAds.map((card, index) => (
                         <CardCars
                         key={index}
@@ -92,6 +92,7 @@ const HomePage = () => {
                         <Heading color={"brand1"} fontSize={{base: "xl", md: "4xl"}}>Nenhum anúncio encontrado</Heading>
                     </Stack>
                 }
+
             </UnorderedList>
             <FilterType/>
         </Box>

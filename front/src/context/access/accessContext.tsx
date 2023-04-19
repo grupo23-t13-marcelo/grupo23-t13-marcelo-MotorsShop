@@ -17,7 +17,6 @@ export const AccessProvider = ({ children }: IAccessContextProps) => {
         console.log(formData)
         api.post('login/', formData)
         .then((response) => {
-            console.log(response)
             localStorage.setItem('motors.user', formData.email)
             localStorage.setItem('motors.token', response.data.token)
             toast({title: "success", variant: "solid", position: "bottom-left", isClosable: true,

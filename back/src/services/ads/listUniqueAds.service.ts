@@ -1,5 +1,6 @@
 import { AppDataSource } from "../../data-source";
 import { Ads } from "../../entities/ads.entities";
+import { AppError } from "../../errors";
 import { IPatchAds } from "../../interfaces/ads";
 import { adSerializerResponse } from "../../schemas/ads";
 
@@ -17,8 +18,11 @@ const listUniqueAdService = async (AdID: string) => {
             gallery: true
         }
     })
-
     console.log(ad)
+
+    if(!ad){
+        throw new AppError("Anúncio Não Existe", 404)
+    }
 
     const validate = adSerializerResponse.validate(ad, {
         stripUnknown:true

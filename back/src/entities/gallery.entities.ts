@@ -11,7 +11,7 @@ class Gallery {
     @Column()
     file_name: string
 
-    @ManyToOne(() => Ads, ad => ad.gallery)
+    @ManyToOne((type) => Ads, ad => ad.gallery, {onDelete: "CASCADE"})
     ad: Ads
 }
 

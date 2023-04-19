@@ -1,5 +1,6 @@
 import { Heading, Flex, Box, Text, Stack, UnorderedList, Button } from "@chakra-ui/react"
-import homeCover from "../../assets/home_cover.png"
+// import homeCover from "../../assets/home_cover.png"
+import homeCover from "../../assets/Luxury-Car-PNG-Image-HD.png"
 import FilterType from "../../components/adFilter/FilterType";
 import { CardCars } from "../../components/commons/Card"
 import mock from "../../../componentes-cards.mock.json";
@@ -8,12 +9,14 @@ import mock from "../../../componentes-cards.mock.json";
 const HomePage = () => {
     const cards = mock.cards_cars;
 
+    const cards = mock.cards_cars;
+
    return (
     <Box>
         <Box
             backgroundImage="linear-gradient(180deg, rgba(0, 0, 0, 0.29) 0%, #000000 100%)"
             width="100%"
-            height="450px" 
+            height="480px" 
             backgroundSize="cover"
             position="relative"
         >
@@ -66,11 +69,13 @@ const HomePage = () => {
                 display="flex"
                 flexWrap={{base: "nowrap", md: "wrap"}}
                 overflowX={{base: "auto"}}
-                gap={{base: "15px", md: "35px"}}
+                gap={{base: "25px", md: "45px"}}
                 listStyleType="none"
                 flex={{base: "auto", md: 1}}
                 maxWidth={{base: "auto", md: "auto"}}
+                marginLeft={{base: "5px", md: "16px"}}
             >
+
               {cards.map((card, index) => (
                     <CardCars
                       key={index}
@@ -80,6 +85,23 @@ const HomePage = () => {
                       showStatus={true}
                     />
                   ))}
+
+                {cards.length > 0 ? 
+                    cards.map((card, index) => (
+                        <CardCars
+                        key={index}
+                        card={card}
+                        showEditButton={false}
+                        showPerfil={true}
+                        showStatus={false}
+                        />
+                    ))
+                    :
+                    <Stack w={{base: "95%", md: "90%"}} h={{base: "200px", md: "600px"}} justify={"center"} align={"center"}>
+                        <Heading color={"brand1"} fontSize={{base: "xl", md: "4xl"}}>Nenhum anúncio encontrado</Heading>
+                    </Stack>
+                }
+
             </UnorderedList>
             <FilterType/>
         </Box>

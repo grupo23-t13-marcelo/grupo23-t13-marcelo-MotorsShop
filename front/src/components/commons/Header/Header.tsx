@@ -11,6 +11,7 @@ import { CloseIcon, HamburgerIcon } from "@chakra-ui/icons";
 import logoMotors from "../../../assets/png/Motors shop.png";
 import { Outlet, useNavigate } from "react-router-dom";
 import { Footer } from "../Footer/Footer";
+import { Link as LinkDom } from "react-router-dom";
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -23,6 +24,8 @@ export function Header() {
           alt="Logo do header"
           maxW={"300px"}
           maxH={"30px"}
+          onClick={() => navigate('/')}
+          cursor={'pointer'}
         />
         <HStack
           display={{ base: "none", md: "flex" }}
@@ -33,7 +36,9 @@ export function Header() {
           justify={"space-evenly"}
         >
           <Link href="/login">Fazer Login</Link>
-          <Button variant={"outline-1"} onClick={() => navigate('/register')} >Cadastrar</Button>
+         <Link href="/register">
+            <Button variant={"outline-1"}>Cadastrar</Button>
+          </Link>
         </HStack>
         <IconButton
           aria-label="Abrir menu"
@@ -55,9 +60,15 @@ export function Header() {
          top={"70px"}
           zIndex={9999}
           gap={"30px"}
-        >
-          <Button variant={"outline-1"}>Fazer Login</Button>
-          <Button variant={"outline-1"}>Cadastrar</Button>
+
+        > 
+          <LinkDom to='/login'>
+            <Button  variant={"outline-1"}>Fazer Login</Button>
+          </LinkDom>
+          
+            <LinkDom to='/register'>
+              <Button  w={"100%"} variant={"outline-1"}>Cadastrar</Button>
+            </LinkDom>
         </Flex>
       )}
       <Outlet />

@@ -127,7 +127,7 @@ const RegisterPage = () => {
                         <Text m={"10px 0 15px 0"}>Tipo de conta</Text>
                         <Flex mb={"20px"} justify={"space-between"} w={"100%"} gap={"10px"}>
                             <Button type="button" w={"50%"} variant={typeUser === "Comprador" ? "button-sender" : "outline-2"} color={typeUser === "Comprador" ? "#FFFFFF"  : "#000000"} onClick={()=> setTypeUser("Comprador")}>Comprador</Button>
-                            <Button w={"50%"} variant={typeUser === "Anuciante" ? "button-sender" : "outline-2"} onClick={()=> setTypeUser("Anunciante")} >Anunciante</Button>
+                            <Button w={"50%"} variant={typeUser === "Anunciante" ? "button-sender" : "outline-2"} onClick={()=> setTypeUser("Anunciante")} >Anunciante</Button>
                         </Flex>
                         <FormControl mb={"20px"} isInvalid={errors.password ? true : false} isRequired={errors.password ? true : false}>
                             <FormLabel>Senha</FormLabel>

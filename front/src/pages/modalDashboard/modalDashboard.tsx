@@ -1,11 +1,10 @@
-import { Input, Text, Textarea, SimpleGrid, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, ModalCloseButton, useDisclosure, Select, Button, ModalOverlay, FormControl, FormLabel, Flex, Box, useToast } from "@chakra-ui/react"
+import { Input, Text, Textarea, SimpleGrid, Modal, ModalBody, ModalContent, ModalHeader, ModalCloseButton, useDisclosure, Select, Button, ModalOverlay, FormControl, FormLabel, Flex, Box, useToast } from "@chakra-ui/react"
 import React, { ChangeEvent, useContext, useEffect, useState } from "react"
 import { ModalDashboardContext } from "../../context/modalDashboard/modalDashboard"
 import { useFieldArray, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { adSchema } from "./types";
 import { currency } from "../adsDetail/adsDetail";
-import { api } from "../../services/api";
 import { apiPostNewAd } from "../../services/adsDetail/retrieveAdById";
 
 interface INewAd {
@@ -33,7 +32,6 @@ export const ModalDashboardAddAd = () => {
     const [inputFields, setInputFields] = useState([{ input: '' }, { input: '' }])
     const toast = useToast()
 
-
     const handleNewFields = () => {
         const inputs = [...inputFields]
 
@@ -41,7 +39,6 @@ export const ModalDashboardAddAd = () => {
 
         setInputFields(inputs)
     }
-
 
     const handlePlaceholderSelection = (event: React.ChangeEvent<HTMLSelectElement>) => {
         const target = event.target
@@ -111,6 +108,9 @@ export const ModalDashboardAddAd = () => {
 
     return (
         <>
+            <Button colorScheme='teal' onClick={() => { onOpen() }}>
+                Open
+            </Button>
             <Modal onClose={onClose} isOpen={isOpen} size={'lg'}>
                 <ModalOverlay />
                 <ModalContent>
@@ -244,7 +244,7 @@ export const ModalDashboardAddAd = () => {
                                     </FormControl>
                                 ))
                             }
-                            <Button isDisabled={inputFields.length == 10} backgroundColor={'brand4'} color={'brand2'} h={'25px'} p={4} fontSize={11} borderRadius={2} onClick={handleNewFields}>
+                            <Button isDisabled={inputFields.length == 6} backgroundColor={'brand4'} color={'brand2'} h={'25px'} p={4} fontSize={11} borderRadius={2} onClick={handleNewFields}>
                                 Adicionar campo para imagem da galeria
                             </Button>
                             <Flex mt={5} justifyContent={"flex-end"} w={'100%'} gap={2}>

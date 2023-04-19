@@ -12,7 +12,7 @@ class Address {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 
-  @Column({ length: 8 })
+  @Column()
   cep: string;
 
   @Column()
@@ -30,9 +30,7 @@ class Address {
   @Column({ nullable: true })
   complement: string;
 
-  @OneToOne(() => User, { onDelete: "CASCADE" })
-  @JoinColumn({ name: "user_id" })
-  user: User;
+ 
 }
 
 export { Address };

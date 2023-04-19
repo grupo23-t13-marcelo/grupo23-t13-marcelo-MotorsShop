@@ -51,5 +51,18 @@ export const UserSchema = Yup.object().shape({
   type: Yup.mixed()
     .oneOf(["Anunciante", "Comprador"])
     .required("O tipo é obrigatório"),
+
+  
   profile_picture: Yup.string().url("Digite uma URL válida"),
+
+  address: Yup.object().shape({
+    cep: Yup.string()
+    .matches(/^\d{5}-\d{3}$/, "informe o cep corretamente")
+    .required('CEP é obrigatório'),
+    state: Yup.string().required('Estado é obrigatório'),
+    city: Yup.string().required('Cidade é obrigatória'),
+    street: Yup.string().required('Logradouro é obrigatório'),
+    number: Yup.string().required('Número é obrigatório'),
+    complement: Yup.string(),
+  })
 });

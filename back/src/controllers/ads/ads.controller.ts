@@ -16,7 +16,7 @@ const createAdsController = async (req:Request, res: Response) => {
     const userID:string = req.user.id
     const adData: ICreateAds = req.body
     const newAd = await registerAdsService(adData, userID)
-    return res.status(201).json(newAd)
+    return res.status(201).json(newAd)  
 }
 
 const listAdsController = async (req:Request, res: Response) => {

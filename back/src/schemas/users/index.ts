@@ -1,11 +1,13 @@
 import * as Yup from "yup";
+import moment from "moment";
+
+
 
 const passwordRegexUppercase = /^(?=.*[A-Z]).+$/;
 const passwordRegexNumber = /^(?=.*[0-9]).+$/;
 const passwordRegexSpecialChar = /^(?=.*[!@#$%^&*()\-_=+{};:,<.>§~`[\]\\/]).+$/;
 
 export const UserSchema = Yup.object().shape({
-
   name: Yup.string().required("O nome é obrigatório"),
 
   email: Yup.string()
@@ -20,7 +22,14 @@ export const UserSchema = Yup.object().shape({
     .matches(/^\(\d{2}\)\s\d{4,5}\-\d{4}$/, "Digite um telefone válido")
     .required("O telefone é obrigatório"),
 
-  birthdate: Yup.date().required("A data de nascimento é obrigatória"),
+  birthdate: Yup.string()
+    
+    .transform((value, originalValue) => {
+      
+      const parsedDate = moment(value, "DD/MM/YYYY", true);
+      return parsedDate.isValid() ? parsedDate.toISOString() : null;
+    })
+    .required("A data de nascimento é obrigatória"),
 
   description: Yup.string().max(
     400,

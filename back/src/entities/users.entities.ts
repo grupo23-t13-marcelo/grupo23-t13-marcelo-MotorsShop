@@ -1,4 +1,5 @@
 import { hashSync } from "bcryptjs";
+import { format, parse } from "date-fns";
 import {
   BeforeInsert,
   BeforeUpdate,
@@ -37,7 +38,14 @@ class User {
   @Column()
   cell_phone: string;
 
-  @Column({ type: "date" })
+  @Column({ 
+    type: "date",
+    transformer: {
+      from: (value: Date) => format(value, "dd/MM/yyyy"),
+      to: (value: string) => parse(value, "dd/MM/yyyy", new Date())
+    }
+
+})
   birthdate: Date;
 
   @Column({ type: "text" })

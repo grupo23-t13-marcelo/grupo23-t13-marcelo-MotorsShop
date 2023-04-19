@@ -103,7 +103,7 @@ const RegisterPage = () => {
                         </Flex>
                         <FormControl mb={"20px"} isInvalid={errors.street ? true : false} isRequired={errors.street ? true : false}>
                             <FormLabel>Rua</FormLabel>
-                            <Input type="text" id="street" placeholder="Digitar senha" {...register("street")}/>
+                            <Input type="text" id="street" placeholder="Digitar Nome Da Rua" {...register("street")}/>
                             <FormErrorMessage>
                                 {errors.street && `${errors.street.message}`}
                             </FormErrorMessage>
@@ -138,7 +138,7 @@ const RegisterPage = () => {
                         </FormControl>
                         <FormControl mb={"20px"} isInvalid={errors.confirmPassword ? true : false} isRequired={errors.confirmPassword ? true : false}>
                             <FormLabel>Confirmar Senha</FormLabel>
-                            <Input type="password" id="confirmPassword" placeholder="Digitar senha" {...register("confirmPassword")}/>
+                            <Input type="password" id="confirmPassword" placeholder="Digitar Confirmação De Senha" {...register("confirmPassword")}/>
                             <FormErrorMessage>
                                 {errors.confirmPassword && `${errors.confirmPassword.message}`}
                             </FormErrorMessage>

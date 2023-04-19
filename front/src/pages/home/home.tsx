@@ -10,7 +10,6 @@ import { AccessContext } from "../../context/access/accessContext";
 
 const HomePage = () => {
 
-    const cards = mock.cards_cars;
     const {listAds} = useContext(AccessContext)
 
    return (

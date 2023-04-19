@@ -9,7 +9,6 @@ import mock from "../../../componentes-cards.mock.json";
 const HomePage = () => {
     const cards = mock.cards_cars;
 
-    const cards = mock.cards_cars;
 
    return (
     <Box>

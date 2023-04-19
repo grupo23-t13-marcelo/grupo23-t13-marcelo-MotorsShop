@@ -6,13 +6,22 @@ import {
   UnorderedList,
   Stack,
   Avatar,
+  Heading,
 } from "@chakra-ui/react";
 import { CardCars } from "../../components/commons/Card";
 import mock from "../../../componentes-cards.mock.json";
+import { AuthContext } from "../../context/loggedUser";
+import { useContext } from "react";
 
 export const CarsSalesDetail = () => {
   const cards = mock.cards_cars;
 
+
+  const { user } = useContext(AuthContext);
+  if (user === null) {
+    return <Text>Usuário não encontrado</Text>;
+    
+  }
   return (
     <>
       <Box
@@ -53,7 +62,7 @@ export const CarsSalesDetail = () => {
                 marginTop={75}
               >
                 <Stack direction="row" alignItems="center">
-                  <Avatar size="xl" name="Samuel Leao" />
+                  <Avatar size="xl" name={user.name} />
                 </Stack>
                 <Box
                   display={"flex"}
@@ -64,7 +73,7 @@ export const CarsSalesDetail = () => {
                 >
                   <Box display={"flex"} gap={3} alignItems={"center"}>
                     <Text fontFamily={"Lexend"} fontWeight={600}>
-                      Samuel Leao
+                    {user.name}
                     </Text>
                     <Button
                       h={"30px"}
@@ -78,7 +87,7 @@ export const CarsSalesDetail = () => {
                   </Box>
                 </Box>
                 <Text>
-                  aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                  {user.description}
                 </Text>
                 <Button
               fontSize={12}
@@ -114,7 +123,7 @@ export const CarsSalesDetail = () => {
                   style={{ width: "100%", paddingRight: "5px" }}
                   justifyContent={"center"}
                 >
-                  {cards.map((card, index) => (
+                {cards.map((card, index) => (
                     <CardCars
                       key={index}
                       card={card}
@@ -123,6 +132,22 @@ export const CarsSalesDetail = () => {
                       showStatus={false}
                     />
                   ))}
+
+                {cards.length > 0 ? 
+                    cards.map((card, index) => (
+                        <CardCars
+                        key={index}
+                        card={card}
+                        showEditButton={true}
+                        showPerfil={false}
+                        showStatus={false}
+                        />
+                    ))
+                    :
+                    <Stack w={{base: "95%", md: "90%"}} h={{base: "200px", md: "600px"}} justify={"center"} align={"center"}>
+                        <Heading color={"brand1"} fontSize={{base: "xl", md: "4xl"}}>Nenhum anúncio encontrado</Heading>
+                    </Stack>
+                }
                 </UnorderedList>
               </Box>
             </Flex>

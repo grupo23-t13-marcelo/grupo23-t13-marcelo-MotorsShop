@@ -9,6 +9,7 @@ export const AccessContext = createContext({} as IAccessContext)
 
 export const AccessProvider = ({ children }: IAccessContextProps) => {
     const [modalstatus, setModalstatus] = useState<boolean>(false)
+    const [isLoading, setIsLoading] = useState<boolean>(false);
     const navigate = useNavigate()
     const toast = useToast()
 
@@ -38,14 +39,16 @@ export const AccessProvider = ({ children }: IAccessContextProps) => {
 
         try {
             await api.post("users/", dataRegister)
+            setIsLoading(false)
             setModalstatus(true)
 
-        } catch (error: any){
+        } catch (error){
             toast({title: "failed", variant: "solid", position: "bottom-left", isClosable: true,
             render: () => (
                  <Box color={"gray.50"} p={3} bg={"red.600"} fontWeight={"bold"} borderRadius={"md"}>
-                    {error.response.data.message}
+                    Ops, algo deu errado
             </Box>)})
+            setIsLoading(false)
             console.log(error)
         }
     }
@@ -54,7 +57,9 @@ export const AccessProvider = ({ children }: IAccessContextProps) => {
         modalstatus: modalstatus,
         setModalstatus: setModalstatus,
         apiPostLogin: apiPostLogin,
-        apiPostRegister: apiPostRegister
+        apiPostRegister: apiPostRegister,
+        setIsLoading: setIsLoading,
+        isLoading: isLoading
     }
 
 

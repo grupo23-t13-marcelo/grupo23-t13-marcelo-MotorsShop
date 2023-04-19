@@ -7,23 +7,27 @@ import { AccessContext } from "../../context/access/accessContext";
 import { validationUserRegister } from "../../validations/user";
 import InputMask from 'react-input-mask';
 import { IUserRegister } from "../../context/access/accessTypes";
+import { Spinner } from "@chakra-ui/react";
 
 const RegisterPage = () => {
-    const [isLoading, setIsLoading] = useState<boolean>(false);
+    // const [isLoading, setIsLoading] = useState<boolean>(false);
     const [typeUser,setTypeUser] = useState<string>("Comprador")
-    const { setModalstatus, apiPostRegister } = useContext(AccessContext)
+    const { isLoading, setIsLoading, apiPostRegister } = useContext(AccessContext)
 
     const {
         register,
         handleSubmit,
+        reset,
         formState: { errors }
     } = useForm({
         resolver: yupResolver(validationUserRegister)
     });
 
-    const onSubmit = (data: any) => {
-        // setIsLoading(true);
+    const onSubmit = async (data: any) => {
+        setIsLoading(true);
+
         data.type = typeUser
+
         const newObj: IUserRegister = {
             name: data.name,
             email: data.email,
@@ -43,8 +47,7 @@ const RegisterPage = () => {
             }
         }
 
-        return apiPostRegister(newObj)
-        
+        apiPostRegister(newObj)
     }
     
     return (
@@ -162,7 +165,32 @@ const RegisterPage = () => {
                                 {errors.confirmPassword && `${errors.confirmPassword.message}`}
                             </FormErrorMessage>
                         </FormControl>
-                        <Button type="submit" w={"100%"} h={"50px"} mb={"30px"} variant={"button-sender"} textColor={"#FFFFFF"}>Finalizar cadastro</Button>
+                        {isLoading ? 
+                            <Button
+                                type="button"
+                                w={"100%"}
+                                h={"50px"}
+                                mb={"30px"}
+                                bg={"gray.400"}
+                                color={"gray.700"}
+                                textColor={"#FFFFFF"}
+                                isLoading={isLoading}
+                                disabled={true}
+                            >
+                                {<Spinner />}
+                            </Button>
+                            :
+                            <Button 
+                                type="submit" 
+                                w={"100%"} 
+                                h={"50px"} 
+                                mb={"30px"} 
+                                variant={"button-sender"} 
+                                textColor={"#FFFFFF"}
+                            >
+                                Finalizar cadastro
+                            </Button>
+                        }
                     </form>
                 </Stack>
             </Stack>

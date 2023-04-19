@@ -45,4 +45,6 @@ export interface IAccessContext {
     setModalstatus: React.Dispatch<React.SetStateAction<boolean>>
     apiPostLogin: (formData: ILogin) => void
     apiPostRegister: (dataRegister: IUserRegister) => Promise<void>
+    isLoading: boolean
+    setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
 }

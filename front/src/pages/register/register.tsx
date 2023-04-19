@@ -6,16 +6,15 @@ import ModalRegister from "../../components/ModalRegister";
 import { AccessContext } from "../../context/access/accessContext";
 import { validationUserRegister } from "../../validations/user";
 import InputMask from 'react-input-mask';
-import MaskedInput from 'react-input-mask'
+import { IUserRegister } from "../../context/access/accessTypes";
 
 const RegisterPage = () => {
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [typeUser,setTypeUser] = useState<string>("Comprador")
-    const { setModalstatus } = useContext(AccessContext)
+    const { setModalstatus, apiPostRegister } = useContext(AccessContext)
 
     const {
         register,
-        control,
         handleSubmit,
         formState: { errors }
     } = useForm({
@@ -23,9 +22,29 @@ const RegisterPage = () => {
     });
 
     const onSubmit = (data: any) => {
-        setIsLoading(true);
+        // setIsLoading(true);
         data.type = typeUser
-        console.log(data)
+        const newObj: IUserRegister = {
+            name: data.name,
+            email: data.email,
+            cpf: data.cpf,
+            cell_phone: data.cellPhone,
+            birthdate: data.birthdate,
+            description: data.description,
+            password: data.password,
+            type: data.type,
+            address: {
+                cep: data.cep,
+                state: data.state,
+                city: data.city,
+                street: data.street,
+                number: data.number,
+                complement: data.complement
+            }
+        }
+
+        return apiPostRegister(newObj)
+        
     }
     
     return (
@@ -80,7 +99,7 @@ const RegisterPage = () => {
                         <Text m={"25px 0"}>Infomações de endereço</Text>
                         <FormControl mb={"20px"} isInvalid={errors.cep ? true : false} isRequired={errors.cep ? true : false}>
                             <FormLabel>CEP</FormLabel>
-                            <Input as={InputMask} mask="99999.999" type="text" id="cep" placeholder="00000.000" {...register("cep")}/>
+                            <Input as={InputMask} mask="99999-999" type="text" id="cep" placeholder="00000-000" {...register("cep")}/>
                             <FormErrorMessage>
                                 {errors.cep && `${errors.cep.message}`}
                             </FormErrorMessage>
@@ -143,7 +162,7 @@ const RegisterPage = () => {
                                 {errors.confirmPassword && `${errors.confirmPassword.message}`}
                             </FormErrorMessage>
                         </FormControl>
-                        <Button type="submit" w={"100%"} h={"50px"} mb={"30px"} variant={"button-sender"} textColor={"#FFFFFF"} onClick={() => setModalstatus(true)}>Finalizar cadastro</Button>
+                        <Button type="submit" w={"100%"} h={"50px"} mb={"30px"} variant={"button-sender"} textColor={"#FFFFFF"}>Finalizar cadastro</Button>
                     </form>
                 </Stack>
             </Stack>

@@ -1,10 +1,9 @@
 import { createContext, useEffect, useState } from "react";
-import { IAccessContextProps, IAccessContext, IAdInfo } from "./accessTypes";
+import { IAccessContextProps, IAccessContext, IAdInfo, IUserRegister } from "./accessTypes";
 import { ILogin } from "../../pages/loginPage/login";
 import { api } from "../../services/api";
 import { useNavigate } from "react-router-dom";
 import { Box, useToast } from "@chakra-ui/react";
-import { apiGetListAds } from "../../services/adsApi/adsApi";
 
 export const AccessContext = createContext({} as IAccessContext)
 
@@ -35,11 +34,27 @@ export const AccessProvider = ({ children }: IAccessContextProps) => {
         })
     }
 
+    const apiPostRegister = async (dataRegister: IUserRegister) => {
+
+        try {
+            await api.post("users/", dataRegister)
+            setModalstatus(true)
+
+        } catch (error: any){
+            toast({title: "failed", variant: "solid", position: "bottom-left", isClosable: true,
+            render: () => (
+                 <Box color={"gray.50"} p={3} bg={"red.600"} fontWeight={"bold"} borderRadius={"md"}>
+                    {error.response.data.message}
+            </Box>)})
+            console.log(error)
+        }
+    }
 
     const globalAccessValues: IAccessContext = {
         modalstatus: modalstatus,
         setModalstatus: setModalstatus,
         apiPostLogin: apiPostLogin,
+        apiPostRegister: apiPostRegister
     }
 
 

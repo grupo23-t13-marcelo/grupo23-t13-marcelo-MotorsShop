@@ -1,9 +1,10 @@
-import { createContext, useState } from "react";
-import { IAccessContextProps, IAccessContext } from "./accessTypes";
+import { createContext, useEffect, useState } from "react";
+import { IAccessContextProps, IAccessContext, IAdInfo } from "./accessTypes";
 import { ILogin } from "../../pages/loginPage/login";
 import { api } from "../../services/api";
 import { useNavigate } from "react-router-dom";
 import { Box, useToast } from "@chakra-ui/react";
+import { apiGetListAds } from "../../services/adsApi/adsApi";
 
 export const AccessContext = createContext({} as IAccessContext)
 
@@ -33,6 +34,7 @@ export const AccessProvider = ({ children }: IAccessContextProps) => {
             console.log(error)
         })
     }
+
 
     const globalAccessValues: IAccessContext = {
         modalstatus: modalstatus,

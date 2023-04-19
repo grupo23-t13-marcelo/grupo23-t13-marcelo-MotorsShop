@@ -4,11 +4,14 @@ import homeCover from "../../assets/Luxury-Car-PNG-Image-HD.png"
 import FilterType from "../../components/adFilter/FilterType";
 import { CardCars } from "../../components/commons/Card"
 import mock from "../../../componentes-cards.mock.json";
+import { useContext } from "react";
+import { HomeContext } from "../../context/home/homeContext";
 
 
 const HomePage = () => {
-    const cards = mock.cards_cars;
-    
+
+    const {listAds} = useContext(HomeContext)
+
    return (
     <Box>
         <Box
@@ -63,7 +66,8 @@ const HomePage = () => {
             gap={{md: "10%"}}
         >
             <UnorderedList 
-                paddingRight={{base: "5px", md: "0px"}}
+                // paddingRight={{base: "5px", md: "0px"}}
+                padding={"5px"}
                 display="flex"
                 flexWrap={{base: "nowrap", md: "wrap"}}
                 overflowX={{base: "auto"}}
@@ -73,19 +77,8 @@ const HomePage = () => {
                 maxWidth={{base: "auto", md: "auto"}}
                 marginLeft={{base: "5px", md: "16px"}}
             >
-
-              {cards.map((card, index) => (
-                    <CardCars
-                      key={index}
-                      card={card}
-                      showEditButton={false}
-                      showPerfil={true}
-                      showStatus={true}
-                    />
-                  ))}
-
-                {cards.length > 0 ? 
-                    cards.map((card, index) => (
+               {listAds.length > 0 ? 
+                    listAds.map((card, index) => (
                         <CardCars
                         key={index}
                         card={card}

@@ -66,7 +66,8 @@ const HomePage = () => {
             gap={{md: "10%"}}
         >
             <UnorderedList 
-                paddingRight={{base: "5px", md: "0px"}}
+                // paddingRight={{base: "5px", md: "0px"}}
+                padding={"5px"}
                 display="flex"
                 flexWrap={{base: "nowrap", md: "wrap"}}
                 overflowX={{base: "auto"}}

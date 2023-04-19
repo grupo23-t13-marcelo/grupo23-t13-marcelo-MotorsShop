@@ -4,11 +4,14 @@ import homeCover from "../../assets/Luxury-Car-PNG-Image-HD.png"
 import FilterType from "../../components/adFilter/FilterType";
 import { CardCars } from "../../components/commons/Card"
 import mock from "../../../componentes-cards.mock.json";
+import { useContext } from "react";
+import { AccessContext } from "../../context/access/accessContext";
 
 
 const HomePage = () => {
 
     const cards = mock.cards_cars;
+    const {listAds} = useContext(AccessContext)
 
    return (
     <Box>
@@ -74,8 +77,8 @@ const HomePage = () => {
                 maxWidth={{base: "auto", md: "auto"}}
                 marginLeft={{base: "5px", md: "16px"}}
             >
-                {cards.length > 0 ? 
-                    cards.map((card, index) => (
+                {listAds.length > 0 ? 
+                    listAds.map((card, index) => (
                         <CardCars
                         key={index}
                         card={card}

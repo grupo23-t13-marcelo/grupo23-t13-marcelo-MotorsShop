@@ -1,14 +1,16 @@
-import { createContext, useState } from "react";
-import { IAccessContextProps, IAccessContext } from "./accessTypes";
+import { createContext, useEffect, useState } from "react";
+import { IAccessContextProps, IAccessContext, IAdInfo } from "./accessTypes";
 import { ILogin } from "../../pages/loginPage/login";
 import { api } from "../../services/api";
 import { useNavigate } from "react-router-dom";
 import { Box, useToast } from "@chakra-ui/react";
+import { apiGetListAds } from "../../services/adsApi/adsApi";
 
 export const AccessContext = createContext({} as IAccessContext)
 
 export const AccessProvider = ({ children }: IAccessContextProps) => {
     const [modalstatus, setModalstatus] = useState<boolean>(false)
+    const [listAds, setListAd] = useState<IAdInfo[]>([])
     const navigate = useNavigate()
     const toast = useToast()
 
@@ -35,10 +37,24 @@ export const AccessProvider = ({ children }: IAccessContextProps) => {
         })
     }
 
+    useEffect(() => {
+        
+        const listAds = async () => {
+            const {data} = await apiGetListAds()
+            console.log(data)
+            setListAd(data)
+        }
+
+        listAds()
+    }, [])
+
+
     const globalAccessValues: IAccessContext = {
         modalstatus: modalstatus,
         setModalstatus: setModalstatus,
         apiPostLogin: apiPostLogin,
+        listAds: listAds,
+        setListAd: setListAd
     }
 
 

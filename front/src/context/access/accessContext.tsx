@@ -1,15 +1,15 @@
 import { createContext, useEffect, useState } from "react";
-import { IAccessContextProps, IAccessContext, IAdInfo } from "./accessTypes";
+import { IAccessContextProps, IAccessContext, IAdInfo, IUserRegister } from "./accessTypes";
 import { ILogin } from "../../pages/loginPage/login";
 import { api } from "../../services/api";
 import { useNavigate } from "react-router-dom";
 import { Box, useToast } from "@chakra-ui/react";
-import { apiGetListAds } from "../../services/adsApi/adsApi";
 
 export const AccessContext = createContext({} as IAccessContext)
 
 export const AccessProvider = ({ children }: IAccessContextProps) => {
     const [modalstatus, setModalstatus] = useState<boolean>(false)
+    const [isLoading, setIsLoading] = useState<boolean>(false);
     const navigate = useNavigate()
     const toast = useToast()
 
@@ -35,11 +35,31 @@ export const AccessProvider = ({ children }: IAccessContextProps) => {
         })
     }
 
+    const apiPostRegister = async (dataRegister: IUserRegister) => {
+
+        try {
+            await api.post("users/", dataRegister)
+            setIsLoading(false)
+            setModalstatus(true)
+
+        } catch (error){
+            toast({title: "failed", variant: "solid", position: "bottom-left", isClosable: true,
+            render: () => (
+                 <Box color={"gray.50"} p={3} bg={"red.600"} fontWeight={"bold"} borderRadius={"md"}>
+                    Ops, algo deu errado
+            </Box>)})
+            setIsLoading(false)
+            console.log(error)
+        }
+    }
 
     const globalAccessValues: IAccessContext = {
         modalstatus: modalstatus,
         setModalstatus: setModalstatus,
         apiPostLogin: apiPostLogin,
+        apiPostRegister: apiPostRegister,
+        setIsLoading: setIsLoading,
+        isLoading: isLoading
     }
 
 

@@ -20,8 +20,31 @@ export interface IAdInfo {
 	is_activated: boolean,
 	gallery: []
 }
+
+export interface IUserRegister {
+    name: string
+    email: string,
+    cpf: string,
+    cell_phone: string,
+    birthdate: string,
+    description: string,
+    password: string,
+    type: string,
+    profile_picture?: string | null | undefined,
+    address: {
+        cep: string,
+        state: string,
+        city: string,
+        street: string,
+        number: string,
+        complement?: string | null | undefined
+    }
+}
 export interface IAccessContext {
     modalstatus: boolean
     setModalstatus: React.Dispatch<React.SetStateAction<boolean>>
     apiPostLogin: (formData: ILogin) => void
+    apiPostRegister: (dataRegister: IUserRegister) => Promise<void>
+    isLoading: boolean
+    setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
 }

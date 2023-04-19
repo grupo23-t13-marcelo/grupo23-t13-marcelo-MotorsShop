@@ -4,7 +4,7 @@ export const validationUserRegister = yup.object().shape({
     email: yup.string().required("Campo obrigatório").email("Email inválido"),
     cpf: yup.string().matches(/^\d{3}\.\d{3}\.\d{3}\-\d{2}$/, "Digite um CPF válido").required("Campo obrigatório"),
     cellPhone: yup.string().matches(/^\(\d{2}\)\s\d{4,5}\-\d{4}$/, "Digite um telefone válido").required("Campo obrigatório"),
-    birthdate: yup.date().notRequired().typeError("Insira uma data de nascimento válida (DD/MM/AAAA)"),
+    birthdate: yup.string().notRequired().typeError("Insira uma data de nascimento válida (DD/MM/AAAA)"),
     description: yup.string().max(
       400,
       "A descrição deve ter no máximo 400 caracteres"

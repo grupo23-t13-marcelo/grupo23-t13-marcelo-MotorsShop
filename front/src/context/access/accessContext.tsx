@@ -10,7 +10,6 @@ export const AccessContext = createContext({} as IAccessContext)
 
 export const AccessProvider = ({ children }: IAccessContextProps) => {
     const [modalstatus, setModalstatus] = useState<boolean>(false)
-    const [listAds, setListAd] = useState<IAdInfo[]>([])
     const navigate = useNavigate()
     const toast = useToast()
 
@@ -37,24 +36,11 @@ export const AccessProvider = ({ children }: IAccessContextProps) => {
         })
     }
 
-    useEffect(() => {
-        
-        const listAds = async () => {
-            const {data} = await apiGetListAds()
-            console.log(data)
-            setListAd(data)
-        }
-
-        listAds()
-    }, [])
-
 
     const globalAccessValues: IAccessContext = {
         modalstatus: modalstatus,
         setModalstatus: setModalstatus,
         apiPostLogin: apiPostLogin,
-        listAds: listAds,
-        setListAd: setListAd
     }
 
 

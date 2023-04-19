@@ -5,12 +5,12 @@ import FilterType from "../../components/adFilter/FilterType";
 import { CardCars } from "../../components/commons/Card"
 import mock from "../../../componentes-cards.mock.json";
 import { useContext } from "react";
-import { AccessContext } from "../../context/access/accessContext";
+import { HomeContext } from "../../context/home/homeContext";
 
 
 const HomePage = () => {
 
-    const {listAds} = useContext(AccessContext)
+    const {listAds} = useContext(HomeContext)
 
    return (
     <Box>

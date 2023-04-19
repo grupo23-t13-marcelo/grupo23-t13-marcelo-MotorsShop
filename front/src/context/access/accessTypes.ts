@@ -24,6 +24,4 @@ export interface IAccessContext {
     modalstatus: boolean
     setModalstatus: React.Dispatch<React.SetStateAction<boolean>>
     apiPostLogin: (formData: ILogin) => void
-    listAds: IAdInfo[]
-    setListAd: React.Dispatch<React.SetStateAction<IAdInfo[]>>
 }

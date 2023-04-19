@@ -7,6 +7,7 @@ import MotorTheme from "./styles/theme";
 import { AccessProvider } from "./context/access/accessContext";
 import { AdDetailProvider } from "./context/adsDetail/adsDetailContext";
 import { ModalDashboardProvider } from "./context/modalDashboard/modalDashboard";
+import { HomeContext, HomeProvider } from "./context/home/homeContext";
 
 
 
@@ -14,13 +15,15 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <BrowserRouter>
       <ChakraProvider theme={MotorTheme}>
-        <AccessProvider>
-          <ModalDashboardProvider>
-            <AdDetailProvider>
-              <App />
-            </AdDetailProvider>
-          </ModalDashboardProvider>
-        </AccessProvider>
+        <HomeProvider>
+          <AccessProvider>
+            <ModalDashboardProvider>
+              <AdDetailProvider>
+                <App />
+              </AdDetailProvider>
+            </ModalDashboardProvider>
+          </AccessProvider>
+        </HomeProvider>
       </ChakraProvider>
     </BrowserRouter>
   </React.StrictMode>

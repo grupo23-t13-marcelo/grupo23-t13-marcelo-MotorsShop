@@ -1,13 +1,12 @@
 import { Box, Button, Flex, FormControl, FormErrorMessage, FormLabel, Heading, Input, Stack, Text, Textarea } from "@chakra-ui/react"
-import { useContext, useState } from "react";
-import { useForm } from "react-hook-form"
-import * as yup from "yup";
+import { useContext, useRef, useState, createRef } from "react";
+import { useForm, Controller } from "react-hook-form"
 import { yupResolver } from '@hookform/resolvers/yup';
 import ModalRegister from "../../components/ModalRegister";
 import { AccessContext } from "../../context/access/accessContext";
 import { validationUserRegister } from "../../validations/user";
-
-
+import InputMask from 'react-input-mask';
+import MaskedInput from 'react-input-mask'
 
 const RegisterPage = () => {
     const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -16,6 +15,7 @@ const RegisterPage = () => {
 
     const {
         register,
+        control,
         handleSubmit,
         formState: { errors }
     } = useForm({
@@ -27,10 +27,10 @@ const RegisterPage = () => {
         data.type = typeUser
         console.log(data)
     }
-
+    
     return (
         <Box bg={"gray.100"} >
-            <Stack w={"90%"} m={"20px auto 30px auto"} bg={"#ffffff"} maxW={"500px"}>
+            <Stack w={"90%"} m={"20px auto 30px auto"} bg={"#FFFFFF"} maxW={"500px"}>
                 <Stack w={{base: "90%", md: "85%"}} m={"10px auto 0 auto"}>
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <Heading mt={"20px"} fontSize={"4xl"}>Cadastro</Heading>
@@ -51,28 +51,28 @@ const RegisterPage = () => {
                         </FormControl>
                         <FormControl mb={"20px"} isInvalid={errors.cpf ? true : false} isRequired={errors.cpf ? true : false}>
                             <FormLabel>CPF</FormLabel>
-                            <Input type="text" id="cpf" placeholder="000.000.000-00" {...register("cpf")}/>
+                            <Input as={InputMask} mask="999.999.999-99" type="text" id="cpf" placeholder="000.000.000-00" {...register("cpf")}/>
                             <FormErrorMessage>
                                 {errors.cpf && `${errors.cpf.message}`}
                             </FormErrorMessage>
                         </FormControl>
                         <FormControl mb={"20px"} isInvalid={errors.cellPhone ? true : false} isRequired={errors.cellPhone ? true : false}>
                             <FormLabel>Celular</FormLabel>
-                            <Input type="text" id="cellPhone" placeholder="(DDD) 90000-0000" {...register("cellPhone")}/>
+                            <Input as={InputMask} mask="(99) 99999-9999" type="text" id="cellPhone" placeholder="(DDD) 90000-0000" {...register("cellPhone")}/>
                             <FormErrorMessage>
                                 {errors.cellPhone && `${errors.cellPhone.message}`}
                             </FormErrorMessage>
                         </FormControl>
                         <FormControl mb={"20px"} isInvalid={errors.birthdate ? true : false} isRequired={errors.birthdate ? true : false}>
                             <FormLabel>Data de nascimento</FormLabel>
-                            <Input type="text" id="birthdate" placeholder="Ex: Samuel Leão" {...register("birthdate")}/>
+                            <Input as={InputMask} mask="99/99/9999" type="text" id="birthdate" placeholder="00/00/0000" {...register("birthdate")}/>
                             <FormErrorMessage>
                                 {errors.birthdate && `${errors.birthdate.message}`}
                             </FormErrorMessage>
                         </FormControl>
                         <FormControl mb={"20px"} isInvalid={errors.description ? true : false} isRequired={errors.description ? true : false}>
                             <FormLabel>Descrição</FormLabel>
-                            <Textarea id="description" placeholder="Digitar descrição" {...register("description")}/>
+                            <Textarea maxLength={400} id="description" placeholder="Digitar descrição" {...register("description")}/>
                             <FormErrorMessage>
                                 {errors.description && `${errors.description.message}`}
                             </FormErrorMessage>
@@ -80,7 +80,7 @@ const RegisterPage = () => {
                         <Text m={"25px 0"}>Infomações de endereço</Text>
                         <FormControl mb={"20px"} isInvalid={errors.cep ? true : false} isRequired={errors.cep ? true : false}>
                             <FormLabel>CEP</FormLabel>
-                            <Input type="text" id="cep" placeholder="00000.000" {...register("cep")}/>
+                            <Input as={InputMask} mask="99999.999" type="text" id="cep" placeholder="00000.000" {...register("cep")}/>
                             <FormErrorMessage>
                                 {errors.cep && `${errors.cep.message}`}
                             </FormErrorMessage>
@@ -126,8 +126,8 @@ const RegisterPage = () => {
                         </Flex>
                         <Text m={"10px 0 15px 0"}>Tipo de conta</Text>
                         <Flex mb={"20px"} justify={"space-between"} w={"100%"} gap={"10px"}>
-                            <Button type="button" w={"50%"} variant={typeUser === "Comprador" ? "button-sender" : "outline-2"} color={typeUser === "Comprador" ? "#ffffff"  : "#000000"} onClick={()=> setTypeUser("Comprador")}>Comprador</Button>
-                            <Button w={"50%"} variant={typeUser === "Anuciante" ? "button-sender" : "outline-2"} onClick={()=> setTypeUser("Anuciante")} >Anuciante</Button>
+                            <Button type="button" w={"50%"} variant={typeUser === "Comprador" ? "button-sender" : "outline-2"} color={typeUser === "Comprador" ? "#FFFFFF"  : "#000000"} onClick={()=> setTypeUser("Comprador")}>Comprador</Button>
+                            <Button w={"50%"} variant={typeUser === "Anuciante" ? "button-sender" : "outline-2"} onClick={()=> setTypeUser("Anunciante")} >Anunciante</Button>
                         </Flex>
                         <FormControl mb={"20px"} isInvalid={errors.password ? true : false} isRequired={errors.password ? true : false}>
                             <FormLabel>Senha</FormLabel>
@@ -143,7 +143,7 @@ const RegisterPage = () => {
                                 {errors.confirmPassword && `${errors.confirmPassword.message}`}
                             </FormErrorMessage>
                         </FormControl>
-                        <Button type="submit" w={"100%"} mb={"30px"} variant={"button-sender"} textColor={"#ffffff"} onClick={() => setModalstatus(true)}>Finalizar cadastro</Button>
+                        <Button type="submit" w={"100%"} h={"50px"} mb={"30px"} variant={"button-sender"} textColor={"#FFFFFF"} onClick={() => setModalstatus(true)}>Finalizar cadastro</Button>
                     </form>
                 </Stack>
             </Stack>
@@ -151,5 +151,4 @@ const RegisterPage = () => {
         </Box>
     )
 }
-
 export default RegisterPage

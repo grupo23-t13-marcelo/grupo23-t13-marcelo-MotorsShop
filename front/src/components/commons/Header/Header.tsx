@@ -60,6 +60,7 @@ export function Header() {
          top={"70px"}
           zIndex={9999}
           gap={"30px"}
+
         > 
           <LinkDom to='/login'>
             <Button  variant={"outline-1"}>Fazer Login</Button>

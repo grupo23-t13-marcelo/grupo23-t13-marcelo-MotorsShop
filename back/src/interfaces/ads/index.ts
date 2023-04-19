@@ -1,4 +1,4 @@
-import { IGallery, IGalleryCreate } from "../gallery"
+import { IGallery, IGalleryCreate, IGalleryPatch } from "../gallery"
 
 export interface ICreateAds {
     brand: string
@@ -24,7 +24,8 @@ export interface IPatchAds{
     fipe_table_price?: string
     price?: string
     description?: string
-    cover_image?: string  
+    cover_image?: string
+    gallery?: IGalleryPatch[]
 }
 
 

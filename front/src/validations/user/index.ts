@@ -1,17 +1,19 @@
 import * as yup from "yup";
-
 export const validationUserRegister = yup.object().shape({
     name: yup.string().required("Campo obrigatório"),
     email: yup.string().required("Campo obrigatório").email("Email inválido"),
-    cpf: yup.string().required("Campo obrigatório"),
-    cellPhone: yup.string().required("Campo obrigatório"),
-    birthdate: yup.string().notRequired(),
-    description: yup.string().notRequired(),
+    cpf: yup.string().matches(/^\d{3}\.\d{3}\.\d{3}\-\d{2}$/, "Digite um CPF válido").required("Campo obrigatório"),
+    cellPhone: yup.string().matches(/^\(\d{2}\)\s\d{4,5}\-\d{4}$/, "Digite um telefone válido").required("Campo obrigatório"),
+    birthdate: yup.date().notRequired().typeError("Insira uma data de nascimento válida (DD/MM/AAAA)"),
+    description: yup.string().max(
+      400,
+      "A descrição deve ter no máximo 400 caracteres"
+    ).notRequired(),
     cep: yup.string().required("Campo obrigatório"),
     state: yup.string().required("Campo obrigatório"),
     city: yup.string().required("Campo obrigatório"),
     street: yup.string().required("Campo obrigatório"),
-    number: yup.string().required("Campo obrigatório"),
+    number: yup.string().matches(/^[0-9]+$/, "Digite apenas números").required("Campo obrigatório"),
     complement: yup.string().notRequired(),
     password: yup
       .string()

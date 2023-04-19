@@ -40,9 +40,10 @@ export default createGlobalStyle`
         *{
             font-family: "Inter"
         }
-        body{
+
+        /* body{
             height: 100vh;
-        }
+        } */
 
     }
 `

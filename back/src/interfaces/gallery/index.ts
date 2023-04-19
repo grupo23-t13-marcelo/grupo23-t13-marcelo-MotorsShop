@@ -8,3 +8,8 @@ export interface IGallery {
 export interface IGalleryCreate {
     file_name: string
 }
+
+export interface IGalleryPatch {
+    id?: string
+    file_name?: string
+}

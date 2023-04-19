@@ -1,5 +1,4 @@
 import { hashSync } from "bcryptjs";
-import { format, parse } from "date-fns";
 import {
   BeforeInsert,
   BeforeUpdate,
@@ -40,11 +39,6 @@ class User {
 
   @Column({ 
     type: "date",
-    transformer: {
-      from: (value: Date) => format(value, "dd/MM/yyyy"),
-      to: (value: string) => parse(value, "dd/MM/yyyy", new Date())
-    }
-
 })
   birthdate: Date;
 
@@ -85,8 +79,7 @@ class User {
   @JoinColumn({ name: "address_id" })
   address: Address;
 
-  @Column({ name: "address_id", nullable: true })
-  addressId: string;
+  
 }
 
 export { User };

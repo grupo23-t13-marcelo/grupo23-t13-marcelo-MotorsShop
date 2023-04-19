@@ -7,6 +7,7 @@ import mock from "../../../componentes-cards.mock.json";
 
 
 const HomePage = () => {
+    const cards = mock.cards_cars;
 
     const cards = mock.cards_cars;
 
@@ -74,6 +75,17 @@ const HomePage = () => {
                 maxWidth={{base: "auto", md: "auto"}}
                 marginLeft={{base: "5px", md: "16px"}}
             >
+
+              {cards.map((card, index) => (
+                    <CardCars
+                      key={index}
+                      card={card}
+                      showEditButton={false}
+                      showPerfil={true}
+                      showStatus={true}
+                    />
+                  ))}
+
                 {cards.length > 0 ? 
                     cards.map((card, index) => (
                         <CardCars
@@ -89,6 +101,7 @@ const HomePage = () => {
                         <Heading color={"brand1"} fontSize={{base: "xl", md: "4xl"}}>Nenhum anúncio encontrado</Heading>
                     </Stack>
                 }
+
             </UnorderedList>
             <FilterType/>
         </Box>

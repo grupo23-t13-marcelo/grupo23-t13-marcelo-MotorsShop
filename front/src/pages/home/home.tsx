@@ -8,6 +8,8 @@ import mock from "../../../componentes-cards.mock.json";
 
 const HomePage = () => {
 
+    const cards = mock.cards_cars;
+
    return (
     <Box>
         <Box
@@ -66,16 +68,27 @@ const HomePage = () => {
                 display="flex"
                 flexWrap={{base: "nowrap", md: "wrap"}}
                 overflowX={{base: "auto"}}
-                gap={{base: "15px", md: "35px"}}
+                gap={{base: "25px", md: "45px"}}
                 listStyleType="none"
                 flex={{base: "auto", md: 1}}
                 maxWidth={{base: "auto", md: "auto"}}
+                marginLeft={{base: "5px", md: "16px"}}
             >
-                {/* <CardCars />
-                <CardCars />
-                <CardCars />
-                <CardCars />
-                <CardCars /> */}
+                {cards.length > 0 ? 
+                    cards.map((card, index) => (
+                        <CardCars
+                        key={index}
+                        card={card}
+                        showEditButton={false}
+                        showPerfil={true}
+                        showStatus={false}
+                        />
+                    ))
+                    :
+                    <Stack w={{base: "95%", md: "90%"}} h={{base: "200px", md: "600px"}} justify={"center"} align={"center"}>
+                        <Heading color={"brand1"} fontSize={{base: "xl", md: "4xl"}}>Nenhum anúncio encontrado</Heading>
+                    </Stack>
+                }
             </UnorderedList>
             <FilterType/>
         </Box>

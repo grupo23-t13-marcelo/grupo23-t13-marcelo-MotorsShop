@@ -96,7 +96,7 @@ const FilterOptions = () => {
                     .filter((el, index) => index === dataTeste.findIndex(item => item.brand === el.brand))
                     .map(el => {
                         return (
-                            <Link color={"gray.600"}>{el.brand}</Link>
+                            <Link key={el.id} color={"gray.600"}>{el.brand}</Link>
                         )
                     })
                     }
@@ -107,7 +107,7 @@ const FilterOptions = () => {
                     .filter((el, index) => index === dataTeste.findIndex(item => item.brand === el.brand))
                     .map(el => {
                         return (
-                            <Link color={"gray.600"}>{el.model}</Link>
+                            <Link key={el.id} color={"gray.600"}>{el.model}</Link>
                         )
                     })
                     }
@@ -118,7 +118,7 @@ const FilterOptions = () => {
                     .filter((el, index) => index === dataTeste.findIndex(item => item.brand === el.brand))
                     .map(el => {
                         return (
-                            <Link color={"gray.600"}>{el.year}</Link>
+                            <Link key={el.id} color={"gray.600"}>{el.year}</Link>
                         )
                     })
                     }
@@ -129,7 +129,7 @@ const FilterOptions = () => {
                     .filter((el, index) => index === dataTeste.findIndex(item => item.brand === el.brand))
                     .map(el => {
                         return (
-                            <Link color={"gray.600"}>{el.fuel}</Link>
+                            <Link key={el.id} color={"gray.600"}>{el.fuel}</Link>
                         )
                     })
                     }

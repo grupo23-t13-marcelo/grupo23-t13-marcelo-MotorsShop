@@ -12,6 +12,7 @@ import {
   Button,
 } from "@chakra-ui/react";
 import { IAdInfo } from "../../../context/access/accessTypes";
+import { redirect } from "react-router-dom";
 
 // interface CardProps {
 //   card: {
@@ -33,21 +34,23 @@ import { IAdInfo } from "../../../context/access/accessTypes";
 // }
 
 interface CardProps {
+  id: string;
   card: IAdInfo;
-  showEditButton: boolean;
   showPerfil: Boolean;
   showStatus: Boolean;
+  showEditButton: boolean;
 }
 
 
 export function CardCars({
+  id,
   card,
   showEditButton = true,
   showPerfil = true,
   showStatus = true,
 }: CardProps) {
   // const { status, image, text, mileage, year, price, brand, title } = card;
-  const { is_activated, cover_image, description, mileage, year, price, brand, model } = card;
+  const { is_activated, cover_image, description, mileage, year, price, brand, user } = card;
   return (
     <Card
       minW="320px"
@@ -125,9 +128,9 @@ export function CardCars({
         </Box>
         {showPerfil && (
           <Stack direction="row" alignItems="center">
-            <Avatar size="sm" name="João Silva" />
+            <Avatar size="sm" name={user?.name} />
             <Text fontWeight="bold" fontSize="sm">
-              João Silva
+              {user?.name}
             </Text>
           </Stack>
         )}
@@ -180,4 +183,4 @@ export function CardCars({
       </CardBody>
     </Card>
   );
- }
+}

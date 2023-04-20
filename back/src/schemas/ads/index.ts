@@ -21,6 +21,12 @@ const adSerializerRequest: SchemaOf<ICreateAds> = yup.object().shape({
 })
 
 const adSerializerResponse: SchemaOf<IAds> = yup.object().shape({
+    user: yup.object({
+        id: yup.string().required(),
+        name: yup.string().required("O nome é obrigatório"),
+        email: yup.string().email().required(),
+        description: yup.string().required()
+  }).required(),
     gallery: yup.array().of(
         yup.object({
             id: yup.string().notRequired(),

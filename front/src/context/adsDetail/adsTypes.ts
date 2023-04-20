@@ -12,8 +12,15 @@ export interface IAdDetail {
     description: string
     cover_image: string
     is_active: string
-    user_id: string
-    gallery: string
+    user: IUserResponseOnAd
+    gallery: [{ id: string, file_name: string }]
+}
+
+export interface IUserResponseOnAd {
+    id: string
+    name: string
+    email: string
+    description: string
 }
 
 export interface IAdDetailContextProps {
@@ -21,6 +28,7 @@ export interface IAdDetailContextProps {
 }
 
 export interface IAdDetailContext {
-    adToShow: object
-    setAdToShow: React.Dispatch<React.SetStateAction<object>>,
+    adToShow: IAdDetail | {}
+    setAdToShow: React.Dispatch<React.SetStateAction<IAdDetail>>,
+    getFullAd: (id: string) => Promise<void>
 }

@@ -1,5 +1,6 @@
 import { ReactNode } from "react"
 import { ILogin } from "../../pages/loginPage/login"
+import { IUserResponseOnAd } from "../adsDetail/adsTypes"
 
 export interface IAccessContextProps {
     children: ReactNode
@@ -18,7 +19,24 @@ export interface IAdInfo {
 	description: string,
 	cover_image: string,
 	is_activated: boolean,
+    user: IUserResponseOnAd
 	gallery: []
+}
+
+export interface IUser {
+    id: string
+	name: string
+	email: string
+	cell_phone: string
+	birthdate: string
+	description: string
+	type: string
+	profile_picture: string
+	created_at: Date
+	updated_at: Date
+	deleted_at: Date | null
+	is_active: boolean
+	ads: IAdInfo[]
 }
 
 export interface IUserRegister {
@@ -45,6 +63,10 @@ export interface IAccessContext {
     setModalstatus: React.Dispatch<React.SetStateAction<boolean>>
     apiPostLogin: (formData: ILogin) => void
     apiPostRegister: (dataRegister: IUserRegister) => Promise<void>
+    apiGetProfile: () => void
     isLoading: boolean
     setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
+    user: IUser | null
+    
+
 }

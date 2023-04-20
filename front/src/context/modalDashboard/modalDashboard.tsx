@@ -2,10 +2,12 @@ import { createContext, useEffect, useState } from "react";
 import { karsApiCars, karsApiCarsByBrand } from "../../services/karsApi/carsBrand";
 import axios from "axios";
 import { ICarsInterface, IModalDashboarContext, IModalDashboarContextProps } from "./types";
+import { useDisclosure } from "@chakra-ui/react";
 
 export const ModalDashboardContext = createContext({} as IModalDashboarContext)
 
 export const ModalDashboardProvider = ({ children }: IModalDashboarContextProps) => {
+    const { isOpen, onClose, onOpen } = useDisclosure()
     const [brands, setBrands] = useState<string[]>([''])
     const [models, setModels] = useState<string[] | null>(null)
     const [years, setYears] = useState<string[] | null>(null)
@@ -88,6 +90,9 @@ export const ModalDashboardProvider = ({ children }: IModalDashboarContextProps)
         years: years,
         fuel: fuel,
         fipePrice: fipePrice,
+        isOpen: isOpen,
+        onClose: onClose,
+        onOpen: onOpen,
         setFuel: setFuel,
         setYears: setYears,
         setModels: setModels,

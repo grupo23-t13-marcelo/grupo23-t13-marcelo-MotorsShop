@@ -19,9 +19,7 @@ import { AccessContext } from "../../context/access/accessContext";
 export const CarsSalesDetail = () => {
   const { onOpen } = useContext(ModalDashboardContext)
   const {user} = useContext(AccessContext)
-  const cards = mock.cards_cars;
 
-  console.log(user)
   return (
     <>
       <ModalDashboardAddAd />

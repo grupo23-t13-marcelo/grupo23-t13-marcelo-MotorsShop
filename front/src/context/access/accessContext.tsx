@@ -49,7 +49,7 @@ export const AccessProvider = ({ children }: IAccessContextProps) => {
                     Ops, algo deu errado
             </Box>)})
             setIsLoading(false)
-            console.log(error)
+            
         }
     }
 

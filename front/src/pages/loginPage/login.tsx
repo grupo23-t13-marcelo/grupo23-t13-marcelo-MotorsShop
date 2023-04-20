@@ -6,6 +6,7 @@ import {yupResolver} from "@hookform/resolvers/yup"
 import { useNavigate} from "react-router-dom"
 import { AccessContext, AccessProvider } from "../../context/access/accessContext"
 import { useContext } from "react"
+import { Link } from "react-router-dom";
 
 
 export interface ILogin {
@@ -31,16 +32,14 @@ const LoginPage = () => {
         apiPostLogin(formData)
     }
 
-    const navigate = useNavigate()
-
-
     return (
         <Box bgColor={'gray.100'} h={[600, 658, 788, 855]} w={'100%'} display={'flex'} justifyContent={'center'} alignItems={'center'}>
-            <Card w={['95%', '50%', '55%', '25%']} h={['95%', '90%', '78%', '72%']} color={'whiteFixed'} border={'none'} alignItems={'center'}   >
+            <Card maxW={['100%', '500px']} w={'90%'} h={['95%', '90%', '78%', '72%']} color={'whiteFixed'} border={'none'} alignItems={'center'}   >
                 <CardHeader w={['95%', '95%', '83%']}>
                     <Text color={'grey0'} fontWeight={'bolder'} fontSize={'24px'}  letterSpacing={'0.5px'} fontFamily={'Lexend'} paddingTop={'22px'}>Login</Text>
                 </CardHeader>
-                <CardBody w={['95%', '95%', '84%']} display={'flex'} flexDirection={'column'} gap={4} alignItems={'flex-end'}>
+                <form onSubmit={handleSubmit(onFormSubmit)}>
+                <CardBody w={['100%', '440px']} display={'flex'} flexDirection={'column'} gap={4} alignItems={'flex-end'}>
                     <FormControl isInvalid={errors.email ? true : false} isRequired={errors.email ? true: false}>
                         <FormLabel fontSize={'14px'} fontWeight={'bold'} color={'gray.800'}>Email</FormLabel>
                         <Input h={'12'}  placeholder="Digitar email" {...register('email')}/>
@@ -57,10 +56,13 @@ const LoginPage = () => {
                     </FormControl>
                     <Text color={'gray.900'} fontWeight={'bold'} fontSize={'14px'} >Esqueci minha senha</Text>
                 </CardBody>
+                </form>
                     <CardFooter w={['95%', '95%', '82%']} marginBottom={'100px'} display={'flex'} flexDirection={'column'} justifyContent={'center'} alignItems={'center'} gap={5}>
-                        <Button variant={'button-sender'} w={'100%'} h={'48px'} onClick={handleSubmit(onFormSubmit)}>Entrar</Button>
+                        <Button variant={'button-sender'} w={'100%'} h={'48px'} >Entrar</Button>
                         <Text fontSize={'14px'} color={'gray.600'}>Ainda não possui conta?</Text>
-                        <Button variant={'outline-1'} w={'100%'} h={'48px'} onClick={() => navigate('/register')}>Cadastrar</Button>
+                        {/* <Link  to='/register'> */}
+                            <Button as={Link} to={'/register'} variant={'outline-1'} w={'100%'} h={'48px'}>Cadastrar</Button>
+                        {/* </Link> */}
                     </CardFooter>
             </Card>
         </Box>

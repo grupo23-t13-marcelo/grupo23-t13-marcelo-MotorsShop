@@ -21,14 +21,14 @@ export const AccessProvider = ({ children }: IAccessContextProps) => {
             localStorage.setItem('motors.token', response.data.token)
             toast({title: "success", variant: "solid", position: "bottom-left", isClosable: true,
             render: () => (
-                 <Box color={"gray.50"} p={3} bg={"green.600"} fontWeight={"bold"} borderRadius={"md"}>
+                <Box color={"gray.50"} p={3} bg={"green.600"} fontWeight={"bold"} borderRadius={"md"}>
                 Login Realizado com Sucesso
             </Box>)})
             navigate('/')
         }).catch((error) => {
             toast({title: "failed", variant: "solid", position: "bottom-left", isClosable: true,
             render: () => (
-                 <Box color={"gray.50"} p={3} bg={"red.600"} fontWeight={"bold"} borderRadius={"md"}>
+                <Box color={"gray.50"} p={3} bg={"red.600"} fontWeight={"bold"} borderRadius={"md"}>
                     {error.response.data.message}
             </Box>)})
             
@@ -69,7 +69,7 @@ export const AccessProvider = ({ children }: IAccessContextProps) => {
         if(token){
             apiGetProfile()
         }
-    })
+    },[user?.ads])
 
     const globalAccessValues: IAccessContext = {
         modalstatus: modalstatus,

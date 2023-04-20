@@ -6,15 +6,23 @@ import {
   UnorderedList,
   Stack,
   Avatar,
+  useDisclosure,
+  Modal,
 } from "@chakra-ui/react";
 import { CardCars } from "../../components/commons/Card";
 import mock from "../../../componentes-cards.mock.json";
+import { ModalDashboardAddAd } from "../modalDashboard/modalDashboard";
+import { useContext } from "react";
+import { ModalDashboardContext } from "../../context/modalDashboard/modalDashboard";
 
 export const CarsSalesDetail = () => {
+  const { onOpen } = useContext(ModalDashboardContext)
+
   const cards = mock.cards_cars;
 
   return (
     <>
+      <ModalDashboardAddAd />
       <Box
         bgGradient={"linear(to-b, brand1 0px 400px, gray.100 00px 100%)"}
         w="100%"
@@ -30,7 +38,7 @@ export const CarsSalesDetail = () => {
         >
           <Box
             marginTop={10}
-            width={["90%",null ,"75%",null ,"60%" ]}
+            width={["90%", null, "75%", null, "60%"]}
             marginRight={0}
             alignItems={"center"}
           >
@@ -81,17 +89,18 @@ export const CarsSalesDetail = () => {
                   aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
                 </Text>
                 <Button
-              fontSize={12}
-              w={120}
-              h={10}
-              border={"2px"}
-              color={"brand1"}
-              cursor={"pointer"}
-              borderColor={"brand1"}
-              backgroundColor={"whiteFixed"}
-            >
-              Criar anuncio
-            </Button>
+                  fontSize={12}
+                  w={120}
+                  h={10}
+                  border={"2px"}
+                  color={"brand1"}
+                  cursor={"pointer"}
+                  borderColor={"brand1"}
+                  backgroundColor={"whiteFixed"}
+                  onClick={onOpen}
+                >
+                  Criar anuncio
+                </Button>
               </Box>
 
               <Box

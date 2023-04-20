@@ -12,6 +12,7 @@ import {
   Button,
 } from "@chakra-ui/react";
 import { IAdInfo } from "../../../context/access/accessTypes";
+import { redirect } from "react-router-dom";
 
 // interface CardProps {
 //   card: {
@@ -33,14 +34,16 @@ import { IAdInfo } from "../../../context/access/accessTypes";
 // }
 
 interface CardProps {
+  id: string;
   card: IAdInfo;
-  showEditButton: boolean;
   showPerfil: Boolean;
   showStatus: Boolean;
+  showEditButton: boolean;
 }
 
 
 export function CardCars({
+  id,
   card,
   showEditButton = true,
   showPerfil = true,
@@ -180,4 +183,4 @@ export function CardCars({
       </CardBody>
     </Card>
   );
- }
+}

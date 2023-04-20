@@ -7,8 +7,8 @@ import { IUser } from "../../interfaces/users";
 export const createUserService = async (body: Omit<IUser, "id">) => {
   const userRepo = AppDataSource.getRepository(User);
   const formattedDate = moment(body.birthdate, "DD/MM/YYYY").format('YYYY-MM-DD')
-  
-  const createUser = userRepo.create({ ...body,birthdate: formattedDate, address: { ...body.address } });
+
+  const createUser = userRepo.create({ ...body, birthdate: formattedDate, address: { ...body.address } });
 
   await userRepo.save(createUser);
 

@@ -8,7 +8,7 @@ export const AdCommentSection = (adToShow: any, display: Array<string | null>) =
                     Comentários
                 </Heading>
                 <Box marginBottom={5} maxHeight={'500px'} overflow={'auto'} borderRadius={5}>
-                    {adToShow.comments.map((comment: any) => {
+                    {/* {adToShow.comments.map((comment: any) => {
                         return (
                             <>
                                 <Flex alignItems={"center"} gap={5}>
@@ -21,13 +21,13 @@ export const AdCommentSection = (adToShow: any, display: Array<string | null>) =
                                 <Text marginTop={5} marginBottom={5}> Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti impedit quas rerum labore vel perspiciatis. Atque qui distinctio ea commodi voluptatibus sit odit neque tenetur, rerum obcaecati doloribus mollitia inventore.</Text >
                             </>
                         )
-                    })}
+                    })} */}
                 </Box>
             </Box>
             <Box backgroundColor={'white'} width={'100%'} borderRadius={5} p={7} display={'flex'} flexDirection={'column'} gap={7} marginTop={10}>
                 <Flex alignItems={"center"} gap={5}>
-                    <Image src={adToShow.user.profile_image} w={'50px'} h={'50px'} borderRadius={'50%'} />
-                    <Text>{adToShow.user.name}</Text>
+                    {/* <Image src={adToShow.user.profile_image} w={'50px'} h={'50px'} borderRadius={'50%'} /> */}
+                    {/* <Text>{adToShow.user.name}</Text> */}
                 </Flex>
                 <Box position={'relative'}>
                     <Flex direction={['column', null, 'row']} gap={[5, null, 0]}>

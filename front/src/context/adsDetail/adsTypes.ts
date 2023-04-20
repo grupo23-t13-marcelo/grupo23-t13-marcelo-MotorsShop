@@ -14,6 +14,15 @@ export interface IAdDetail {
     is_active: string
     user_id: string
     gallery: [{ id: string, file_name: string }]
+    user: {
+        profile_picture: string,
+        description: string,
+        cell_phone: string,
+        email: string,
+        name: string,
+        cpf: string,
+        id: string,
+    }
 }
 
 export interface IAdDetailContextProps {

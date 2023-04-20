@@ -9,14 +9,15 @@ const listAdsService = async () => {
 
     const ads = await adsRepository.find({
         relations: {
-            gallery: true
+            gallery: true,
+            user: true
         }
     })
 
-    
+
 
     const validate = adArraySerializer.validate(ads, {
-        stripUnknown:true
+        stripUnknown: true
     })
 
     return validate

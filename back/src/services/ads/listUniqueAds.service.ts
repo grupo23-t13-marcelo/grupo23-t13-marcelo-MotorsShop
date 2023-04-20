@@ -14,18 +14,18 @@ const listUniqueAdService = async (AdID: string) => {
         where: {
             id: AdID
         },
-        relations : {
-            gallery: true
+        relations: {
+            gallery: true,
+            user: true
         }
     })
-    console.log(ad)
 
-    if(!ad){
+    if (!ad) {
         throw new AppError("Anúncio Não Existe", 404)
     }
 
     const validate = adSerializerResponse.validate(ad, {
-        stripUnknown:true
+        stripUnknown: true
     })
 
     return validate

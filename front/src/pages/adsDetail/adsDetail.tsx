@@ -53,6 +53,7 @@ export const AdsDetail = () => {
     const { adToShow, setAdToShow } = useContext(AdDetailContext)
 
     useEffect(() => {
+        console.log(JSON.parse(localStorage.getItem('adToShow')!))
         setAdToShow(JSON.parse(localStorage.getItem('adToShow')!))
     }, [])
 

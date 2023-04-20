@@ -27,6 +27,15 @@ const adSerializerResponse: SchemaOf<IAds> = yup.object().shape({
             file_name: yup.string().notRequired(),
         })
     ).notRequired(),
+    user: yup.object({
+        profile_picture: yup.string().nullable(),
+        description: yup.string().required(),
+        cpf: yup.string().required(),
+        cell_phone: yup.string().required(),
+        email: yup.string().required(),
+        name: yup.string().required(),
+        id: yup.string().notRequired(),
+    }),
     is_activated: yup.boolean().required(),
     cover_image: yup.string().required(),
     fipe_table_price: yup.string().required(),
@@ -66,4 +75,4 @@ const adArraySerializer: SchemaOf<IAds[]> = yup.array(adSerializerResponse)
 
 
 
-export {adSerializerResponse, adSerializerRequest, adArraySerializer, adPatchSerializerResponse}
+export { adSerializerResponse, adSerializerRequest, adArraySerializer, adPatchSerializerResponse }

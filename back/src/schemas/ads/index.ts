@@ -21,12 +21,6 @@ const adSerializerRequest: SchemaOf<ICreateAds> = yup.object().shape({
 })
 
 const adSerializerResponse: SchemaOf<IAds> = yup.object().shape({
-    gallery: yup.array().of(
-        yup.object({
-            id: yup.string().notRequired(),
-            file_name: yup.string().notRequired(),
-        })
-    ).notRequired(),
     user: yup.object({
         profile_picture: yup.string().nullable(),
         description: yup.string().required(),
@@ -35,7 +29,13 @@ const adSerializerResponse: SchemaOf<IAds> = yup.object().shape({
         email: yup.string().required(),
         name: yup.string().required(),
         id: yup.string().notRequired(),
-    }),
+    }).required(),
+    gallery: yup.array().of(
+        yup.object({
+            id: yup.string().notRequired(),
+            file_name: yup.string().notRequired(),
+        })
+    ).notRequired(),
     is_activated: yup.boolean().required(),
     cover_image: yup.string().required(),
     fipe_table_price: yup.string().required(),

@@ -47,15 +47,15 @@ export function CardCars({
   card,
   showEditButton = true,
   showPerfil = true,
-  showStatus = true,
+  showStatus = true
 }: CardProps) {
   // const { status, image, text, mileage, year, price, brand, title } = card;
-  const { is_activated, cover_image, description, mileage, year, price, brand, model } = card;
+  const { is_activated, cover_image, description, mileage, year, price, brand, user, fipe_table_price } = card;
   return (
     <Card
       minW="320px"
       maxW="250px"
-      _hover={status ? { cursor: "pointer" } : {}}
+      _hover={is_activated ? { cursor: "pointer" } : {}}
       onClick={() => {
         if (status) {
           console.log("Card clicado!");
@@ -128,9 +128,9 @@ export function CardCars({
         </Box>
         {showPerfil && (
           <Stack direction="row" alignItems="center">
-            <Avatar size="sm" name="João Silva" />
+            <Avatar size="sm" name={user?.name} />
             <Text fontWeight="bold" fontSize="sm">
-              João Silva
+              {user?.name}
             </Text>
           </Stack>
         )}
@@ -147,7 +147,7 @@ export function CardCars({
           </Box>
           <Spacer />
           <Text color="black" fontSize="11" fontWeight="bold">
-            {price}
+            R$ {price},00
           </Text>
         </Flex>
 

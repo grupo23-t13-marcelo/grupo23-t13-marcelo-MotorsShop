@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import { IAccessContextProps, IAccessContext, IAdInfo, IUserRegister } from "./accessTypes";
+import { IAccessContextProps, IAccessContext, IAdInfo, IUserRegister, IUser } from "./accessTypes";
 import { ILogin } from "../../pages/loginPage/login";
 import { api } from "../../services/api";
 import { useNavigate } from "react-router-dom";
@@ -10,29 +10,31 @@ export const AccessContext = createContext({} as IAccessContext)
 export const AccessProvider = ({ children }: IAccessContextProps) => {
     const [modalstatus, setModalstatus] = useState<boolean>(false)
     const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [user, setUser] = useState<IUser | null>(null)
+    const token = localStorage.getItem('motors.token')
     const navigate = useNavigate()
     const toast = useToast()
 
-    const apiPostLogin = (formData: ILogin) => {
-        console.log(formData)
-        api.post('login/', formData)
-        .then((response) => {
-            localStorage.setItem('motors.user', formData.email)
-            localStorage.setItem('motors.token', response.data.token)
+    const apiPostLogin = async (formData: ILogin) => {
+        try {
+            const {data} = await api.post('login/', formData)
+            localStorage.setItem('motors.token', data.token)
             toast({title: "success", variant: "solid", position: "bottom-left", isClosable: true,
             render: () => (
-                 <Box color={"gray.50"} p={3} bg={"green.600"} fontWeight={"bold"} borderRadius={"md"}>
+                <Box color={"gray.50"} p={3} bg={"green.600"} fontWeight={"bold"} borderRadius={"md"}>
                 Login Realizado com Sucesso
             </Box>)})
+            await apiGetProfile()
+            setIsLoading(false)
             navigate('/')
-        }).catch((error) => {
+        } catch (error) {
             toast({title: "failed", variant: "solid", position: "bottom-left", isClosable: true,
             render: () => (
-                 <Box color={"gray.50"} p={3} bg={"red.600"} fontWeight={"bold"} borderRadius={"md"}>
-                    {error.response.data.message}
+                <Box color={"gray.50"} p={3} bg={"red.600"} fontWeight={"bold"} borderRadius={"md"}>
+                    Algo Deu Errado, Por Favor Tente Novamente.
             </Box>)})
-            console.log(error)
-        })
+            
+        }
     }
 
     const apiPostRegister = async (dataRegister: IUserRegister) => {
@@ -49,17 +51,37 @@ export const AccessProvider = ({ children }: IAccessContextProps) => {
                     Ops, algo deu errado
             </Box>)})
             setIsLoading(false)
-            console.log(error)
+            
         }
     }
+
+    const apiGetProfile = async () => {
+           
+            api.defaults.headers.authorization = `Bearer ${token}`
+            const {data} = await api.get('users/profile')
+            try { 
+                setUser(data)
+            } catch (error) {
+                console.log(error)
+            }
+    }
+
+    useEffect(() => {
+        if(token){
+            apiGetProfile()
+        }
+    }, [])
+
 
     const globalAccessValues: IAccessContext = {
         modalstatus: modalstatus,
         setModalstatus: setModalstatus,
         apiPostLogin: apiPostLogin,
         apiPostRegister: apiPostRegister,
+        apiGetProfile: apiGetProfile,
         setIsLoading: setIsLoading,
-        isLoading: isLoading
+        isLoading: isLoading,
+        user: user
     }
 
 

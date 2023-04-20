@@ -18,6 +18,8 @@ export const AdAsideInfo = (adToShow: IAdDetail) => {
         onOpen()
     }
 
+
+
     return (
         <Container margin={0} p={0} marginRight={['0%', '0%', '3%', '7%']} width={['90%', '85%', '25%']} display={'flex'} flexDirection={'column'} alignItems={"center"}>
             <Flex marginTop={10} minWidth={'260px'} direction={'column'}>
@@ -25,13 +27,14 @@ export const AdAsideInfo = (adToShow: IAdDetail) => {
                     <Text marginBottom={5} fontWeight={600}>Fotos</Text>
                     <SimpleGrid columns={3} spacing={4} maxHeight={'240px'} overflow={'auto'}>
                         {adToShow.gallery?.map((image: any) => {
-                            return (<Image src={image.file_name} onClick={() => handleImgClick(image)} objectFit={'contain'} width={['108px', null, '70px', '80px', '108px']} height={['108px', null, '70px', '80px', '108px']} backgroundColor={"gray.100"} borderRadius={5} p={'7%'} />)
+
+                            return (<Image src={image.file_name} key={image.id} onClick={() => handleImgClick(image.file_name)} objectFit={'contain'} width={['108px', null, '70px', '80px', '108px']} height={['108px', null, '70px', '80px', '108px']} backgroundColor={"gray.100"} borderRadius={5} p={'7%'} />)
                         })}
                     </SimpleGrid>
                 </Box>
                 <Box marginTop={10} backgroundColor={'white'} p={7} marginBottom={10} borderRadius={5} minWidth={'260px'}>
                     <Flex direction={"column"} alignItems={"center"} gap={10}>
-                        <Image src={adToShow.user?.profile_picture!} objectFit={'cover'} maxWidth={'104px'} />
+                        <Image src={adToShow.user?.profile_picture!} alt={"teste"} objectFit={'cover'} maxWidth={'104px'} />
                         <Text>{adToShow.user?.name}</Text>
                         <Text>
                             {adToShow.user?.description}

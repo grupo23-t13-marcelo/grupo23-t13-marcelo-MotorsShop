@@ -20,6 +20,7 @@ const listUniqueAdService = async (AdID: string) => {
         }
     })
 
+
     if (!ad) {
         throw new AppError("Anúncio Não Existe", 404)
     }

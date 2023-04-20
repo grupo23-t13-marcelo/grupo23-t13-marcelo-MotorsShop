@@ -11,17 +11,17 @@ import {
 } from "@chakra-ui/react";
 import { CardCars } from "../../components/commons/Card";
 import { useContext } from "react";
-import { userLoggedContext } from "../../context/loggedUser/user";
 import mock from "../../../componentes-cards.mock.json";
 import { ModalDashboardAddAd } from "../modalDashboard/modalDashboard";
 import { ModalDashboardContext } from "../../context/modalDashboard/modalDashboard";
+import { AccessContext } from "../../context/access/accessContext";
 
 export const CarsSalesDetail = () => {
   const { onOpen } = useContext(ModalDashboardContext)
-  const {user} = useContext(userLoggedContext)
+  const {user} = useContext(AccessContext)
   const cards = mock.cards_cars;
 
-
+  console.log(user)
   return (
     <>
       <ModalDashboardAddAd />
@@ -125,15 +125,14 @@ export const CarsSalesDetail = () => {
                   style={{ width: "100%", paddingRight: "5px" }}
                   justifyContent={"center"}
                 >
-                  {/* {cards.map((card, index) => (
+                  {user?.ads.map((card, index) => (
                     <CardCars
                       key={index}
                       card={card}
                       showEditButton={true}
                       showPerfil={false}
-                      showStatus={false}
-                    />
-                  ))} */}
+                      showStatus={false} id={""}                    />
+                  ))} 
                 </UnorderedList>
               </Box>
             </Flex>

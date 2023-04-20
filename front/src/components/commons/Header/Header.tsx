@@ -29,7 +29,7 @@ export function Header() {
   return (
     <>
       <Flex justify={"space-between"} p={"16px"}>
-        <LinkDom to={'/'}>
+        <Link href="/">
         <Image
           src={logoMotors}
           alt="Logo do header"
@@ -37,7 +37,7 @@ export function Header() {
           maxH={"30px"}
           cursor={'pointer'}
         />
-        </LinkDom>
+        </Link>
           {token ? (
             <>
               <HStack

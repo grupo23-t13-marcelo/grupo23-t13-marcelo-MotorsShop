@@ -47,10 +47,10 @@ export function CardCars({
   card,
   showEditButton = true,
   showPerfil = true,
-  showStatus = true,
+  showStatus = true
 }: CardProps) {
   // const { status, image, text, mileage, year, price, brand, title } = card;
-  const { is_activated, cover_image, description, mileage, year, price, brand, user } = card;
+  const { is_activated, cover_image, description, mileage, year, price, brand, user, fipe_table_price } = card;
   return (
     <Card
       minW="320px"
@@ -147,7 +147,7 @@ export function CardCars({
           </Box>
           <Spacer />
           <Text color="black" fontSize="11" fontWeight="bold">
-            {price}
+            R$ {price},00
           </Text>
         </Flex>
 

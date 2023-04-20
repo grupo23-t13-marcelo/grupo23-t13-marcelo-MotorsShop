@@ -26,6 +26,7 @@ export const CarsSalesDetail = () => {
       <Box
         bgGradient={"linear(to-b, brand1 0px 400px, gray.100 00px 100%)"}
         w="100%"
+        // h="762px"
         paddingBottom={10}
         gap={5}
       >
@@ -122,6 +123,7 @@ export const CarsSalesDetail = () => {
                   maxWidth={{ base: "auto", md: "auto" }}
                   style={{ width: "100%", paddingRight: "5px" }}
                   justifyContent={"center"}
+                  minH={"344px"}
                 >
                   {user?.ads.map((card, index) => (
                     <CardCars
@@ -144,6 +146,7 @@ export const CarsSalesDetail = () => {
           alignItems={"center"}
           gap={{ base: "4px", md: "20px" }}
           margin={"15px 0"}
+          // mt={"200px"}
         >
           <Flex gap={"5px"}>
             <Text color={"brand1"}>1</Text>

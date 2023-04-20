@@ -39,7 +39,7 @@ class User {
 
   @Column({ 
     type: "date",
-})
+  })
   birthdate: Date;
 
   @Column({ type: "text" })
@@ -71,6 +71,9 @@ class User {
 
   @Column({ type: "boolean", default: true })
   is_active: boolean;
+
+  @Column({ nullable: true })
+  reset_token?: string 
 
   @OneToMany(() => Ads, (ads) => ads.user)
   ads: Ads[];

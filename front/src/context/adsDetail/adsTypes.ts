@@ -17,6 +17,7 @@ export interface IAdDetail {
 }
 
 export interface IUserResponseOnAd {
+    id: string
     name: string
     email: string
     description: string

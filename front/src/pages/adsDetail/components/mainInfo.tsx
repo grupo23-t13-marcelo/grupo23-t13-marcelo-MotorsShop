@@ -5,7 +5,7 @@ import { AdCommentSection } from "./commentSection"
 export const adMainInfo = (adToShow: any) => {
 
     const token = localStorage.getItem('motors.token')
-
+    
     return (
         <Box marginLeft={['0%', '0%', '3%', '7%']} marginTop={10} width={['90%', '85%', '57%']} marginRight={0}>
             <Flex direction={'column'} w={'100%'} gap={10}>

@@ -36,18 +36,18 @@ export const AdsDetail = () => {
     const token = localStorage.getItem('motors.token')
     const navigate = useNavigate()
     const toast = useToast()
+    
     useEffect(() => {
         if(!token) {
-                toast({title: "failed", variant: "solid", position: "bottom-left", isClosable: true,
-                render: () => (
-                     <Box color={"gray.50"} p={3} bg={"red.600"} fontWeight={"bold"} borderRadius={"md"}>
-                        Você Não Está Logado! Redirecionando Ao Login...    
-                </Box>)})
-            setTimeout(() => {
+             setTimeout(() => {
                 navigate('/login')
-            }, 1000)
+            toast({title: "failed", variant: "solid", position: "bottom-left", isClosable: true,
+            render: () => (
+                <Box color={"gray.50"} p={3} bg={"red.600"} fontWeight={"bold"} borderRadius={"md"}>
+                        Você Não Pode Acessar Aquela Página Sem Login! 
+                </Box>)})
+            }, 2500)
         }
-        setAdToShow(JSON.parse(localStorage.getItem('adToShow')!))
     }, [])
 
     return (

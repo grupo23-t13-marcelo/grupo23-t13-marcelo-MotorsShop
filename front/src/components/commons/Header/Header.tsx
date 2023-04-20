@@ -25,9 +25,7 @@ export function Header() {
   const navigate = useNavigate()
   const token = localStorage.getItem('motors.token')
   const {user} = useContext(AccessContext)
-  console.log(user)
   
-
   return (
     <>
       <Flex justify={"space-between"} p={"16px"}>

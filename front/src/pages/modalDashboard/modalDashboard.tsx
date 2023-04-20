@@ -35,7 +35,6 @@ export const ModalDashboardAddAd = () => {
     const [userID, setUserId] = useState<string>('')
     const toast = useToast()
 
-
     const handleNewFields = () => {
         const inputs = [...inputFields]
 

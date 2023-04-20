@@ -10,16 +10,17 @@ import {
   Modal,
 } from "@chakra-ui/react";
 import { CardCars } from "../../components/commons/Card";
+import { useContext } from "react";
+import { userLoggedContext } from "../../context/loggedUser/user";
 import mock from "../../../componentes-cards.mock.json";
 import { ModalDashboardAddAd } from "../modalDashboard/modalDashboard";
-import { useContext } from "react";
 import { ModalDashboardContext } from "../../context/modalDashboard/modalDashboard";
-import { userLoggedContext } from "../../context/loggedUser/user";
 
 export const CarsSalesDetail = () => {
   const { onOpen } = useContext(ModalDashboardContext)
   const {user} = useContext(userLoggedContext)
   const cards = mock.cards_cars;
+
 
   return (
     <>

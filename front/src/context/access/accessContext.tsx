@@ -16,23 +16,25 @@ export const AccessProvider = ({ children }: IAccessContextProps) => {
     const toast = useToast()
 
     const apiPostLogin = async (formData: ILogin) => {
-       await api.post('login/', formData)
-        .then((response) => {
-            localStorage.setItem('motors.token', response.data.token)
+        try {
+            const {data} = await api.post('login/', formData)
+            localStorage.setItem('motors.token', data.token)
             toast({title: "success", variant: "solid", position: "bottom-left", isClosable: true,
             render: () => (
                 <Box color={"gray.50"} p={3} bg={"green.600"} fontWeight={"bold"} borderRadius={"md"}>
                 Login Realizado com Sucesso
             </Box>)})
+            await apiGetProfile()
+            setIsLoading(false)
             navigate('/')
-        }).catch((error) => {
+        } catch (error) {
             toast({title: "failed", variant: "solid", position: "bottom-left", isClosable: true,
             render: () => (
                 <Box color={"gray.50"} p={3} bg={"red.600"} fontWeight={"bold"} borderRadius={"md"}>
-                    {error.response.data.message}
+                    Algo Deu Errado, Por Favor Tente Novamente.
             </Box>)})
             
-        })
+        }
     }
 
     const apiPostRegister = async (dataRegister: IUserRegister) => {
@@ -56,20 +58,19 @@ export const AccessProvider = ({ children }: IAccessContextProps) => {
     const apiGetProfile = async () => {
            
             api.defaults.headers.authorization = `Bearer ${token}`
-            await api.get('users/profile')
-            .then((response) => {
-                setUser(response.data)
-            })
-            .catch((error) => {
+            const {data} = await api.get('users/profile')
+            try { 
+                setUser(data)
+            } catch (error) {
                 console.log(error)
-            })
+            }
     }
 
     useEffect(() => {
         if(token){
             apiGetProfile()
         }
-    }, [])
+    }, [user])
 
 
     const globalAccessValues: IAccessContext = {

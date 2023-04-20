@@ -17,7 +17,7 @@ export interface ILogin {
 
 const LoginPage = () => {
 
-    const {apiPostLogin} = useContext(AccessContext)
+    const {apiPostLogin, setIsLoading} = useContext(AccessContext)
 
     const formScheme = yup.object().shape({
         email: yup.string().email('Tem que ser um Email').required("Usuário é obrigatório"),
@@ -33,7 +33,9 @@ const LoginPage = () => {
     });
 
     const onSubmit = (formData: ILogin) => {
+        setIsLoading(true)
         apiPostLogin(formData)
+
     }
 
     return (
@@ -61,7 +63,7 @@ const LoginPage = () => {
                     <Text color={'gray.900'} fontWeight={'bold'} fontSize={'14px'} >Esqueci minha senha</Text>
                 </CardBody>
                     <CardFooter w={'100%'} marginBottom={'100px'} display={'flex'} flexDirection={'column'} justifyContent={'center'} alignItems={'center'} gap={5}>
-                        <Button variant={'button-sender'} w={'100%'} h={'48px'} type="submit" >Entrar</Button>
+                        <Button variant={'button-sender'} w={'100%'} h={'48px'} type="submit">Entrar</Button>
                         <Text fontSize={'14px'} color={'gray.600'}>Ainda não possui conta?</Text>
                             <Button as={Link} to={'/register'} variant={'outline-1'} w={'100%'} h={'48px'} >Cadastrar</Button>
                     </CardFooter>

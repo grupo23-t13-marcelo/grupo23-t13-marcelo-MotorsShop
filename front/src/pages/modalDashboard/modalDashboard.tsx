@@ -1,14 +1,16 @@
-import { Input, Text, Textarea, SimpleGrid, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, ModalCloseButton, useDisclosure, Select, Button, ModalOverlay, FormControl, FormLabel, Flex, Box, useToast } from "@chakra-ui/react"
+import { Input, Text, Textarea, SimpleGrid, Modal, ModalBody, ModalContent, ModalHeader, ModalCloseButton, useDisclosure, Select, Button, ModalOverlay, FormControl, FormLabel, Flex, Box, useToast } from "@chakra-ui/react"
 import React, { ChangeEvent, useContext, useEffect, useState } from "react"
 import { ModalDashboardContext } from "../../context/modalDashboard/modalDashboard"
 import { useFieldArray, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { adSchema } from "./types";
 import { currency } from "../adsDetail/adsDetail";
-import { api } from "../../services/api";
 import { apiPostNewAd } from "../../services/adsDetail/retrieveAdById";
+import { useJwt } from "react-jwt";
+import { decode } from "jsonwebtoken";
 
 interface INewAd {
+    user: string
     brand: string
     model: string
     year: string
@@ -27,10 +29,10 @@ interface IGallery {
 }
 
 export const ModalDashboardAddAd = () => {
-    const { brands, models, years, fipePrice, fuel, setFuel, getModelsByBrand, getUniqueBrands, getFipePrice } = useContext(ModalDashboardContext)
-    const { isOpen, onClose, onOpen } = useDisclosure()
+    const { brands, models, years, fipePrice, fuel, setFuel, getModelsByBrand, getUniqueBrands, getFipePrice, isOpen, onClose, onOpen } = useContext(ModalDashboardContext)
     const [isDisabled, setIsDisabled] = useState<boolean>(true)
     const [inputFields, setInputFields] = useState([{ input: '' }, { input: '' }])
+    const [userID, setUserId] = useState<string>('')
     const toast = useToast()
 
 
@@ -41,7 +43,6 @@ export const ModalDashboardAddAd = () => {
 
         setInputFields(inputs)
     }
-
 
     const handlePlaceholderSelection = (event: React.ChangeEvent<HTMLSelectElement>) => {
         const target = event.target
@@ -95,8 +96,9 @@ export const ModalDashboardAddAd = () => {
     const onSubmit = (data: INewAd) => {
         data.fipe_table_price = fipePrice.toString()
         data.fuel = Object.keys(fuel)[0]
+        data.user = userID
 
-        apiPostNewAd(data)
+        apiPostNewAd(data, localStorage.getItem('motors.token')!)
             .catch(function (error) {
                 showToast(error.response.data.message, "red.500")
                 console.log(error)
@@ -106,14 +108,14 @@ export const ModalDashboardAddAd = () => {
     const onError = (errors: any, e: any) => console.log(errors, e)
 
     useEffect(() => {
+        const jwtToken = localStorage.getItem('motors.token')!;
+        const decodedToken = JSON.parse(atob(jwtToken.split('.')[1]) as string);
+        setUserId(decodedToken.id)
         getUniqueBrands()
     }, [])
 
     return (
         <>
-            <Button colorScheme='teal' onClick={() => { onOpen() }}>
-                Open
-            </Button>
             <Modal onClose={onClose} isOpen={isOpen} size={'lg'}>
                 <ModalOverlay />
                 <ModalContent>
@@ -184,7 +186,7 @@ export const ModalDashboardAddAd = () => {
                                     <Input value={Object.values(fuel)[0] as string} isDisabled={true} />
                                     {/* <Select isDisabled={isDisabled} {...register('fuel')}>
                                         <option value="placeholder">
-                                            Selecione o combustivel
+                                        Selecione o combustivel
                                         </option>
                                         <option value="gasoline">Gasolina</option>
                                         <option value="ethanol">Etanol</option>
@@ -247,7 +249,7 @@ export const ModalDashboardAddAd = () => {
                                     </FormControl>
                                 ))
                             }
-                            <Button isDisabled={inputFields.length == 10} backgroundColor={'brand4'} color={'brand2'} h={'25px'} p={4} fontSize={11} borderRadius={2} onClick={handleNewFields}>
+                            <Button isDisabled={inputFields.length == 6} backgroundColor={'brand4'} color={'brand2'} h={'25px'} p={4} fontSize={11} borderRadius={2} onClick={handleNewFields}>
                                 Adicionar campo para imagem da galeria
                             </Button>
                             <Flex mt={5} justifyContent={"flex-end"} w={'100%'} gap={2}>

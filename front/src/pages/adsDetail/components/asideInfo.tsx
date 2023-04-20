@@ -28,7 +28,7 @@ export const AdAsideInfo = (adToShow: IAdDetail) => {
                     <Text marginBottom={5} fontWeight={600}>Fotos</Text>
                     <SimpleGrid columns={3} spacing={4} maxHeight={'240px'} overflow={'auto'}>
                         {adToShow.gallery?.map((image: any) => {
-                            console.log(adToShow)
+                        
                             return (<Image src={image.file_name} key={image.id} onClick={() => handleImgClick(image.file_name)} objectFit={'contain'} width={['108px', null, '70px', '80px', '108px']} height={['108px', null, '70px', '80px', '108px']} backgroundColor={"gray.100"} borderRadius={5} p={'7%'} />)
                         })}
                     </SimpleGrid>

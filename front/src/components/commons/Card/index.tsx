@@ -52,7 +52,7 @@ export function CardCars({
     <Card
       minW="320px"
       maxW="250px"
-      _hover={status ? { cursor: "pointer" } : {}}
+      _hover={is_activated ? { cursor: "pointer" } : {}}
       onClick={() => {
         if (status) {
           console.log("Card clicado!");

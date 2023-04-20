@@ -8,10 +8,11 @@ import {
   Avatar,
 } from "@chakra-ui/react";
 import { CardCars } from "../../components/commons/Card";
-import mock from "../../../componentes-cards.mock.json";
+import { useContext } from "react";
+import { userLoggedContext } from "../../context/loggedUser/user";
 
 export const CarsSalesDetail = () => {
-  const cards = mock.cards_cars;
+  const {user} = useContext(userLoggedContext)
 
   return (
     <>
@@ -53,7 +54,7 @@ export const CarsSalesDetail = () => {
                 marginTop={75}
               >
                 <Stack direction="row" alignItems="center">
-                  <Avatar size="xl" name="Samuel Leao" />
+                  <Avatar size="xl" name={user?.name} />
                 </Stack>
                 <Box
                   display={"flex"}
@@ -64,7 +65,7 @@ export const CarsSalesDetail = () => {
                 >
                   <Box display={"flex"} gap={3} alignItems={"center"}>
                     <Text fontFamily={"Lexend"} fontWeight={600}>
-                      Samuel Leao
+                      {user?.name}
                     </Text>
                     <Button
                       h={"30px"}
@@ -73,12 +74,12 @@ export const CarsSalesDetail = () => {
                       size="sm"
                       cursor={"unset"}
                     >
-                      Anunciante
+                      {user?.type}
                     </Button>
                   </Box>
                 </Box>
                 <Text>
-                  aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                  {user?.description}
                 </Text>
                 <Button
               fontSize={12}
@@ -114,7 +115,7 @@ export const CarsSalesDetail = () => {
                   style={{ width: "100%", paddingRight: "5px" }}
                   justifyContent={"center"}
                 >
-                  {cards.map((card, index) => (
+                  {/* {cards.map((card, index) => (
                     <CardCars
                       key={index}
                       card={card}
@@ -122,7 +123,7 @@ export const CarsSalesDetail = () => {
                       showPerfil={false}
                       showStatus={false}
                     />
-                  ))}
+                  ))} */}
                 </UnorderedList>
               </Box>
             </Flex>

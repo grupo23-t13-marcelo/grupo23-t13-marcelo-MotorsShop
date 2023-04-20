@@ -42,7 +42,7 @@ const LoginPage = () => {
                 </CardHeader>
                 <CardBody w={['95%', '95%', '84%']} display={'flex'} flexDirection={'column'} gap={4} alignItems={'flex-end'}>
                     <FormControl isInvalid={errors.email ? true : false} isRequired={errors.email ? true: false}>
-                        <FormLabel fontSize={'14px'} fontWeight={'bold'} color={'gray.800'}>Usuário</FormLabel>
+                        <FormLabel fontSize={'14px'} fontWeight={'bold'} color={'gray.800'}>Email</FormLabel>
                         <Input h={'12'}  placeholder="Digitar email" {...register('email')}/>
                         <FormErrorMessage>
                             {errors.email && `${errors.email?.message}`}

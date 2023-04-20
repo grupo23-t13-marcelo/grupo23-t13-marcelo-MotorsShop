@@ -12,8 +12,14 @@ export interface IAdDetail {
     description: string
     cover_image: string
     is_active: string
-    user_id: string
+    user: IUserResponseOnAd
     gallery: [{ id: string, file_name: string }]
+}
+
+export interface IUserResponseOnAd {
+    name: string
+    email: string
+    description: string
 }
 
 export interface IAdDetailContextProps {

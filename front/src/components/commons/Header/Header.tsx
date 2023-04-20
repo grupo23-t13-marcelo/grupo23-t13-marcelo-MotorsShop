@@ -77,10 +77,12 @@ export function Header() {
               w={"300px"}
               justify={"space-evenly"}
             >
-          <Link href="/login">Fazer Login</Link>
-         <Link href="/register">
+          <LinkDom to={"/login"}>
+            Fazer Login
+          </LinkDom>
+         <LinkDom to="/register">
             <Button variant={"outline-1"}>Cadastrar</Button>
-          </Link>
+          </LinkDom>
         </HStack>
         <IconButton
           aria-label="Abrir menu"

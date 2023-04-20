@@ -22,11 +22,14 @@ const adSerializerRequest: SchemaOf<ICreateAds> = yup.object().shape({
 
 const adSerializerResponse: SchemaOf<IAds> = yup.object().shape({
     user: yup.object({
-        id: yup.string().required(),
-        name: yup.string().required("O nome é obrigatório"),
-        email: yup.string().email().required(),
-        description: yup.string().required()
-  }).required(),
+        profile_picture: yup.string().nullable(),
+        description: yup.string().required(),
+        cpf: yup.string().required(),
+        cell_phone: yup.string().required(),
+        email: yup.string().required(),
+        name: yup.string().required(),
+        id: yup.string().notRequired(),
+    }).required(),
     gallery: yup.array().of(
         yup.object({
             id: yup.string().notRequired(),

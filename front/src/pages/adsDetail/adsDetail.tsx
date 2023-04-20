@@ -38,16 +38,7 @@ export const AdsDetail = () => {
     const toast = useToast()
     
     useEffect(() => {
-        if(!token) {
-             setTimeout(() => {
-                navigate('/login')
-            toast({title: "failed", variant: "solid", position: "bottom-left", isClosable: true,
-            render: () => (
-                <Box color={"gray.50"} p={3} bg={"red.600"} fontWeight={"bold"} borderRadius={"md"}>
-                        Você Não Pode Acessar Aquela Página Sem Login! 
-                </Box>)})
-            }, 2500)
-        }
+        setAdToShow(JSON.parse(localStorage.getItem('adToShow')!))
     }, [])
 
     return (

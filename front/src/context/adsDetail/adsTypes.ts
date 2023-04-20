@@ -21,6 +21,7 @@ export interface IUserResponseOnAd {
     name: string
     email: string
     description: string
+    profile_picture: string
 }
 
 export interface IAdDetailContextProps {

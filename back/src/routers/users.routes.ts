@@ -12,6 +12,7 @@ import { getUsersController } from "../controllers/users/getUsers.controller";
 import { verifyTokenValidationMiddleware } from "../middlewares/login/verifyTokenValidation.Middleware";
 import { verifyPatchAndDeleteMiddleware } from "../middlewares/users/verifyPatchAndDelete.middleware";
 import { getProfileUserController } from "../controllers/users/getProfileUser.controller";
+import { resetPasswordController } from "../controllers/users/postResetPassword.controller";
 
 const userRouter = Router();
 
@@ -47,5 +48,10 @@ userRouter.delete(
   verifyPatchAndDeleteMiddleware,
   deleteUserController
 );
+
+userRouter.post(
+  "/reset",
+  resetPasswordController
+)
 
 export default userRouter;

@@ -28,8 +28,8 @@ const dataSourceConfig = (): DataSourceOptions => {
 
     return {
         type: "postgres",
-        url: dbUrl,
-        synchronize: false,
+        url: process.env.DATABASE_URL!,
+        synchronize: true,
         logging: true,
         migrations: [migrationsPath],
         entities: [entitiesPath]

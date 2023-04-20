@@ -8,8 +8,9 @@ import {
     ModalBody,
 } from "@chakra-ui/react"
 import { useState } from "react"
+import { IAdDetail } from "../../../context/adsDetail/adsTypes"
 
-export const AdAsideInfo = (adToShow: any) => {
+export const AdAsideInfo = (adToShow: IAdDetail) => {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const [modalImg, setModalImg] = useState("")
 
@@ -24,14 +25,15 @@ export const AdAsideInfo = (adToShow: any) => {
                 <Box backgroundColor={"white"} p={'5%'} minWidth={'260px'} borderRadius={5} width={'100%'}>
                     <Text marginBottom={5} fontWeight={600}>Fotos</Text>
                     <SimpleGrid columns={3} spacing={4} maxHeight={'240px'} overflow={'auto'}>
-                        {adToShow.gallery.map((image: any) => {
-                            return (<Image src={image} onClick={() => handleImgClick(image)} objectFit={'contain'} width={['108px', null, '70px', '80px', '108px']} height={['108px', null, '70px', '80px', '108px']} backgroundColor={"gray.100"} borderRadius={5} p={'7%'} />)
+                        {adToShow.gallery?.map((image: any) => {
+                            console.log(adToShow)
+                            return (<Image src={image.file_name} onClick={() => handleImgClick(image)} objectFit={'contain'} width={['108px', null, '70px', '80px', '108px']} height={['108px', null, '70px', '80px', '108px']} backgroundColor={"gray.100"} borderRadius={5} p={'7%'} />)
                         })}
                     </SimpleGrid>
                 </Box>
                 <Box marginTop={10} backgroundColor={'white'} p={7} marginBottom={10} borderRadius={5} minWidth={'260px'}>
                     <Flex direction={"column"} alignItems={"center"} gap={10}>
-                        <Image src={adToShow.user.profile_image} objectFit={'cover'} maxWidth={'104px'} />
+                        {/* <Image src={adToShow.user.profile_image} objectFit={'cover'} maxWidth={'104px'} /> */}
                         <Text>Samuel Leão</Text>
                         <Text>
                             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum quo praesentium

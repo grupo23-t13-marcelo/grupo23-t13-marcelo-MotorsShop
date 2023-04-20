@@ -6,15 +6,23 @@ import {
   UnorderedList,
   Stack,
   Avatar,
+  useDisclosure,
+  Modal,
 } from "@chakra-ui/react";
 import { CardCars } from "../../components/commons/Card";
 import mock from "../../../componentes-cards.mock.json";
+import { ModalDashboardAddAd } from "../modalDashboard/modalDashboard";
+import { useContext } from "react";
+import { ModalDashboardContext } from "../../context/modalDashboard/modalDashboard";
 
 export const CarsSalesDetail = () => {
+  const { onOpen } = useContext(ModalDashboardContext)
+
   const cards = mock.cards_cars;
 
   return (
     <>
+      <ModalDashboardAddAd />
       <Box
         bgGradient={"linear(to-b, brand1 0px 400px, gray.100 00px 100%)"}
         w="100%"
@@ -29,9 +37,8 @@ export const CarsSalesDetail = () => {
           alignItems={["center", null, "flex-start"]}
         >
           <Box
-            marginLeft={["0%", "0%", "3%", "7%"]}
             marginTop={10}
-            width={["90%", "85%", "57%"]}
+            width={["90%", null, "75%", null, "60%"]}
             marginRight={0}
             alignItems={"center"}
           >
@@ -82,12 +89,17 @@ export const CarsSalesDetail = () => {
                   aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
                 </Text>
                 <Button
-                  backgroundColor={"brand2"}
-                  w={"120px"}
-                  h={"40px"}
-                  color={"white"}
+                  fontSize={12}
+                  w={120}
+                  h={10}
+                  border={"2px"}
+                  color={"brand1"}
+                  cursor={"pointer"}
+                  borderColor={"brand1"}
+                  backgroundColor={"whiteFixed"}
+                  onClick={onOpen}
                 >
-                  Criar Anuncio
+                  Criar anuncio
                 </Button>
               </Box>
 
@@ -104,11 +116,12 @@ export const CarsSalesDetail = () => {
                   display="flex"
                   flexWrap={{ base: "nowrap", md: "wrap" }}
                   overflowX={{ base: "auto" }}
-                  gap={{ base: "25px", md: "30px" }}
+                  gap={{ base: "25px", md: "20px" }}
                   listStyleType="none"
                   flex={{ base: "auto", md: 1 }}
                   maxWidth={{ base: "auto", md: "auto" }}
                   style={{ width: "100%", paddingRight: "5px" }}
+                  justifyContent={"center"}
                 >
                   {cards.map((card, index) => (
                     <CardCars

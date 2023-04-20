@@ -42,6 +42,11 @@ const adSerializerResponse: SchemaOf<IAds> = yup.object().shape({
 })
 
 const adPatchSerializerResponse: SchemaOf<IPatchAds> = yup.object().shape({
+    gallery: yup.array().of(
+        yup.object({
+            file_name: yup.string().notRequired(),
+        })
+    ).notRequired(),
     is_activated: yup.boolean().notRequired(),
     cover_image: yup.string().notRequired(),
     fipe_table_price: yup.string().notRequired(),

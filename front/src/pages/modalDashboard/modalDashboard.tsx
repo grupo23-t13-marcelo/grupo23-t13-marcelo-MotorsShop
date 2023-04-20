@@ -6,8 +6,11 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { adSchema } from "./types";
 import { currency } from "../adsDetail/adsDetail";
 import { apiPostNewAd } from "../../services/adsDetail/retrieveAdById";
+import { useJwt } from "react-jwt";
+import { decode } from "jsonwebtoken";
 
 interface INewAd {
+    user: string
     brand: string
     model: string
     year: string
@@ -26,11 +29,12 @@ interface IGallery {
 }
 
 export const ModalDashboardAddAd = () => {
-    const { brands, models, years, fipePrice, fuel, setFuel, getModelsByBrand, getUniqueBrands, getFipePrice } = useContext(ModalDashboardContext)
-    const { isOpen, onClose, onOpen } = useDisclosure()
+    const { brands, models, years, fipePrice, fuel, setFuel, getModelsByBrand, getUniqueBrands, getFipePrice, isOpen, onClose, onOpen } = useContext(ModalDashboardContext)
     const [isDisabled, setIsDisabled] = useState<boolean>(true)
     const [inputFields, setInputFields] = useState([{ input: '' }, { input: '' }])
+    const [userID, setUserId] = useState<string>('')
     const toast = useToast()
+
 
     const handleNewFields = () => {
         const inputs = [...inputFields]
@@ -92,8 +96,9 @@ export const ModalDashboardAddAd = () => {
     const onSubmit = (data: INewAd) => {
         data.fipe_table_price = fipePrice.toString()
         data.fuel = Object.keys(fuel)[0]
+        data.user = userID
 
-        apiPostNewAd(data)
+        apiPostNewAd(data, localStorage.getItem('motors.token')!)
             .catch(function (error) {
                 showToast(error.response.data.message, "red.500")
                 console.log(error)
@@ -103,14 +108,14 @@ export const ModalDashboardAddAd = () => {
     const onError = (errors: any, e: any) => console.log(errors, e)
 
     useEffect(() => {
+        const jwtToken = localStorage.getItem('motors.token')!;
+        const decodedToken = JSON.parse(atob(jwtToken.split('.')[1]) as string);
+        setUserId(decodedToken.id)
         getUniqueBrands()
     }, [])
 
     return (
         <>
-            <Button colorScheme='teal' onClick={() => { onOpen() }}>
-                Open
-            </Button>
             <Modal onClose={onClose} isOpen={isOpen} size={'lg'}>
                 <ModalOverlay />
                 <ModalContent>
@@ -181,7 +186,7 @@ export const ModalDashboardAddAd = () => {
                                     <Input value={Object.values(fuel)[0] as string} isDisabled={true} />
                                     {/* <Select isDisabled={isDisabled} {...register('fuel')}>
                                         <option value="placeholder">
-                                            Selecione o combustivel
+                                        Selecione o combustivel
                                         </option>
                                         <option value="gasoline">Gasolina</option>
                                         <option value="ethanol">Etanol</option>

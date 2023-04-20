@@ -11,34 +11,46 @@ import {
   Spacer,
   Button,
 } from "@chakra-ui/react";
+import { IAdInfo } from "../../../context/access/accessTypes";
+import { redirect } from "react-router-dom";
+
+// interface CardProps {
+//   card: {
+//     title: string;
+//     status: boolean;
+//     brand: boolean;
+//     image: {
+//       url: string;
+//       alt: string;
+//     };
+//     text: string;
+//     mileage: string;
+//     year: string;
+//     price: string;
+//   };
+//   showEditButton: boolean;
+//   showPerfil: Boolean;
+//   showStatus: Boolean;
+// }
 
 interface CardProps {
-  card: {
-    title: string;
-    status: boolean;
-    brand: boolean;
-    image: {
-      url: string;
-      alt: string;
-    };
-    text: string;
-    mileage: string;
-    year: string;
-    price: string;
-  };
-  showEditButton: boolean;
+  id: string;
+  card: IAdInfo;
   showPerfil: Boolean;
   showStatus: Boolean;
+  showEditButton: boolean;
 }
 
 
 export function CardCars({
+  id,
   card,
   showEditButton = true,
   showPerfil = true,
   showStatus = true,
 }: CardProps) {
-  const { status, image, text, mileage, year, price, brand, title } = card;
+  // const { status, image, text, mileage, year, price, brand, title } = card;
+  const { is_activated, cover_image, description, mileage, year, price, brand, model } = card;
   return (
     <Card
       minW="320px"
@@ -89,8 +101,8 @@ export function CardCars({
         </>
       )}
       <Image
-        src={image.url}
-        alt={image.alt}
+        src={cover_image}
+        alt={"imagem de capa do anúncio"}
         objectFit="cover"
         width="350px"
         height="178.96px"
@@ -108,10 +120,10 @@ export function CardCars({
             fontFamily={"Lexend"}
             marginBottom={2}
           >
-            {title}
+            {brand}
           </Text>
           <Text color={"#495057"} fontSize="sm" fontFamily={"inter"}>
-            {text}
+            {description}
           </Text>
         </Box>
         {showPerfil && (

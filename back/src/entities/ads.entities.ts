@@ -1,4 +1,5 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { User } from "./users.entities";
 import { Gallery } from "./gallery.entities";
 
 
@@ -42,6 +43,10 @@ class Ads {
 
     @OneToMany(() => Gallery, gallery => gallery.ad)
     gallery: Gallery[]
+    
+    @ManyToOne(() => User, (user) => user.ads)
+    @JoinColumn({name: "user_id"})
+    user: User;
 }
 
 

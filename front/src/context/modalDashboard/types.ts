@@ -10,6 +10,9 @@ export interface ICarsInterface {
 }
 
 export interface IModalDashboarContext {
+    isOpen: boolean,
+    onOpen: () => void,
+    onClose: () => void,
     brands: string[],
     models: string[] | null,
     years: string[] | null,

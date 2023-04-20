@@ -69,7 +69,7 @@ export const AccessProvider = ({ children }: IAccessContextProps) => {
         if(token){
             apiGetProfile()
         }
-    })
+    }, [])
 
     const globalAccessValues: IAccessContext = {
         modalstatus: modalstatus,

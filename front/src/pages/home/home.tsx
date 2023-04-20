@@ -85,7 +85,7 @@ const HomePage = () => {
                             <Flex onClick={() => { navigate('/detail'), getFullAd(card.id) }}>
                                 <CardCars
                                     id={card.id}
-                                    key={index}
+                                    key={card.id}
                                     card={card}
                                     showPerfil={true}
                                     showStatus={false}

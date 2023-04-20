@@ -35,7 +35,7 @@ export const AdAsideInfo = (adToShow: IAdDetail) => {
                 </Box>
                 <Box marginTop={10} backgroundColor={'white'} p={7} marginBottom={10} borderRadius={5} minWidth={'260px'}>
                     <Flex direction={"column"} alignItems={"center"} gap={10}>
-                        {/* <Image src={adToShow.user.profile_image} objectFit={'cover'} maxWidth={'104px'} /> */}
+                        <Image src={adToShow.user?.profile_picture!} alt={"teste"} objectFit={'cover'} maxWidth={'104px'} />
                         <Text>{adToShow.user?.name}</Text>
                         <Text>
                             {adToShow.user?.description }

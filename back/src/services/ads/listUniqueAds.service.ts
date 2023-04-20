@@ -15,10 +15,11 @@ const listUniqueAdService = async (AdID: string) => {
             id: AdID
         },
         relations : {
-            gallery: true
+            gallery: true,
+            user: true
         }
     })
-    console.log(ad)
+    
 
     if(!ad){
         throw new AppError("Anúncio Não Existe", 404)

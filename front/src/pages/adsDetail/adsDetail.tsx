@@ -1,4 +1,4 @@
-import { Container, Box, useBreakpointValue, Flex, Image, HStack, Link, Button, IconButton, Text, Stack, SimpleGrid, Grid, useBreakpoint, Heading } from "@chakra-ui/react"
+import { Container, Box, useBreakpointValue, Flex, Image, HStack, Link, Button, IconButton, Text, Stack, SimpleGrid, Grid, useBreakpoint, Heading, useToast } from "@chakra-ui/react"
 import carImage from "./assets/EXTERIOR-frontSidePilotNear-1653845164710-removebg-preview 1.png"
 import userImage from "./assets/Ellipse 2.png"
 import { adMainInfo } from "./components/mainInfo";
@@ -7,6 +7,7 @@ import { AdCommentSection } from "./components/commentSection";
 import { useContext, useEffect } from "react";
 import { AdDetailContext } from "../../context/adsDetail/adsDetailContext";
 import { IAdDetail } from "../../context/adsDetail/adsTypes";
+import { useNavigate } from "react-router-dom";
 
 
 const gallery = [carImage, userImage, carImage, userImage, carImage, carImage, carImage, carImage]
@@ -20,26 +21,7 @@ const comment = {
     comment: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque impedit maiores recusandae temporibus accusamus, labore veniam aperiam voluptates eveniet dolore facere laboriosam eius in ratione omnis! Explicabo quia quisquam impedit?"
 }
 
-// const adToShow = {
-//     brand: 'Mercedez Benz',
-//     model: "A 200 CGI ADVANCE SEDAN",
-//     year: '2013',
-//     fuel: '',
-//     mileage: '0km',
-//     color: 'gray',
-//     fipe_table_price: '40000',
-//     price: 30000,
-//     description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-//     cover_image: carImage,
-//     is_active: 'True',
-//     user_id: '',
-//     user: {
-//         profile_image: userImage,
-//         name: 'Samuel Leão'
-//     },
-//     gallery: gallery,
-//     comments: [comment, comment, comment, comment]
-// }
+
 
 export const currency = function (number: number) {
     return new Intl.NumberFormat("pt-BR", {
@@ -51,8 +33,20 @@ export const currency = function (number: number) {
 
 export const AdsDetail = () => {
     const { adToShow, setAdToShow } = useContext(AdDetailContext)
-
+    const token = localStorage.getItem('motors.token')
+    const navigate = useNavigate()
+    const toast = useToast()
     useEffect(() => {
+        if(!token) {
+                toast({title: "failed", variant: "solid", position: "bottom-left", isClosable: true,
+                render: () => (
+                     <Box color={"gray.50"} p={3} bg={"red.600"} fontWeight={"bold"} borderRadius={"md"}>
+                        Você Não Está Logado! Redirecionando Ao Login...    
+                </Box>)})
+            setTimeout(() => {
+                navigate('/login')
+            }, 1000)
+        }
         setAdToShow(JSON.parse(localStorage.getItem('adToShow')!))
     }, [])
 

@@ -50,7 +50,7 @@ export function CardCars({
   showStatus = true,
 }: CardProps) {
   // const { status, image, text, mileage, year, price, brand, title } = card;
-  const { is_activated, cover_image, description, mileage, year, price, brand, model } = card;
+  const { is_activated, cover_image, description, mileage, year, price, brand, user } = card;
   return (
     <Card
       minW="320px"
@@ -128,9 +128,9 @@ export function CardCars({
         </Box>
         {showPerfil && (
           <Stack direction="row" alignItems="center">
-            <Avatar size="sm" name="João Silva" />
+            <Avatar size="sm" name={user?.name} />
             <Text fontWeight="bold" fontSize="sm">
-              João Silva
+              {user?.name}
             </Text>
           </Stack>
         )}

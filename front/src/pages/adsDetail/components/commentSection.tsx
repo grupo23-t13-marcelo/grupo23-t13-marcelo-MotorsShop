@@ -1,6 +1,9 @@
 import { Box, Button, Flex, Heading, Image, Text, Textarea } from "@chakra-ui/react"
 
 export const AdCommentSection = (adToShow: any, display: Array<string | null>) => {
+
+    const token = localStorage.getItem('motors.token')
+
     return (
         <Box display={display}>
             <Box backgroundColor={'white'} width={'100%'} borderRadius={5} p={7} display={'flex'} flexDirection={'column'} gap={7}>
@@ -32,7 +35,7 @@ export const AdCommentSection = (adToShow: any, display: Array<string | null>) =
                 <Box position={'relative'}>
                     <Flex direction={['column', null, 'row']} gap={[5, null, 0]}>
                         <Textarea resize={'none'} placeholder="Carro muito confortável, foi uma ótima experiência de compra..." h={'100px'} />
-                        <Button backgroundColor={'brand1'} position={['static', null, 'absolute']} w={'130px'} h={'30px'} fontWeight={400} bottom={3} right={3} color={"white"}>Comentar</Button>
+                        <Button backgroundColor={'brand1'} position={['static', null, 'absolute']} w={'130px'} h={'30px'} isDisabled={token ? false : true} fontWeight={400} bottom={3} right={3} color={"white"}>Comentar</Button>
                     </Flex>
                 </Box>
                 <Flex gap={3} direction={['column', 'row']}>

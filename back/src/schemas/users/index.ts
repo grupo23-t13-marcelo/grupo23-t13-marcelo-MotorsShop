@@ -66,3 +66,23 @@ export const UserSchema = Yup.object().shape({
     complement: Yup.string(),
   })
 });
+
+export const sendEmailSchema = Yup.object().shape({
+  email: Yup.string()
+  .email("Digite um email válido")
+  .required("O email é obrigatório")
+})
+
+export const passwordResetSchema = Yup.object().shape({
+  password: Yup.string()
+    .matches(
+      passwordRegexUppercase,
+      "A senha deve conter pelo menos uma letra maiúscula"
+    )
+    .matches(passwordRegexNumber, "A senha deve conter pelo menos um número")
+    .matches(
+      passwordRegexSpecialChar,
+      "A senha deve conter pelo menos um caractere especial"
+    )
+    .required("A senha é obrigatória")
+})

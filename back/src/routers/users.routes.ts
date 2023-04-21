@@ -3,7 +3,7 @@ import { createUserController } from "../controllers/users/createUser.controller
 import { emailAndCpfMiddleware } from "../middlewares/users/emailAndCpfAuth.middleware";
 import { getUserByIdController } from "../controllers/users/getUserById.controller";
 import { YupVerification } from "../middlewares/serializer/serializer.middleware";
-import { UserSchema } from "../schemas/users";
+import { passwordResetSchema, sendEmailSchema, UserSchema } from "../schemas/users";
 import { verifyIdMiddleware } from "../middlewares/users/verifyId.middleware";
 import { putUserController } from "../controllers/users/putUser.controller";
 import { verifyPatchBodyMiddleware } from "../middlewares/users/verifyPutBody.middleware";
@@ -52,11 +52,13 @@ userRouter.delete(
 
 userRouter.post(
   "/reset",
+  YupVerification(sendEmailSchema),
   resetPasswordController
 )
 
 userRouter.patch(
   "/reset/:token",
+  YupVerification(passwordResetSchema),
   updatePasswordController
 )
 

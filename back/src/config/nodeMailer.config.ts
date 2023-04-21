@@ -10,7 +10,8 @@ const sendEmail = async ({to, subject, text, html}: ISendEmailRequest) => {
         auth: {
             user: process.env.SMTP_USER,
             pass: process.env.SMPT_PASS
-        }
+        },
+        from: "Motors Shop - Grupo 23"
     });
 
     await transporter.sendMail({
@@ -31,37 +32,40 @@ const resetPasswordTemplate = (userEmail: string, userName: string, protocol: st
     const mailGenerator = new Mailgen({
         theme: "default",
         product: {
-          name: "Recuperação de senha",
-          link: `${protocol}://${host}`,
+          name: "Motors Shop - Grupo 23",
+        //   link: `${protocol}://${host}`,
+          link: `http://localhost:5173/`,
         },
-      });
+    });
     
-      const email = {
+    const email = {
         body: {
-          name: userName,
-          intro: "Recuperação de senha",
-          action: {
-            instructions: "Clique no botão abaixo para redefinir sua senha:",
-            button: {
-              color: "#DC4D2F",
-              text: "Redefinir sua senha",
-              link: `${protocol}://${host}/users/resetPassword/${resetToken}`,
+            name: userName,
+            greeting: "Olá",
+            intro: "Não está conseguindo lembrar da sua senha? não se preocupe.",
+            action: {
+                instructions: "Clique no botão abaixo para redefinir sua senha:",
+                button: {
+                    color: "#DC4D2F",
+                    text: "Clique Aqui",
+                    link: `${protocol}://${host}/users/resetPassword/${resetToken}`,
+                }
             },
-          },
-          outro: "Se você não solicitou uma redefinição de senha, pode ignorar esse email",
+            outro: "Se você não solicitou uma redefinição de senha, pode ignorar esse email",
+            signature: "Atenciosamente"
         },
-      };
-    
-      const emailBody = mailGenerator.generate(email);
-    
-      const emailTemplate = {
+    };
+
+    const emailBody = mailGenerator.generate(email);
+
+    const emailTemplate = {
         to: userEmail,
-        subject: "Reset password",
+        subject: "Recuperação de senha",
         text: emailBody,
         html: emailBody,
-      };
-    
-      return emailTemplate;
+    };
+
+    return emailTemplate;
     
 }
 

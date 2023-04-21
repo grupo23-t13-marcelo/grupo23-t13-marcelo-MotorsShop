@@ -15,4 +15,5 @@ export const verifyPatchBodyMiddleware = async (
   ) {
     throw new AppError("These data cannot be modified ", 401);
   }
+  return next()
 };

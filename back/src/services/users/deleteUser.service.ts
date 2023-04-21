@@ -5,11 +5,8 @@ import { User } from "../../entities/users.entities";
 export const deleteUserService = async (id: string) => {
   const userRepo = AppDataSource.getRepository(User);
   const user = (await userRepo.findOneBy({ id })) as User;
-
-  if (user) {
-    const adRepo = AppDataSource.getRepository(Ads);
-    await adRepo.delete({ user: { id: user.id } }); 
-    await userRepo.remove(user); 
-  }
+  const adRepo = AppDataSource.getRepository(Ads);
+  await adRepo.delete({ user: { id: user.id } }); 
+  await userRepo.delete(id); 
   return;
 };

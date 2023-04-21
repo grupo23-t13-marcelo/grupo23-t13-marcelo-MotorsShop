@@ -13,6 +13,7 @@ import { verifyTokenValidationMiddleware } from "../middlewares/login/verifyToke
 import { verifyPatchAndDeleteMiddleware } from "../middlewares/users/verifyPatchAndDelete.middleware";
 import { getProfileUserController } from "../controllers/users/getProfileUser.controller";
 import { resetPasswordController } from "../controllers/users/postResetPassword.controller";
+import { updatePasswordController } from "../controllers/users/patchUpdatePassword.controller";
 
 const userRouter = Router();
 
@@ -52,6 +53,11 @@ userRouter.delete(
 userRouter.post(
   "/reset",
   resetPasswordController
+)
+
+userRouter.patch(
+  "/reset/:token",
+  updatePasswordController
 )
 
 export default userRouter;

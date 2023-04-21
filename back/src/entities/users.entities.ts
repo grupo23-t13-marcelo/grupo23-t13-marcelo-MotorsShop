@@ -72,8 +72,8 @@ class User {
   @Column({ type: "boolean", default: true })
   is_active: boolean;
 
-  @Column({ nullable: true })
-  reset_token?: string 
+  @Column({ type: 'varchar', nullable: true })
+  reset_token?: string | null
 
   @OneToMany(() => Ads, (ads) => ads.user)
   ads: Ads[];

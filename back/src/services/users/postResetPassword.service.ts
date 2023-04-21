@@ -15,8 +15,9 @@ export const resetPassordService = async (email: string, protocol: string, host:
     }
 
     const resetToken = randomUUID()
+    const resetTime = new Date()
     
-    await userRepo.update(user.id, {reset_token: resetToken})
+    await userRepo.update(user.id, {reset_token: resetToken, reset_time: resetTime})
 
     const resetTemplate = resetPasswordTemplate(email, user.name, protocol, host, resetToken)
 

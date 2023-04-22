@@ -9,7 +9,7 @@ export const putUserService = async (body: Partial<IUser>, id: string) => {
   const user = (await userRepo.findOneBy({ id: id })) as User;
 
   await userRepo.update(user.id, { ...body });
-  const { password, ...newBody } = body;
+  const { password, ...newBody  } = body;
 
   return newBody;
 };

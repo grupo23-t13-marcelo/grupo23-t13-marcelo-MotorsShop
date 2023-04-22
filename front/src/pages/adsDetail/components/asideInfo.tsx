@@ -15,11 +15,10 @@ export const AdAsideInfo = (adToShow: IAdDetail) => {
     const [modalImg, setModalImg] = useState("")
 
     const handleImgClick = (img: string) => {
-        setModalImg(img)
         onOpen()
     }
 
-    
+
 
     return (
         <Container margin={0} p={0} marginRight={['0%', '0%', '3%', '7%']} width={['90%', '85%', '25%']} display={'flex'} flexDirection={'column'} alignItems={"center"}>
@@ -28,7 +27,7 @@ export const AdAsideInfo = (adToShow: IAdDetail) => {
                     <Text marginBottom={5} fontWeight={600}>Fotos</Text>
                     <SimpleGrid columns={3} spacing={4} maxHeight={'240px'} overflow={'auto'}>
                         {adToShow.gallery?.map((image: any) => {
-                        
+
                             return (<Image src={image.file_name} key={image.id} onClick={() => handleImgClick(image.file_name)} objectFit={'contain'} width={['108px', null, '70px', '80px', '108px']} height={['108px', null, '70px', '80px', '108px']} backgroundColor={"gray.100"} borderRadius={5} p={'7%'} />)
                         })}
                     </SimpleGrid>
@@ -38,7 +37,7 @@ export const AdAsideInfo = (adToShow: IAdDetail) => {
                         <Image src={adToShow.user?.profile_picture!} alt={"teste"} objectFit={'cover'} maxWidth={'104px'} />
                         <Text>{adToShow.user?.name}</Text>
                         <Text>
-                            {adToShow.user?.description }
+                            {adToShow.user?.description}
                         </Text>
                         <Button p={7} color={"white"} backgroundColor={"black"}>Ver todos anuncios</Button>
                     </Flex>

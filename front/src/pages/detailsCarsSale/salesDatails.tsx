@@ -10,15 +10,25 @@ import {
   Modal,
 } from "@chakra-ui/react";
 import { CardCars } from "../../components/commons/Card";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import mock from "../../../componentes-cards.mock.json";
 import { ModalDashboardAddAd } from "../modalDashboard/modalDashboard";
 import { ModalDashboardContext } from "../../context/modalDashboard/modalDashboard";
 import { AccessContext } from "../../context/access/accessContext";
+import { useParams } from "react-router";
 
 export const CarsSalesDetail = () => {
   const { onOpen } = useContext(ModalDashboardContext)
-  const {user} = useContext(AccessContext)
+  const {user, userRender, setUserRender} = useContext(AccessContext)
+  const params = useParams()
+  
+  
+  useEffect(() => {
+    setUserRender(JSON.parse(localStorage.getItem('userRender')!))
+    console.log(userRender)
+  }, [])
+
+
 
   return (
     <>
@@ -62,7 +72,7 @@ export const CarsSalesDetail = () => {
                 marginTop={75}
               >
                 <Stack direction="row" alignItems="center">
-                  <Avatar size="xl" name={user?.name} />
+                  <Avatar size="xl" name={params.userid === user?.id ? user?.name : userRender?.name} />
                 </Stack>
                 <Box
                   display={"flex"}
@@ -73,7 +83,7 @@ export const CarsSalesDetail = () => {
                 >
                   <Box display={"flex"} gap={3} alignItems={"center"}>
                     <Text fontFamily={"Lexend"} fontWeight={600}>
-                      {user?.name}
+                      {userRender?.id === user?.id ? user?.name : userRender?.name}
                     </Text>
                     <Button
                       h={"30px"}
@@ -82,13 +92,15 @@ export const CarsSalesDetail = () => {
                       size="sm"
                       cursor={"unset"}
                     >
-                      {user?.type}
+                      {userRender?.id === user?.id ? user?.type : userRender?.type}
                     </Button>
                   </Box>
                 </Box>
                 <Text>
-                  {user?.description}
+                  {userRender?.id === user?.id ? user?.description : userRender?.description}
                 </Text>
+                {userRender?.id === user?.id ? (
+                  <>
                 <Button
                   fontSize={12}
                   w={120}
@@ -102,6 +114,11 @@ export const CarsSalesDetail = () => {
                 >
                   Criar anuncio
                 </Button>
+                  </>
+                ) : (
+                  <>
+                  </>
+                )}
               </Box>
 
               <Box
@@ -125,14 +142,29 @@ export const CarsSalesDetail = () => {
                   justifyContent={"center"}
                   minH={"344px"}
                 >
-                  {user?.ads.map((card, index) => (
-                    <CardCars
+                  {userRender?.id === user?.id ? (
+                    <>
+                    {user?.ads.map((card, index) => (
+                      <CardCars
                       key={index}
                       card={card}
                       showEditButton={true}
                       showPerfil={false}
-                      showStatus={false} id={""}                    />
-                  ))} 
+                      showStatus={false} id={card.id}/>
+                      ))} 
+                    </>
+                  ) : (
+                    <>
+                    {userRender?.ads.map((card, index) => (
+                      <CardCars
+                      key={index}
+                      card={card}
+                      showEditButton={false}
+                      showPerfil={true}
+                      showStatus={true} id={card.id}/>
+                      ))} 
+                    </>
+                  )}
                 </UnorderedList>
               </Box>
             </Flex>

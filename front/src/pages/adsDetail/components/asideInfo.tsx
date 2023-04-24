@@ -7,19 +7,23 @@ import {
     ModalCloseButton,
     ModalBody,
 } from "@chakra-ui/react"
-import { useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { IAdDetail } from "../../../context/adsDetail/adsTypes"
+import { AccessContext } from "../../../context/access/accessContext"
+import { useNavigate } from "react-router"
+import { Link } from "react-router-dom"
+
 
 export const AdAsideInfo = (adToShow: IAdDetail) => {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const [modalImg, setModalImg] = useState("")
+    const {apiGetUser} = useContext(AccessContext)
+    const navigate = useNavigate()
+
 
     const handleImgClick = (img: string) => {
         onOpen()
     }
-
-
-
     return (
         <Container margin={0} p={0} marginRight={['0%', '0%', '3%', '7%']} width={['90%', '85%', '25%']} display={'flex'} flexDirection={'column'} alignItems={"center"}>
             <Flex marginTop={10} minWidth={'260px'} direction={'column'}>
@@ -39,7 +43,7 @@ export const AdAsideInfo = (adToShow: IAdDetail) => {
                         <Text>
                             {adToShow.user?.description}
                         </Text>
-                        <Button p={7} color={"white"} backgroundColor={"black"}>Ver todos anuncios</Button>
+                        <Button onClick={() => {apiGetUser(adToShow.user.id),navigate('/salesdetail')}}   p={7} color={"white"} backgroundColor={"black"}>Ver todos anuncios</Button>
                     </Flex>
                 </Box>
             </Flex>

@@ -13,7 +13,7 @@ export const HomeProvider = ({ children }: IHomeContextProps) => {
 
         const listAds = async () => {
             const { data } = await apiGetListAds()
-            console.log(data)
+            
             setListAd(data)
         }
 

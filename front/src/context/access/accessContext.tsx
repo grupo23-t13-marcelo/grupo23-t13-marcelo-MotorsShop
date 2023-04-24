@@ -1,9 +1,11 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { IAccessContextProps, IAccessContext, IAdInfo, IUserRegister, IUser } from "./accessTypes";
 import { ILogin } from "../../pages/loginPage/login";
 import { api } from "../../services/api";
 import { useNavigate } from "react-router-dom";
 import { Box, useToast } from "@chakra-ui/react";
+import { AdDetailContext } from "../adsDetail/adsDetailContext";
+import { IAdDetail } from "../adsDetail/adsTypes";
 
 export const AccessContext = createContext({} as IAccessContext)
 
@@ -11,6 +13,8 @@ export const AccessProvider = ({ children }: IAccessContextProps) => {
     const [modalstatus, setModalstatus] = useState<boolean>(false)
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [user, setUser] = useState<IUser | null>(null)
+    const [userRender, setUserRender] = useState<IUser | null>(null)
+    const { adToShow} = useContext(AdDetailContext)
     const token = localStorage.getItem('motors.token')
     const navigate = useNavigate()
     const toast = useToast()
@@ -66,6 +70,16 @@ export const AccessProvider = ({ children }: IAccessContextProps) => {
             }
     }
 
+    const apiGetUser = async (userId: string) => {
+        
+        try { 
+            const {data} = await api.get(`users/${userId}`)
+            localStorage.setItem('userRender', JSON.stringify(data))
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     useEffect(() => {
         if(token){
             apiGetProfile()
@@ -79,9 +93,12 @@ export const AccessProvider = ({ children }: IAccessContextProps) => {
         apiPostLogin: apiPostLogin,
         apiPostRegister: apiPostRegister,
         apiGetProfile: apiGetProfile,
+        apiGetUser: apiGetUser,
         setIsLoading: setIsLoading,
         isLoading: isLoading,
-        user: user
+        user: user,
+        setUserRender: setUserRender,
+        userRender: userRender
     }
 
 

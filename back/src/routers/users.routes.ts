@@ -28,7 +28,6 @@ userRouter.get("", getUsersController);
 userRouter.get("/profile", verifyTokenValidationMiddleware, getProfileUserController);
 userRouter.get(
   "/:id",
-  verifyTokenValidationMiddleware,
   verifyIdMiddleware,
   getUserByIdController
 );

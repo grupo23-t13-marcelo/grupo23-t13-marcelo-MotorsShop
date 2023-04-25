@@ -60,8 +60,10 @@ export const AccessProvider = ({ children }: IAccessContextProps) => {
         }
     }
 
-    const apiPutEdit = async (dataPut: IEditUser, userId: string) => {
+    const apiPutEdit = async (dataPut: IEditUser, userId: string | null) => {
+        console.log(userId)
         try {
+            api.defaults.headers.authorization = `Bearer ${token}`
             await api.put(`users/${userId}`, dataPut)
             toast({title: "success", variant: "solid", position: "bottom-left", isClosable: true,
             render: () => (
@@ -69,16 +71,18 @@ export const AccessProvider = ({ children }: IAccessContextProps) => {
                 Login Realizado com Sucesso
             </Box>)})
         } catch (error) {
+            console.log(error)
             toast({title: "failed", variant: "solid", position: "bottom-left", isClosable: true,
             render: () => (
-                <Box color={"gray.50"} p={3} bg={"green.600"} fontWeight={"bold"} borderRadius={"md"}>
+                <Box color={"gray.50"} p={3} bg={"red.600"} fontWeight={"bold"} borderRadius={"md"}>
                 Algo De Errado Ocorreu...
             </Box>)})
         }
     }
 
-    const apiDeleteProfile = async (userId: string) => {
+    const apiDeleteProfile = async (userId: string | null) => {
         try {
+            api.defaults.headers.authorization = `Bearer ${token}`
             await api.delete(`users/${userId}`)
             toast({title: "success", variant: "solid", position: "bottom-left", isClosable: true,
             render: () => (
@@ -87,9 +91,10 @@ export const AccessProvider = ({ children }: IAccessContextProps) => {
             </Box>)})
             navigate('/')
         } catch (error) {
+            console.log(error)
             toast({title: "failed", variant: "solid", position: "bottom-left", isClosable: true,
             render: () => (
-                <Box color={"gray.50"} p={3} bg={"green.600"} fontWeight={"bold"} borderRadius={"md"}>
+                <Box color={"gray.50"} p={3} bg={"red.600"} fontWeight={"bold"} borderRadius={"md"}>
                 Algo de errado ocorreu!
             </Box>)})
         }
@@ -99,8 +104,9 @@ export const AccessProvider = ({ children }: IAccessContextProps) => {
            
             api.defaults.headers.authorization = `Bearer ${token}`
             const {data} = await api.get('users/profile')
-            try { 
-                setUser(data)
+            try {
+                localStorage.setItem('motors.user', JSON.stringify(data)) 
+                setUser(data)   
             } catch (error) {
                 console.log(error)
             }
@@ -135,6 +141,7 @@ export const AccessProvider = ({ children }: IAccessContextProps) => {
         setIsLoading: setIsLoading,
         isLoading: isLoading,
         user: user,
+        setUser: setUser,
         setUserRender: setUserRender,
         userRender: userRender
     }

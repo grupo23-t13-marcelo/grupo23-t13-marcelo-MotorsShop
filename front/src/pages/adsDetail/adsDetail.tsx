@@ -8,6 +8,7 @@ import { useContext, useEffect } from "react";
 import { AdDetailContext } from "../../context/adsDetail/adsDetailContext";
 import { IAdDetail } from "../../context/adsDetail/adsTypes";
 import { useNavigate } from "react-router-dom";
+import { AccessContext } from "../../context/access/accessContext";
 
 
 const gallery = [carImage, userImage, carImage, userImage, carImage, carImage, carImage, carImage]
@@ -33,6 +34,7 @@ export const currency = function (number: number) {
 
 export const AdsDetail = () => {
     const { adToShow, setAdToShow } = useContext(AdDetailContext)
+    const {setUserRender} = useContext(AccessContext)
 
     const token = localStorage.getItem('motors.token')
 

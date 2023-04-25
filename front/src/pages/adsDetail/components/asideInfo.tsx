@@ -43,7 +43,7 @@ export const AdAsideInfo = (adToShow: IAdDetail) => {
                         <Text>
                             {adToShow.user?.description}
                         </Text>
-                        <Button onClick={() => {apiGetUser(adToShow.user.id),navigate('/salesdetail')}}   p={7} color={"white"} backgroundColor={"black"}>Ver todos anuncios</Button>
+                        <Button onClick={() => {navigate('/salesdetail')}}   p={7} color={"white"} backgroundColor={"black"}>Ver todos anuncios</Button>
                     </Flex>
                 </Box>
             </Flex>

@@ -10,7 +10,6 @@ export const verifyPatchBodyMiddleware = async (
 
   if (
     verifyKeys.includes("id") ||
-    verifyKeys.includes("cpf") ||
     verifyKeys.includes("is_active")
   ) {
     throw new AppError("These data cannot be modified ", 401);

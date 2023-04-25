@@ -72,6 +72,7 @@ export interface IAccessContext {
     isLoading: boolean
     setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
     setUserRender: React.Dispatch<React.SetStateAction<IUser | null>>
+    setUser: React.Dispatch<React.SetStateAction<IUser | null>>
     user: IUser | null
     userRender: IUser | null
     

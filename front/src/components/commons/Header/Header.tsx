@@ -11,7 +11,8 @@ import {
   MenuItem,
   Stack,
   Avatar,
-  useBreakpointValue
+  useBreakpointValue,
+  Text
 } from "@chakra-ui/react";
 import logoMotors from "../../../assets/png/Motors shop.png";
 import { Outlet } from "react-router-dom";
@@ -44,41 +45,30 @@ export const Header = () => {
         />
         </Link>
       {token ? (
-        <Flex marginRight={{ base:'0', md: '20'}} gap={2}>
+        <Flex marginRight={{ base:'0', md: '10'}} gap={5} w={'12%'}>
           <HStack
             display={{ base: "flex", md: "flex" }}
             borderLeft={{base: 'none', md: '1px'}}
             borderLeftColor={"gray.700"}
             spacing={"16px"}
-            w={"100%"}
-            justify={"space-evenly"}
+            w={"10%"}
           >
-          <Menu>
-            <Stack marginLeft={10}  direction="row">
-              <MenuButton>
-                <Avatar display={{ base: "flex", md: "flex" }}  name={user?.name} src="https://bit.ly/broken-link" />
-              </MenuButton>
-            </Stack>
-            <MenuList>
-              <MenuItem>Editar usuário</MenuItem>
-              <MenuItem>Editar endereço</MenuItem>
-              <MenuItem onClick={handleLogout}>Sair</MenuItem>
-            </MenuList>
-          </Menu>
-          <Menu
-            isLazy
-            placement={breakpoint === "base" ? "bottom-start" : "bottom-end"}
-          >
-            <MenuButton display={{ base: "none", md: "flex" }}>
-              {user?.name}
-            </MenuButton>
-            <MenuList>
-              <MenuItem><ModalEditUser/></MenuItem>
-              <MenuItem>Editar endereço</MenuItem>
-              <MenuItem onClick={handleLogout}>Sair</MenuItem>
-            </MenuList>
-          </Menu>
           </HStack>
+          <Menu>
+            <Stack alignItems={'center'}   direction="row">
+              <MenuButton>
+                <Avatar display={{ base: "flex", md: "flex" }}  name={user?.name}  />
+              </MenuButton>
+          </Stack>
+            <MenuList>
+              <MenuItem><ModalEditUser userId={user?.id}/></MenuItem>
+              <MenuItem>Editar endereço</MenuItem>
+              <MenuItem onClick={handleLogout}>Sair</MenuItem>
+            </MenuList>
+            <Text mt={3} display={{ base: "none", md: "flex" }} w={'100%'}>
+              {user?.name}
+            </Text>
+          </Menu>
         </Flex>
       ) : (
         <HStack

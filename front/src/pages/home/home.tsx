@@ -4,7 +4,7 @@ import homeCover from "../../assets/Luxury-Car-PNG-Image-HD.png"
 import FilterType from "../../components/adFilter/FilterType";
 import { CardCars } from "../../components/commons/Card"
 import mock from "../../../componentes-cards.mock.json";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { HomeContext } from "../../context/home/homeContext";
 import { AdDetailContext } from "../../context/adsDetail/adsDetailContext";
 import { useNavigate } from 'react-router-dom';
@@ -15,6 +15,7 @@ const HomePage = () => {
     const navigate = useNavigate()
     const { listAds, filteredAds, filtersUsed } = useContext(HomeContext)
     const { getFullAd } = useContext(AdDetailContext)
+    const {setUser, apiGetUser} = useContext(AccessContext)
 
     return (
         <Box>
@@ -84,7 +85,7 @@ const HomePage = () => {
                     {
                         filteredAds.length > 0 ?
                             filteredAds.map((card, index) => (
-                                <Flex onClick={() => { navigate('/detail'), getFullAd(card.id) }}>
+                                <Flex onClick={() => { navigate('/detail'), getFullAd(card.id), apiGetUser(card.user.id) }}>
                                     <CardCars
                                         id={card.id}
                                         key={card.id}
@@ -101,7 +102,7 @@ const HomePage = () => {
                                 </Stack> :
                                 listAds.length > 0 ?
                                     listAds.map((card, index) => (
-                                        <Flex onClick={() => { navigate('/detail'), getFullAd(card.id) }}>
+                                        <Flex onClick={() => { navigate('/detail'), getFullAd(card.id), apiGetUser(card.user.id) }}>
                                             <CardCars
                                                 id={card.id}
                                                 key={card.id}

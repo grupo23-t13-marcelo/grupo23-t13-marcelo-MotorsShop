@@ -1,5 +1,6 @@
 
 
+import ModalEditUser from "./components/ModalEditUser"
 import { RoutesMain } from "./routes/routes"
 import Global from "./styles/global"
 

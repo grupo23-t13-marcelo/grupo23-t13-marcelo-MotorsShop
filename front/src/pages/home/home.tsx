@@ -8,11 +8,13 @@ import { useContext } from "react";
 import { HomeContext } from "../../context/home/homeContext";
 import { AdDetailContext } from "../../context/adsDetail/adsDetailContext";
 import { useNavigate } from 'react-router-dom';
+import { AccessContext } from "../../context/access/accessContext";
 
 
 const HomePage = () => {
     const navigate = useNavigate()
     const { listAds } = useContext(HomeContext)
+    const {apiGetUser} = useContext(AccessContext)
     const { getFullAd } = useContext(AdDetailContext)
 
     return (
@@ -82,7 +84,7 @@ const HomePage = () => {
                 >
                     {listAds.length > 0 ?
                         listAds.map((card, index) => (
-                            <Flex onClick={() => { navigate('/detail'), getFullAd(card.id) }}>
+                            <Flex onClick={() => { navigate('/detail'), getFullAd(card.id), apiGetUser(card.user.id) }}>
                                 <CardCars
                                     id={card.id}
                                     key={card.id}

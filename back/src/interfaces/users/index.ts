@@ -32,3 +32,10 @@ export interface IUser {
     createdAt: Date;
     updatedAt: Date;
   }
+
+  export interface ISendEmailRequest {
+    to: string
+    subject: string
+    text: string
+    html: string
+  }

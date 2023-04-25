@@ -10,24 +10,33 @@ import {
   Modal,
 } from "@chakra-ui/react";
 import { CardCars } from "../../components/commons/Card";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import mock from "../../../componentes-cards.mock.json";
 import { ModalDashboardAddAd } from "../modalDashboard/modalDashboard";
 import { ModalDashboardContext } from "../../context/modalDashboard/modalDashboard";
 import { AccessContext } from "../../context/access/accessContext";
+import { useParams } from "react-router";
 
 export const CarsSalesDetail = () => {
   const { onOpen } = useContext(ModalDashboardContext)
-  const {user} = useContext(AccessContext)
-  const cards = mock.cards_cars;
+  const {user, userRender, setUserRender} = useContext(AccessContext)
+  const params = useParams()
+  
+  
+  useEffect(() => {
+    setUserRender(JSON.parse(localStorage.getItem('userRender')!))
+    console.log(userRender)
+  }, [])
 
-  console.log(user)
+
+
   return (
     <>
       <ModalDashboardAddAd />
       <Box
         bgGradient={"linear(to-b, brand1 0px 400px, gray.100 00px 100%)"}
         w="100%"
+        // h="762px"
         paddingBottom={10}
         gap={5}
       >
@@ -63,7 +72,7 @@ export const CarsSalesDetail = () => {
                 marginTop={75}
               >
                 <Stack direction="row" alignItems="center">
-                  <Avatar size="xl" name={user?.name} />
+                  <Avatar size="xl" name={params.userid === user?.id ? user?.name : userRender?.name} />
                 </Stack>
                 <Box
                   display={"flex"}
@@ -74,7 +83,7 @@ export const CarsSalesDetail = () => {
                 >
                   <Box display={"flex"} gap={3} alignItems={"center"}>
                     <Text fontFamily={"Lexend"} fontWeight={600}>
-                      {user?.name}
+                      {userRender?.id === user?.id ? user?.name : userRender?.name}
                     </Text>
                     <Button
                       h={"30px"}
@@ -83,13 +92,15 @@ export const CarsSalesDetail = () => {
                       size="sm"
                       cursor={"unset"}
                     >
-                      {user?.type}
+                      {userRender?.id === user?.id ? user?.type : userRender?.type}
                     </Button>
                   </Box>
                 </Box>
                 <Text>
-                  {user?.description}
+                  {userRender?.id === user?.id ? user?.description : userRender?.description}
                 </Text>
+                {userRender?.id === user?.id ? (
+                  <>
                 <Button
                   fontSize={12}
                   w={120}
@@ -103,6 +114,11 @@ export const CarsSalesDetail = () => {
                 >
                   Criar anuncio
                 </Button>
+                  </>
+                ) : (
+                  <>
+                  </>
+                )}
               </Box>
 
               <Box
@@ -124,15 +140,31 @@ export const CarsSalesDetail = () => {
                   maxWidth={{ base: "auto", md: "auto" }}
                   style={{ width: "100%", paddingRight: "5px" }}
                   justifyContent={"center"}
+                  minH={"344px"}
                 >
-                  {user?.ads.map((card, index) => (
-                    <CardCars
+                  {userRender?.id === user?.id ? (
+                    <>
+                    {user?.ads.map((card, index) => (
+                      <CardCars
                       key={index}
                       card={card}
                       showEditButton={true}
                       showPerfil={false}
-                      showStatus={false} id={""}                    />
-                  ))} 
+                      showStatus={false} id={card.id}/>
+                      ))} 
+                    </>
+                  ) : (
+                    <>
+                    {userRender?.ads.map((card, index) => (
+                      <CardCars
+                      key={index}
+                      card={card}
+                      showEditButton={false}
+                      showPerfil={true}
+                      showStatus={true} id={card.id}/>
+                      ))} 
+                    </>
+                  )}
                 </UnorderedList>
               </Box>
             </Flex>
@@ -146,6 +178,7 @@ export const CarsSalesDetail = () => {
           alignItems={"center"}
           gap={{ base: "4px", md: "20px" }}
           margin={"15px 0"}
+          // mt={"200px"}
         >
           <Flex gap={"5px"}>
             <Text color={"brand1"}>1</Text>

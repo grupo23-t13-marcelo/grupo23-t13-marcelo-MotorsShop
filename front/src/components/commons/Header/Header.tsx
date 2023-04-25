@@ -24,8 +24,8 @@ export const Header = () => {
 
   const {user} = useContext(AccessContext);
 
-  const breakpoint = useBreakpointValue({ base: "base", md: "md" });
 
+  const breakpoint = useBreakpointValue({ base: "base", md: "md" });
 
 
   const handleLogout = () => {
@@ -37,6 +37,7 @@ export const Header = () => {
     setIsOpen(!isOpen);
   };
 
+  
   return (
     <>
     <Flex justify={"space-between"} p={"16px"} alignItems={"center"}>
@@ -112,8 +113,8 @@ export const Header = () => {
         </MenuList>
       </Menu>
     </Flex>
-<Outlet />
-<Footer />
+      <Outlet />
+      <Footer />
     </>
   );
-}
+      }

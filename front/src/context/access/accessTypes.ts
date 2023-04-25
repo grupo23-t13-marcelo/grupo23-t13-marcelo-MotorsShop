@@ -64,9 +64,12 @@ export interface IAccessContext {
     apiPostLogin: (formData: ILogin) => void
     apiPostRegister: (dataRegister: IUserRegister) => Promise<void>
     apiGetProfile: () => void
+    apiGetUser: (userId:string) => void
     isLoading: boolean
     setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
+    setUserRender: React.Dispatch<React.SetStateAction<IUser | null>>
     user: IUser | null
+    userRender: IUser | null
     
 
 }

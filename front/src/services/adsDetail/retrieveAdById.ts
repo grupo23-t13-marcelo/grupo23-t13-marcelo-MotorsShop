@@ -6,7 +6,7 @@ import { INewAd } from "../../pages/modalDashboard/types";
 export async function apiGetAdById(id: string): Promise<AxiosResponse<IAdDetail>> {
     const ad = await api.get<AxiosResponse>(`ads/${id}`)
 
-    console.log(ad)
+    
 
     return ad.data
 }

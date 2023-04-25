@@ -13,25 +13,8 @@ import {
 } from "@chakra-ui/react";
 import { IAdInfo } from "../../../context/access/accessTypes";
 import { redirect } from "react-router-dom";
-
-// interface CardProps {
-//   card: {
-//     title: string;
-//     status: boolean;
-//     brand: boolean;
-//     image: {
-//       url: string;
-//       alt: string;
-//     };
-//     text: string;
-//     mileage: string;
-//     year: string;
-//     price: string;
-//   };
-//   showEditButton: boolean;
-//   showPerfil: Boolean;
-//   showStatus: Boolean;
-// }
+import { useContext } from "react";
+import { AccessContext } from "../../../context/access/accessContext";
 
 interface CardProps {
   id: string;
@@ -47,10 +30,11 @@ export function CardCars({
   card,
   showEditButton = true,
   showPerfil = true,
-  showStatus = true,
+  showStatus = true
 }: CardProps) {
   // const { status, image, text, mileage, year, price, brand, title } = card;
-  const { is_activated, cover_image, description, mileage, year, price, brand, user } = card;
+  const { is_activated, cover_image, description, mileage, year, price, brand, user, fipe_table_price } = card;
+  const {userRender} = useContext(AccessContext)
   return (
     <Card
       minW="320px"
@@ -128,9 +112,9 @@ export function CardCars({
         </Box>
         {showPerfil && (
           <Stack direction="row" alignItems="center">
-            <Avatar size="sm" name={user?.name} />
+            <Avatar size="sm" name={user? user?.name : userRender?.name} />
             <Text fontWeight="bold" fontSize="sm">
-              {user?.name}
+              {user? user?.name : userRender?.name}
             </Text>
           </Stack>
         )}
@@ -147,7 +131,7 @@ export function CardCars({
           </Box>
           <Spacer />
           <Text color="black" fontSize="11" fontWeight="bold">
-            {price}
+            R$ {price},00
           </Text>
         </Flex>
 
@@ -184,3 +168,4 @@ export function CardCars({
     </Card>
   );
 }
+

@@ -6,6 +6,7 @@ import { CarsSalesDetail } from '../pages/detailsCarsSale/salesDatails'
 import RegisterPage from '../pages/register/register'
 import LoginPage from '../pages/loginPage/login'
 import { ModalDashboardAddAd } from '../pages/modalDashboard/modalDashboard'
+import { ForgotPasswordForm } from '../pages/requestPassword'
 
 
 export const RoutesMain = () => {
@@ -17,6 +18,7 @@ export const RoutesMain = () => {
                 <Route path='/salesdetail' element={<CarsSalesDetail />} />
                 <Route path='/register' element={<RegisterPage />} />
                 <Route path='/login' element={<LoginPage />} />
+                <Route path="/forgotPassword" element={<ForgotPasswordForm/>}/>
                 <Route path='/testeModal' element={<ModalDashboardAddAd />} />
             </Route>
         </Routes>

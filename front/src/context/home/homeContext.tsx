@@ -13,7 +13,7 @@ export const HomeProvider = ({ children }: IHomeContextProps) => {
     const [filtersUsed, setFiltersUsed] = useState<any>({})
 
 
-    useEffect(() => {
+    useEffect( () => {
 
         const listAds = async () => {
             const { data } = await apiGetListAds()

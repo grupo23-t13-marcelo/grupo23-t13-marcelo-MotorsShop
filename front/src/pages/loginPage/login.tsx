@@ -1,4 +1,4 @@
-import { Box, Button, Card, CardBody, CardFooter, CardHeader, FormControl, FormErrorMessage, FormLabel, Input, Text } from "@chakra-ui/react"
+import { Box, Button, Card, CardBody, CardFooter, CardHeader, FormControl, FormErrorMessage, FormLabel, Input, Link, Text } from "@chakra-ui/react"
 import { InputComponents } from "../../components/commons/Inputs"
 import * as yup from 'yup'
 import { useForm } from "react-hook-form"
@@ -6,7 +6,7 @@ import {yupResolver} from "@hookform/resolvers/yup"
 import { useNavigate} from "react-router-dom"
 import { AccessContext, AccessProvider } from "../../context/access/accessContext"
 import { useContext } from "react"
-import { Link } from "react-router-dom";
+
 
 
 export interface ILogin {
@@ -18,7 +18,7 @@ export interface ILogin {
 const LoginPage = () => {
 
     const {apiPostLogin, setIsLoading} = useContext(AccessContext)
-
+    const navigate = useNavigate()
     const formScheme = yup.object().shape({
         email: yup.string().email('Tem que ser um Email').required("Usuário é obrigatório"),
         password: yup.string().required("Senha é Obrigatória")
@@ -60,7 +60,9 @@ const LoginPage = () => {
                             {errors.password && `${errors.password?.message}`}
                         </FormErrorMessage>
                     </FormControl>
-                    <Text color={'gray.900'} fontWeight={'bold'} fontSize={'14px'} >Esqueci minha senha</Text>
+                    <Link  color={'gray.900'} fontWeight={'bold'} fontSize={'14px'} onClick={ () => navigate("/forgotPassword")}>
+                        Esqueci minha senha
+                    </Link>
                 </CardBody>
                     <CardFooter w={'100%'} marginBottom={'100px'} display={'flex'} flexDirection={'column'} justifyContent={'center'} alignItems={'center'} gap={5}>
                         <Button variant={'button-sender'} w={'100%'} h={'48px'} type="submit">Entrar</Button>

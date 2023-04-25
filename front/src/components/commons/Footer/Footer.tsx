@@ -22,7 +22,7 @@ export function Footer() {
       <HStack
         w={"60%"}
         height={{base: "60%"}}
-        color={"gray.whiteFixed"}
+        color={"whiteFixed"}
         justify={"space-between"}
         flexDir={{base: "column", md:"row"}}
         p={"9px"}

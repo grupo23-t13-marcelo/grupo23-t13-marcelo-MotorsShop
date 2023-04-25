@@ -9,8 +9,7 @@ function App() {
   return (
     <>
       <Global />
-      {/* <RoutesMain /> */}
-      <ModalEditUser/>
+      <RoutesMain />
     </>
   )
 }

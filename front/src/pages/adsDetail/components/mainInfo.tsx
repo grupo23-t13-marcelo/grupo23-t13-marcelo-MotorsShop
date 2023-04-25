@@ -21,7 +21,7 @@ export const adMainInfo = (adToShow: any) => {
                             <Button h={'30px'} backgroundColor={'brand4'} color={'brand2'}>{adToShow.year}</Button>
                             <Button h={'30px'} backgroundColor={'brand4'} color={'brand2'}>{adToShow.mileage} km</Button>
                         </Box>
-                        <Text color={"gray.800"} fontWeight={600}>{`${currency(adToShow.price)}`}</Text>
+                        <Text color={"gray.800"} fontWeight={600}>{`R$ ${adToShow.price}`}</Text>
                     </Box>
                     <Button backgroundColor={'brand2'} w={'100px'} h={'40px'} color={"white"} isDisabled={token ? false : true}>Comprar</Button>
                 </Box>

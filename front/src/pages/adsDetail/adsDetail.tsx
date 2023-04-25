@@ -36,7 +36,7 @@ export const AdsDetail = () => {
     const token = localStorage.getItem('motors.token')
     const navigate = useNavigate()
     const toast = useToast()
-    
+
     useEffect(() => {
         setAdToShow(JSON.parse(localStorage.getItem('adToShow')!))
     }, [])

@@ -5,7 +5,7 @@ import { AdCommentSection } from "./commentSection"
 export const adMainInfo = (adToShow: any) => {
 
     const token = localStorage.getItem('motors.token')
-    
+
     return (
         <Box marginLeft={['0%', '0%', '3%', '7%']} marginTop={10} width={['90%', '85%', '57%']} marginRight={0}>
             <Flex direction={'column'} w={'100%'} gap={10}>
@@ -21,7 +21,7 @@ export const adMainInfo = (adToShow: any) => {
                             <Button h={'30px'} backgroundColor={'brand4'} color={'brand2'}>{adToShow.year}</Button>
                             <Button h={'30px'} backgroundColor={'brand4'} color={'brand2'}>{adToShow.mileage} km</Button>
                         </Box>
-                        <Text color={"gray.800"} fontWeight={600}>{`${adToShow.price}`}</Text>
+                        <Text color={"gray.800"} fontWeight={600}>{`${currency(adToShow.price)}`}</Text>
                     </Box>
                     <Button backgroundColor={'brand2'} w={'100px'} h={'40px'} color={"white"} isDisabled={token ? false : true}>Comprar</Button>
                 </Box>

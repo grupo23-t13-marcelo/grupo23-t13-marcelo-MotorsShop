@@ -12,6 +12,7 @@ export const AdDetailProvider = ({ children }: IAdDetailContextProps) => {
     async function getFullAd(id: string) {
         try {
             const ad = await apiGetAdById(id)
+            setAdToShow(ad)
             localStorage.setItem('adToShow', JSON.stringify(ad))
         } catch (error) {
             if (axios.isAxiosError(error)) {

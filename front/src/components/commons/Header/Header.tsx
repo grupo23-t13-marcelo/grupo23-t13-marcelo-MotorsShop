@@ -27,7 +27,6 @@ export const Header = () => {
   const handleLogout = () => {
     localStorage.removeItem("motors.token");
     window.location.href = "/login";
-    //setUserNull
   }
   const handleToggle = () => {
     setIsOpen(!isOpen);
@@ -97,17 +96,23 @@ export const Header = () => {
         isLazy
         placement={breakpoint === "base" ? "bottom-start" : "bottom-end"}
       >
+      {({isOpen})=>(
+    <>
+      {(!token || (token && isOpen)) && ( 
         <MenuButton display={{ base: "flex", md: "none" }} onClick={handleToggle}>
-        {isOpen ? <CloseIcon fontSize={13} /> : <HamburgerIcon/>}
+          {isOpen ? <CloseIcon fontSize={13} /> : <HamburgerIcon />}
         </MenuButton>
-        <MenuList>
-          <MenuItem>
-            <Link href="/login">Fazer Login</Link>
-          </MenuItem>
-          <MenuItem>
-            <Link href="/register" variant={"outline"}>Cadastrar</Link>
-          </MenuItem>
-        </MenuList>
+      )}
+      <MenuList>
+        <MenuItem>
+          <Link href="/login">Fazer Login</Link>
+        </MenuItem>
+        <MenuItem>
+          <Link href="/register" variant={"outline"}>Cadastrar</Link>
+        </MenuItem>
+      </MenuList>
+    </>
+  )}
       </Menu>
     </Flex>
       <Outlet />

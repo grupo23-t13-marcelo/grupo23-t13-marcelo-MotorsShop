@@ -1,13 +1,15 @@
-import { createContext, useState } from "react";
+import { createContext, useContext, useState } from "react";
 import { IAdDetail, IAdDetailContext, IAdDetailContextProps } from "./adsTypes";
 import { apiGetAdById } from "../../services/adsDetail/retrieveAdById";
 import axios from "axios";
-import { useDisclosure } from "@chakra-ui/hooks";
+import { useConst, useDisclosure } from "@chakra-ui/hooks";
+import { AccessContext } from "../access/accessContext";
 
 export const AdDetailContext = createContext({} as IAdDetailContext)
 
 export const AdDetailProvider = ({ children }: IAdDetailContextProps) => {
     const [adToShow, setAdToShow] = useState<IAdDetail | {}>({})
+    const {apiGetUser} = useContext(AccessContext)
 
     async function getFullAd(id: string) {
         try {

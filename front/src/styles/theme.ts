@@ -41,10 +41,10 @@ const MotorTheme = extendTheme({
       800: "#212529",
       900: "#0B0D0D",
 
-      whiteFixed: "#FFFFFF",
-
+      
     },
-
+    whiteFixed: "#FFFFFF",
+    
     //Feedback
 
     red: {
@@ -113,7 +113,7 @@ const MotorTheme = extendTheme({
     Button: {
       variants: {
         "outline-1": {
-          bg: "gray.whiteFixed",
+          bg: "whiteFixed",
           color: "gray.900",
           border: "2px",
           borderColor: "gray.200",
@@ -123,13 +123,15 @@ const MotorTheme = extendTheme({
           },
         },
         "outline-2": {
-          bg: "gray.whiteFixed",
+          bgcolor: "whiteFixed",
           color: "gray.900",
           border: "2px",
           borderColor: "gray.200",
           _hover: {
-            bg: "gray.800",
-            color: "white",
+            bg: "gray.50",
+            color: "gray.800",
+            border: "2px",
+          borderColor: "gray.800",
           },
         },
         "gray-1": {
@@ -143,7 +145,7 @@ const MotorTheme = extendTheme({
           },
         },
         "button-sender": {
-          color:"gray.whiteFixed",
+          color:"whiteFixed",
           bg: "brand1",
           _hover: {
             bg: "brand2",
@@ -151,6 +153,13 @@ const MotorTheme = extendTheme({
         },
       },
     },
+    Input: {
+      variants:{
+        "teste-1": {
+          
+        }
+      }
+    }
   },
 })
 

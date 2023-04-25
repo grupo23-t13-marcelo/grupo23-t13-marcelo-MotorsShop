@@ -9,7 +9,7 @@ export const HomeProvider = ({ children }: IHomeContextProps) => {
 
     const [listAds, setListAd] = useState<IAdInfo[]>([])
 
-    useEffect(() => {
+    useEffect( () => {
 
         const listAds = async () => {
             const { data } = await apiGetListAds()

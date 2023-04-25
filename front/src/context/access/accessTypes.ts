@@ -1,6 +1,7 @@
 import { ReactNode } from "react"
 import { ILogin } from "../../pages/loginPage/login"
 import { IUserResponseOnAd } from "../adsDetail/adsTypes"
+import { IEditUser } from "../../components/ModalEditUser"
 
 export interface IAccessContextProps {
     children: ReactNode
@@ -30,6 +31,7 @@ export interface IUser {
 	cell_phone: string
 	birthdate: string
 	description: string
+    cpf: string
 	type: string
 	profile_picture: string
 	created_at: Date
@@ -65,6 +67,8 @@ export interface IAccessContext {
     apiPostRegister: (dataRegister: IUserRegister) => Promise<void>
     apiGetProfile: () => void
     apiGetUser: (userId:string) => void
+    apiPutEdit: (dataEdit: IEditUser, userId: string) => void
+    apiDeleteProfile: (userId: string) => void
     isLoading: boolean
     setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
     setUserRender: React.Dispatch<React.SetStateAction<IUser | null>>

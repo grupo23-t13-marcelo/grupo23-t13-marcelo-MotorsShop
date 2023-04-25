@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { Box, useToast } from "@chakra-ui/react";
 import { AdDetailContext } from "../adsDetail/adsDetailContext";
 import { IAdDetail } from "../adsDetail/adsTypes";
+import { IEditUser } from "../../components/ModalEditUser";
 
 export const AccessContext = createContext({} as IAccessContext)
 
@@ -59,6 +60,41 @@ export const AccessProvider = ({ children }: IAccessContextProps) => {
         }
     }
 
+    const apiPutEdit = async (dataPut: IEditUser, userId: string) => {
+        try {
+            await api.put(`users/${userId}`, dataPut)
+            toast({title: "success", variant: "solid", position: "bottom-left", isClosable: true,
+            render: () => (
+                <Box color={"gray.50"} p={3} bg={"green.600"} fontWeight={"bold"} borderRadius={"md"}>
+                Login Realizado com Sucesso
+            </Box>)})
+        } catch (error) {
+            toast({title: "failed", variant: "solid", position: "bottom-left", isClosable: true,
+            render: () => (
+                <Box color={"gray.50"} p={3} bg={"green.600"} fontWeight={"bold"} borderRadius={"md"}>
+                Algo De Errado Ocorreu...
+            </Box>)})
+        }
+    }
+
+    const apiDeleteProfile = async (userId: string) => {
+        try {
+            await api.delete(`users/${userId}`)
+            toast({title: "success", variant: "solid", position: "bottom-left", isClosable: true,
+            render: () => (
+                <Box color={"gray.50"} p={3} bg={"green.600"} fontWeight={"bold"} borderRadius={"md"}>
+                Conta Deletada!
+            </Box>)})
+            navigate('/')
+        } catch (error) {
+            toast({title: "failed", variant: "solid", position: "bottom-left", isClosable: true,
+            render: () => (
+                <Box color={"gray.50"} p={3} bg={"green.600"} fontWeight={"bold"} borderRadius={"md"}>
+                Algo de errado ocorreu!
+            </Box>)})
+        }
+    }
+
     const apiGetProfile = async () => {
            
             api.defaults.headers.authorization = `Bearer ${token}`
@@ -94,6 +130,8 @@ export const AccessProvider = ({ children }: IAccessContextProps) => {
         apiPostRegister: apiPostRegister,
         apiGetProfile: apiGetProfile,
         apiGetUser: apiGetUser,
+        apiPutEdit: apiPutEdit,
+        apiDeleteProfile: apiDeleteProfile,
         setIsLoading: setIsLoading,
         isLoading: isLoading,
         user: user,

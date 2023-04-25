@@ -14,10 +14,10 @@ const listAdsService = async () => {
         }
     })
 
-    
+
 
     const validate = adArraySerializer.validate(ads, {
-        stripUnknown:true
+        stripUnknown: true
     })
 
     return validate

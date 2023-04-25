@@ -14,6 +14,7 @@ import {
 } from "typeorm";
 import { Ads } from "./ads.entities";
 import { Address } from "./address.entities";
+import { date } from "yup";
 
 export enum UserType {
   Anunciante = "Anunciante",
@@ -39,7 +40,7 @@ class User {
 
   @Column({ 
     type: "date",
-})
+  })
   birthdate: Date;
 
   @Column({ type: "text" })
@@ -71,6 +72,12 @@ class User {
 
   @Column({ type: "boolean", default: true })
   is_active: boolean;
+
+  @Column({ type: 'varchar', nullable: true })
+  reset_token?: string | null
+
+  @Column({ type: Date, nullable: true })
+  reset_time: Date | null;
 
   @OneToMany(() => Ads, (ads) => ads.user)
   ads: Ads[];

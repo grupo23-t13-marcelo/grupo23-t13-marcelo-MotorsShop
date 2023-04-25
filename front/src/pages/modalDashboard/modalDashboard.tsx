@@ -6,8 +6,6 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { adSchema } from "./types";
 import { currency } from "../adsDetail/adsDetail";
 import { apiPostNewAd } from "../../services/adsDetail/retrieveAdById";
-// import { useJwt } from "react-jwt";
-// import { decode } from "jsonwebtoken";
 import { AccessContext } from "../../context/access/accessContext";
 
 interface INewAd {
@@ -35,8 +33,7 @@ export const ModalDashboardAddAd = () => {
     const [inputFields, setInputFields] = useState([{ input: '' }, { input: '' }])
     const [userID, setUserId] = useState<string>('')
     const toast = useToast()
-    const {apiGetProfile} = useContext(AccessContext)
-
+    const { apiGetProfile } = useContext(AccessContext)
 
     const handleNewFields = () => {
         const inputs = [...inputFields]
@@ -95,18 +92,18 @@ export const ModalDashboardAddAd = () => {
         }))
     }
 
-    const onSubmit = async(data: INewAd) => {
+    const onSubmit = async (data: INewAd) => {
         data.fipe_table_price = fipePrice.toString()
         data.fuel = Object.keys(fuel)[0]
         data.user = userID
 
         apiPostNewAd(data, localStorage.getItem('motors.token')!)
-            .then( (resp) => {
+            .then((resp) => {
                 apiGetProfile()
+                onClose()
             })
             .catch(function (error) {
                 showToast(error.response.data.message, "red.500")
-                console.log(error)
             })
     }
 
@@ -189,16 +186,6 @@ export const ModalDashboardAddAd = () => {
                                         Combustivel
                                     </FormLabel>
                                     <Input value={Object.values(fuel)[0] as string} isDisabled={true} />
-                                    {/* <Select isDisabled={isDisabled} {...register('fuel')}>
-                                        <option value="placeholder">
-                                        Selecione o combustivel
-                                        </option>
-                                        <option value="gasoline">Gasolina</option>
-                                        <option value="ethanol">Etanol</option>
-                                        <option value="eletric">Elétrico</option>
-                                        <option value="flex_fuel">Flex</option>
-                                        <option value="diesel">Diesel</option>
-                                    </Select> */}
                                 </FormControl>
 
                                 <FormControl>

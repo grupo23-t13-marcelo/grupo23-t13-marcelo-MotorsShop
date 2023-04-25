@@ -22,14 +22,15 @@ import { AccessContext } from "../../../context/access/accessContext";
 export const Header = () => {
   const {user} = useContext(AccessContext)
 
+
   const breakpoint = useBreakpointValue({ base: "base", md: "md" });
 
 
-
+  
   return (
     <>
-      <Flex justify={"space-between"} p={"16px"}  alignItems={"center"}
->
+      <Flex justify={"space-between"} p={"16px"}>
+        <Link href="/">
         <Image
           src={logoMotors}
           alt="Logo do header"
@@ -39,6 +40,12 @@ export const Header = () => {
         {user?.name ? (
           <Flex gap={2}>
             <HStack
+          cursor={'pointer'}
+        />
+        </Link>
+          {token ? (
+            <>
+              <HStack
               display={{ base: "none", md: "flex" }}
               borderLeft={"2px"}
               borderLeftColor={"gray.200"}
@@ -74,6 +81,7 @@ export const Header = () => {
                 <MenuItem>Sair</MenuItem>
               </MenuList>
             </Menu>
+
           </Flex>
         ) : (
           <HStack
@@ -88,6 +96,38 @@ export const Header = () => {
             <Button variant={"outline"}>Cadastrar</Button>
           </HStack>
         )}
+
+            <Text>
+              {user?.name}
+            </Text>
+            </HStack>
+            </>
+          ):(
+            <>
+            <HStack
+              display={{ base: "none", md: "flex" }}
+              borderLeft={"2px"}
+              borderLeftColor={"gray.200"}
+              spacing={"16px"}
+              w={"300px"}
+              justify={"space-evenly"}
+            >
+          <LinkDom to={"/login"}>
+            Fazer Login
+          </LinkDom>
+         <LinkDom to="/register">
+            <Button variant={"outline-1"}>Cadastrar</Button>
+          </LinkDom>
+        </HStack>
+        <IconButton
+          aria-label="Abrir menu"
+          icon={isMenuOpen ? <CloseIcon /> : <HamburgerIcon />}
+          display={{ base: "flex", md: "none" }}
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          variant={"outline"}
+          />
+            </>
+          )}
       </Flex>
       <Outlet />
       <Footer />

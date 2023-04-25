@@ -13,8 +13,7 @@ import { AccessContext } from "../../context/access/accessContext";
 
 const HomePage = () => {
     const navigate = useNavigate()
-    const { listAds } = useContext(HomeContext)
-    const {apiGetUser} = useContext(AccessContext)
+    const { listAds, filteredAds, filtersUsed } = useContext(HomeContext)
     const { getFullAd } = useContext(AdDetailContext)
 
     return (
@@ -82,23 +81,41 @@ const HomePage = () => {
                     maxWidth={{ base: "auto", md: "auto" }}
                     marginLeft={{ base: "5px", md: "16px" }}
                 >
-                    {listAds.length > 0 ?
-                        listAds.map((card, index) => (
-                            <Flex onClick={() => { navigate('/detail'), getFullAd(card.id), apiGetUser(card.user.id) }}>
-                                <CardCars
-                                    id={card.id}
-                                    key={card.id}
-                                    card={card}
-                                    showPerfil={true}
-                                    showStatus={false}
-                                    showEditButton={false}
-                                />
-                            </Flex>
-                        ))
-                        :
-                        <Stack w={{ base: "95%", md: "90%" }} h={{ base: "200px", md: "600px" }} justify={"center"} align={"center"}>
-                            <Heading color={"brand1"} fontSize={{ base: "xl", md: "4xl" }}>Nenhum anúncio encontrado</Heading>
-                        </Stack>
+                    {
+                        filteredAds.length > 0 ?
+                            filteredAds.map((card, index) => (
+                                <Flex onClick={() => { navigate('/detail'), getFullAd(card.id) }}>
+                                    <CardCars
+                                        id={card.id}
+                                        key={card.id}
+                                        card={card}
+                                        showPerfil={true}
+                                        showStatus={false}
+                                        showEditButton={false}
+                                    />
+                                </Flex>
+                            )) :
+                            Object.values(filtersUsed).length > 0 ?
+                                <Stack w={{ base: "95%", md: "90%" }} h={{ base: "200px", md: "600px" }} justify={"center"} align={"center"}>
+                                    <Heading color={"brand1"} fontSize={{ base: "xl", md: "4xl" }}>Nenhum anúncio encontrado</Heading>
+                                </Stack> :
+                                listAds.length > 0 ?
+                                    listAds.map((card, index) => (
+                                        <Flex onClick={() => { navigate('/detail'), getFullAd(card.id) }}>
+                                            <CardCars
+                                                id={card.id}
+                                                key={card.id}
+                                                card={card}
+                                                showPerfil={true}
+                                                showStatus={false}
+                                                showEditButton={false}
+                                            />
+                                        </Flex>
+                                    ))
+                                    :
+                                    <Stack w={{ base: "95%", md: "90%" }} h={{ base: "200px", md: "600px" }} justify={"center"} align={"center"}>
+                                        <Heading color={"brand1"} fontSize={{ base: "xl", md: "4xl" }}>Nenhum anúncio encontrado</Heading>
+                                    </Stack>
                     }
 
                 </UnorderedList>

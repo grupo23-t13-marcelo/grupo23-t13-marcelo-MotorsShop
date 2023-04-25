@@ -34,7 +34,8 @@ export const currency = function (number: number) {
 export const AdsDetail = () => {
     const { adToShow, setAdToShow } = useContext(AdDetailContext)
 
-    
+    const token = localStorage.getItem('motors.token')
+
     useEffect(() => {
         setAdToShow(JSON.parse(localStorage.getItem('adToShow')!))
     }, [])

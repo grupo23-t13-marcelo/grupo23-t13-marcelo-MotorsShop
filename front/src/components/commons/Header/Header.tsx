@@ -1,30 +1,31 @@
-import { useContext, useState } from "react";
+import React, { useContext, useState } from "react";
 import {
   Flex,
   Image,
-  HStack,
   Link,
+  HStack,
   Button,
-  IconButton,
+  MenuList,
   Menu,
   MenuButton,
-  Avatar,
-  MenuList,
   MenuItem,
-  Text,
+  Stack,
+  Avatar,
+  useBreakpointValue
 } from "@chakra-ui/react";
-import { CloseIcon, HamburgerIcon } from "@chakra-ui/icons";
-import logoMotors from "../../../assets/png/Motors shop.png";
-import { Outlet, useNavigate } from "react-router-dom";
+import logoMotors from "../../../assets/png/Motors shop.png"; // substitua com o caminho correto para a imagem do logo
+import { Outlet } from "react-router-dom";
 import { Footer } from "../Footer/Footer";
-import { Link as LinkDom } from "react-router-dom";
+import { EditIcon } from "@chakra-ui/icons";
 import { AccessContext } from "../../../context/access/accessContext";
 
-export function Header() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const navigate = useNavigate()
-  const token = localStorage.getItem('motors.token')
+export const Header = () => {
   const {user} = useContext(AccessContext)
+
+
+  const breakpoint = useBreakpointValue({ base: "base", md: "md" });
+
+
   
   return (
     <>
@@ -35,6 +36,10 @@ export function Header() {
           alt="Logo do header"
           maxW={"300px"}
           maxH={"30px"}
+        />
+        {user?.name ? (
+          <Flex gap={2}>
+            <HStack
           cursor={'pointer'}
         />
         </Link>
@@ -44,22 +49,54 @@ export function Header() {
               display={{ base: "none", md: "flex" }}
               borderLeft={"2px"}
               borderLeftColor={"gray.200"}
-              w={"300px"}
-              justifyContent={'center'}
-            >
+              spacing={"16px"}
+              w={"40px"}
+              justify={"space-evenly"}
+            ></HStack>
             <Menu>
-              <MenuButton
-                as={Button}
-                rounded={'full'}
-                variant={'link'}
-                cursor={'pointer'}
-                minW={0}>
-                <Avatar
-                  size={'sm'}
-                  name={user?.name}
-                />
-              </MenuButton>
+            <Stack direction="row">
+                <MenuButton>
+                  <Avatar
+                    name={user.name}
+                    src="https://bit.ly/broken-link"
+                  />
+                </MenuButton>
+              </Stack>
+              <MenuList>
+                <MenuItem>Editar usuário</MenuItem>
+                <MenuItem>Editar endereço</MenuItem>
+                <MenuItem>Sair</MenuItem>
+              </MenuList>
             </Menu>
+            <Menu isLazy placement={breakpoint === "base" ? "bottom-start" : "bottom-end"}>
+              
+              <MenuButton
+                display={breakpoint === "md" ? "flex" : "none"}
+              >
+                {user.name}
+              </MenuButton>
+              <MenuList>
+                <MenuItem>Editar usuário</MenuItem>
+                <MenuItem>Editar endereço</MenuItem>
+                <MenuItem>Sair</MenuItem>
+              </MenuList>
+            </Menu>
+
+          </Flex>
+        ) : (
+          <HStack
+            display={{ base: "none", md: "flex" }}
+            borderLeft={"2px"}
+            borderLeftColor={"gray.200"}
+            spacing={"16px"}
+            w={"300px"}
+            justify={"space-evenly"}
+          >
+            <Link>Fazer Login</Link>
+            <Button variant={"outline"}>Cadastrar</Button>
+          </HStack>
+        )}
+
             <Text>
               {user?.name}
             </Text>
@@ -92,29 +129,6 @@ export function Header() {
             </>
           )}
       </Flex>
-      {isMenuOpen && (
-        <Flex
-          direction={"column"}
-          boxShadow={"md"}
-          display={{ base: "flex", md: "none" }}
-          w={"100%"}
-          p={"16px"}
-          bg={"white"}
-          pos={"absolute"}
-         top={"70px"}
-          zIndex={9999}
-          gap={"30px"}
-
-        > 
-          <LinkDom to='/login'>
-            <Button  variant={"outline-1"}>Fazer Login</Button>
-          </LinkDom>
-          
-            <LinkDom to='/register'>
-              <Button  w={"100%"} variant={"outline-1"}>Cadastrar</Button>
-            </LinkDom>
-        </Flex>
-      )}
       <Outlet />
       <Footer />
     </>

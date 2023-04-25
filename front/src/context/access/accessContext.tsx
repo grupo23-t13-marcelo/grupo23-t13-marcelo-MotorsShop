@@ -120,7 +120,7 @@ export const AccessProvider = ({ children }: IAccessContextProps) => {
         if(token){
             apiGetProfile()
         }
-    }, [])
+    }, [token])
 
 
     const globalAccessValues: IAccessContext = {

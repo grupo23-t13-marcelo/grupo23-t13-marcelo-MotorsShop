@@ -15,7 +15,7 @@ import { IAdInfo } from "../../../context/access/accessTypes";
 import { redirect } from "react-router-dom";
 import { useContext } from "react";
 import { AccessContext } from "../../../context/access/accessContext";
-
+import brandPrice from "../../../assets/png/price5.png"
 interface CardProps {
   id: string;
   card: IAdInfo;
@@ -32,23 +32,21 @@ export function CardCars({
   showPerfil = true,
   showStatus = true
 }: CardProps) {
-  // const { status, image, text, mileage, year, price, brand, title } = card;
   const { is_activated, cover_image, description, mileage, year, price, brand, user, fipe_table_price } = card;
   const {userRender} = useContext(AccessContext)
+
+  const showBrand = parseInt(price) < (parseInt(fipe_table_price) * 0.05);
+console.log(showBrand)
   return (
     <Card
       minW="320px"
       maxW="250px"
       _hover={is_activated ? { cursor: "pointer" } : {}}
-      onClick={() => {
-        if (status) {
-          console.log("Card clicado!");
-        }
-      }}
+    
     >
       {showStatus && (
         <>
-          {status ? (
+          {is_activated ? (
             <Box
               position="absolute"
               left={2}
@@ -104,7 +102,11 @@ export function CardCars({
             fontFamily={"Lexend"}
             marginBottom={2}
           >
-            {brand}
+             {showBrand && (
+        <Box position="absolute" top="-25px" right="-20px">
+          <Image src={brandPrice} alt="Warning" width="90px" height="90px" />
+        </Box>
+      )}
           </Text>
           <Text color={"#495057"} fontSize="sm" fontFamily={"inter"}>
             {description}
@@ -121,7 +123,7 @@ export function CardCars({
         <Flex alignItems="center" justifyContent="start" marginTop={3} gap={2}>
           <Box backgroundColor="#EDEAFD" p="1" borderRadius="md">
             <Text fontWeight="bold" color={" #4529E6"} fontSize="11">
-              {mileage}
+              {mileage}KM
             </Text>
           </Box>
           <Box backgroundColor="#EDEAFD" p="1" borderRadius="md">
@@ -131,7 +133,7 @@ export function CardCars({
           </Box>
           <Spacer />
           <Text color="black" fontSize="11" fontWeight="bold">
-            R$ {price},00
+            R$ {price}
           </Text>
         </Flex>
 

@@ -10,7 +10,7 @@ export const getProfileUserService = async (auth: string) => {
 
   const user = await userRepo.findOne({
   where: {id: String(sub)},
-  relations: {ads: true}
+  relations: {ads: true, address: true}
   }) as User
 
   return user

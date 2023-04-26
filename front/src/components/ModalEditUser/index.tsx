@@ -70,7 +70,7 @@ const ModalEditUser = (userId: any) => {
                     <ModalBody>
                         <FormControl mb={"20px"} isInvalid={errors.name ? true : false} isRequired={errors.name ? true : false}>
                             <FormLabel>Nome</FormLabel>
-                            <Input defaultValue={user?.name} value={valueName} type="text" id="nameRegister" placeholder="Ex: Samuel Leão" {...register("name")} onChange={(e) => setValueName(e.target.value) }/>
+                            <Input defaultValue={user?.name} value={valueName} type="text" id="name" placeholder="Ex: Samuel Leão" {...register("name")} onChange={(e) => setValueName(e.target.value) }/>
                             <FormErrorMessage>
                                 {errors.name && `${errors.name.message}`}
                             </FormErrorMessage>
@@ -112,7 +112,7 @@ const ModalEditUser = (userId: any) => {
                         </FormControl>
                     </ModalBody>
                     <ModalFooter gap={5}>
-                        <Button h={'12'} w={'80%'} borderRadius={'base'} fontWeight={'medium'}  variant={"gray-1"}>Cancelar</Button>
+                        <Button h={'12'} w={'80%'} borderRadius={'base'} fontWeight={'medium'} onClick={onClose}  variant={"gray-1"}>Cancelar</Button>
                         <ModalDeleteUser userId={userId}/>
                         <Button h={'12'} w={'100%'} borderRadius={'base'} fontWeight={'medium'} fontSize={14}  variant={"button-sender"}  type="submit">Salvar alterações</Button>
                     </ModalFooter>

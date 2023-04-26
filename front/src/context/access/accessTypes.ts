@@ -2,6 +2,7 @@ import { ReactNode } from "react"
 import { ILogin } from "../../pages/loginPage/login"
 import { IUserResponseOnAd } from "../adsDetail/adsTypes"
 import { IEditUser } from "../../components/ModalEditUser"
+import { IEditAddress } from "../../components/ModalEditAddress"
 
 export interface IAccessContextProps {
     children: ReactNode
@@ -39,6 +40,14 @@ export interface IUser {
 	deleted_at: Date | null
 	is_active: boolean
 	ads: IAdInfo[]
+    address: {
+        cep: string,
+        state: string,
+        city: string,
+        street: string,
+        number: string,
+        complement: string 
+    }
 }
 
 export interface IUserRegister {
@@ -69,6 +78,7 @@ export interface IAccessContext {
     apiGetUser: (userId:string) => void
     apiPutEdit: (dataEdit: IEditUser, userId: string) => void
     apiDeleteProfile: (userId: string) => void
+    apiPutAddress: (dataEdit: IEditAddress) => void
     isLoading: boolean
     setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
     setUserRender: React.Dispatch<React.SetStateAction<IUser | null>>

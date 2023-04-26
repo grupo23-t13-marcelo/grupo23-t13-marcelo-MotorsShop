@@ -30,7 +30,6 @@ export const AccessProvider = ({ children }: IAccessContextProps) => {
                 <Box color={"gray.50"} p={3} bg={"green.600"} fontWeight={"bold"} borderRadius={"md"}>
                 Login Realizado com Sucesso
             </Box>)})
-            await apiGetProfile()
             setIsLoading(false)
             navigate('/')
         } catch (error) {

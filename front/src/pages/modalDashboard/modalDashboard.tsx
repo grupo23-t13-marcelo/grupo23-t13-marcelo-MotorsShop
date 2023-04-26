@@ -111,9 +111,12 @@ export const ModalDashboardAddAd = () => {
 
     useEffect(() => {
         const jwtToken = localStorage.getItem('motors.token')!;
+        if(jwtToken){
         const decodedToken = JSON.parse(atob(jwtToken.split('.')[1]) as string);
         setUserId(decodedToken.id)
-        getUniqueBrands()
+        getUniqueBrands()        
+        }
+
     }, [])
 
     return (

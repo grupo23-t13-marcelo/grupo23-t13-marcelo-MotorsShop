@@ -42,7 +42,7 @@ const LoginPage = () => {
         <Box bgColor={'gray.100'} h={[600, 658, 788, 855]} w={'100%'} display={'flex'} justifyContent={'center'} alignItems={'center'}>
             <Card maxW={['100%', '500px']} w={'90%'} h={['95%', '90%', '78%', '72%']} color={'whiteFixed'} border={'none'} alignItems={'center'}   >
                 <CardHeader w={['95%', '95%', '83%']}>
-                    <Text color={'grey0'} fontWeight={'bolder'} fontSize={'24px'}  letterSpacing={'0.5px'} fontFamily={'Lexend'} paddingTop={'22px'}>Login</Text>
+                    <Text color={'gray.900'} fontWeight={'bolder'} fontSize={'24px'}  letterSpacing={'0.5px'} fontFamily={'Lexend'} paddingTop={'22px'}>Login</Text>
                 </CardHeader>
                 <form action="" onSubmit={handleSubmit(onSubmit)}>
                 <CardBody w={['100%', '440px']} display={'flex'} flexDirection={'column'} gap={4} alignItems={'flex-end'}>
@@ -55,7 +55,7 @@ const LoginPage = () => {
                     </FormControl>
                     <FormControl isInvalid={errors.password ? true : false} isRequired={errors.password ? true: false}>
                         <FormLabel fontSize={'14px'} fontWeight={'bold'} color={'gray.800'}>Senha</FormLabel>
-                        <Input type="password" id="password" h={'12'}  placeholder="Digitar Senha" {...register('password')}/>
+                        <Input color={'gray.900'} type="password" id="password" h={'12'}  placeholder="Digitar Senha" {...register('password')}/>
                         <FormErrorMessage>
                             {errors.password && `${errors.password?.message}`}
                         </FormErrorMessage>
@@ -67,7 +67,7 @@ const LoginPage = () => {
                     <CardFooter w={'100%'} marginBottom={'100px'} display={'flex'} flexDirection={'column'} justifyContent={'center'} alignItems={'center'} gap={5}>
                         <Button variant={'button-sender'} w={'100%'} h={'48px'} type="submit">Entrar</Button>
                         <Text fontSize={'14px'} color={'gray.600'}>Ainda não possui conta?</Text>
-                            <Button as={Link} to={'/register'} variant={'outline-1'} w={'100%'} h={'48px'} >Cadastrar</Button>
+                            <Button as={Link} href={'/register'} variant={'outline-1'} w={'100%'} h={'48px'} >Cadastrar</Button>
                     </CardFooter>
                 </form>
             </Card>

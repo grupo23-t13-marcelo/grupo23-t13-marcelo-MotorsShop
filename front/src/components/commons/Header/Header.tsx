@@ -15,15 +15,16 @@ import {
   Text
 } from "@chakra-ui/react";
 import logoMotors from "../../../assets/png/Motors shop.png";
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import { Footer } from "../Footer/Footer";
 import { CloseIcon, EditIcon, HamburgerIcon } from "@chakra-ui/icons";
 import { AccessContext } from "../../../context/access/accessContext";
 import ModalEditUser from "../../ModalEditUser";
 import ModalEditAddress from "../../ModalEditAddress";
+import { Navigate } from "react-router-dom";
 export const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const {user} = useContext(AccessContext);
+  const {user, apiGetUser} = useContext(AccessContext);
   const token = localStorage.getItem('motors.token')
   const breakpoint = useBreakpointValue({ base: "base", md: "md" });
   const handleLogout = () => {
@@ -33,6 +34,8 @@ export const Header = () => {
   const handleToggle = () => {
     setIsOpen(!isOpen);
   };
+
+  const navigate = useNavigate()
 
   console.log(user)
   return (
@@ -65,6 +68,7 @@ export const Header = () => {
             <MenuList>
               <MenuItem><ModalEditUser userId={user?.id}/></MenuItem>
               <MenuItem><ModalEditAddress/></MenuItem>
+              <MenuItem onClick={() => (navigate("/salesdetail"), apiGetUser(user?.id!))}>Ver todos os anúncios</MenuItem>
               <MenuItem onClick={handleLogout}>Sair</MenuItem>
             </MenuList>
             <Text mt={3} display={{ base: "none", md: "flex" }} w={'100%'}>

@@ -12,7 +12,7 @@ import { AccessContext } from "../../context/access/accessContext";
 
 
 const HomePage = () => {
-    const navigate = useNavigate()
+    // const navigate = useNavigate()
     const { listAds, filteredAds, filtersUsed } = useContext(HomeContext)
     const { getFullAd } = useContext(AdDetailContext)
     const {setUser, apiGetUser} = useContext(AccessContext)
@@ -85,7 +85,7 @@ const HomePage = () => {
                     {
                         filteredAds.length > 0 ?
                             filteredAds.map((card, index) => (
-                                <Flex onClick={() => { navigate('/detail'), getFullAd(card.id), apiGetUser(card.user.id) }}>
+                                <Flex onClick={() => { getFullAd(card.id), apiGetUser(card.user.id) }}>
                                     <CardCars
                                         id={card.id}
                                         key={card.id}
@@ -102,7 +102,7 @@ const HomePage = () => {
                                 </Stack> :
                                 listAds.length > 0 ?
                                     listAds.map((card, index) => (
-                                        <Flex onClick={() => { navigate('/detail'), getFullAd(card.id), apiGetUser(card.user.id) }}>
+                                        <Flex onClick={() => { getFullAd(card.id), apiGetUser(card.user.id) }}>
                                             <CardCars
                                                 id={card.id}
                                                 key={card.id}

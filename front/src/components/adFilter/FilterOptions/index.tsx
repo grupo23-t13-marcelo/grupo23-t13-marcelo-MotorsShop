@@ -190,8 +190,8 @@ const FilterOptions = () => {
                         <Heading>Km</Heading>
                         <form onSubmit={handleSubmit(onSubmit)}>
                             <Flex justify={"center"} gap={"10px"} maxW={"250px"}>
-                                <Input width={"50%"} placeholder="Mínimo" {...register('minKm')} />
-                                <Input width={"50%"} placeholder="Máximo" {...register('maxKm')} />
+                                <Input type={"number"} width={"50%"} placeholder="Mínimo" {...register('minKm')} />
+                                <Input type={"number"} width={"50%"} placeholder="Máximo" {...register('maxKm')} />
                             </Flex>
                             <Button h={'30px'} w={'100%'} mt={2} type="submit" display={'none'}>Aplicar</Button>
                         </form>
@@ -206,8 +206,8 @@ const FilterOptions = () => {
                             <Heading>Preço</Heading>
                             <form onSubmit={handleSubmit(onSubmit)}>
                                 <Flex justify={"center"} gap={"10px"} maxW={"250px"}>
-                                    <Input width={"50%"} placeholder="Mínimo" {...register('minPc')} />
-                                    <Input width={"50%"} placeholder="Máximo" {...register('maxPc')} />
+                                    <Input type={"number"} width={"50%"} placeholder="Mínimo" {...register('minPc')} />
+                                    <Input type={"number"} width={"50%"} placeholder="Máximo" {...register('maxPc')} />
                                 </Flex>
                                 <Button h={'30px'} w={'100%'} mt={2} type="submit" display={'none'}> Aplicar</Button>
                             </form>

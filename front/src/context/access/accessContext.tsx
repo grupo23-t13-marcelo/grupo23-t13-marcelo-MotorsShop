@@ -7,6 +7,7 @@ import { Box, useToast } from "@chakra-ui/react";
 import { AdDetailContext } from "../adsDetail/adsDetailContext";
 import { IAdDetail } from "../adsDetail/adsTypes";
 import { IEditUser } from "../../components/ModalEditUser";
+import { IEditAddress } from "../../components/ModalEditAddress";
 
 export const AccessContext = createContext({} as IAccessContext)
 
@@ -61,7 +62,7 @@ export const AccessProvider = ({ children }: IAccessContextProps) => {
     }
 
     const apiPutEdit = async (dataPut: IEditUser, userId: string | null) => {
-        console.log(userId)
+        
         try {
             api.defaults.headers.authorization = `Bearer ${token}`
             await api.put(`users/${userId}`, dataPut)
@@ -96,6 +97,24 @@ export const AccessProvider = ({ children }: IAccessContextProps) => {
             render: () => (
                 <Box color={"gray.50"} p={3} bg={"red.600"} fontWeight={"bold"} borderRadius={"md"}>
                 Algo de errado ocorreu!
+            </Box>)})
+        }
+    }
+
+    const apiPutAddress = async (dataPut: IEditAddress) => {
+        try {
+            api.defaults.headers.authorization = `Bearer ${token}`
+            await api.put(`address/`, dataPut)
+            toast({title: "success", variant: "solid", position: "bottom-left", isClosable: true,
+            render: () => (
+                <Box color={"gray.50"} p={3} bg={"green.600"} fontWeight={"bold"} borderRadius={"md"}>
+                Endereço Editado com Sucesso!
+            </Box>)})
+        } catch (error) {
+            toast({title: "failed", variant: "solid", position: "bottom-left", isClosable: true,
+            render: () => (
+                <Box color={"gray.50"} p={3} bg={"red.600"} fontWeight={"bold"} borderRadius={"md"}>
+                Algo deu Errado...
             </Box>)})
         }
     }
@@ -138,6 +157,7 @@ export const AccessProvider = ({ children }: IAccessContextProps) => {
         apiGetUser: apiGetUser,
         apiPutEdit: apiPutEdit,
         apiDeleteProfile: apiDeleteProfile,
+        apiPutAddress: apiPutAddress,
         setIsLoading: setIsLoading,
         isLoading: isLoading,
         user: user,

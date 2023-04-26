@@ -20,6 +20,7 @@ import { Footer } from "../Footer/Footer";
 import { CloseIcon, EditIcon, HamburgerIcon } from "@chakra-ui/icons";
 import { AccessContext } from "../../../context/access/accessContext";
 import ModalEditUser from "../../ModalEditUser";
+import ModalEditAddress from "../../ModalEditAddress";
 export const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const {user} = useContext(AccessContext);
@@ -32,6 +33,8 @@ export const Header = () => {
   const handleToggle = () => {
     setIsOpen(!isOpen);
   };
+
+  console.log(user)
   return (
     <>
     <Flex justifyContent={'space-between'} p={"16px"} alignItems={"center"}>
@@ -44,12 +47,12 @@ export const Header = () => {
         />
         </Link>
       {token ? (
-        <Flex marginRight={{ base:'0', md: '10'}} gap={5} w={'12%'}>
+        <Flex marginRight={{ base:'6', md: '10'}} gap={5} w={'12%'}>
           <HStack
             display={{ base: "flex", md: "flex" }}
             borderLeft={{base: 'none', md: '1px'}}
             borderLeftColor={"gray.700"}
-            spacing={"16px"}
+            spacing={"8px"}
             w={"10%"}
           >
           </HStack>
@@ -61,7 +64,7 @@ export const Header = () => {
           </Stack>
             <MenuList>
               <MenuItem><ModalEditUser userId={user?.id}/></MenuItem>
-              <MenuItem>Editar endereço</MenuItem>
+              <MenuItem><ModalEditAddress/></MenuItem>
               <MenuItem onClick={handleLogout}>Sair</MenuItem>
             </MenuList>
             <Text mt={3} display={{ base: "none", md: "flex" }} w={'100%'}>

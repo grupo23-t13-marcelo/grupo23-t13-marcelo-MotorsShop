@@ -109,6 +109,7 @@ const HomePage = () => {
                                                 card={card}
                                                 showPerfil={true}
                                                 showBrands={true}
+
                                                 showStatus={false}
                                                 showEditButton={false}
                                             />

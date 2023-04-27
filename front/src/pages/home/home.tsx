@@ -91,6 +91,7 @@ const HomePage = () => {
                                         key={card.id}
                                         card={card}
                                         showPerfil={true}
+                                        showBrands={true}
                                         showStatus={false}
                                         showEditButton={false}
                                     />
@@ -109,7 +110,6 @@ const HomePage = () => {
                                                 card={card}
                                                 showPerfil={true}
                                                 showBrands={true}
-
                                                 showStatus={false}
                                                 showEditButton={false}
                                             />

@@ -14,6 +14,8 @@ import {
   Flex,
   VStack,
 } from "@chakra-ui/react";
+import { api } from "../../services/api";
+import { AxiosResponse } from "axios";
 
 const schema = Yup.object().shape({
   email: Yup.string()
@@ -27,7 +29,7 @@ export function ForgotPasswordForm() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
-
+  
   const {
     register,
     handleSubmit,
@@ -38,12 +40,15 @@ export function ForgotPasswordForm() {
   const toast = useToast();
 
   const onSubmit = async (values: FormData) => {
+
     try {
+      const {data} = await api.post<AxiosResponse>(`/users/reset`, values)
       
+
     } catch (error) {
-      
+      console.log(error)
     }
-    console.log(values);
+  
   };
 
   return (

@@ -14,6 +14,9 @@ import {
   Flex,
   VStack,
 } from "@chakra-ui/react";
+import { api } from "../../services/api";
+import { AxiosResponse } from "axios";
+import { useNavigate, useParams } from "react-router-dom";
 
 const schema = Yup.object().shape({
     password: Yup
@@ -38,6 +41,8 @@ export function RedefinePasswordForm() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
+  const params = useParams()
+  const navigate = useNavigate()
 
   const {
     register,
@@ -49,12 +54,14 @@ export function RedefinePasswordForm() {
   const toast = useToast();
 
   const onSubmit = async (values: FormData) => {
+    const resetToken = params.token
+
     try {
-      
+      const {data} = await api.patch<AxiosResponse>(`/users/reset/${resetToken}`, values)
+      navigate("/login")
     } catch (error) {
-      
+      console.log(error)
     }
-    console.log(values);
   };
 
   return (
@@ -74,12 +81,12 @@ export function RedefinePasswordForm() {
         </Text>
         <FormControl id="email" isInvalid={!!errors.password} p={4}>
           <FormLabel>Senha</FormLabel>
-          <Input type="password" {...register("password")} />
+          <Input type="password" {...register("password")} placeholder="Digite sua senha"/>
           <FormErrorMessage>{errors.password?.message}</FormErrorMessage>
         </FormControl>
         <FormControl id="email" isInvalid={!!errors.confirmPassword} p={4}>
           <FormLabel>Confirmar senha</FormLabel>
-          <Input type="password" {...register("confirmPassword")} />
+          <Input type="password" placeholder="Confirma senha" {...register("confirmPassword")} />
           <FormErrorMessage>{errors.confirmPassword?.message}</FormErrorMessage>
         </FormControl>
         <Button

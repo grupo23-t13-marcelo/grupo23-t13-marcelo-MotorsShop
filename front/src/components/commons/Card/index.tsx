@@ -35,7 +35,7 @@ export function CardCars({
   const { is_activated, cover_image, description, mileage, year, price, brand, user, fipe_table_price } = card;
   const {userRender} = useContext(AccessContext)
 
-  const showBrand = parseInt(price) < (parseInt(fipe_table_price) * 0.05);
+  const showBrand = parseInt(price) <= (parseInt(fipe_table_price) * 0.05);
 console.log(showBrand)
   return (
     <Card

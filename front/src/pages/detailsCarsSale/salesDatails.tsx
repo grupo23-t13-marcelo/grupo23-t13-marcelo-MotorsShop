@@ -149,8 +149,9 @@ export const CarsSalesDetail = () => {
                       key={index}
                       card={card}
                       showEditButton={true}
+                      showBrands={false}
                       showPerfil={false}
-                      showStatus={false} id={card.id}/>
+                      showStatus={true} id={card.id}/>
                       ))} 
                     </>
                   ) : (
@@ -159,8 +160,9 @@ export const CarsSalesDetail = () => {
                       <CardCars
                       key={index}
                       card={card}
-                      showEditButton={false}
+                      showEditButton={true}
                       showPerfil={true}
+                      showBrands={true}
                       showStatus={true} id={card.id}/>
                       ))} 
                     </>

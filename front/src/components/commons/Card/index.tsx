@@ -22,6 +22,8 @@ interface CardProps {
   showPerfil: Boolean;
   showStatus: Boolean;
   showEditButton: boolean;
+  showBrands: Boolean
+
 }
 
 
@@ -30,13 +32,12 @@ export function CardCars({
   card,
   showEditButton = true,
   showPerfil = true,
-  showStatus = true
+  showStatus = true,
+  showBrands= true
 }: CardProps) {
   const { is_activated, cover_image, description, mileage, year, price, brand, user, fipe_table_price } = card;
   const {userRender} = useContext(AccessContext)
-
-  const showBrand = parseInt(price) <= (parseInt(fipe_table_price) * 0.05);
-console.log(showBrand)
+  const showBrand = parseInt(price) < (parseInt(fipe_table_price) * 0.05) || parseInt(price) < parseInt(fipe_table_price);
   return (
     <Card
       minW="320px"
@@ -102,11 +103,15 @@ console.log(showBrand)
             fontFamily={"Lexend"}
             marginBottom={2}
           >
+            {showBrands && (
+              <>
              {showBrand && (
         <Box position="absolute" top="-25px" right="-20px">
           <Image src={brandPrice} alt="Warning" width="90px" height="90px" />
         </Box>
       )}
+              </>
+            )}
           </Text>
           <Text color={"#495057"} fontSize="sm" fontFamily={"inter"}>
             {description}

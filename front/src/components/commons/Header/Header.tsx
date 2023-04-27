@@ -22,22 +22,24 @@ import { AccessContext } from "../../../context/access/accessContext";
 import ModalEditUser from "../../ModalEditUser";
 import ModalEditAddress from "../../ModalEditAddress";
 import { Navigate } from "react-router-dom";
+export const handleLogout = () => {
+  localStorage.removeItem("motors.token");
+  localStorage.removeItem("motors.user")
+  window.location.href = "/login";
+}
+
 export const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const {user, apiGetUser} = useContext(AccessContext);
   const token = localStorage.getItem('motors.token')
   const breakpoint = useBreakpointValue({ base: "base", md: "md" });
-  const handleLogout = () => {
-    localStorage.removeItem("motors.token");
-    window.location.href = "/login";
-  }
   const handleToggle = () => {
     setIsOpen(!isOpen);
   };
 
   const navigate = useNavigate()
 
-  console.log(user)
+  
   return (
     <>
     <Flex justifyContent={'space-between'} p={"16px"} alignItems={"center"}>

@@ -8,6 +8,7 @@ import { AdDetailContext } from "../adsDetail/adsDetailContext";
 import { IAdDetail } from "../adsDetail/adsTypes";
 import { IEditUser } from "../../components/ModalEditUser";
 import { IEditAddress } from "../../components/ModalEditAddress";
+import { handleLogout } from "../../components/commons/Header/Header";
 
 export const AccessContext = createContext({} as IAccessContext)
 
@@ -89,7 +90,7 @@ export const AccessProvider = ({ children }: IAccessContextProps) => {
                 <Box color={"gray.50"} p={3} bg={"green.600"} fontWeight={"bold"} borderRadius={"md"}>
                 Conta Deletada!
             </Box>)})
-            navigate('/')
+            handleLogout()
         } catch (error) {
             console.log(error)
             toast({title: "failed", variant: "solid", position: "bottom-left", isClosable: true,

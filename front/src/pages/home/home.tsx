@@ -108,7 +108,7 @@ const HomePage = () => {
                                                 key={card.id}
                                                 card={card}
                                                 showPerfil={true}
-                                                showStatus={true}
+                                                showStatus={false}
                                                 showEditButton={false}
                                             />
                                         </Flex>

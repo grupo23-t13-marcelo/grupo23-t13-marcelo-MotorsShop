@@ -72,7 +72,7 @@ export const CarsSalesDetail = () => {
                 marginTop={75}
               >
                 <Stack direction="row" alignItems="center">
-                  <Avatar size="xl" name={params.userid === user?.id ? user?.name : userRender?.name} />
+                  <Avatar size="xl" name={userRender?.id === user?.id ? user?.name : userRender?.name} />
                 </Stack>
                 <Box
                   display={"flex"}

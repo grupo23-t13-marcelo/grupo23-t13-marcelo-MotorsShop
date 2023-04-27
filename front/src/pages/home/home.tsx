@@ -15,7 +15,14 @@ const HomePage = () => {
     // const navigate = useNavigate()
     const { listAds, filteredAds, filtersUsed } = useContext(HomeContext)
     const { getFullAd } = useContext(AdDetailContext)
-    const {setUser, apiGetUser} = useContext(AccessContext)
+    const {setUser, apiGetUser, user} = useContext(AccessContext)
+
+    // useEffect(() => {
+    //     if(user){
+    //         apiGetUser(user.id)
+    //     }
+    // }, [user])
+
 
     return (
         <Box>

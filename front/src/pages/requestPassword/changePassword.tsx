@@ -39,8 +39,6 @@ type FormData = Yup.InferType<typeof schema>;
 
 export function RedefinePasswordForm() {
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
-  const [success, setSuccess] = useState(false);
   const params = useParams()
   const navigate = useNavigate()
 
@@ -57,10 +55,24 @@ export function RedefinePasswordForm() {
     const resetToken = params.token
 
     try {
+      setIsLoading(true)
       const {data} = await api.patch<AxiosResponse>(`/users/reset/${resetToken}`, values)
+      
+      toast({
+        duration: 3000,
+        description: "Enviado com sucesso! :)",
+        status: "success"
+      })
+      setIsLoading(false)
       navigate("/login")
     } catch (error) {
       console.log(error)
+      toast({
+        duration: 3000,
+        description: "Ops algo deu errado! :(",
+        status: "error"
+      })
+      setIsLoading(false)
     }
   };
 
@@ -98,11 +110,6 @@ export function RedefinePasswordForm() {
         >
           Redefinir senha
         </Button>
-        {error && (
-          <Box color="red.500" marginTop="4">
-            {error}
-          </Box>
-        )}
       </VStack>
     </Flex>
   );

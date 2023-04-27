@@ -70,7 +70,7 @@ export const Header = () => {
             <MenuList>
               <MenuItem><ModalEditUser userId={user?.id}/></MenuItem>
               <MenuItem><ModalEditAddress/></MenuItem>
-              <MenuItem onClick={() => (navigate("/salesdetail"), apiGetUser(user?.id!))}>Ver todos os anúncios</MenuItem>
+              <MenuItem onClick={() => (navigate("/salesdetail"))}>Ver todos os anúncios</MenuItem>
               <MenuItem onClick={handleLogout}>Sair</MenuItem>
             </MenuList>
             <Text mt={3} display={{ base: "none", md: "flex" }} w={'100%'}>

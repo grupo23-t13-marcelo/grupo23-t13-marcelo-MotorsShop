@@ -12,16 +12,15 @@ import { AccessContext } from "../../context/access/accessContext";
 
 
 const HomePage = () => {
-    // const navigate = useNavigate()
     const { listAds, filteredAds, filtersUsed } = useContext(HomeContext)
     const { getFullAd } = useContext(AdDetailContext)
     const {setUser, apiGetUser, user} = useContext(AccessContext)
 
-    // useEffect(() => {
-    //     if(user){
-    //         apiGetUser(user.id)
-    //     }
-    // }, [user])
+    useEffect(() => {
+        if(user){
+            apiGetUser(user.id)
+        }
+    }, [user])
 
 
     return (

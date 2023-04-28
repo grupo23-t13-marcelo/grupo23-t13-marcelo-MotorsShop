@@ -32,4 +32,6 @@ export interface IAdDetailContext {
     adToShow: IAdDetail | {}
     setAdToShow: React.Dispatch<React.SetStateAction<IAdDetail>>,
     getFullAd: (id: string) => Promise<void>
+    modalEditAd: boolean
+    setModalEditAd: React.Dispatch<React.SetStateAction<boolean>>
 }

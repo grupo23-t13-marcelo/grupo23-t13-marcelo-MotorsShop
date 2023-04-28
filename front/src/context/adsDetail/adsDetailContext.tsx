@@ -11,6 +11,7 @@ export const AdDetailContext = createContext({} as IAdDetailContext)
 export const AdDetailProvider = ({ children }: IAdDetailContextProps) => {
     const [adToShow, setAdToShow] = useState<IAdDetail | {}>({})
     const {apiGetUser} = useContext(AccessContext)
+    const [modalEditAd, setModalEditAd] = useState<boolean>(false)
     const navigate = useNavigate()
 
     async function getFullAd(id: string) {
@@ -31,7 +32,9 @@ export const AdDetailProvider = ({ children }: IAdDetailContextProps) => {
     const globalValues: IAdDetailContext = {
         adToShow: adToShow,
         setAdToShow: setAdToShow,
-        getFullAd: getFullAd
+        getFullAd: getFullAd,
+        modalEditAd,
+        setModalEditAd
     }
 
     return (

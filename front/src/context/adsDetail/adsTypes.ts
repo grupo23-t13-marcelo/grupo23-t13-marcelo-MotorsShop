@@ -34,4 +34,6 @@ export interface IAdDetailContext {
     getFullAd: (id: string) => Promise<void>
     modalEditAd: boolean
     setModalEditAd: React.Dispatch<React.SetStateAction<boolean>>
+    modalDeleteAd: boolean
+    setModalDeleteAd: React.Dispatch<React.SetStateAction<boolean>>
 }

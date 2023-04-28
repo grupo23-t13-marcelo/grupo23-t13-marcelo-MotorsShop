@@ -17,6 +17,7 @@ import { ModalDashboardContext } from "../../context/modalDashboard/modalDashboa
 import { AccessContext } from "../../context/access/accessContext";
 import { useParams } from "react-router";
 import ModalEditAd from "../../components/ModalEditAd";
+import ModalDeleteAd from "../../components/ModalEditAd/modalDeleteAd";
 
 export const CarsSalesDetail = () => {
   const { onOpen } = useContext(ModalDashboardContext)
@@ -200,6 +201,7 @@ export const CarsSalesDetail = () => {
         </Box>
       </Box>
       <ModalEditAd/>
+      <ModalDeleteAd/>
     </>
   );
 };

@@ -20,6 +20,7 @@ export const AccessProvider = ({ children }: IAccessContextProps) => {
     const { adToShow} = useContext(AdDetailContext)
     const token = localStorage.getItem('motors.token')
     const userLocal = JSON.parse(localStorage.getItem('motors.user')!)
+    
     const navigate = useNavigate()
     const toast = useToast()
 
@@ -145,12 +146,9 @@ export const AccessProvider = ({ children }: IAccessContextProps) => {
 
     useEffect(() => {
         if(token){
-            apiGetProfile()        
+            apiGetProfile()
         }
-        if(user){
-            apiGetUser(user.id)
-        }
-    }, [token, user])
+    }, [token])
 
 
     const globalAccessValues: IAccessContext = {

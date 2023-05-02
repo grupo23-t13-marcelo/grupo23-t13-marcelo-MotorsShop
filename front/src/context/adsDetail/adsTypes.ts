@@ -1,6 +1,7 @@
 import { ReactNode } from "react"
 
 export interface IAdDetail {
+    id: string
     brand: string
     model: string
     year: string
@@ -14,6 +15,7 @@ export interface IAdDetail {
     is_active: string
     user: IUserResponseOnAd
     gallery: [{ id: string, file_name: string }]
+    comments: [{ id: string, content: string, user: { id: string, name: string, profile_picture: string }, createdAt: string }]
 }
 
 export interface IUserResponseOnAd {

@@ -48,7 +48,7 @@ const resetPasswordTemplate = (userEmail: string, userName: string, protocol: st
                 button: {
                     color: "#DC4D2F",
                     text: "Clique Aqui",
-                    link: `${protocol}://${host}/users/resetPassword/${resetToken}`,
+                    link: `http://localhost:5173/resetPassword/${resetToken}`,
                 }
             },
             outro: "Se você não solicitou uma redefinição de senha, pode ignorar esse email",

@@ -19,6 +19,8 @@ export const AccessProvider = ({ children }: IAccessContextProps) => {
     const [userRender, setUserRender] = useState<IUser | null>(null)
     const { adToShow} = useContext(AdDetailContext)
     const token = localStorage.getItem('motors.token')
+    const userLocal = JSON.parse(localStorage.getItem('motors.user')!)
+    
     const navigate = useNavigate()
     const toast = useToast()
 
@@ -125,7 +127,8 @@ export const AccessProvider = ({ children }: IAccessContextProps) => {
             const {data} = await api.get('users/profile')
             try {
                 localStorage.setItem('motors.user', JSON.stringify(data)) 
-                setUser(data)   
+                setUser(data)
+                
             } catch (error) {
                 console.log(error)
             }

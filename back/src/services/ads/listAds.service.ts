@@ -4,7 +4,6 @@ import { adArraySerializer } from "../../schemas/ads"
 import { CursorPaginator } from 'typeorm-paginator'
 import { PagePaginator } from 'typeorm-paginator'
 
-
 const listAdsService = async (queries:any) => {
     const {next="",take = 3, prev=""} = queries
     const adsRepository = AppDataSource.getRepository(Ads)
@@ -26,10 +25,7 @@ const listAdsService = async (queries:any) => {
         )
 
 
-
-
     return pagination1
-
 }
 
 

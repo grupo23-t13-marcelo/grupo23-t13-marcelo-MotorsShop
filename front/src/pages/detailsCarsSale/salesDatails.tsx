@@ -19,14 +19,15 @@ import { useParams } from "react-router";
 
 export const CarsSalesDetail = () => {
   const { onOpen } = useContext(ModalDashboardContext)
-  const {user, userRender, setUserRender} = useContext(AccessContext)
-  const params = useParams()
+  const {user, userRender, setUserRender,apiGetUser} = useContext(AccessContext)
   
   
   useEffect(() => {
     setUserRender(JSON.parse(localStorage.getItem('userRender')!))
-    console.log(userRender)
-  }, [])
+    if(user) {
+      apiGetUser(user.id)
+    }
+  }, [user])
 
 
 

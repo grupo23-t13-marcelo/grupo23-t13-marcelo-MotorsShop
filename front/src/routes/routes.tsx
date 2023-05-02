@@ -7,6 +7,7 @@ import RegisterPage from '../pages/register/register'
 import LoginPage from '../pages/loginPage/login'
 import { ModalDashboardAddAd } from '../pages/modalDashboard/modalDashboard'
 import { ForgotPasswordForm } from '../pages/requestPassword'
+import { RedefinePasswordForm } from '../pages/requestPassword/changePassword'
 
 
 export const RoutesMain = () => {
@@ -19,7 +20,7 @@ export const RoutesMain = () => {
                 <Route path='/register' element={<RegisterPage />} />
                 <Route path='/login' element={<LoginPage />} />
                 <Route path="/forgotPassword" element={<ForgotPasswordForm/>}/>
-                <Route path='/testeModal' element={<ModalDashboardAddAd />} />
+                <Route path='/resetPassword/:token' element={<RedefinePasswordForm />} />
             </Route>
         </Routes>
     )

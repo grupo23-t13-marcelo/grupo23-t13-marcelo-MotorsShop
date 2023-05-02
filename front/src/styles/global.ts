@@ -37,9 +37,9 @@ export default createGlobalStyle`
         --random10: #6100FF;
         --random11: #5700E3;
         --random12: #30007D;
-        *{
+        /* *{
             font-family: "Inter"
-        }
+        } */
 
         /* body{
             height: 100vh;

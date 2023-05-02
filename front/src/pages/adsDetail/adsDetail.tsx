@@ -34,7 +34,7 @@ export const currency = function (number: number) {
 
 export const AdsDetail = () => {
     const { adToShow, setAdToShow } = useContext(AdDetailContext)
-    const {setUserRender} = useContext(AccessContext)
+    const { setUserRender } = useContext(AccessContext)
 
     const token = localStorage.getItem('motors.token')
 
@@ -49,7 +49,7 @@ export const AdsDetail = () => {
                     {adMainInfo(adToShow)}
                     {AdAsideInfo(adToShow as IAdDetail)}
                     <Box marginLeft={['0%', '0%', '3%', '7%']} marginTop={10} width={['90%', '85%', '57%']} marginRight={0} display={['block', null, 'none']}>
-                        {AdCommentSection(adToShow, ['block', null, 'none'])}
+                        {AdCommentSection(adToShow as IAdDetail, ['block', null, 'none'])}
                     </Box>
                 </Flex >
             </Box >

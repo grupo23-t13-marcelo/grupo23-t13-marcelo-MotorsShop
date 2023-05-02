@@ -1,6 +1,7 @@
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { User } from "./users.entities";
 import { Gallery } from "./gallery.entities";
+import { Comments } from "./comments.entities";
 
 
 @Entity("ads")
@@ -8,28 +9,28 @@ class Ads {
     @PrimaryGeneratedColumn('uuid')
     id: string
 
-    @Column({length: 100})
+    @Column({ length: 100 })
     brand: string
 
-    @Column({length: 100})
+    @Column({ length: 100 })
     model: string
 
-    @Column({length: 4})
+    @Column({ length: 4 })
     year: string
 
-    @Column({length: 100})
+    @Column({ length: 100 })
     fuel: string
 
     @Column()
     mileage: number
 
-    @Column({length: 20})
+    @Column({ length: 20 })
     color: string
 
-    @Column({length: 50})
-    fipe_table_price : string
+    @Column({ length: 50 })
+    fipe_table_price: string
 
-    @Column({length: 50})
+    @Column({ length: 50 })
     price: string
 
     @Column()
@@ -38,16 +39,19 @@ class Ads {
     @Column()
     cover_image: string
 
-    @Column({default: true})
-    is_activated : boolean
+    @Column({ default: true })
+    is_activated: boolean
 
     @OneToMany(() => Gallery, gallery => gallery.ad)
     gallery: Gallery[]
-    
+
+    @OneToMany(() => Comments, (comments) => comments.ad)
+    comments: Comments[]
+
     @ManyToOne(() => User, (user) => user.ads)
-    @JoinColumn({name: "user_id"})
+    @JoinColumn({ name: "user_id" })
     user: User;
 }
 
 
-export {Ads}
+export { Ads }

@@ -15,6 +15,7 @@ import {
 import { Ads } from "./ads.entities";
 import { Address } from "./address.entities";
 import { date } from "yup";
+import { Comments } from "./comments.entities";
 
 export enum UserType {
   Anunciante = "Anunciante",
@@ -38,7 +39,7 @@ class User {
   @Column()
   cell_phone: string;
 
-  @Column({ 
+  @Column({
     type: "date",
   })
   birthdate: Date;
@@ -55,8 +56,8 @@ class User {
     this.password = hashSync(this.password, 10);
   }
 
-  @Column({ type: "enum", enum: UserType })
-  type: UserType;
+  @Column({ type: "varchar" })
+  type: string;
 
   @Column({ nullable: true })
   profile_picture: string;
@@ -82,11 +83,14 @@ class User {
   @OneToMany(() => Ads, (ads) => ads.user)
   ads: Ads[];
 
+  @OneToMany(() => Comments, (comments) => comments.user)
+  comments: Comments[]
+
   @OneToOne(() => Address, { cascade: true })
   @JoinColumn({ name: "address_id" })
   address: Address;
 
-  
+
 }
 
 export { User };

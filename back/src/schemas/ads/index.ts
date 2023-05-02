@@ -27,7 +27,6 @@ const uniqueAdSerializerResponse: SchemaOf<IAds> = yup.object().shape({
             name: yup.string(),
             profile_picture: yup.string().nullable(),
         }),
-        timedifference: yup.string(),
         createdAt: yup.string(),
         content: yup.string(),
         id: yup.string()

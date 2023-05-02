@@ -4,6 +4,7 @@ import { Comments } from "../../entities/comments.entities"
 import { User } from "../../entities/users.entities"
 import { AppError } from "../../errors"
 import { IComment } from "../../interfaces/comments"
+import { commentCreateSerializer } from "../../schemas/comments"
 
 export const createCommentService = async (commentData: IComment, userID: string) => {
     const commentRepository = AppDataSource.getRepository(Comments)
@@ -30,5 +31,7 @@ export const createCommentService = async (commentData: IComment, userID: string
 
     const newComment = await commentRepository.save(createdComment)
 
-    return newComment
+    const validate = await commentCreateSerializer.validate(newComment, { stripUnknown: true })
+
+    return validate
 }

@@ -5,6 +5,9 @@ import { Gallery } from "./gallery.entities";
 
 @Entity("ads")
 class Ads {
+    // static createQueryBuilder(): import("typeorm").SelectQueryBuilder<Ads> {
+    //     throw new Error("Method not implemented.");
+    // }
     @PrimaryGeneratedColumn('uuid')
     id: string
 

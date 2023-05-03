@@ -98,7 +98,7 @@ export const CarsSalesDetail = () => {
                   </Box>
                 </Box>
                 <Text>
-                  {userRender?.id === user?.id ? user?.description : userRender?.description}
+                {userRender?.id === user?.id ? user?.description : userRender?.description.charAt(0).toUpperCase()}
                 </Text>
                 {userRender?.id === user?.id ? (
                   <>

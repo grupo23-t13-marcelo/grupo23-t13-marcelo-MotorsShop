@@ -152,7 +152,7 @@ export const CarsSalesDetail = () => {
                       showEditButton={true}
                       showBrands={false}
                       showPerfil={false}
-                      showStatus={true} id={card.id}/>
+                      showStatus={false} id={card.id}/>
                       ))} 
                     </>
                   ) : (

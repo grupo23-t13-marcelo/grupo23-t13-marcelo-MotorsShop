@@ -20,7 +20,9 @@ const createAdsController = async (req:Request, res: Response) => {
 }
 
 const listAdsController = async (req:Request, res: Response) => {
-    const listAds = await listAdsService()
+  
+    const listAds = await listAdsService(req.query)
+    
     return res.status(200).json(listAds)
 }
 

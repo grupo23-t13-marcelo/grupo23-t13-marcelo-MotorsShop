@@ -1,18 +1,4 @@
 
-# Regra de Criação De Branch: 
+# MOTORS SHOP: 
 
- Ex: <seuNome>backFeat/login
-     <seuNome>backFeat/Register
- 
- Ex: <seuNome>frontFeat/DashBoardPage
-     <seuNome>frontFeat/LoginRegisterPage
-     
-     
-# Regra de Commit De Branch:
-
-Ex: feat: add login route
-    feat: fix login route
-
-Ex: feat: add login function
-    feat: fix login function
- 
+![Motors shop](https://user-images.githubusercontent.com/100230592/235925094-f250d9de-7485-45c2-bb15-0adfb6b2e346.png)

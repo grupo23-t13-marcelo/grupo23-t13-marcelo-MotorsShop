@@ -98,11 +98,16 @@ export const AdCommentSection = (adToShow: IAdDetail, display: Array<string | nu
             <Box backgroundColor={'white'} width={'100%'} borderRadius={5} p={7} display={'flex'} flexDirection={'column'} gap={7} marginTop={10}>
                 <Flex alignItems={"center"} gap={5}>
                     {
-                        user.profile_image ? (
-                            <Image src={user.profile_image} w={'50px'} h={'50px'} borderRadius={'50%'} />
+                        user ? (
+                            user.profile_image ? (
+                                <Image src={user.profile_image} w={'50px'} h={'50px'} borderRadius={'50%'} />
+                            ) : (
+                                <Avatar name={user.name} />
+                            )
                         ) : (
-                            <Avatar name={user.name} />
+                            null
                         )
+
                     }
                     <Text>{user?.name}</Text>
                 </Flex>

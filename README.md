@@ -77,4 +77,20 @@ A Motors Shop foi criada como o projeto final full-stack do M6 da Kenzie Academy
    
    Kauan Fernandes
   
+  # COMO RODAR A APLICAÇÃO: 
+  
+  OBS: Para rodar a aplicação é preciso ter NODE.JS e REACT.JS
+  
+   1. Instalar Depêndencias 
+  
+          NPM INSTALL   
+          
+   2. Inciar a Aplicação
+   
+           NPM RUN DEV
+   
+   3. Acesse por este link: 
+          
+          http://localhost:4000/
+   
   

@@ -91,6 +91,6 @@ A Motors Shop foi criada como o projeto final full-stack do M6 da Kenzie Academy
    
    3. Acesse por este link: 
           
-          http://localhost:4000/
+          http://localhost:5173/
    
   

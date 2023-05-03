@@ -5,7 +5,7 @@
 ![Motors shop](https://user-images.githubusercontent.com/100230592/235925094-f250d9de-7485-45c2-bb15-0adfb6b2e346.png)
 
 
-A Motors Shop foi criada como o projeto final full-stack do M6 da Kenzie Academy Brasil, com o objetivo de testar todas as habilidades que o grupo formado por alunos da kenzie pode fazer quando dado um projeto a grande escala, com toda interação sendo em volta de sua API. A plataforma serve para a venda e a compra automóveis, de um jeito fácil e simples, aonde um anunciante posta o que quer vender, e um comprador performar sua compra com o clique em apenas um botão.
+A Motors Shop foi criada como o projeto final full-stack do M6 da Kenzie Academy Brasil, com o objetivo de testar todas as habilidades que o grupo formado por alunos da kenzie pode fazer quando dado um projeto a grande escala, com toda interação sendo em volta de sua API. A plataforma serve para a venda e a compra automóveis, de um jeito fácil e simples, aonde um anunciante posta o que quer vender, e um comprador pode ver em detalhes o que quer comprar.
 
 # LINK DA PÁGINA: 
 (A PREENCHER)

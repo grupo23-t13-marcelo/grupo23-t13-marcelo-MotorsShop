@@ -6,6 +6,7 @@
       "src/@types",
       "node_modules/@types"
     ],
+    "outDir": "dist",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,

@@ -22,15 +22,13 @@ import ModalDeleteAd from "../../components/ModalEditAd/modalDeleteAd";
 export const CarsSalesDetail = () => {
   const { onOpen } = useContext(ModalDashboardContext)
   const {user, userRender, setUserRender,apiGetUser} = useContext(AccessContext)
-  
-  
+    
   useEffect(() => {
     setUserRender(JSON.parse(localStorage.getItem('userRender')!))
     if(user) {
       apiGetUser(user.id)
     }
   }, [user])
-
 
 
   return (

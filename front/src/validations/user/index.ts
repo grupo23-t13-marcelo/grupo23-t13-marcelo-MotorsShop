@@ -43,3 +43,25 @@ export const validationUserEdit = yup.object().shape({
     "A descrição deve ter no máximo 400 caracteres"
   ).notRequired(),
 })
+
+export const validationEditAd = yup.object().shape({
+  brand: yup.string().required("Campo obrigatório"),
+	model: yup.string().required("Campo obrigatório"),
+	year: yup.string().required("Campo obrigatório"),
+	fuel: yup.string().notRequired(),
+	mileage: yup.string().required("Campo obrigatório"),
+	color: yup.string().required("Campo obrigatório"),
+	fipe_table_price: yup.string().notRequired(),
+	price: yup.string().required("Campo obrigatório"),
+	description: yup.string().max(
+    400,
+    "A descrição deve ter no máximo 400 caracteres"
+  ).notRequired(),
+  cover_image: yup.string().required("Campo obrigatório"),
+  gallery_first_image: yup.string().notRequired(),
+  gallery_second_image: yup.string().notRequired(),
+  gallery_third_image: yup.string().notRequired(),
+  gallery_fourth_image: yup.string().notRequired(),
+  gallery_fifth_image: yup.string().notRequired(),
+  gallery_sixth_image: yup.string().notRequired()
+})

@@ -15,6 +15,9 @@ export const ModalDashboardProvider = ({ children }: IModalDashboarContextProps)
     const [cars, setCars] = useState<ICarsInterface[] | undefined>()
     const [fuel, setFuel] = useState<{}>({ start: '' })
 
+    const [editIsDisabled, setEditIsDisabled] = useState<boolean>(true)
+    const [editChanged, setEditChanged] = useState<boolean>(false)
+
     async function getUniqueBrands() {
         try {
             const cars = await karsApiCars()
@@ -84,6 +87,39 @@ export const ModalDashboardProvider = ({ children }: IModalDashboarContextProps)
 
     }
 
+    const editModelChange = (event: any) => {
+        if (event.brand){
+            console.log("teste, vamo que ta indo", event.brand)
+            // getFipePrice(event.brand)
+        } else {
+
+            const target = event.target
+    
+            const value = target.options[target.selectedIndex].innerText
+    
+            value == 'Selecione um modelo' && setFuel({ start: '' })
+            console.log(value)
+            getFipePrice(value)
+        }
+    }
+
+    const editPlaceholderSelection = (event: any) => {
+
+        if (event.brand){
+            setEditChanged(false)
+            setEditIsDisabled(false)
+            getModelsByBrand(event.brand)
+        } else {
+
+            const target = event.target
+            
+            const value = target.options[target.selectedIndex].value
+    
+            value == 'placeholder' ? (setEditIsDisabled(true), getFipePrice('Selecione um modelo'), setFuel({ start: '' })) : (setEditIsDisabled(false))
+            setEditChanged(true)
+        }
+    }
+
     const globalValues: IModalDashboarContext = {
         brands: brands,
         models: models,
@@ -96,9 +132,16 @@ export const ModalDashboardProvider = ({ children }: IModalDashboarContextProps)
         setFuel: setFuel,
         setYears: setYears,
         setModels: setModels,
+        setFipePrice,
         getUniqueBrands: getUniqueBrands,
         getModelsByBrand: getModelsByBrand,
-        getFipePrice: getFipePrice
+        getFipePrice: getFipePrice,
+        editModelChange,
+        editPlaceholderSelection,
+        editIsDisabled,
+        setEditIsDisabled,
+        editChanged,
+        setEditChanged
     }
 
     return (

@@ -16,6 +16,8 @@ import { redirect } from "react-router-dom";
 import { useContext } from "react";
 import { AccessContext } from "../../../context/access/accessContext";
 import brandPrice from "../../../assets/png/price5.png"
+import { AdDetailContext } from "../../../context/adsDetail/adsDetailContext";
+import { ModalDashboardContext } from "../../../context/modalDashboard/modalDashboard";
 interface CardProps {
   id: string;
   card: IAdInfo;
@@ -28,15 +30,17 @@ interface CardProps {
 
 
 export function CardCars({
-  id,
+  // id,
   card,
   showEditButton = true,
   showPerfil = true,
   showStatus = true,
   showBrands= true
 }: CardProps) {
-  const { is_activated, cover_image, description, mileage, year, price, brand, user, fipe_table_price } = card;
+  const { is_activated, cover_image, description, mileage, year, price, brand, user, fipe_table_price, id } = card;
+  const { editPlaceholderSelection } = useContext(ModalDashboardContext)
   const {userRender} = useContext(AccessContext)
+  const {setInputsGallery, setModalEditAd, setEditAd} = useContext(AdDetailContext)
   const showBrand = parseInt(price) < (parseInt(fipe_table_price) * 0.05) || parseInt(price) < parseInt(fipe_table_price);
   return (
     <Card
@@ -145,6 +149,7 @@ export function CardCars({
         {showEditButton && (
           <Flex alignItems="center" marginTop={5}>
             <Button
+              onClick={() => (setEditAd(card), editPlaceholderSelection({brand: card.brand}),setModalEditAd(true))}
               fontSize={12}
               w={70}
               h={7}

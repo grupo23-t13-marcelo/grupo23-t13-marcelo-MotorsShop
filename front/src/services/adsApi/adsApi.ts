@@ -7,3 +7,9 @@ export async function apiGetListAds(): Promise<AxiosResponse<IAdInfo[]>> {
 
     return listAd
 }
+
+export async function apiPatchAds(value: IAdInfo, id: string) {
+    const {data} = await api.put<IAdInfo>(`ads/${id}`, value)
+    
+    return data
+}

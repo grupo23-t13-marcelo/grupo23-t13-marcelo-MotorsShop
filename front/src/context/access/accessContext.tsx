@@ -128,6 +128,7 @@ export const AccessProvider = ({ children }: IAccessContextProps) => {
             try {
                 localStorage.setItem('motors.user', JSON.stringify(data)) 
                 setUser(data)
+                // console.log(data)
                 
             } catch (error) {
                 console.log(error)

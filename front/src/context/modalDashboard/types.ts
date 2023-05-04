@@ -21,9 +21,16 @@ export interface IModalDashboarContext {
     setFuel: React.Dispatch<React.SetStateAction<{}>>,
     setModels: React.Dispatch<React.SetStateAction<string[] | null>>
     setYears: React.Dispatch<React.SetStateAction<string[] | null>>,
+    setFipePrice: React.Dispatch<React.SetStateAction<number>>,
     getUniqueBrands: () => void,
     getFipePrice: (model: string) => void,
-    getModelsByBrand: (brand: string) => void
+    getModelsByBrand: (brand: string) => void,
+    editModelChange: (event: any) => void,
+    editPlaceholderSelection: (event: any) => void,
+    editIsDisabled: boolean,
+    setEditIsDisabled: React.Dispatch<React.SetStateAction<boolean>>,
+    editChanged: boolean,
+    setEditChanged: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 export interface IModalDashboarContextProps {

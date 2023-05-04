@@ -13,7 +13,7 @@ import { AccessContext } from "../../context/access/accessContext"
 
 const ModalEditAd = () => {
 
-    const {modalEditAd, setModalEditAd, editAd, setEditAd, editAdId} = useContext(AdDetailContext)
+    const {modalEditAd, setModalEditAd, editAd, setModalDeleteAd} = useContext(AdDetailContext)
     const { brands, models, years, fipePrice, fuel, setFuel, setFipePrice, getModelsByBrand, getUniqueBrands, getFipePrice, isOpen, onClose, onOpen, editModelChange, editIsDisabled, setEditIsDisabled, editPlaceholderSelection, setEditChanged, editChanged } = useContext(ModalDashboardContext)
     const {setUser} = useContext(AccessContext)
     const [inputsGallery, setInputsGallery] = useState<number>(0)
@@ -66,6 +66,7 @@ const ModalEditAd = () => {
             setFuel({start: ''}) 
             setFipePrice(0) 
             setInputsGallery(0)
+            setPublishedButton("")
         } catch (error) {
             console.error(error)
         }
@@ -119,8 +120,6 @@ const ModalEditAd = () => {
             newData.is_activated = editAd.is_activated
         }
 
-        console.log(newData)
-
         UpdateEditAd(newData, editAd.id)
 
     }
@@ -131,7 +130,7 @@ const ModalEditAd = () => {
                 <ModalContent p={"10px 20px"} ml={"10px"} mr={"8px"} maxW={"500px"}>
                     <Flex w={"100%"} justify={"space-between"} align={"center"} mt={"8px"}>
                         <Heading fontSize={"1xl"}>Editar anúncio</Heading>
-                        <Text onClick={() => (setModalEditAd(false), reset(), setFuel({start: ''}), setFipePrice(0), setInputsGallery(0))} cursor={"pointer"} _hover={{ color: "gray.500" }}>X</Text>
+                        <Text onClick={() => (setModalEditAd(false), reset(), setFuel({start: ''}), setFipePrice(0), setInputsGallery(0), setPublishedButton(""))} cursor={"pointer"} _hover={{ color: "gray.500" }}>X</Text>
                     </Flex>
                     <Text m={"20px 0"} fontSize={"1xl"}>Infomações do veículo</Text>
                     <Stack>
@@ -306,7 +305,7 @@ const ModalEditAd = () => {
                             </FormControl>
                             <Button display={inputsGallery >= 6 ? "none" : "block"} type="button" h={"32px"} fontSize={"12px"} w={{base: "100%", md: "60%"}} bg={"brand4"} color={"brand1"} onClick={() => addInput()}>Adicionar campo para imagem da galeria</Button>
                             <Flex justify={"space-between"} mt={"30px"}>
-                                <Button type="button" variant={"outline-1"} fontSize={"14px"} w={"47%"} borderRadius={"5px"}>Excluir</Button>
+                                <Button type="button" variant={"outline-1"} fontSize={"14px"} w={"47%"} borderRadius={"5px"} onClick={() => (setModalDeleteAd(true), setModalEditAd(false), reset(), setFuel({start: ''}), setFipePrice(0), setInputsGallery(0), setPublishedButton(""))}>Excluir</Button>
                                 <Button type="submit" variant={"button-sender"} fontSize={"14px"} w={"47%"} borderRadius={"5px"}>Salvar</Button>
                             </Flex>
                         </form>

@@ -88,19 +88,13 @@ export const ModalDashboardProvider = ({ children }: IModalDashboarContextProps)
     }
 
     const editModelChange = (event: any) => {
-        if (event.brand){
-            console.log("teste, vamo que ta indo", event.brand)
-            // getFipePrice(event.brand)
-        } else {
+        const target = event.target
 
-            const target = event.target
-    
-            const value = target.options[target.selectedIndex].innerText
-    
-            value == 'Selecione um modelo' && setFuel({ start: '' })
-            console.log(value)
-            getFipePrice(value)
-        }
+        const value = target.options[target.selectedIndex].innerText
+
+        value == 'Selecione um modelo' && setFuel({ start: '' })
+        console.log(value)
+        getFipePrice(value)
     }
 
     const editPlaceholderSelection = (event: any) => {

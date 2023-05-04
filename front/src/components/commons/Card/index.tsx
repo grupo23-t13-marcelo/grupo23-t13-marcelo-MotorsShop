@@ -37,8 +37,10 @@ export function CardCars({
   showStatus = true,
   showBrands= true
 }: CardProps) {
+
   const { is_activated, cover_image, description, mileage, year, price, brand, user, fipe_table_price, id } = card;
   const { editPlaceholderSelection } = useContext(ModalDashboardContext)
+
   const {userRender} = useContext(AccessContext)
   const {setInputsGallery, setModalEditAd, setEditAd} = useContext(AdDetailContext)
   const showBrand = parseInt(price) < (parseInt(fipe_table_price) * 0.05) || parseInt(price) < parseInt(fipe_table_price);
@@ -92,7 +94,7 @@ export function CardCars({
         alt={"imagem de capa do anúncio"}
         objectFit="cover"
         width="350px"
-        height="178.96px"
+        height="190.96px"
         _hover={{
           filter: "brightness(0.9)",
           cursor: "pointer",
@@ -109,7 +111,7 @@ export function CardCars({
           >
             {showBrands && (
               <>
-             {showBrand && (
+            {showBrand && (
         <Box position="absolute" top="-25px" right="-20px">
           <Image src={brandPrice} alt="Warning" width="90px" height="90px" />
         </Box>
@@ -117,8 +119,8 @@ export function CardCars({
               </>
             )}
           </Text>
-          <Text color={"#495057"} fontSize="sm" fontFamily={"inter"}>
-            {description}
+          <Text color={"#495057"} fontSize="sm" fontFamily={"inter"} h={10}>
+          {description.length > 50 ? description.slice(0, 50).charAt(0).toUpperCase() + description.slice(1, 74).toLowerCase() + "..." : description.charAt(0).toUpperCase() + description.slice(1)}
           </Text>
         </Box>
         {showPerfil && (

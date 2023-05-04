@@ -98,7 +98,7 @@ export const CarsSalesDetail = () => {
                   </Box>
                 </Box>
                 <Text>
-                  {userRender?.id === user?.id ? user?.description : userRender?.description}
+                {userRender?.id === user?.id ? user?.description : userRender?.description.charAt(0).toUpperCase()}
                 </Text>
                 {userRender?.id === user?.id ? (
                   <>
@@ -152,7 +152,7 @@ export const CarsSalesDetail = () => {
                       showEditButton={true}
                       showBrands={false}
                       showPerfil={false}
-                      showStatus={true} id={card.id}/>
+                      showStatus={false} id={card.id}/>
                       ))} 
                     </>
                   ) : (

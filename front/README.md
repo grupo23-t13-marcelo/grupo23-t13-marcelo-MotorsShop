@@ -10,13 +10,13 @@ A Motors Shop foi criada como o projeto final full-stack do M6 da Kenzie Academy
 # LINK DA PÁGINA: 
 (A PREENCHER)
 
-# PRINCIPAIS TECNOLOGIAS: 
+# PRINCIPAIS TECNOLOGIAS :question:: 
 
 
 ![68747470733a2f2f696d672e736869656c64732e696f2f62616467652f547970655363726970742d3030374143433f7374796c653d666f722d7468652d6261646765266c6f676f3d74797065736372697074266c6f676f436f6c6f723d7768697465](https://user-images.githubusercontent.com/100230592/235927516-5db68e80-5098-4f35-99d5-623551322935.svg)
 ![68747470733a2f2f696d672e736869656c64732e696f2f62616467652f52656163742d3230323332413f7374796c653d666f722d7468652d6261646765266c6f676f3d7265616374266c6f676f436f6c6f723d363144414642](https://user-images.githubusercontent.com/100230592/235927530-bb8a5815-4589-4258-83b5-251ff8159d6d.svg)
 
-# OUTRAS BIBLIOTECAS: 
+# OUTRAS BIBLIOTECAS :star2:: 
   Chakra-UI
   
   Yup
@@ -27,7 +27,7 @@ A Motors Shop foi criada como o projeto final full-stack do M6 da Kenzie Academy
   
   Axios
 
-# FUNCIONALIDADES: 
+# FUNCIONALIDADES :collision:: 
 
   Login
   
@@ -53,7 +53,7 @@ A Motors Shop foi criada como o projeto final full-stack do M6 da Kenzie Academy
   
   Postar comentário em anúncios especificos.
   
-  # CARACTERISTICAS: 
+  # CARACTERISTICAS :green_heart:: 
   
    Site 100% responsivo
   
@@ -65,19 +65,19 @@ A Motors Shop foi criada como o projeto final full-stack do M6 da Kenzie Academy
    
    Proteção de rotas com REACT-ROUTER-DOM
   
-  # EQUIPE: 
+  # EQUIPE :exclamation:: 
   
-   João Pedro Lima Dos Santos
+   João Pedro Lima Dos Santos :v:
    
-   Lucas Rigon
+   Lucas Rigon :v:
    
-   Luan Rodrigues
+   Luan Rodrigues :v:
    
-   Matheus Silva Vicente
+   Matheus Silva Vicente :v:
    
-   Kauan Fernandes
+   Kauan Fernandes :v:
   
-  # COMO RODAR A APLICAÇÃO: 
+  # COMO RODAR A APLICAÇÃO :boom:: 
   
   OBS: Para rodar a aplicação é preciso ter NODE.JS e REACT.JS
   

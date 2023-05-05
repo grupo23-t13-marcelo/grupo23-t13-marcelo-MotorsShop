@@ -6,7 +6,7 @@
       "src/@types",
       "node_modules/@types"
     ],
-    "outDir": "dist",
+    "outDir": "./dist",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
@@ -14,7 +14,7 @@
     "skipLibCheck": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "strictPropertyInitialization": false
+    "strictPropertyInitialization": false,
   },
   "include": [
     "src"

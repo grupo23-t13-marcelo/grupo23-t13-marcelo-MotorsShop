@@ -139,7 +139,7 @@ const HomePage = () => {
                 gap={{ base: "4px", md: "20px" }}
                 margin={"15px 0"}
             >
-                <Flex gap={"5px"}>
+                {/* <Flex gap={"5px"}>
                     <Text color={"brand1"}>1</Text>
                     <Text color={"gray.600"}>de</Text>
                     <Text color={"gray.600"}>2</Text>
@@ -151,7 +151,7 @@ const HomePage = () => {
                     color={"brand1"}
                 >
                     Seguinte &gt;
-                </Button>
+                </Button> */}
             </Box>
         </Box >
     )

@@ -183,7 +183,7 @@ export const CarsSalesDetail = () => {
           margin={"15px 0"}
           // mt={"200px"}
         >
-          <Flex gap={"5px"}>
+          {/* <Flex gap={"5px"}>
             <Text color={"brand1"}>1</Text>
             <Text color={"gray.600"}>de</Text>
             <Text color={"gray.600"}>2</Text>
@@ -195,7 +195,7 @@ export const CarsSalesDetail = () => {
             color={"brand1"}
           >
             Seguinte &gt;
-          </Button>
+          </Button> */}
         </Box>
       </Box>
       <ModalEditAd/>

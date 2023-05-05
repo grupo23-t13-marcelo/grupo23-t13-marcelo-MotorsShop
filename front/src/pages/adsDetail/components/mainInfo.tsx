@@ -1,5 +1,4 @@
-import { Box, Button, Container, Flex, Heading, Image, Text, Textarea } from "@chakra-ui/react"
-import { currency } from "../adsDetail"
+import { Box, Button, Flex, Heading, Image, Text } from "@chakra-ui/react"
 import { AdCommentSection } from "./commentSection"
 
 export const adMainInfo = (adToShow: any) => {

@@ -2,7 +2,6 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { IAdDetail, IAdDetailContext, IAdDetailContextProps } from "./adsTypes";
 import { apiGetAdById } from "../../services/adsDetail/retrieveAdById";
 import axios from "axios";
-import { useConst, useDisclosure } from "@chakra-ui/hooks";
 import { AccessContext } from "../access/accessContext";
 import { useNavigate } from "react-router-dom";
 

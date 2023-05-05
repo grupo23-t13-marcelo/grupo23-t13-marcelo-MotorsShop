@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useState } from "react";
 import { karsApiCars, karsApiCarsByBrand } from "../../services/karsApi/carsBrand";
 import axios from "axios";
 import { ICarsInterface, IModalDashboarContext, IModalDashboarContextProps } from "./types";

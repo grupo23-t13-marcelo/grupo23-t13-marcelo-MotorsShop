@@ -1,4 +1,3 @@
-import { EditIcon } from "@chakra-ui/icons";
 import {
   Flex,
   Image,
@@ -12,7 +11,6 @@ import {
   Button,
 } from "@chakra-ui/react";
 import { IAdInfo } from "../../../context/access/accessTypes";
-import { redirect } from "react-router-dom";
 import { useContext } from "react";
 import { AccessContext } from "../../../context/access/accessContext";
 import brandPrice from "../../../assets/png/price5.png"
@@ -30,7 +28,6 @@ interface CardProps {
 
 
 export function CardCars({
-  // id,
   card,
   showEditButton = true,
   showPerfil = true,
@@ -38,7 +35,7 @@ export function CardCars({
   showBrands= true
 }: CardProps) {
 
-  const { is_activated, cover_image, description, mileage, year, price, brand, user, fipe_table_price, id } = card;
+  const { is_activated, cover_image, description, mileage, year, price, brand, user, fipe_table_price } = card;
   const { editPlaceholderSelection } = useContext(ModalDashboardContext)
 
   const {userRender} = useContext(AccessContext)

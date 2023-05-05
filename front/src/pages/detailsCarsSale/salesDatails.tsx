@@ -11,11 +11,9 @@ import {
 } from "@chakra-ui/react";
 import { CardCars } from "../../components/commons/Card";
 import { useContext, useEffect } from "react";
-import mock from "../../../componentes-cards.mock.json";
 import { ModalDashboardAddAd } from "../modalDashboard/modalDashboard";
 import { ModalDashboardContext } from "../../context/modalDashboard/modalDashboard";
 import { AccessContext } from "../../context/access/accessContext";
-import { useParams } from "react-router";
 import ModalEditAd from "../../components/ModalEditAd";
 import ModalDeleteAd from "../../components/ModalEditAd/modalDeleteAd";
 

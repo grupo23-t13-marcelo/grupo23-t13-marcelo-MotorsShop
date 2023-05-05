@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { IAdDetail, IAdDetailContext, IAdDetailContextProps } from "./adsTypes";
 import { apiGetAdById } from "../../services/adsDetail/retrieveAdById";
 import axios from "axios";
@@ -10,7 +10,15 @@ export const AdDetailContext = createContext({} as IAdDetailContext)
 
 export const AdDetailProvider = ({ children }: IAdDetailContextProps) => {
     const [adToShow, setAdToShow] = useState<IAdDetail | {}>({})
-    const { apiGetUser } = useContext(AccessContext)
+
+    const {apiGetUser, user} = useContext(AccessContext)
+    const [modalEditAd, setModalEditAd] = useState<boolean>(false)
+    const [modalDeleteAd, setModalDeleteAd] = useState<boolean>(false)
+    const [editAdId, setEditAdId] = useState<string | null>(null)
+    const [editAd, setEditAd] = useState<any>(null)
+    const [inputsGallery, setInputsGallery] = useState<number | null>(null)
+
+
     const navigate = useNavigate()
 
     async function getFullAd(id: string) {
@@ -27,11 +35,22 @@ export const AdDetailProvider = ({ children }: IAdDetailContextProps) => {
             }
         }
     }
+    
 
     const globalValues: IAdDetailContext = {
         adToShow: adToShow,
         setAdToShow: setAdToShow,
-        getFullAd: getFullAd
+        getFullAd: getFullAd,
+        modalEditAd,
+        setModalEditAd,
+        modalDeleteAd,
+        setModalDeleteAd,
+        editAdId,
+        setEditAdId,
+        editAd,
+        setEditAd,
+        inputsGallery,
+        setInputsGallery
     }
 
     return (

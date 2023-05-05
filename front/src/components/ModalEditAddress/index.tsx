@@ -1,7 +1,6 @@
 import { Button, Flex, FormControl, FormErrorMessage, FormLabel, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Text, useDisclosure } from "@chakra-ui/react"
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
-import { Form } from "react-router-dom"
 import { validationEditAddress } from "../../validations/address";
 import InputMask from 'react-input-mask'
 import { useContext, useState } from "react";
@@ -23,7 +22,6 @@ const ModalEditAddress = () => {
     const {
         register,
         handleSubmit,
-        reset,
         formState: { errors }
     } = useForm<IEditAddress>({
         resolver: yupResolver(validationEditAddress)

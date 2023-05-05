@@ -5,7 +5,6 @@ import { Header } from '../components/commons/Header/Header'
 import { CarsSalesDetail } from '../pages/detailsCarsSale/salesDatails'
 import RegisterPage from '../pages/register/register'
 import LoginPage from '../pages/loginPage/login'
-import { ModalDashboardAddAd } from '../pages/modalDashboard/modalDashboard'
 import { ForgotPasswordForm } from '../pages/requestPassword'
 import { RedefinePasswordForm } from '../pages/requestPassword/changePassword'
 

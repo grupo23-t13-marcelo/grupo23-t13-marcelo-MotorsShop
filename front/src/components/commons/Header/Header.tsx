@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import {
   Flex,
   Image,
@@ -17,11 +17,12 @@ import {
 import logoMotors from "../../../assets/png/Motors shop.png";
 import { Outlet, useNavigate } from "react-router-dom";
 import { Footer } from "../Footer/Footer";
-import { CloseIcon, EditIcon, HamburgerIcon } from "@chakra-ui/icons";
+import { CloseIcon,  HamburgerIcon } from "@chakra-ui/icons";
 import { AccessContext } from "../../../context/access/accessContext";
 import ModalEditUser from "../../ModalEditUser";
 import ModalEditAddress from "../../ModalEditAddress";
-import { Navigate } from "react-router-dom";
+
+
 export const handleLogout = () => {
   localStorage.removeItem("motors.token");
   localStorage.removeItem("motors.user")

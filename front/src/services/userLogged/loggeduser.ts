@@ -2,8 +2,8 @@ import { AxiosResponse } from "axios"
 import { IAdInfo } from "../../context/access/accessTypes"
 import { api } from "../api"
 
-export async function apiGetUserLogged(): Promise<AxiosResponse<IUserDetail>> {
-    const listUser = await api.get<IUserDetail>(`users/profile/`)
+export async function apiGetUserLogged(): Promise<AxiosResponse<any>> {
+    const listUser = await api.get<any>(`users/profile/`)
 
     return listUser
 }

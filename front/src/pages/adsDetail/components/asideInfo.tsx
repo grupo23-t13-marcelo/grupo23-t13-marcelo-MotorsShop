@@ -7,17 +7,14 @@ import {
     ModalCloseButton,
     ModalBody,
 } from "@chakra-ui/react"
-import { useContext, useEffect, useState } from "react"
+import { useState } from "react"
 import { IAdDetail } from "../../../context/adsDetail/adsTypes"
-import { AccessContext } from "../../../context/access/accessContext"
 import { useNavigate } from "react-router"
-import { Link } from "react-router-dom"
 
 
 export const AdAsideInfo = (adToShow: IAdDetail) => {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const [modalImg, setModalImg] = useState("")
-    const {apiGetUser} = useContext(AccessContext)
     const navigate = useNavigate()
 
 

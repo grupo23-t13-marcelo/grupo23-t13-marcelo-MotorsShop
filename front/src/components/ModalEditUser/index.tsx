@@ -3,7 +3,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import InputMask from 'react-input-mask'
 import { validationUserEdit } from "../../validations/user";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { AccessContext } from "../../context/access/accessContext";
 import ModalDeleteUser from "./modalDeleteUser";
 

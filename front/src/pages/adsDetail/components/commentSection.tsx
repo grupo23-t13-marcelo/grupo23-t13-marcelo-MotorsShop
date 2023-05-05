@@ -1,7 +1,6 @@
 import { Avatar, Box, Button, Flex, Heading, Image, Text, Textarea, useToast } from "@chakra-ui/react"
-import { useContext, useEffect, useState } from "react"
-import { AccessContext } from "../../../context/access/accessContext"
-import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
+import { useContext,  useState } from "react"
+import { useForm } from "react-hook-form";
 import { IAdDetail } from "../../../context/adsDetail/adsTypes";
 import { apiPostComment } from "../../../services/comments/commentsApi";
 import { AdDetailContext } from "../../../context/adsDetail/adsDetailContext";

@@ -1,20 +1,17 @@
-import { Heading, Flex, Box, Text, Stack, UnorderedList, Button } from "@chakra-ui/react"
-// import homeCover from "../../assets/home_cover.png"
+import { Heading, Flex, Box, Text, Stack, UnorderedList} from "@chakra-ui/react"
 import homeCover from "../../assets/Luxury-Car-PNG-Image-HD.png"
 import FilterType from "../../components/adFilter/FilterType";
 import { CardCars } from "../../components/commons/Card"
-import mock from "../../../componentes-cards.mock.json";
 import { useContext, useEffect } from "react";
 import { HomeContext } from "../../context/home/homeContext";
 import { AdDetailContext } from "../../context/adsDetail/adsDetailContext";
-import { useNavigate } from 'react-router-dom';
 import { AccessContext } from "../../context/access/accessContext";
 
 
 const HomePage = () => {
     const { listAds, filteredAds, filtersUsed } = useContext(HomeContext)
     const { getFullAd } = useContext(AdDetailContext)
-    const {setUser, apiGetUser, user} = useContext(AccessContext)
+    const { apiGetUser, user} = useContext(AccessContext)
 
     useEffect(() => {
         if(user){

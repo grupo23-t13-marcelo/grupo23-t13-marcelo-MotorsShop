@@ -1,6 +1,6 @@
 import { Box, Button, Flex, FormControl, FormErrorMessage, FormLabel, Heading, Input, Stack, Text, Textarea } from "@chakra-ui/react"
-import { useContext, useRef, useState, createRef } from "react";
-import { useForm, Controller } from "react-hook-form"
+import { useContext, useState } from "react";
+import { useForm } from "react-hook-form"
 import { yupResolver } from '@hookform/resolvers/yup';
 import ModalRegister from "../../components/ModalRegister";
 import { AccessContext } from "../../context/access/accessContext";

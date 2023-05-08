@@ -12,7 +12,12 @@ const FilterOptions = () => {
         formState: { errors },
         control,
         reset
-    } = useForm<{ minKm: string, maxKm: string, minPc: string, maxPc: string }>({
+    } = useForm<{
+        minKm: string,
+        maxKm: string,
+        minPc: string,
+        maxPc: string
+    }>({
         defaultValues: {
             minKm: '',
             maxKm: '',
@@ -21,7 +26,12 @@ const FilterOptions = () => {
         }
     });
 
-    const onSubmit = (data: { minKm: string, maxKm: string, minPc: string, maxPc: string }) => {
+    const onSubmit = (data: {
+        minKm: string,
+        maxKm: string,
+        minPc: string,
+        maxPc: string
+    }) => {
         if (data.minKm || data.maxKm) {
             filterAdsByValue(data.minKm, data.maxKm, 'mileage')
             reset()
@@ -40,7 +50,7 @@ const FilterOptions = () => {
                             Object.values(filtersUsed! as string[]).map((val: string, index) => {
                                 return (
                                     <Flex bg={'brand3'} p={2} borderRadius={5} h={'30px'} flexWrap={'wrap'} key={index} alignContent={'center'}>
-                                        <Button bg={'brand3'} fontSize={'12px'} h={'20px'} p={0} m={0} onClick={() => { handleFilterTagDelete(val) }}>{val} x</Button>
+                                        <Button bg={'brand3'} fontSize={'12px'} h={'20px'} p={0} m={0} onClick={() => { handleFilterTagDelete(val), window.scrollTo({ top: 500, behavior: "smooth" }) }}>{val} x</Button>
                                     </Flex>
                                 )
                             })!
@@ -59,7 +69,7 @@ const FilterOptions = () => {
                             filteredAds.filter((el, index) => index === filteredAds.findIndex(item => item.brand === el.brand))
                                 .map(el => {
                                     return (
-                                        <Link key={el.id} color={"gray.600"} onClick={() => filterAdsByTag(el.brand, 'brand')}>{el.brand}</Link>
+                                        <Link key={el.id} color={"gray.600"} onClick={() => (filterAdsByTag(el.brand, 'brand'), window.scrollTo({ top: 500, behavior: "smooth" }))}>{el.brand}</Link>
                                     )
                                 })
 
@@ -69,7 +79,7 @@ const FilterOptions = () => {
                                     .filter((el, index) => index === listAds.findIndex(item => item.brand === el.brand))
                                     .map(el => {
                                         return (
-                                            <Link key={el.id} onClick={() => { setFilteredAds([]), setFiltersUsed({}) }} color={"gray.600"}>{el.brand}</Link>
+                                            <Link key={el.id} onClick={() => { setFilteredAds([]), setFiltersUsed({}), window.scrollTo({ top: 500, behavior: "smooth" }) }} color={"gray.600"}>{el.brand}</Link>
                                         )
                                     })
                                 :
@@ -77,7 +87,7 @@ const FilterOptions = () => {
                                     .filter((el, index) => index === listAds.findIndex(item => item.brand === el.brand))
                                     .map(el => {
                                         return (
-                                            <Link key={el.id} onClick={() => filterAdsByTag(el.brand, 'brand')} color={"gray.600"}>{el.brand}</Link>
+                                            <Link key={el.id} onClick={() => { filterAdsByTag(el.brand, 'brand'), window.scrollTo({ top: 500, behavior: "smooth" }) }} color={"gray.600"}>{el.brand}</Link>
                                         )
                                     })
                 }
@@ -94,7 +104,7 @@ const FilterOptions = () => {
                             filteredAds.filter((el, index) => index === filteredAds.findIndex(item => item.model === el.model))
                                 .map(el => {
                                     return (
-                                        <Link key={el.id} color={"gray.600"} onClick={() => filterAdsByTag(el.model, 'model')}>{el.model}</Link>
+                                        <Link key={el.id} color={"gray.600"} onClick={() => { filterAdsByTag(el.model, 'model'), window.scrollTo({ top: 500, behavior: "smooth" }) }}>{el.model}</Link>
                                     )
                                 })
                             :
@@ -102,14 +112,14 @@ const FilterOptions = () => {
                                 listAds.filter((el, index) => index === listAds.findIndex(item => item.model === el.model))
                                     .map(el => {
                                         return (
-                                            <Link key={el.id} color={"gray.600"} onClick={() => { setFilteredAds([]), setFiltersUsed({}) }}>{el.model}</Link>
+                                            <Link key={el.id} color={"gray.600"} onClick={() => { setFilteredAds([]), setFiltersUsed({}), window.scrollTo({ top: 500, behavior: "smooth" }) }}>{el.model}</Link>
                                         )
                                     })
                                 :
                                 listAds.filter((el, index) => index === listAds.findIndex(item => item.model === el.model))
                                     .map(el => {
                                         return (
-                                            <Link key={el.id} color={"gray.600"} onClick={() => filterAdsByTag(el.model, 'model')}>{el.model}</Link>
+                                            <Link key={el.id} color={"gray.600"} onClick={() => { filterAdsByTag(el.model, 'model'), window.scrollTo({ top: 500, behavior: "smooth" }) }}>{el.model}</Link>
                                         )
                                     })
                 }
@@ -126,7 +136,7 @@ const FilterOptions = () => {
                             filteredAds.filter((el, index) => index === filteredAds.findIndex(item => item.year === el.year))
                                 .map(el => {
                                     return (
-                                        <Link key={el.id} color={"gray.600"} onClick={() => filterAdsByTag(el.year, 'year')}>{el.year}</Link>
+                                        <Link key={el.id} color={"gray.600"} onClick={() => (filterAdsByTag(el.year, 'year'), window.scrollTo({ top: 500, behavior: "smooth" }))}>{el.year}</Link>
                                     )
                                 })
                             :
@@ -136,14 +146,14 @@ const FilterOptions = () => {
                                     .map(el => {
 
                                         return (
-                                            <Link key={el.id} color={"gray.600"} onClick={() => { setFilteredAds([]), setFiltersUsed({}) }}>{el.year}</Link>
+                                            <Link key={el.id} color={"gray.600"} onClick={() => { setFilteredAds([]), setFiltersUsed({}), window.scrollTo({ top: 500, behavior: "smooth" }) }}>{el.year}</Link>
                                         )
                                     })
                                 :
                                 listAds.filter((el, index) => index === listAds.findIndex(item => item.year === el.year))
                                     .map(el => {
                                         return (
-                                            <Link key={el.id} color={"gray.600"} onClick={() => filterAdsByTag(el.year, 'year')}>{el.year}</Link>
+                                            <Link key={el.id} color={"gray.600"} onClick={() => (filterAdsByTag(el.year, 'year'), window.scrollTo({ top: 500, behavior: "smooth" }))}>{el.year}</Link>
                                         )
                                     })
 
@@ -161,7 +171,7 @@ const FilterOptions = () => {
                             filteredAds.filter((el, index) => index === filteredAds.findIndex(item => item.fuel === el.fuel))
                                 .map(el => {
                                     return (
-                                        <Link key={el.id} color={"gray.600"} onClick={() => filterAdsByTag(el.fuel, 'fuel')}>{el.fuel}</Link>
+                                        <Link key={el.id} color={"gray.600"} onClick={() => (filterAdsByTag(el.fuel, 'fuel'), window.scrollTo({ top: 500, behavior: "smooth" }))}>{el.fuel}</Link>
                                     )
                                 })
                             :
@@ -170,7 +180,7 @@ const FilterOptions = () => {
                                     .filter((el, index) => index === listAds.findIndex(item => item.fuel === el.fuel))
                                     .map(el => {
                                         return (
-                                            <Link key={el.id} color={"gray.600"} onClick={() => { setFilteredAds([]), setFiltersUsed({}) }}>{el.fuel}</Link>
+                                            <Link key={el.id} color={"gray.600"} onClick={() => { setFilteredAds([]), setFiltersUsed({}), window.scrollTo({ top: 500, behavior: "smooth" }) }}>{el.fuel}</Link>
                                         )
                                     })
                                 :
@@ -178,7 +188,7 @@ const FilterOptions = () => {
                                     .filter((el, index) => index === listAds.findIndex(item => item.fuel === el.fuel))
                                     .map(el => {
                                         return (
-                                            <Link key={el.id} color={"gray.600"} onClick={() => filterAdsByTag(el.fuel, 'fuel')}>{el.fuel}</Link>
+                                            <Link key={el.id} color={"gray.600"} onClick={() => { filterAdsByTag(el.fuel, 'fuel'), window.scrollTo({ top: 500, behavior: "smooth" }) }}>{el.fuel}</Link>
                                         )
                                     })
                 }

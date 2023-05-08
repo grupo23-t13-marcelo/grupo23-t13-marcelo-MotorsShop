@@ -10,43 +10,52 @@ export interface IAccessContextProps {
 
 export interface IAdInfo {
     id: string,
-	brand: string,
-	model: string,
-	year: string,
-	fuel: string,
-	mileage: number,
-	color: string,
-	fipe_table_price: string,
-	price: string,
-	description: string,
-	cover_image: string,
-	is_activated: boolean,
+    brand: string,
+    model: string,
+    year: string,
+    fuel: string,
+    mileage: number,
+    color: string,
+    fipe_table_price: string,
+    price: string,
+    description: string,
+    cover_image: string,
+    is_activated: boolean,
     user: IUserResponseOnAd
-	gallery: []
+    gallery: []
+}
+
+export interface IAdInfoPag {
+    count: number,
+    hasNext: boolean,
+    hasPrev: false,
+    nextCursor: string,
+    prevCursor: string,
+    nodes: IAdInfo[]
 }
 
 export interface IUser {
     id: string
-	name: string
-	email: string
-	cell_phone: string
-	birthdate: string
-	description: string
+    name: string
+    email: string
+    cell_phone: string
+    birthdate: string
+    description: string
     cpf: string
-	type: string
-	profile_picture: string
-	created_at: Date
-	updated_at: Date
-	deleted_at: Date | null
-	is_active: boolean
-	ads: IAdInfo[]
+    type: string
+    profile_picture: string
+    created_at: Date
+    updated_at: Date
+    deleted_at: Date | null
+    is_active: boolean
+    ads: IAdInfo[]
     address: {
         cep: string,
         state: string,
         city: string,
         street: string,
         number: string,
-        complement: string 
+        complement: string
     }
 }
 
@@ -75,7 +84,7 @@ export interface IAccessContext {
     apiPostLogin: (formData: ILogin) => void
     apiPostRegister: (dataRegister: IUserRegister) => Promise<void>
     apiGetProfile: () => void
-    apiGetUser: (userId:string) => void
+    apiGetUser: (userId: string) => void
     apiPutEdit: (dataEdit: IEditUser, userId: string) => void
     apiDeleteProfile: (userId: string) => void
     apiPutAddress: (dataEdit: IEditAddress) => void
@@ -85,6 +94,6 @@ export interface IAccessContext {
     setUser: React.Dispatch<React.SetStateAction<IUser | null>>
     user: IUser | null
     userRender: IUser | null
-    
+
 
 }

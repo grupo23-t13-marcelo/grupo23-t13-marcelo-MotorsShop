@@ -1,8 +1,9 @@
 import { createContext, useEffect, useState } from "react";
-import { apiGetListAds } from "../../services/adsApi/adsApi";
-import { IAdInfo } from "../access/accessTypes";
+import { apiGetListAds, apiGetListAdsPaginated } from "../../services/adsApi/adsApi";
+import { IAdInfo, IAdInfoPag } from "../access/accessTypes";
 import { IHomeContext, IHomeContextProps } from "./homeTypes";
 import { currency } from "../../pages/adsDetail/adsDetail";
+import { string } from "yup";
 
 export const HomeContext = createContext({} as IHomeContext)
 
@@ -11,25 +12,36 @@ export const HomeProvider = ({ children }: IHomeContextProps) => {
     const [listAds, setListAd] = useState<IAdInfo[]>([])
     const [filteredAds, setFilteredAds] = useState<IAdInfo[]>([])
     const [filtersUsed, setFiltersUsed] = useState<any>({})
+    const [listAdsPag, setListAdsPag] = useState<IAdInfoPag | undefined>()
+    const [query, setQuery] = useState<{ next: string } | { prev: string }>()
+    const [page, setPage] = useState<number>(1)
 
-
-    useEffect( () => {
+    useEffect(() => {
 
         const listAds = async () => {
             const { data } = await apiGetListAds()
-            
+
             setListAd(data)
         }
 
+        const listAdsPag = async () => {
+            const { data } = await apiGetListAdsPaginated(query)
+
+            setListAdsPag(data)
+        }
+
+        listAdsPag()
         listAds()
 
-    }, [filtersUsed, setFiltersUsed])
+    }, [filtersUsed, setFiltersUsed, query])
 
     const filterAdsByTag = (param: string, tag: keyof IAdInfo) => {
         if (filteredAds.length > 0) {
             const filteredAdsList: IAdInfo[] = filteredAds.filter((ad: IAdInfo) => ad[`${tag}`] == param) as IAdInfo[]
 
             const filters = { ...filtersUsed, [tag]: param }
+
+            setPage(1)
 
             setFiltersUsed(filters)
 
@@ -43,6 +55,8 @@ export const HomeProvider = ({ children }: IHomeContextProps) => {
 
             const filters = { ...filtersUsed, [tag]: param }
 
+            setPage(1)
+
             setFiltersUsed(filters)
 
             setFilteredAds(filteredAdsArray)
@@ -54,6 +68,8 @@ export const HomeProvider = ({ children }: IHomeContextProps) => {
 
         if (iteration === 0) {
             if (tag === 'mileage' || tag === 'price') {
+                setPage(1)
+
                 const info = param.split(' ')
 
                 const values: number[] = []
@@ -75,10 +91,14 @@ export const HomeProvider = ({ children }: IHomeContextProps) => {
 
                 }
             } else {
+                setPage(1)
+
                 filteredAdsList = listAds.filter((ad: IAdInfo) => ad[`${tag}`] == param) as IAdInfo[]
             }
         } else {
             if (tag === 'mileage' || tag === 'price') {
+                setPage(1)
+
                 const info = param.split(' ')
 
                 const values: number[] = []
@@ -100,9 +120,13 @@ export const HomeProvider = ({ children }: IHomeContextProps) => {
 
                 }
             } else {
+                setPage(1)
+
                 filteredAdsList = filteredAds.filter((ad: IAdInfo) => ad[`${tag}`] == param) as IAdInfo[]
             }
         }
+
+        setPage(1)
 
         const filtereAdsSet = new Set(filteredAdsList)
 
@@ -112,6 +136,8 @@ export const HomeProvider = ({ children }: IHomeContextProps) => {
     }
 
     const handleFilterTagDelete = (val: string) => {
+        setPage(1)
+
         const filtersUsedObject = filtersUsed
 
         delete filtersUsedObject[Object.keys(filtersUsed).find(key => filtersUsed[key] === val)!]
@@ -123,12 +149,15 @@ export const HomeProvider = ({ children }: IHomeContextProps) => {
                 updateFilteredAdsAfterTagRemoval(filtersUsedObject[key], key as keyof IAdInfo, index)
             })
         } else {
+            setPage(1)
             setFilteredAds([])
         }
     }
 
     const filterAdsByValue = (min: string, max: string, key: keyof IAdInfo) => {
         if (min && max) {
+            setPage(1)
+
             let filterAdsList: IAdInfo[] = []
 
             filteredAds.length > 0 ?
@@ -144,6 +173,8 @@ export const HomeProvider = ({ children }: IHomeContextProps) => {
 
             setFilteredAds(filterAdsList)
         } else if (max == '') {
+            setPage(1)
+
             let filterAdsList: IAdInfo[] = []
 
             filteredAds.length > 0 ?
@@ -159,6 +190,8 @@ export const HomeProvider = ({ children }: IHomeContextProps) => {
 
             setFilteredAds(filterAdsList)
         } else if (min == '') {
+            setPage(1)
+
             let filterAdsList: IAdInfo[] = []
 
             filteredAds.length > 0 ?
@@ -176,14 +209,19 @@ export const HomeProvider = ({ children }: IHomeContextProps) => {
     }
 
     const globalHomeValues: IHomeContext = {
+        page: page,
+        query: query,
+        setPage: setPage,
         listAds: listAds,
+        setQuery: setQuery,
         setListAd: setListAd,
+        listAdsPag: listAdsPag,
         filteredAds: filteredAds,
+        filtersUsed: filtersUsed,
         setFilteredAds: setFilteredAds,
         filterAdsByTag: filterAdsByTag,
-        filtersUsed: filtersUsed,
-        filterAdsByValue: filterAdsByValue,
         setFiltersUsed: setFiltersUsed,
+        filterAdsByValue: filterAdsByValue,
         handleFilterTagDelete: handleFilterTagDelete
     }
 

@@ -16,7 +16,7 @@ const listUniqueAdService = async (AdID: string) => {
             gallery: true,
             user: true,
             comments: {
-                user: true
+                user: true,
             }
         }
     })

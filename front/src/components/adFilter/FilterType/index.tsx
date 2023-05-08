@@ -7,13 +7,23 @@ const FilterType = () => {
 
     const [filterChange] = useMediaQuery("(max-width: 767px)");
     const [filterModal, setFilterModal] = useState<boolean>(false)
-    const { setFilteredAds, setFiltersUsed } = useContext(HomeContext)
+    const { setFilteredAds, setFiltersUsed, setPage } = useContext(HomeContext)
 
     return (
         <Box>
             {filterChange ? (
                 <Stack alignItems={"center"}>
-                    <Button display={filterModal ? "none" : "inline"} variant={"button-sender"} w={"90%"} maxW={"320px"} margin={"50px 0 20px 0"} textColor={"#ffffff"} onClick={() => (setFilterModal(true), window.scrollTo({ top: 0, behavior: "smooth" }))}>Filtros</Button>
+                    <Button
+                        display={filterModal ? "none" : "inline"}
+                        variant={"button-sender"}
+                        w={"90%"}
+                        maxW={"320px"}
+                        margin={"50px 0 20px 0"}
+                        textColor={"#ffffff"}
+                        onClick={() => (setFilterModal(true), window.scrollTo({ top: 0, behavior: "smooth" }))}
+                    >
+                        Filtros
+                    </Button>
                     {filterModal ? (
                         <Box
                             width={"100%"}
@@ -47,7 +57,7 @@ const FilterType = () => {
                     <Stack gap={"12px"} marginBottom={"15px"}>
                         <FilterOptions />
                     </Stack>
-                    <Button w={"100%"} variant={"button-sender"} color={"#ffffff"} onClick={(e) => { setFilteredAds([]), setFiltersUsed({}) }}>Limpar filtros</Button>
+                    <Button w={"100%"} variant={"button-sender"} color={"#ffffff"} onClick={(e) => { setFilteredAds([]), setFiltersUsed({}), setPage(1) }}>Limpar filtros</Button>
                 </Stack>
             )}
         </Box>

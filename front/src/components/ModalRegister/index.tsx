@@ -1,5 +1,5 @@
-import { Text, Modal, ModalOverlay, ModalContent, Flex, Heading, Button, Stack, flatten } from "@chakra-ui/react"
-import { useContext, useState } from "react"
+import { Text, Modal, ModalOverlay, ModalContent, Flex, Heading, Button, Stack } from "@chakra-ui/react"
+import { useContext } from "react"
 import { useNavigate } from "react-router"
 import { AccessContext } from "../../context/access/accessContext"
 

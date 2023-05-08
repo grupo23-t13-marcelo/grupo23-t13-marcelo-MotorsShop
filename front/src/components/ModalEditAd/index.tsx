@@ -1,6 +1,6 @@
 import { Box, Button, Flex, FormControl, FormErrorMessage, FormLabel, Heading, Input, Modal, ModalContent, ModalOverlay, Select, Stack, Text, Textarea, Toast } from "@chakra-ui/react"
 import { yupResolver } from "@hookform/resolvers/yup"
-import { useContext, useEffect, useState } from "react"
+import { useContext, useState } from "react"
 import { useForm } from "react-hook-form"
 import { AdDetailContext } from "../../context/adsDetail/adsDetailContext"
 import { validationEditAd } from "../../validations/user"

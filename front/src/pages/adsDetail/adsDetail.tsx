@@ -1,4 +1,4 @@
-import { Container, Box, useBreakpointValue, Flex, Image, HStack, Link, Button, IconButton, Text, Stack, SimpleGrid, Grid, useBreakpoint, Heading, useToast } from "@chakra-ui/react"
+import { Box,  Flex,  } from "@chakra-ui/react"
 import carImage from "./assets/EXTERIOR-frontSidePilotNear-1653845164710-removebg-preview 1.png"
 import userImage from "./assets/Ellipse 2.png"
 import { adMainInfo } from "./components/mainInfo";

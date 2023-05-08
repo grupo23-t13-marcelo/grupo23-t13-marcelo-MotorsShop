@@ -1,5 +1,8 @@
 import { Box, Button, Flex, Heading, Image, Text } from "@chakra-ui/react"
 import { AdCommentSection } from "./commentSection"
+import { useContext, useEffect } from "react"
+import { AccessContext } from "../../../context/access/accessContext"
+import { AdDetailContext } from "../../../context/adsDetail/adsDetailContext"
 
 export const adMainInfo = (adToShow: any) => {
 
@@ -22,8 +25,9 @@ export const adMainInfo = (adToShow: any) => {
                         </Box>
                         <Text color={"gray.800"} fontWeight={600}>{`R$ ${adToShow.price}`}</Text>
                     </Box>
-                    <Button backgroundColor={'brand2'} w={'100px'} h={'40px'} color={"white"} isDisabled={token ? false : true}>Comprar</Button>
+                    <Button as="a" backgroundColor={'brand2'} w={'100px'} h={'40px'} color={"white"} isDisabled={token ? false : true}  href={`https://api.whatsapp.com/send?phone=+55${adToShow.user?.cell_phone}&text=${encodeURIComponent('Olá, venho por meio do seu anuncio no Motors Shop , gostaria de mais informações !')}`}>Comprar</Button>
                 </Box>
+                
                 <Box backgroundColor={'white'} width={'100%'} borderRadius={5} p={7} display={'flex'} flexDirection={'column'} gap={7}>
                     <Heading marginBottom={10} as='h2' size={'md'}>
                         Descrição

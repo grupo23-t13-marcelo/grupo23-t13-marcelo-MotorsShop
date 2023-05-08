@@ -1,4 +1,4 @@
-import { Box, Button, Card, CardBody, CardFooter, CardHeader, FormControl, FormErrorMessage, FormLabel, Input, Link, Text } from "@chakra-ui/react"
+import { Box, Button, Card, CardBody, CardFooter, CardHeader, FormControl, FormErrorMessage, FormLabel, Input, Link, Spinner, Text } from "@chakra-ui/react"
 import { InputComponents } from "../../components/commons/Inputs"
 import * as yup from 'yup'
 import { useForm } from "react-hook-form"
@@ -17,7 +17,7 @@ export interface ILogin {
 
 const LoginPage = () => {
 
-    const {apiPostLogin, setIsLoading} = useContext(AccessContext)
+    const {apiPostLogin, setIsLoading, isLoading} = useContext(AccessContext)
     const navigate = useNavigate()
     const formScheme = yup.object().shape({
         email: yup.string().email('Tem que ser um Email').required("Usuário é obrigatório"),
@@ -27,7 +27,8 @@ const LoginPage = () => {
     const {
         register,
         handleSubmit,
-        formState: { errors }
+        formState: { errors },
+        reset
     } = useForm<ILogin>({
         resolver: yupResolver(formScheme)
     });
@@ -65,7 +66,11 @@ const LoginPage = () => {
                     </Link>
                 </CardBody>
                     <CardFooter w={'100%'} marginBottom={'100px'} display={'flex'} flexDirection={'column'} justifyContent={'center'} alignItems={'center'} gap={5}>
-                        <Button variant={'button-sender'} w={'100%'} h={'48px'} type="submit">Entrar</Button>
+                        {isLoading ? 
+                            <Button variant={'button-sender'} w={'100%'} h={'48px'} type="submit" bg={"brand3"} color={"whiteFixed"} disabled={true}>{<Spinner />}</Button>
+                            :
+                            <Button variant={'button-sender'} w={'100%'} h={'48px'} type="submit">Entrar</Button>
+                        }
                         <Text fontSize={'14px'} color={'gray.600'}>Ainda não possui conta?</Text>
                             <Button as={Link} href={'/register'} variant={'outline-1'} w={'100%'} h={'48px'} >Cadastrar</Button>
                     </CardFooter>

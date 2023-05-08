@@ -3,6 +3,7 @@ import { ILogin } from "../../pages/loginPage/login"
 import { IUserResponseOnAd } from "../adsDetail/adsTypes"
 import { IEditUser } from "../../components/ModalEditUser"
 import { IEditAddress } from "../../components/ModalEditAddress"
+import { FieldValues, UseFormReset } from "react-hook-form"
 
 export interface IAccessContextProps {
     children: ReactNode
@@ -73,7 +74,7 @@ export interface IAccessContext {
     modalstatus: boolean
     setModalstatus: React.Dispatch<React.SetStateAction<boolean>>
     apiPostLogin: (formData: ILogin) => void
-    apiPostRegister: (dataRegister: IUserRegister) => Promise<void>
+    apiPostRegister: (dataRegister: IUserRegister, reset: UseFormReset<FieldValues>) => Promise<void>
     apiGetProfile: () => void
     apiGetUser: (userId:string) => void
     apiPutEdit: (dataEdit: IEditUser, userId: string) => void

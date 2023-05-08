@@ -1,8 +1,6 @@
 import { Box, Button, Flex, Heading, Image, Text } from "@chakra-ui/react"
 import { AdCommentSection } from "./commentSection"
-import { useContext, useEffect } from "react"
-import { AccessContext } from "../../../context/access/accessContext"
-import { AdDetailContext } from "../../../context/adsDetail/adsDetailContext"
+
 
 export const adMainInfo = (adToShow: any) => {
 

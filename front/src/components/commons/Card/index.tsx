@@ -116,6 +116,9 @@ export function CardCars({
               </>
             )}
           </Text>
+           <Text color={"#495057"} fontWeight={600} fontSize="sm" fontFamily={"inter"} h={10}>
+              {brand}
+          </Text>
           <Text color={"#495057"} fontSize="sm" fontFamily={"inter"} h={10}>
           {description.length > 50 ? description.slice(0, 50).charAt(0).toUpperCase() + description.slice(1, 74).toLowerCase() + "..." : description.charAt(0).toUpperCase() + description.slice(1)}
           </Text>

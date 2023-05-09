@@ -44,4 +44,6 @@ export interface IAdDetailContext {
     setEditAd: React.Dispatch<React.SetStateAction<any>>
     inputsGallery: number | null
     setInputsGallery: React.Dispatch<React.SetStateAction<number | null>>
+    loadingComment: boolean
+    setLoadingComment: React.Dispatch<React.SetStateAction<boolean>>
 }

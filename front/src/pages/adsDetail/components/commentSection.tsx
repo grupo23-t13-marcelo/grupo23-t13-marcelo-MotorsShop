@@ -1,4 +1,4 @@
-import { Avatar, Box, Button, Flex, Heading, Image, Text, Textarea, useToast } from "@chakra-ui/react"
+import { Avatar, Box, Button, Flex, Heading, Image, Spinner, Text, Textarea, useToast } from "@chakra-ui/react"
 import { useContext,  useState } from "react"
 import { useForm } from "react-hook-form";
 import { IAdDetail } from "../../../context/adsDetail/adsTypes";
@@ -9,7 +9,7 @@ import { AdDetailContext } from "../../../context/adsDetail/adsDetailContext";
 
 export const AdCommentSection = (adToShow: IAdDetail, display: Array<string | null>) => {
     const [comment, setComment] = useState<string>('')
-    const { getFullAd } = useContext(AdDetailContext)
+    const { getFullAd, loadingComment, setLoadingComment } = useContext(AdDetailContext)
     const token = localStorage.getItem('motors.token')
     const user = JSON.parse(localStorage.getItem('motors.user')!)
     const toast = useToast()
@@ -39,6 +39,7 @@ export const AdCommentSection = (adToShow: IAdDetail, display: Array<string | nu
     }
 
     const onSubmit = async (data: IComment) => {
+        setLoadingComment(true)
         data.content = comment
         data.ad = adToShow.id
 
@@ -47,8 +48,12 @@ export const AdCommentSection = (adToShow: IAdDetail, display: Array<string | nu
         await apiPostComment(data, token).then(() => {
             setComment('')
             getFullAd(adToShow.id)
+            setLoadingComment(false)
             showToast('Comentário criado', "green.400")
-        }).catch((error) => { showToast(error.response.data.message, "red.500") })
+        }).catch((error) => { 
+            setLoadingComment(false)
+            showToast(error.response.data.message, "red.500") 
+        })
 
     }
 
@@ -125,21 +130,38 @@ export const AdCommentSection = (adToShow: IAdDetail, display: Array<string | nu
                                 }}
 
                             />
-                            <Button
-                                backgroundColor={'brand1'}
-                                position={['static', null, 'absolute']}
-                                w={'130px'}
-                                h={'30px'}
-                                zIndex={2}
-                                isDisabled={token && comment.length > 1 ? false : true}
-                                fontWeight={400}
-                                bottom={3}
-                                right={3}
-                                color={"white"}
-                                type="submit"
-                            >
-                                Comentar
-                            </Button>
+                            {loadingComment ?
+                                <Button
+                                    backgroundColor={'brand3'}
+                                    position={['static', null, 'absolute']}
+                                    w={'130px'}
+                                    h={'35px'}
+                                    zIndex={2}
+                                    isDisabled={true}
+                                    fontWeight={400}
+                                    bottom={3}
+                                    right={3}
+                                    color={"white"}
+                                >
+                                    {<Spinner />}
+                                </Button>
+                                :
+                                <Button
+                                    backgroundColor={'brand1'}
+                                    position={['static', null, 'absolute']}
+                                    w={'130px'}
+                                    h={'35px'}
+                                    zIndex={2}
+                                    isDisabled={token && comment.length > 1 ? false : true}
+                                    fontWeight={400}
+                                    bottom={3}
+                                    right={3}
+                                    color={"white"}
+                                    type="submit"
+                                >
+                                    Comentar
+                                </Button>
+                            }
                         </Flex>
                     </form>
                 </Box>

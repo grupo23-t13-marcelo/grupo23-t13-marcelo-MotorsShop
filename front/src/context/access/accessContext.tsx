@@ -18,6 +18,9 @@ export const AccessProvider = ({ children }: IAccessContextProps) => {
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [user, setUser] = useState<IUser | null>(null)
     const [userRender, setUserRender] = useState<IUser | null>(null)
+    const [loadingEditUser, setLoadingEditUser] = useState<boolean>(false)
+    const [loadingDeleteUser, setLoadingDeleteUser] = useState<boolean>(false)
+    const [loadingAddress, setLoadingAddress] = useState<boolean>(false)
     const { adToShow} = useContext(AdDetailContext)
     const token = localStorage.getItem('motors.token')
     const userLocal = JSON.parse(localStorage.getItem('motors.user')!)
@@ -75,6 +78,7 @@ export const AccessProvider = ({ children }: IAccessContextProps) => {
                 <Box color={"gray.50"} p={3} bg={"green.600"} fontWeight={"bold"} borderRadius={"md"}>
                 Login Realizado com Sucesso
             </Box>)})
+            setLoadingEditUser(false)
         } catch (error) {
             console.log(error)
             toast({title: "failed", variant: "solid", position: "bottom-left", isClosable: true,
@@ -82,6 +86,7 @@ export const AccessProvider = ({ children }: IAccessContextProps) => {
                 <Box color={"gray.50"} p={3} bg={"red.600"} fontWeight={"bold"} borderRadius={"md"}>
                 Algo De Errado Ocorreu...
             </Box>)})
+            setLoadingEditUser(false)
         }
     }
 
@@ -95,6 +100,7 @@ export const AccessProvider = ({ children }: IAccessContextProps) => {
                 Conta Deletada!
             </Box>)})
             handleLogout()
+            setLoadingDeleteUser(false)
         } catch (error) {
             console.log(error)
             toast({title: "failed", variant: "solid", position: "bottom-left", isClosable: true,
@@ -102,6 +108,7 @@ export const AccessProvider = ({ children }: IAccessContextProps) => {
                 <Box color={"gray.50"} p={3} bg={"red.600"} fontWeight={"bold"} borderRadius={"md"}>
                 Algo de errado ocorreu!
             </Box>)})
+            setLoadingDeleteUser(false)
         }
     }
 
@@ -114,12 +121,14 @@ export const AccessProvider = ({ children }: IAccessContextProps) => {
                 <Box color={"gray.50"} p={3} bg={"green.600"} fontWeight={"bold"} borderRadius={"md"}>
                 Endereço Editado com Sucesso!
             </Box>)})
+            setLoadingAddress(false)
         } catch (error) {
             toast({title: "failed", variant: "solid", position: "bottom-left", isClosable: true,
             render: () => (
                 <Box color={"gray.50"} p={3} bg={"red.600"} fontWeight={"bold"} borderRadius={"md"}>
                 Algo deu Errado...
             </Box>)})
+            setLoadingAddress(false)
         }
     }
 
@@ -169,7 +178,13 @@ export const AccessProvider = ({ children }: IAccessContextProps) => {
         user: user,
         setUser: setUser,
         setUserRender: setUserRender,
-        userRender: userRender
+        userRender: userRender,
+        loadingEditUser,
+        setLoadingEditUser,
+        loadingDeleteUser,
+        setLoadingDeleteUser,
+        loadingAddress,
+        setLoadingAddress
     }
 
 

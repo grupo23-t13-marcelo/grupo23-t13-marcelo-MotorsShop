@@ -67,7 +67,7 @@ const LoginPage = () => {
                 </CardBody>
                     <CardFooter w={'100%'} marginBottom={'100px'} display={'flex'} flexDirection={'column'} justifyContent={'center'} alignItems={'center'} gap={5}>
                         {isLoading ? 
-                            <Button variant={'button-sender'} w={'100%'} h={'48px'} type="submit" bg={"brand3"} color={"whiteFixed"} disabled={true}>{<Spinner />}</Button>
+                            <Button variant={'button-sender'} w={'100%'} h={'48px'} bg={"brand3"} color={"whiteFixed"} disabled={true}>{<Spinner />}</Button>
                             :
                             <Button variant={'button-sender'} w={'100%'} h={'48px'} type="submit">Entrar</Button>
                         }

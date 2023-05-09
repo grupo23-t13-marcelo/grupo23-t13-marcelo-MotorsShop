@@ -86,6 +86,11 @@ export interface IAccessContext {
     setUser: React.Dispatch<React.SetStateAction<IUser | null>>
     user: IUser | null
     userRender: IUser | null
-    
+    loadingEditUser: boolean
+    setLoadingEditUser: React.Dispatch<React.SetStateAction<boolean>>
+    loadingDeleteUser: boolean
+    setLoadingDeleteUser: React.Dispatch<React.SetStateAction<boolean>>
+    loadingAddress: boolean
+    setLoadingAddress: React.Dispatch<React.SetStateAction<boolean>>
 
 }

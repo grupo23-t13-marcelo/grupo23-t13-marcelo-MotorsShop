@@ -10,7 +10,6 @@ import { IUserRegister } from "../../context/access/accessTypes";
 import { Spinner } from "@chakra-ui/react";
 
 const RegisterPage = () => {
-    // const [isLoading, setIsLoading] = useState<boolean>(false);
     const [typeUser,setTypeUser] = useState<string>("Comprador")
     const { isLoading, setIsLoading, apiPostRegister } = useContext(AccessContext)
 
@@ -47,7 +46,7 @@ const RegisterPage = () => {
             }
         }
 
-        apiPostRegister(newObj)
+        apiPostRegister(newObj, reset)
     }
     
     return (
@@ -171,9 +170,8 @@ const RegisterPage = () => {
                                 w={"100%"}
                                 h={"50px"}
                                 mb={"30px"}
-                                bg={"gray.400"}
-                                color={"gray.700"}
-                                textColor={"#FFFFFF"}
+                                bg={"brand3"}
+                                color={"whiteFixed"}
                                 isLoading={isLoading}
                                 disabled={true}
                             >

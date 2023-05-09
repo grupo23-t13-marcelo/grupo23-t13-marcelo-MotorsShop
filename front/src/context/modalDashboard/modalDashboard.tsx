@@ -18,6 +18,9 @@ export const ModalDashboardProvider = ({ children }: IModalDashboarContextProps)
     const [editIsDisabled, setEditIsDisabled] = useState<boolean>(true)
     const [editChanged, setEditChanged] = useState<boolean>(false)
 
+    const [loadingAddAd, setLoadingAddAd] = useState<boolean>(false)
+    const [loadingEditAd, setLoadingEditAd] = useState<boolean>(false)
+
     async function getUniqueBrands() {
         try {
             const cars = await karsApiCars()
@@ -135,7 +138,11 @@ export const ModalDashboardProvider = ({ children }: IModalDashboarContextProps)
         editIsDisabled,
         setEditIsDisabled,
         editChanged,
-        setEditChanged
+        setEditChanged,
+        loadingAddAd,
+        setLoadingAddAd,
+        loadingEditAd,
+        setLoadingEditAd
     }
 
     return (

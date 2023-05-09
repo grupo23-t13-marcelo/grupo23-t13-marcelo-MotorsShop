@@ -1,4 +1,4 @@
-import { Box, Button, Flex, FormControl, FormErrorMessage, FormLabel, Heading, Input, Modal, ModalContent, ModalOverlay, Select, Stack, Text, Textarea, Toast } from "@chakra-ui/react"
+import { Box, Button, Flex, FormControl, FormErrorMessage, FormLabel, Heading, Input, Modal, ModalContent, ModalOverlay, Select, Spinner, Stack, Text, Textarea, Toast } from "@chakra-ui/react"
 import { yupResolver } from "@hookform/resolvers/yup"
 import { useContext, useState } from "react"
 import { useForm } from "react-hook-form"
@@ -14,7 +14,7 @@ import { AccessContext } from "../../context/access/accessContext"
 const ModalEditAd = () => {
 
     const {modalEditAd, setModalEditAd, editAd, setModalDeleteAd} = useContext(AdDetailContext)
-    const { brands, models, years, fipePrice, fuel, setFuel, setFipePrice, getModelsByBrand, getUniqueBrands, getFipePrice, isOpen, onClose, onOpen, editModelChange, editIsDisabled, setEditIsDisabled, editPlaceholderSelection, setEditChanged, editChanged } = useContext(ModalDashboardContext)
+    const { brands, models, years, fipePrice, fuel, setFuel, setFipePrice, getModelsByBrand, getUniqueBrands, getFipePrice, isOpen, onClose, onOpen, editModelChange, editIsDisabled, setEditIsDisabled, editPlaceholderSelection, setEditChanged, editChanged, loadingEditAd, setLoadingEditAd } = useContext(ModalDashboardContext)
     const {setUser} = useContext(AccessContext)
     const [inputsGallery, setInputsGallery] = useState<number>(0)
     const [publishedButton, setPublishedButton] = useState<string>("")
@@ -67,13 +67,16 @@ const ModalEditAd = () => {
             setFipePrice(0) 
             setInputsGallery(0)
             setPublishedButton("")
+            setLoadingEditAd(false)
         } catch (error) {
             console.error(error)
+            setLoadingEditAd(false)
         }
 
     }
 
     const onSubmit = async (data: any) => {
+        setLoadingEditAd(true)
         data.fuel = Object.keys(fuel)[0] === "start" ? editAd?.fuel! : Object.keys(fuel)[0];
         data.fipe_table_price = currency(fipePrice) === "R$ 0,00" ? editAd?.fipe_table_price! : fipePrice;
 
@@ -306,7 +309,11 @@ const ModalEditAd = () => {
                             <Button display={inputsGallery >= 6 ? "none" : "block"} type="button" h={"32px"} fontSize={"12px"} w={{base: "100%", md: "60%"}} bg={"brand4"} color={"brand1"} onClick={() => addInput()}>Adicionar campo para imagem da galeria</Button>
                             <Flex justify={"space-between"} mt={"30px"}>
                                 <Button type="button" variant={"outline-1"} fontSize={"14px"} w={"47%"} borderRadius={"5px"} onClick={() => (setModalDeleteAd(true), setModalEditAd(false), reset(), setFuel({start: ''}), setFipePrice(0), setInputsGallery(0), setPublishedButton(""))}>Excluir</Button>
-                                <Button type="submit" variant={"button-sender"} fontSize={"14px"} w={"47%"} borderRadius={"5px"}>Salvar</Button>
+                                {loadingEditAd ?
+                                    <Button bg={"brand3"} color={"whiteFixed"} fontSize={"14px"} w={"47%"} borderRadius={"5px"} disabled={true}>{<Spinner />}</Button>
+                                    :
+                                    <Button type="submit" variant={"button-sender"} fontSize={"14px"} w={"47%"} borderRadius={"5px"}>Salvar</Button>
+                                }
                             </Flex>
                         </form>
                     </Stack>

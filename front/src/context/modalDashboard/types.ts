@@ -30,7 +30,11 @@ export interface IModalDashboarContext {
     editIsDisabled: boolean,
     setEditIsDisabled: React.Dispatch<React.SetStateAction<boolean>>,
     editChanged: boolean,
-    setEditChanged: React.Dispatch<React.SetStateAction<boolean>>
+    setEditChanged: React.Dispatch<React.SetStateAction<boolean>>,
+    loadingAddAd: boolean,
+    setLoadingAddAd: React.Dispatch<React.SetStateAction<boolean>>,
+    loadingEditAd: boolean,
+    setLoadingEditAd: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 export interface IModalDashboarContextProps {

@@ -1,4 +1,4 @@
-import { Button, FormControl, FormErrorMessage, FormLabel, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Text, Textarea, useDisclosure } from "@chakra-ui/react"
+import { Button, FormControl, FormErrorMessage, FormLabel, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Spinner, Text, Textarea, useDisclosure } from "@chakra-ui/react"
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import InputMask from 'react-input-mask'
@@ -22,10 +22,7 @@ export interface IEditUser {
 
 const ModalEditUser = (userId: any) => {
     const {isOpen, onOpen, onClose} = useDisclosure()
-    const {user, apiPutEdit, apiGetProfile} = useContext(AccessContext)
-    
-    
-    
+    const {user, apiPutEdit, apiGetProfile, setLoadingEditUser, loadingEditUser} = useContext(AccessContext)
     
     const {
         register,
@@ -43,6 +40,7 @@ const ModalEditUser = (userId: any) => {
             birthdate: user?.birthdate
         }
     });
+
     const [valueName, setValueName] = useState(user?.name)
     const [valueEmail, setValueEmail] = useState(user?.email)
     const [valueCpf, setValueCpf] = useState(user?.cpf)
@@ -51,6 +49,7 @@ const ModalEditUser = (userId: any) => {
     const [valueBirthDate, setValueBirthDate] = useState(user?.birthdate)
     
     const onSubmit = (formData: IEditUser) => {
+        setLoadingEditUser(true)
         apiPutEdit(formData, userId.userId)
         window.location.reload()
     }
@@ -112,9 +111,13 @@ const ModalEditUser = (userId: any) => {
                         </FormControl>
                     </ModalBody>
                     <ModalFooter gap={5}>
-                        <Button h={'12'} w={'80%'} borderRadius={'base'} fontWeight={'medium'} onClick={onClose}  variant={"gray-1"}>Cancelar</Button>
+                        <Button h={'12'} w={'80%'} borderRadius={'base'} fontWeight={'medium'} onClick={onClose} variant={"gray-1"}>Cancelar</Button>
                         <ModalDeleteUser userId={userId}/>
-                        <Button h={'12'} w={'100%'} borderRadius={'base'} fontWeight={'medium'} fontSize={14}  variant={"button-sender"}  type="submit">Salvar alterações</Button>
+                        {loadingEditUser ?
+                            <Button h={'12'} w={'100%'} borderRadius={'base'} fontWeight={'medium'} fontSize={14}  bg={"brand3"} color={"whiteFixed"} disabled={true}>{<Spinner />}</Button>
+                            :
+                            <Button h={'12'} w={'100%'} borderRadius={'base'} fontWeight={'medium'} fontSize={14}  variant={"button-sender"}  type="submit">Salvar alterações</Button>
+                        }
                     </ModalFooter>
                     </form>
                 </ModalContent>

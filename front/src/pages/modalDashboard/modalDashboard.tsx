@@ -1,4 +1,4 @@
-import { Input, Text, Textarea, SimpleGrid, Modal, ModalBody, ModalContent, ModalHeader, ModalCloseButton, Select, Button, ModalOverlay, FormControl, FormLabel, Flex, Box, useToast } from "@chakra-ui/react"
+import { Input, Text, Textarea, SimpleGrid, Modal, ModalBody, ModalContent, ModalHeader, ModalCloseButton, Select, Button, ModalOverlay, FormControl, FormLabel, Flex, Box, useToast, Spinner } from "@chakra-ui/react"
 import React, { useContext, useEffect, useState } from "react"
 import { ModalDashboardContext } from "../../context/modalDashboard/modalDashboard"
 import { useFieldArray, useForm } from "react-hook-form";
@@ -28,7 +28,7 @@ interface IGallery {
 }
 
 export const ModalDashboardAddAd = () => {
-    const { brands, models, years, fipePrice, fuel, setFuel, getModelsByBrand, getUniqueBrands, getFipePrice, isOpen, onClose, onOpen } = useContext(ModalDashboardContext)
+    const { brands, models, years, fipePrice, fuel, setFuel, getModelsByBrand, getUniqueBrands, getFipePrice, isOpen, onClose, onOpen, loadingAddAd, setLoadingAddAd } = useContext(ModalDashboardContext)
     const [isDisabled, setIsDisabled] = useState<boolean>(true)
     const [inputFields, setInputFields] = useState([{ input: '' }, { input: '' }])
     const [userID, setUserId] = useState<string>('')
@@ -93,6 +93,7 @@ export const ModalDashboardAddAd = () => {
     }
 
     const onSubmit = async (data: INewAd) => {
+        setLoadingAddAd(true)
         data.fipe_table_price = fipePrice.toString()
         data.fuel = Object.keys(fuel)[0]
         data.user = userID
@@ -100,9 +101,11 @@ export const ModalDashboardAddAd = () => {
         apiPostNewAd(data, localStorage.getItem('motors.token')!)
             .then((resp) => {
                 apiGetProfile()
+                setLoadingAddAd(false)
                 onClose()
             })
             .catch(function (error) {
+                setLoadingAddAd(false)
                 showToast(error.response.data.message, "red.500")
             })
     }
@@ -249,7 +252,11 @@ export const ModalDashboardAddAd = () => {
                             </Button>
                             <Flex mt={5} justifyContent={"flex-end"} w={'100%'} gap={2}>
                                 <Button borderRadius={3} backgroundColor={"gray.300"} fontSize={'12px'} color={"gray.700"} pl={7} pr={7} onClick={onClose}>Cancelar</Button>
-                                <Button type="submit" borderRadius={3} backgroundColor={"brand3"} fontWeight={'light'} fontSize={'12px'} color={"brand4"} pl={10} pr={10} _hover={{ bg: 'brand2' }}>Criar anúncio</Button>
+                                {loadingAddAd ?
+                                    <Button borderRadius={3} backgroundColor={"brand3"} fontWeight={'light'} fontSize={'12px'} color={"whiteFixed"} pl={10} pr={10} disabled={true}>{<Spinner />}</Button>
+                                    :
+                                    <Button type="submit" borderRadius={3} backgroundColor={"brand2"} fontWeight={'light'} fontSize={'12px'} color={"brand4"} pl={10} pr={10} _hover={{ bg: 'brand3', color: "whiteFixed" }}>Criar anúncio</Button>
+                                }
                             </Flex>
                         </form>
                     </ModalBody>

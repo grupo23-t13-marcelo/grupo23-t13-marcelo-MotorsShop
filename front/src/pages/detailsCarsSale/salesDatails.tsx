@@ -159,7 +159,7 @@ export const CarsSalesDetail = () => {
                       <CardCars
                       key={index}
                       card={card}
-                      showEditButton={true}
+                      showEditButton={false}
                       showPerfil={true}
                       showBrands={true}
                       showStatus={true} id={card.id}/>

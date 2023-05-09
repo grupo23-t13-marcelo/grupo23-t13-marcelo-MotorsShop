@@ -1,4 +1,4 @@
-import { Button, Flex, FormControl, FormErrorMessage, FormLabel, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Text, useDisclosure } from "@chakra-ui/react"
+import { Button, Flex, FormControl, FormErrorMessage, FormLabel, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Spinner, Text, useDisclosure } from "@chakra-ui/react"
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { validationEditAddress } from "../../validations/address";
@@ -17,7 +17,7 @@ export interface IEditAddress {
 
 const ModalEditAddress = () => {
     const {isOpen, onOpen, onClose} = useDisclosure()
-    const {user, apiPutAddress} = useContext(AccessContext)
+    const {user, apiPutAddress, loadingAddress, setLoadingAddress} = useContext(AccessContext)
 
     const {
         register,
@@ -37,6 +37,7 @@ const ModalEditAddress = () => {
 
 
     const onSubmit = (formData:IEditAddress) => {
+        setLoadingAddress(true)
         apiPutAddress(formData)
         window.location.reload()
     }
@@ -103,8 +104,11 @@ const ModalEditAddress = () => {
                         </ModalBody>
                         <ModalFooter gap={5}>
                             <Button h={'12'} w={'80%'} borderRadius={'base'} fontWeight={'medium'} onClick={onClose}  variant={"gray-1"}>Cancelar</Button>
-                        
-                            <Button h={'12'} w={'100%'} borderRadius={'base'} fontWeight={'medium'} fontSize={14}  variant={"button-sender"}  type="submit">Salvar alterações</Button>
+                            {loadingAddress ?
+                                <Button h={'12'} w={'100%'} borderRadius={'base'} fontWeight={'medium'} fontSize={14}  bg={"brand3"} color={"whiteFixed"} disabled={true}>{<Spinner />}</Button>
+                                :
+                                <Button h={'12'} w={'100%'} borderRadius={'base'} fontWeight={'medium'} fontSize={14}  variant={"button-sender"}  type="submit">Salvar alterações</Button>
+                            }
                     </ModalFooter>
                     </form>
                 </ModalContent>

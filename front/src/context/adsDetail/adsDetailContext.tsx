@@ -16,6 +16,7 @@ export const AdDetailProvider = ({ children }: IAdDetailContextProps) => {
     const [editAdId, setEditAdId] = useState<string | null>(null)
     const [editAd, setEditAd] = useState<any>(null)
     const [inputsGallery, setInputsGallery] = useState<number | null>(null)
+    const [loadingComment, setLoadingComment] = useState<boolean>(false)
 
 
     const navigate = useNavigate()
@@ -49,7 +50,9 @@ export const AdDetailProvider = ({ children }: IAdDetailContextProps) => {
         editAd,
         setEditAd,
         inputsGallery,
-        setInputsGallery
+        setInputsGallery,
+        loadingComment,
+        setLoadingComment
     }
 
     return (

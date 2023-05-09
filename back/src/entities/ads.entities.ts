@@ -42,7 +42,7 @@ class Ads {
     @Column({ default: true })
     is_activated: boolean
 
-    @OneToMany(() => Gallery, gallery => gallery.ad)
+    @OneToMany(() => Gallery, gallery => gallery.ad, { nullable: true })
     gallery: Gallery[]
 
     @OneToMany(() => Comments, (comments) => comments.ad)

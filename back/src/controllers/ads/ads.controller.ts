@@ -9,34 +9,40 @@ import deleteAdService from "../../services/ads/deleteAds.service"
 
 import putAdsService from "../../services/ads/putAds.service"
 import { IUser } from "../../interfaces/users"
+import listAdsServicePaginated from "../../services/ads/listAdsPage.service"
 
 
 
-const createAdsController = async (req:Request, res: Response) => {
-    const userID:string = req.user.id
+const createAdsController = async (req: Request, res: Response) => {
+    const userID: string = req.user.id
     const adData: ICreateAds = req.body
     const newAd = await registerAdsService(adData, userID)
-    return res.status(201).json(newAd)  
+    return res.status(201).json(newAd)
 }
 
-const listAdsController = async (req:Request, res: Response) => {
+const listAdsController = async (req: Request, res: Response) => {
     const listAds = await listAdsService()
     return res.status(200).json(listAds)
 }
 
-const listUniqueAdsController = async (req:Request, res: Response) => {
+const listAdsControllerPaginated = async (req: Request, res: Response) => {
+    const listAds = await listAdsServicePaginated(req.query)
+    return res.status(200).json(listAds)
+}
+
+const listUniqueAdsController = async (req: Request, res: Response) => {
     const adID: string = req.params.id
     const listAd = await listUniqueAdService(adID)
     return res.status(200).json(listAd)
 }
 
-const deleteAdsController = async (req:Request, res: Response) => {
+const deleteAdsController = async (req: Request, res: Response) => {
     const adID: string = req.params.id
     const deleteAD = await deleteAdService(adID)
     return res.status(204).json(deleteAD)
 }
 
-const putAdsController = async (req:Request, res: Response) => {
+const putAdsController = async (req: Request, res: Response) => {
     const adPatchData: IPatchAds = req.body
     const adID: string = req.params.id
     const putAD = await putAdsService(adPatchData, adID)
@@ -44,4 +50,4 @@ const putAdsController = async (req:Request, res: Response) => {
 }
 
 
-export {createAdsController, listAdsController, listUniqueAdsController, deleteAdsController, putAdsController}
+export { createAdsController, listAdsController, listUniqueAdsController, deleteAdsController, putAdsController, listAdsControllerPaginated }

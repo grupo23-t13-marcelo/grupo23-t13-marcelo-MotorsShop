@@ -1,23 +1,23 @@
-import { Heading, Flex, Box, Text, Stack, UnorderedList} from "@chakra-ui/react"
+import { Heading, Flex, Box, Text, Stack, UnorderedList, Button } from "@chakra-ui/react"
 import homeCover from "../../assets/Luxury-Car-PNG-Image-HD.png"
 import FilterType from "../../components/adFilter/FilterType";
 import { CardCars } from "../../components/commons/Card"
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { HomeContext } from "../../context/home/homeContext";
 import { AdDetailContext } from "../../context/adsDetail/adsDetailContext";
 import { AccessContext } from "../../context/access/accessContext";
 
 
 const HomePage = () => {
-    const { listAds, filteredAds, filtersUsed } = useContext(HomeContext)
+    const { filteredAds, filtersUsed, listAdsPag, setQuery, query, page, setPage } = useContext(HomeContext)
     const { getFullAd } = useContext(AdDetailContext)
-    const { apiGetUser, user} = useContext(AccessContext)
+    const { apiGetUser, user } = useContext(AccessContext)
 
     useEffect(() => {
-        if(user){
+        if (user) {
             apiGetUser(user.id)
         }
-    }, [user])
+    }, [user, query])
 
 
     return (
@@ -74,7 +74,6 @@ const HomePage = () => {
                 gap={{ md: "10%" }}
             >
                 <UnorderedList
-                    // paddingRight={{base: "5px", md: "0px"}}
                     padding={"5px"}
                     display="flex"
                     flexWrap={{ base: "nowrap", md: "wrap" }}
@@ -88,28 +87,30 @@ const HomePage = () => {
                     {
                         filteredAds.length > 0 ?
                             filteredAds.map((card, index) => (
-                                <Flex onClick={() => { getFullAd(card.id), apiGetUser(card.user.id) }}>
-                                    <CardCars
-                                        id={card.id}
-                                        key={card.id}
-                                        card={card}
-                                        showPerfil={true}
-                                        showBrands={true}
-                                        showStatus={false}
-                                        showEditButton={false}
-                                    />
-                                </Flex>
+                                index < page * 20 && index >= page * 20 - 20 ? (
+                                    <Flex key={card.id} onClick={() => { getFullAd(card.id), apiGetUser(card.user.id) }}>
+                                        <CardCars
+                                            id={card.id}
+                                            card={card}
+                                            showPerfil={true}
+                                            showBrands={true}
+                                            showStatus={false}
+                                            showEditButton={false}
+                                        />
+                                    </Flex>
+                                ) : (
+                                    null
+                                )
                             )) :
                             Object.values(filtersUsed).length > 0 ?
                                 <Stack w={{ base: "95%", md: "90%" }} h={{ base: "200px", md: "600px" }} justify={"center"} align={"center"}>
                                     <Heading color={"brand1"} fontSize={{ base: "xl", md: "4xl" }}>Nenhum anúncio encontrado</Heading>
                                 </Stack> :
-                                listAds.length > 0 ?
-                                    listAds.map((card, index) => (
-                                        <Flex onClick={() => { getFullAd(card.id), apiGetUser(card.user.id) }}>
+                                listAdsPag?.nodes.length! > 0 ?
+                                    listAdsPag?.nodes.map((card, index) => (
+                                        <Flex key={card.id} onClick={() => { getFullAd(card.id), apiGetUser(card.user.id) }}>
                                             <CardCars
                                                 id={card.id}
-                                                key={card.id}
                                                 card={card}
                                                 showPerfil={true}
                                                 showBrands={true}
@@ -123,7 +124,6 @@ const HomePage = () => {
                                         <Heading color={"brand1"} fontSize={{ base: "xl", md: "4xl" }}>Nenhum anúncio encontrado</Heading>
                                     </Stack>
                     }
-
                 </UnorderedList>
                 <FilterType />
             </Box>
@@ -136,19 +136,92 @@ const HomePage = () => {
                 gap={{ base: "4px", md: "20px" }}
                 margin={"15px 0"}
             >
-                {/* <Flex gap={"5px"}>
-                    <Text color={"brand1"}>1</Text>
-                    <Text color={"gray.600"}>de</Text>
-                    <Text color={"gray.600"}>2</Text>
-                </Flex>
-                <Button
-                    display={"flex"}
-                    width={"100px"}
-                    backgroundColor={"transparent"}
-                    color={"brand1"}
-                >
-                    Seguinte &gt;
-                </Button> */}
+                {
+                    filteredAds.length > 0 ? (
+                        page > 1 ? (
+                            <Button
+                                display={"flex"}
+                                width={"100px"}
+                                backgroundColor={"transparent"}
+                                color={"brand1"}
+                                onClick={() => { setPage(page - 1), window.scrollTo({ top: 500, behavior: "smooth" }) }}
+                            >
+                                &lt; Anterior
+                            </Button>
+                        ) : (
+                            null
+                        )
+                    ) : (
+                        listAdsPag?.hasPrev ? (
+                            <Button
+                                display={"flex"}
+                                width={"100px"}
+                                backgroundColor={"transparent"}
+                                color={"brand1"}
+                                onClick={() => { setQuery({ prev: listAdsPag.prevCursor }), setPage(page - 1), window.scrollTo({ top: 500, behavior: "smooth" }) }}
+                            >
+                                &lt; Anterior
+                            </Button>
+                        ) : (
+                            null
+                        )
+                    )
+                }
+                {
+                    filteredAds.length > 20 ? (
+                        <Flex gap={"5px"}>
+                            <Text color={"brand1"}>{page}</Text>
+                            <Text color={"gray.600"}>de</Text>
+                            <Text color={"gray.600"}>{Math.ceil(filteredAds?.length / 20)}</Text>
+                        </Flex>
+                    ) : (
+                        filteredAds.length > 0 ? (
+                            null
+                        ) : (
+                            listAdsPag?.hasNext || listAdsPag?.hasPrev ? (
+                                <Flex gap={"5px"}>
+                                    <Text color={"brand1"}>{page}</Text>
+                                    <Text color={"gray.600"}>de</Text>
+                                    <Text color={"gray.600"}>{Math.ceil(listAdsPag?.count! / 20)}</Text>
+                                </Flex>
+                            ) : (
+                                null
+                            )
+                        )
+                    )
+                }
+
+                {
+                    filteredAds.length > 0 ? (
+                        page * 20 < filteredAds.length ? (
+                            <Button
+                                display={"flex"}
+                                width={"100px"}
+                                backgroundColor={"transparent"}
+                                color={"brand1"}
+                                onClick={() => { setPage(page + 1), window.scrollTo({ top: 500, behavior: "smooth" }) }}
+                            >
+                                Seguinte &gt;
+                            </Button>
+                        ) : (
+                            null
+                        )
+                    ) : (
+                        listAdsPag?.hasNext ? (
+                            <Button
+                                display={"flex"}
+                                width={"100px"}
+                                backgroundColor={"transparent"}
+                                color={"brand1"}
+                                onClick={() => { setQuery({ next: listAdsPag.nextCursor }), setPage(page + 1), window.scrollTo({ top: 500, behavior: "smooth" }) }}
+                            >
+                                Seguinte &gt;
+                            </Button>
+                        ) : (
+                            null
+                        )
+                    )
+                }
             </Box>
         </Box >
     )

@@ -1,12 +1,17 @@
 import { ReactNode } from "react";
-import { IAdInfo } from "../access/accessTypes";
+import { IAdInfo, IAdInfoPag } from "../access/accessTypes";
 
 export interface IHomeContextProps {
     children: ReactNode
 }
 
 export interface IHomeContext {
+    page: number
+    setPage: React.Dispatch<React.SetStateAction<number>>
     listAds: IAdInfo[]
+    listAdsPag: IAdInfoPag | undefined
+    query: { next: string } | { prev: string } | undefined
+    setQuery: React.Dispatch<React.SetStateAction<{ next: string } | { prev: string } | undefined>>
     setListAd: React.Dispatch<React.SetStateAction<IAdInfo[]>>
     filteredAds: IAdInfo[]
     setFilteredAds: React.Dispatch<React.SetStateAction<IAdInfo[]>>

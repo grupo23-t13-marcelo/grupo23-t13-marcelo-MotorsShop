@@ -56,8 +56,8 @@ class User {
     this.password = hashSync(this.password, 10);
   }
 
-  @Column({ type: "varchar" })
-  type: string;
+  @Column({ type: "enum", enum: UserType })
+  type: UserType;
 
   @Column({ nullable: true })
   profile_picture: string;

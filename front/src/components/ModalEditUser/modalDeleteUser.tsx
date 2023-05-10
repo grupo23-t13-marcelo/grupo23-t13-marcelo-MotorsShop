@@ -7,7 +7,7 @@ import { AccessContext } from "../../context/access/accessContext"
 const ModalDeleteUser = (userId: any) => {
     const {isOpen, onOpen, onClose} = useDisclosure()
     const {user, apiDeleteProfile, setLoadingDeleteUser, loadingDeleteUser} = useContext(AccessContext)
-    console.log(userId.userId.userId)
+    
 
     return (
         <>

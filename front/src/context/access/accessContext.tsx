@@ -43,7 +43,7 @@ export const AccessProvider = ({ children }: IAccessContextProps) => {
             toast({title: "failed", variant: "solid", position: "bottom-left", isClosable: true,
             render: () => (
                 <Box color={"gray.50"} p={3} bg={"red.600"} fontWeight={"bold"} borderRadius={"md"}>
-                    Algo Deu Errado, Por Favor Tente Novamente.
+                    Senha ou Email errados, Tente novamente.
             </Box>)})
             setIsLoading(false)
             
@@ -116,14 +116,14 @@ export const AccessProvider = ({ children }: IAccessContextProps) => {
         try {
             api.defaults.headers.authorization = `Bearer ${token}`
             await api.put(`address/`, dataPut)
-            toast({title: "success", variant: "solid", position: "bottom-left", isClosable: true,
+            toast({title: "success", variant: "solid", position: "bottom-right", isClosable: true,
             render: () => (
                 <Box color={"gray.50"} p={3} bg={"green.600"} fontWeight={"bold"} borderRadius={"md"}>
                 Endereço Editado com Sucesso!
             </Box>)})
             setLoadingAddress(false)
         } catch (error) {
-            toast({title: "failed", variant: "solid", position: "bottom-left", isClosable: true,
+            toast({title: "failed", variant: "solid", position: "bottom-right", isClosable: true,
             render: () => (
                 <Box color={"gray.50"} p={3} bg={"red.600"} fontWeight={"bold"} borderRadius={"md"}>
                 Algo deu Errado...

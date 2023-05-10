@@ -1,9 +1,11 @@
-import { Avatar, Box, Button, Flex, Heading, Image, Spinner, Text, Textarea, useToast } from "@chakra-ui/react"
-import { useContext,  useState } from "react"
+import { Avatar, Box, Button, Flex, Heading, Image, Menu, MenuButton, MenuItem, MenuList, Spinner, Text, Textarea, useToast } from "@chakra-ui/react"
+import { useContext,  useEffect,  useState } from "react"
 import { useForm } from "react-hook-form";
 import { IAdDetail } from "../../../context/adsDetail/adsTypes";
 import { apiPostComment } from "../../../services/comments/commentsApi";
 import { AdDetailContext } from "../../../context/adsDetail/adsDetailContext";
+import ModalDeleteComment from "../../../components/ModalEditComments/modalDeleteComment";
+import ModalEditComment from "../../../components/ModalEditComments";
 
 
 
@@ -30,7 +32,7 @@ export const AdCommentSection = (adToShow: IAdDetail, display: Array<string | nu
             position: "bottom-right",
             render: () => {
                 return (
-                    <Box color={"black"} p={4} bg={color} borderRadius={10} fontSize={17}>
+                    <Box color={"gray.50"} p={4} bg={color} fontWeight={"bold"} borderRadius={"md"}>
                         {message}
                     </Box>
                 )
@@ -57,13 +59,14 @@ export const AdCommentSection = (adToShow: IAdDetail, display: Array<string | nu
 
     }
 
+
     return (
         <Box display={display}>
             <Box backgroundColor={'white'} width={'100%'} borderRadius={5} p={7} display={'flex'} flexDirection={'column'} gap={7}>
                 <Heading marginBottom={10} as='h2' size={'md'}>
                     Comentários
                 </Heading>
-                <Box marginBottom={5} maxHeight={'500px'} overflow={'auto'} borderRadius={5}>
+                <Box marginBottom={5} maxHeight={'500px'} overflow={'auto'} borderRadius={5} display={'flex'} flexDirection={'column'} gap={5}>
                     {adToShow.comments?.sort((a, b): any => {
                         const dateA = a.createdAt.split('-').join()
                         const dateB = b.createdAt.split('-').join()
@@ -91,9 +94,24 @@ export const AdCommentSection = (adToShow: IAdDetail, display: Array<string | nu
                                     <Flex gap={1} alignItems={'center'}>
                                         <Text fontWeight={600}>{comment.user.name} </Text>
                                         <Text color={"gray.500"} fontSize={'12px'}> • {calcDate(comment.createdAt)}</Text>
+                                        <Menu>
+                                        {user.id === comment.user.id ? (
+                                        <>
+                                        <MenuButton><Button marginLeft={2} variant={'gray-1'} size={'xs'}>...</Button></MenuButton>
+                                        <MenuList>
+                                            <MenuItem><ModalEditComment comment={comment} adToShow={adToShow}/></MenuItem>
+                                            <MenuItem><ModalDeleteComment commentId={comment.id} adToShow={adToShow}/></MenuItem>
+                                        </MenuList>
+                                        </>
+
+                                    ): (
+                                        <>
+                                        </>
+                                    )}
+                                </Menu>
                                     </Flex>
                                 </Flex>
-                                <Text marginTop={5} marginBottom={5}>{comment.content}</Text >
+                                <Text marginLeft={2} marginTop={5} marginBottom={5}>{comment.content}</Text >
                             </div>
                         )
                     })}
@@ -213,6 +231,10 @@ export const AdCommentSection = (adToShow: IAdDetail, display: Array<string | nu
 
 export interface IComment {
     ad: string
+    content: string
+}
+
+export interface ICommentPatch {
     content: string
 }
 

@@ -9,11 +9,10 @@ import { Comments } from "./entities/comments.entities"
 import { Gallery } from "./entities/gallery.entities"
 import { Address } from "./entities/address.entities"
 
-
 const dataSourceConfig = (): DataSourceOptions => {
 
-    const entitiesPath: string = path.join(__dirname, "./entities/**.{ts, js}")
-    const migrationsPath: string = path.join(__dirname, "./migrations/**.{ts, js}")
+    const entitiesPath: string = path.join(__dirname, "./entities/**.{js, ts}")
+    const migrationsPath: string = path.join(__dirname, "./migrations/**.{js, ts}")
 
     const dbUrl: string | undefined = process.env.DATABASE_URL
 
@@ -38,8 +37,8 @@ const dataSourceConfig = (): DataSourceOptions => {
         url: process.env.DATABASE_URL!,
         synchronize: true,
         logging: true,
-        migrations: [User, Address, Ads, Comments, Gallery],
-        entities: [entitiesPath]
+        migrations: [migration],
+        entities: [User, Address, Ads, Comments, Gallery]
     }
 }
 

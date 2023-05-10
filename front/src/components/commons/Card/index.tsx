@@ -16,6 +16,7 @@ import { AccessContext } from "../../../context/access/accessContext";
 import brandPrice from "../../../assets/png/price5.png"
 import { AdDetailContext } from "../../../context/adsDetail/adsDetailContext";
 import { ModalDashboardContext } from "../../../context/modalDashboard/modalDashboard";
+import { currency } from "../../../pages/adsDetail/adsDetail";
 interface CardProps {
   id: string;
   card: IAdInfo;
@@ -35,7 +36,7 @@ export function CardCars({
   showBrands= true
 }: CardProps) {
 
-  const { is_activated, cover_image, description, mileage, year, price, brand, user, fipe_table_price } = card;
+  const { is_activated, cover_image, description, mileage, year, price, brand, user, fipe_table_price, model } = card;
   const { editPlaceholderSelection } = useContext(ModalDashboardContext)
 
   const {userRender} = useContext(AccessContext)
@@ -117,10 +118,12 @@ export function CardCars({
             )}
           </Text>
            <Text color={"#495057"} fontWeight={600} fontSize="sm" fontFamily={"inter"} h={10}>
-              {brand}
+              {`${brand} - ${model.split(' ')[0]}`}
           </Text>
-          <Text color={"#495057"} fontSize="sm" fontFamily={"inter"} h={10}>
-          {description.length > 50 ? description.slice(0, 50).charAt(0).toUpperCase() + description.slice(1, 74).toLowerCase() + "..." : description.charAt(0).toUpperCase() + description.slice(1)}
+          <Text textOverflow={'ellipsis'} w={'100%'} css={'-webkit-line-clamp: 3;'} overflow={'hidden'}  color={"#495057"} fontSize="sm" fontFamily={"inter"} h={10}>
+          {/* {description.length > 50 ? description.slice(0, 50).charAt(0).toUpperCase() + description.slice(1, 74).toLowerCase() + "..." : description.charAt(0).toUpperCase() + description.slice(1)} */}
+            {`${description}`}
+            ...
           </Text>
         </Box>
         {showPerfil && (
@@ -144,7 +147,7 @@ export function CardCars({
           </Box>
           <Spacer />
           <Text color="black" fontSize="11" fontWeight="bold">
-            R$ {price}
+            {currency(parseInt(price))}
           </Text>
         </Flex>
 

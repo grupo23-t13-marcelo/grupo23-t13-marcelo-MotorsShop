@@ -17,7 +17,7 @@ export interface IEditAddress {
 
 const ModalEditAddress = () => {
     const {isOpen, onOpen, onClose} = useDisclosure()
-    const {user, apiPutAddress, loadingAddress, setLoadingAddress} = useContext(AccessContext)
+    const {user, apiPutAddress, loadingAddress, setLoadingAddress, apiGetProfile} = useContext(AccessContext)
 
     const {
         register,
@@ -36,10 +36,10 @@ const ModalEditAddress = () => {
 
 
 
-    const onSubmit = (formData:IEditAddress) => {
-        setLoadingAddress(true)
+    const onSubmit = async (formData:IEditAddress) => {
         apiPutAddress(formData)
-        window.location.reload()
+        apiGetProfile()
+        setLoadingAddress(true)
     }
 
 

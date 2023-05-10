@@ -48,10 +48,10 @@ const ModalEditUser = (userId: any) => {
     const [valueDescrip, setValueDescrip] = useState(user?.description)
     const [valueBirthDate, setValueBirthDate] = useState(user?.birthdate)
     
-    const onSubmit = (formData: IEditUser) => {
-        setLoadingEditUser(true)
+    const onSubmit = async (formData: IEditUser) => {
         apiPutEdit(formData, userId.userId)
-        window.location.reload()
+        apiGetProfile()
+        setLoadingEditUser(true)
     }
 
     

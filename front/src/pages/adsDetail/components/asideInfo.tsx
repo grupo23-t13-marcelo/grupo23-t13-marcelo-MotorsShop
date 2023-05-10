@@ -19,6 +19,7 @@ export const AdAsideInfo = (adToShow: IAdDetail) => {
 
 
     const handleImgClick = (img: string) => {
+        setModalImg(img)    
         onOpen()
     }
     return (
@@ -29,7 +30,7 @@ export const AdAsideInfo = (adToShow: IAdDetail) => {
                     <SimpleGrid columns={3} spacing={4} maxHeight={'240px'} overflow={'auto'}>
                         {adToShow.gallery?.map((image: any) => {
 
-                            return (<Image src={image.file_name} key={image.id} onClick={() => handleImgClick(image.file_name)} objectFit={'contain'} width={['108px', null, '70px', '80px', '108px']} height={['108px', null, '70px', '80px', '108px']} backgroundColor={"gray.100"} borderRadius={5} p={'7%'} />)
+                            return (<Image src={image.file_name} key={image.id} cursor={'pointer'} onClick={() => handleImgClick(image.file_name)} objectFit={'contain'} width={['108px', null, '70px', '80px', '108px']} height={['108px', null, '70px', '80px', '108px']} backgroundColor={"gray.100"} borderRadius={5} p={'7%'} />)
                         })}
                     </SimpleGrid>
                 </Box>

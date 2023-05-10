@@ -76,7 +76,7 @@ export const AccessProvider = ({ children }: IAccessContextProps) => {
             toast({title: "success", variant: "solid", position: "bottom-left", isClosable: true,
             render: () => (
                 <Box color={"gray.50"} p={3} bg={"green.600"} fontWeight={"bold"} borderRadius={"md"}>
-                Login Realizado com Sucesso
+                Usuário alterado com sucesso!
             </Box>)})
             setLoadingEditUser(false)
         } catch (error) {
@@ -139,7 +139,7 @@ export const AccessProvider = ({ children }: IAccessContextProps) => {
             try {
                 localStorage.setItem('motors.user', JSON.stringify(data)) 
                 setUser(data)
-                // console.log(data)
+                
                 
             } catch (error) {
                 console.log(error)

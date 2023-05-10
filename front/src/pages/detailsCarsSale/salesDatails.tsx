@@ -10,7 +10,7 @@ import {
   Modal,
 } from "@chakra-ui/react";
 import { CardCars } from "../../components/commons/Card";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ModalDashboardAddAd } from "../modalDashboard/modalDashboard";
 import { ModalDashboardContext } from "../../context/modalDashboard/modalDashboard";
 import { AccessContext } from "../../context/access/accessContext";
@@ -20,7 +20,7 @@ import ModalDeleteAd from "../../components/ModalEditAd/modalDeleteAd";
 export const CarsSalesDetail = () => {
   const { onOpen } = useContext(ModalDashboardContext)
   const {user, userRender, setUserRender,apiGetUser} = useContext(AccessContext)
-    
+  const [page, setPage] = useState(1)
   useEffect(() => {
     setUserRender(JSON.parse(localStorage.getItem('userRender')!))
     if(user) {
@@ -43,8 +43,8 @@ export const CarsSalesDetail = () => {
           gap={2}
           width={"100%"}
           justifyContent={"center"}
-          direction={["column", null, "row"]}
-          alignItems={["center", null, "flex-start"]}
+          direction={["column", null, "column"]}
+          alignItems={["center", null, "center"]}
         >
           <Box
             marginTop={10}
@@ -120,56 +120,64 @@ export const CarsSalesDetail = () => {
                 )}
               </Box>
 
+            </Flex>
+          </Box>
               <Box
                 display={"flex"}
                 flexDirection={{ base: "column", md: "row-reverse" }}
-                width={{ base: "auto", md: "100%" }}
-                maxWidth={"1600px"}
+                width={'95%'}
+                
                 justifyContent={"center"}
                 alignItems={"center"}
               >
                 <UnorderedList
-                  paddingRight={{ base: "5px", md: "0px" }}
+                  marginLeft={'0'}
+                  marginTop={'15px'}
                   display="flex"
                   flexWrap={{ base: "nowrap", md: "wrap" }}
-                  overflowX={{ base: "auto" }}
+                  overflowX={'auto'}
                   gap={{ base: "25px", md: "20px" }}
                   listStyleType="none"
-                  flex={{ base: "auto", md: 1 }}
-                  maxWidth={{ base: "auto", md: "auto" }}
-                  style={{ width: "100%", paddingRight: "5px" }}
-                  justifyContent={"center"}
+                  width={'95%'}
+                  justifyContent={[null, 'center']}
                   minH={"344px"}
                 >
                   {userRender?.id === user?.id ? (
                     <>
                     {user?.ads.map((card, index) => (
-                      <CardCars
-                      key={index}
-                      card={card}
-                      showEditButton={true}
-                      showBrands={false}
-                      showPerfil={false}
-                      showStatus={false} id={card.id}/>
+                      index < page * 20 && index >= page * 20 - 20 ? (
+                        <CardCars
+                        key={index}
+                        card={card}
+                        showEditButton={true}
+                        showBrands={false}
+                        showPerfil={false}
+                        showStatus={false} id={card.id}/>
+                        
+                        ) : (
+                          null
+                          )
                       ))} 
                     </>
                   ) : (
                     <>
                     {userRender?.ads.map((card, index) => (
-                      <CardCars
-                      key={index}
-                      card={card}
-                      showEditButton={false}
-                      showPerfil={true}
-                      showBrands={true}
-                      showStatus={true} id={card.id}/>
+                      index < page * 20 && index >= page * 20 - 20 ? (
+                        <CardCars
+                        key={index}
+                        card={card}
+                        showEditButton={false}
+                        showPerfil={true}
+                        showBrands={true}
+                        showStatus={true} id={card.id}/>
+                      ) : (
+                        null
+                      )
                       ))} 
                     </>
                   )}
                 </UnorderedList>
               </Box>
-            </Flex>
-          </Box>
         </Flex>
         <Box
           width={"100%"}
@@ -181,19 +189,72 @@ export const CarsSalesDetail = () => {
           margin={"15px 0"}
           // mt={"200px"}
         >
-          {/* <Flex gap={"5px"}>
-            <Text color={"brand1"}>1</Text>
-            <Text color={"gray.600"}>de</Text>
-            <Text color={"gray.600"}>2</Text>
-          </Flex>
-          <Button
-            display={"flex"}
-            width={"100px"}
-            backgroundColor={"transparent"}
-            color={"brand1"}
-          >
-            Seguinte &gt;
-          </Button> */}
+                      <Box
+                width={"100%"}
+                display={"flex"}
+                flexDirection={{ base: "column", md: "row" }}
+                justifyContent={"center"}
+                alignItems={"center"}
+                gap={{ base: "4px", md: "20px" }}
+                margin={"15px 0"}
+            >
+                {
+                    userRender?.ads ? (
+                        page  > 1 && userRender.ads.length > 0 ? (
+                            <Button
+                                display={"flex"}
+                                width={"100px"}
+                                backgroundColor={"transparent"}
+                                color={"brand1"}
+                                onClick={() => { setPage(page - 1), window.scrollTo({ top: 500, behavior: "smooth" }) }}
+                            >
+                                &lt; Anterior
+                            </Button>
+                        ) : (
+                            null
+                        )
+                        
+                    ) : (
+                      null
+                    )
+                }
+                {
+                    userRender?.ads ? (
+                      userRender.ads.length > 20 ? (
+                        <Flex gap={"5px"}>
+                            <Text color={"brand1"}>{page}</Text>
+                            <Text color={"gray.600"}>de</Text>
+                            <Text color={"gray.600"}>{Math.ceil(userRender.ads?.length / 20)}</Text>
+                        </Flex>
+                      ) : (
+                        null
+                      )
+                    ) : (
+                      null
+                    ) 
+                }
+
+{
+                    userRender?.ads ? (
+                        page  * 20 < userRender.ads.length ? (
+                            <Button
+                                display={"flex"}
+                                width={"100px"}
+                                backgroundColor={"transparent"}
+                                color={"brand1"}
+                                onClick={() => { setPage(page + 1), window.scrollTo({ top: 500, behavior: "smooth" }) }}
+                            >
+                                 Avançar &gt;
+                            </Button>
+                        ) : (
+                            null
+                        )
+                        
+                    ) : (
+                      null
+                    )
+                }
+            </Box>
         </Box>
       </Box>
       <ModalEditAd/>

@@ -33,11 +33,11 @@ const uniqueAdSerializerResponse: SchemaOf<IAds> = yup.object().shape({
     })),
     user: yup.object({
         profile_picture: yup.string().nullable(),
-        description: yup.string().required(),
-        cpf: yup.string().required(),
-        cell_phone: yup.string().required(),
-        email: yup.string().required(),
-        name: yup.string().required(),
+        description: yup.string().notRequired(),
+        cpf: yup.string().notRequired(),
+        cell_phone: yup.string().notRequired(),
+        email: yup.string().notRequired(),
+        name: yup.string().notRequired(),
         id: yup.string().notRequired(),
     }).required(),
     gallery: yup.array().of(

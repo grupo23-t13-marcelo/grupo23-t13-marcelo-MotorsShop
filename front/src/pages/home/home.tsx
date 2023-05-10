@@ -6,6 +6,7 @@ import { useContext, useEffect, useState } from "react";
 import { HomeContext } from "../../context/home/homeContext";
 import { AdDetailContext } from "../../context/adsDetail/adsDetailContext";
 import { AccessContext } from "../../context/access/accessContext";
+import CardCarsSkeleton from "../../components/CardSkeleton";
 
 
 const HomePage = () => {
@@ -105,7 +106,8 @@ const HomePage = () => {
                             Object.values(filtersUsed).length > 0 ?
                                 <Stack w={{ base: "95%", md: "90%" }} h={{ base: "200px", md: "600px" }} justify={"center"} align={"center"}>
                                     <Heading color={"brand1"} fontSize={{ base: "xl", md: "4xl" }}>Nenhum anúncio encontrado</Heading>
-                                </Stack> :
+                                </Stack> 
+                                :
                                 listAdsPag?.nodes.length! > 0 ?
                                     listAdsPag?.nodes.map((card, index) => (
                                         <Flex key={card.id} onClick={() => { getFullAd(card.id), apiGetUser(card.user.id) }}>
@@ -120,9 +122,16 @@ const HomePage = () => {
                                         </Flex>
                                     ))
                                     :
-                                    <Stack w={{ base: "95%", md: "90%" }} h={{ base: "200px", md: "600px" }} justify={"center"} align={"center"}>
-                                        <Heading color={"brand1"} fontSize={{ base: "xl", md: "4xl" }}>Nenhum anúncio encontrado</Heading>
-                                    </Stack>
+                                    <>
+                                    <CardCarsSkeleton/>
+                                    <CardCarsSkeleton/>
+                                    <CardCarsSkeleton/>
+                                    <CardCarsSkeleton/>
+                                    <CardCarsSkeleton/>
+                                    <CardCarsSkeleton/>
+                                    <CardCarsSkeleton/>
+                                    <CardCarsSkeleton/>
+                                    </>
                     }
                 </UnorderedList>
                 <FilterType />

@@ -229,7 +229,7 @@ export const ModalDashboardAddAd = () => {
                                 <FormLabel fontWeight={'600'} fontSize={'14px'} color={'gray.800'}>
                                     Descrição
                                 </FormLabel>
-                                <Textarea isDisabled={isDisabled} resize={"none"} h={'100px'} {...register('description')} />
+                                <Textarea maxLength={1500} isDisabled={isDisabled} resize={"none"} h={'100px'} {...register('description')} />
                             </FormControl>
 
                             <FormControl mb={5}>

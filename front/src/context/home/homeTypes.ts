@@ -9,7 +9,19 @@ export interface IHomeContext {
     page: number
     setPage: React.Dispatch<React.SetStateAction<number>>
     listAds: IAdInfo[]
+    filterLimit: number
+    showMoreBrand: string
+    setShowMoreBrand: React.Dispatch<React.SetStateAction<string>>
+    showMore: string
+    setShowMore: React.Dispatch<React.SetStateAction<string>>
+    setFilterLimit: React.Dispatch<React.SetStateAction<number>>
     listAdsPag: IAdInfoPag | undefined
+    filterLimitBrand: number
+    showLessBrand: string
+    setShowLessBrand: React.Dispatch<React.SetStateAction<string>>
+    showLess: string
+    setShowLess: React.Dispatch<React.SetStateAction<string>>
+    setFilterLimitBrand: React.Dispatch<React.SetStateAction<number>>
     query: { next: string } | { prev: string } | undefined
     setQuery: React.Dispatch<React.SetStateAction<{ next: string } | { prev: string } | undefined>>
     setListAd: React.Dispatch<React.SetStateAction<IAdInfo[]>>

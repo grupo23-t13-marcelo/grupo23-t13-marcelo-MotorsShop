@@ -1,10 +1,12 @@
-import { Heading, Stack, Link, Flex, Input, Button, Text, Box } from "@chakra-ui/react"
-import { useContext, useEffect } from "react"
+import { Heading, Stack, Link, Flex, Input, Button } from "@chakra-ui/react"
+import { useContext, useEffect, useState } from "react"
 import { HomeContext } from "../../../context/home/homeContext"
 import { useForm } from "react-hook-form"
+import { ModalDashboardContext } from "../../../context/modalDashboard/modalDashboard"
 
 const FilterOptions = () => {
-    const { listAds, filterAdsByTag, setFilteredAds, setFiltersUsed, filtersUsed, filterAdsByValue, filteredAds, handleFilterTagDelete } = useContext(HomeContext)
+    const { listAds, showMoreBrand, setShowMoreBrand, showMore, setShowMore, filterAdsByTag, setFilteredAds, showLess, setShowLess, showLessBrand, setShowLessBrand, filterLimitBrand, setFilterLimitBrand, setFiltersUsed, filtersUsed, filterAdsByValue, filteredAds, handleFilterTagDelete, filterLimit, setFilterLimit } = useContext(HomeContext)
+    const { brands, models } = useContext(ModalDashboardContext)
 
     const {
         register,
@@ -67,31 +69,94 @@ const FilterOptions = () => {
                         null :
                         filteredAds.length > 0 ?
                             filteredAds.filter((el, index) => index === filteredAds.findIndex(item => item.brand === el.brand))
-                                .map(el => {
+                                .map((el, indexx) => {
                                     return (
-                                        <Link key={el.id} color={"gray.600"} onClick={() => (filterAdsByTag(el.brand, 'brand'), window.scrollTo({ top: 500, behavior: "smooth" }))}>{el.brand}</Link>
+                                        indexx + 1 <= filterLimitBrand ? (
+                                            <Link key={el.id} color={"gray.600"} onClick={() => (filterAdsByTag(el.brand, 'brand'), window.scrollTo({ top: 500, behavior: "smooth" }))}>{el.brand}</Link>
+                                        ) : (
+                                            null
+                                        )
                                     )
                                 })
-
                             :
                             Object.keys(filtersUsed).length > 0 ?
                                 listAds
                                     .filter((el, index) => index === listAds.findIndex(item => item.brand === el.brand))
-                                    .map(el => {
+                                    .map((el, indexx) => {
                                         return (
-                                            <Link key={el.id} onClick={() => { setFilteredAds([]), setFiltersUsed({}), window.scrollTo({ top: 500, behavior: "smooth" }) }} color={"gray.600"}>{el.brand}</Link>
+                                            indexx + 1 <= filterLimitBrand ? (
+                                                <Link key={el.id} onClick={() => { setFilteredAds([]), setFiltersUsed({}), window.scrollTo({ top: 500, behavior: "smooth" }) }} color={"gray.600"}>{el.brand}</Link>
+                                            ) : (
+                                                null
+                                            )
                                         )
                                     })
                                 :
                                 listAds
                                     .filter((el, index) => index === listAds.findIndex(item => item.brand === el.brand))
-                                    .map(el => {
+                                    .map((el, indexx) => {
                                         return (
-                                            <Link key={el.id} onClick={() => { filterAdsByTag(el.brand, 'brand'), window.scrollTo({ top: 500, behavior: "smooth" }) }} color={"gray.600"}>{el.brand}</Link>
+                                            indexx + 1 <= filterLimitBrand ? (
+                                                <Link key={el.id} onClick={() => { filterAdsByTag(el.brand, 'brand'), window.scrollTo({ top: 500, behavior: "smooth" }) }} color={"gray.600"}>{el.brand}</Link>
+                                            ) : (
+                                                null
+                                            )
                                         )
                                     })
                 }
-            </Stack>
+                {
+                    filtersUsed.hasOwnProperty('brand') ? (
+                        null
+                    ) : (
+                        filteredAds.length > 0 ? (
+                            Array.from(new Set(filteredAds.map((ad) => ad.brand))).length >= 5 ? (
+                                <Flex gap={2}>
+                                    <Button height={'30px'} bgColor={"brand4"} color={"brand1"} fontSize={12} display={showMoreBrand} onClick={() => {
+                                        setFilterLimitBrand(filterLimitBrand + 5)
+                                        setShowLessBrand("flex")
+                                        if (Array.from(new Set(filteredAds.map((ad) => ad.brand))).length > 0 && (filterLimitBrand + 5) >= Array.from(new Set(filteredAds.map((ad) => ad.brand))).length - 1) {
+                                            setShowMoreBrand("none")
+                                        }
+                                    }}>Mostrar mais...</Button>
+                                    <Button height={'30px'} bgColor={"brand4"} color={"brand1"} fontSize={12} display={showLessBrand} onClick={() => {
+                                        setFilterLimitBrand(filterLimitBrand - 5)
+                                        setShowMoreBrand("flex")
+                                        if (filterLimitBrand == 10) {
+                                            setShowLessBrand("none")
+                                        }
+                                    }}>Mostrar menos...</Button>
+                                </Flex>
+                            ) : (
+                                null
+                            )
+                        ) : (
+                            Array.from(new Set(listAds.map((ad) => ad.brand))).length >= 5 ? (
+                                <Flex gap={2}>
+                                    <Button height={'30px'} bgColor={"brand4"} color={"brand1"} fontSize={12} display={showMoreBrand} onClick={() => {
+                                        setFilterLimitBrand(filterLimitBrand + 5)
+                                        setShowLessBrand("flex")
+                                        if (Array.from(new Set(listAds.map((ad) => ad.brand))).length > 0 && (filterLimitBrand + 5) >= Array.from(new Set(listAds.map((ad) => ad.brand))).length - 1) {
+                                            setShowMoreBrand("none")
+                                        } else if (Array.from(new Set(listAds.map((ad) => ad.brand))).length - 1 <= filterLimitBrand + 5) {
+                                            setShowMoreBrand("none")
+                                        }
+                                    }}>Mostrar mais...</Button>
+                                    <Button height={'30px'} bgColor={"brand4"} color={"brand1"} fontSize={12} display={showLessBrand} onClick={() => {
+                                        setFilterLimitBrand(filterLimitBrand - 5)
+                                        setShowMoreBrand("flex")
+                                        if (filterLimitBrand == 10) {
+                                            setShowLessBrand("none")
+                                        }
+                                    }}>Mostrar menos...</Button>
+                                </Flex>
+                            ) : (
+                                null
+                            )
+
+                        )
+                    )
+                }
+            </Stack >
             <Stack>
                 {filtersUsed.hasOwnProperty('model') ?
                     null :
@@ -99,30 +164,105 @@ const FilterOptions = () => {
                 }
                 {
                     filtersUsed.hasOwnProperty('model') ?
-                        null :
-                        filteredAds.length > 0 ?
-                            filteredAds.filter((el, index) => index === filteredAds.findIndex(item => item.model === el.model))
-                                .map(el => {
-                                    return (
-                                        <Link key={el.id} color={"gray.600"} onClick={() => { filterAdsByTag(el.model, 'model'), window.scrollTo({ top: 500, behavior: "smooth" }) }}>{el.model}</Link>
-                                    )
-                                })
-                            :
-                            Object.keys(filtersUsed).length > 0 ?
-                                listAds.filter((el, index) => index === listAds.findIndex(item => item.model === el.model))
-                                    .map(el => {
+                        (
+                            null
+                        )
+                        :
+                        (
+                            filteredAds.length > 0 ?
+                                filteredAds.filter((el, index) => index === filteredAds.findIndex(item => item.model === el.model))
+                                    .map((el, indexx) => {
                                         return (
-                                            <Link key={el.id} color={"gray.600"} onClick={() => { setFilteredAds([]), setFiltersUsed({}), window.scrollTo({ top: 500, behavior: "smooth" }) }}>{el.model}</Link>
+                                            indexx + 1 <= filterLimit ? (
+                                                <Link key={el.id} color={"gray.600"} onClick={() => { filterAdsByTag(el.model, 'model'), window.scrollTo({ top: 500, behavior: "smooth" }) }}>{el.model}</Link>
+                                            ) : (
+                                                null
+                                            )
                                         )
                                     })
                                 :
-                                listAds.filter((el, index) => index === listAds.findIndex(item => item.model === el.model))
-                                    .map(el => {
-                                        return (
-                                            <Link key={el.id} color={"gray.600"} onClick={() => { filterAdsByTag(el.model, 'model'), window.scrollTo({ top: 500, behavior: "smooth" }) }}>{el.model}</Link>
-                                        )
-                                    })
+                                Object.keys(filtersUsed).length > 0 ?
+                                    listAds.filter((el, index) => index === listAds.findIndex(item => item.model === el.model))
+                                        .map((el, indexx) => {
+                                            return (
+                                                indexx + 1 <= filterLimit ? (
+                                                    <Link key={el.id} color={"gray.600"} onClick={() => { setFilteredAds([]), setFiltersUsed({}), window.scrollTo({ top: 500, behavior: "smooth" }) }}>{el.model}</Link>
+                                                ) : (
+                                                    null
+                                                )
+                                            )
+                                        })
+                                    :
+                                    listAds.filter((el, index) => index === listAds.findIndex(item => item.model === el.model))
+                                        .map((el, indexx) => {
+                                            return (
+                                                indexx + 1 <= filterLimit ? (
+                                                    <Link key={el.id} color={"gray.600"} onClick={() => { filterAdsByTag(el.model, 'model'), window.scrollTo({ top: 500, behavior: "smooth" }) }}>{el.model}</Link>
+                                                ) : (
+                                                    null
+                                                )
+                                            )
+                                        })
+                        )
+
                 }
+                {
+                    filtersUsed.hasOwnProperty('model') ?
+                        (
+                            null
+                        ) :
+                        (
+                            filteredAds.length > 0 ? (
+                                Array.from(new Set(filteredAds.map((ad) => ad.model))).length >= 5 ? (
+                                    <Flex gap={2}>
+                                        <Button height={'30px'} bgColor={"brand4"} color={"brand1"} fontSize={12} display={showMore} onClick={() => {
+                                            setFilterLimit(filterLimit + 5)
+                                            setShowLess("flex")
+                                            if (Array.from(new Set(filteredAds.map((ad) => ad.model))).length > 0 && (filterLimit + 5) >= Array.from(new Set(filteredAds.map((ad) => ad.model))).length - 1) {
+                                                setShowMore("none")
+                                            } else if (Array.from(new Set(filteredAds.map((ad) => ad.model))).length - 1 <= filterLimit + 5) {
+                                                setShowMore("none")
+                                            }
+                                        }}>Mostrar mais...</Button>
+                                        <Button height={'30px'} bgColor={"brand4"} color={"brand1"} fontSize={12} display={showLess} onClick={() => {
+                                            setFilterLimit(filterLimit - 5)
+                                            setShowMore("flex")
+                                            if (filterLimit == 10) {
+                                                setShowLess("none")
+                                            }
+                                        }}>Mostrar menos...</Button>
+                                    </Flex>
+                                ) : (
+                                    null
+                                )
+
+                            ) : (
+                                Array.from(new Set(listAds.map((ad) => ad.model))).length >= 5 ? (
+                                    <Flex gap={2}>
+                                        <Button height={'30px'} bgColor={"brand4"} color={"brand1"} fontSize={12} display={showMore} onClick={() => {
+                                            setFilterLimit(filterLimit + 5)
+                                            setShowLess("flex")
+                                            if (Array.from(new Set(listAds.map((ad) => ad.model))).length > 0 && (filterLimit + 5) >= Array.from(new Set(listAds.map((ad) => ad.model))).length - 1) {
+                                                setShowMore("none")
+                                            } else if (Array.from(new Set(listAds.map((ad) => ad.model))).length - 1 <= filterLimit + 5) {
+                                                setShowMore("none")
+                                            }
+                                        }}>Mostrar mais...</Button>
+                                        <Button height={'30px'} bgColor={"brand4"} color={"brand1"} fontSize={12} display={showLess} onClick={() => {
+                                            setFilterLimit(filterLimit - 5)
+                                            setShowMore("flex")
+                                            if (filterLimit == 10) {
+                                                setShowLess("none")
+                                            }
+                                        }}>Mostrar menos...</Button>
+                                    </Flex>
+                                ) : (
+                                    null
+                                )
+                            )
+                        )
+                }
+
             </Stack>
             <Stack>
                 {filtersUsed.hasOwnProperty('year') ?

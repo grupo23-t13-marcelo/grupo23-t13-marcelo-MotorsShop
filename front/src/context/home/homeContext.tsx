@@ -13,7 +13,13 @@ export const HomeProvider = ({ children }: IHomeContextProps) => {
     const [filteredAds, setFilteredAds] = useState<IAdInfo[]>([])
     const [filtersUsed, setFiltersUsed] = useState<any>({})
     const [listAdsPag, setListAdsPag] = useState<IAdInfoPag | undefined>()
+    const [showMoreBrand, setShowMoreBrand] = useState<string>("flex")
+    const [showMore, setShowMore] = useState<string>("flex")
+    const [showLessBrand, setShowLessBrand] = useState<string>("none")
+    const [showLess, setShowLess] = useState<string>("none")
     const [query, setQuery] = useState<{ next: string } | { prev: string }>()
+    const [filterLimit, setFilterLimit] = useState<number>(5)
+    const [filterLimitBrand, setFilterLimitBrand] = useState<number>(5)
     const [page, setPage] = useState<number>(1)
 
     useEffect(() => {
@@ -36,6 +42,12 @@ export const HomeProvider = ({ children }: IHomeContextProps) => {
     }, [filtersUsed, setFiltersUsed, query])
 
     const filterAdsByTag = (param: string, tag: keyof IAdInfo) => {
+        setShowLessBrand("none")
+        setShowLess("none")
+        setShowMoreBrand("flex")
+        setShowMore("flex")
+        setFilterLimitBrand(5)
+        setFilterLimit(5)
         if (filteredAds.length > 0) {
             const filteredAdsList: IAdInfo[] = filteredAds.filter((ad: IAdInfo) => ad[`${tag}`] == param) as IAdInfo[]
 
@@ -64,6 +76,12 @@ export const HomeProvider = ({ children }: IHomeContextProps) => {
     }
 
     const updateFilteredAdsAfterTagRemoval = (param: string, tag: keyof IAdInfo, iteration: number) => {
+        setFilterLimitBrand(5)
+        setFilterLimit(5)
+        setShowLessBrand("none")
+        setShowLess("none")
+        setShowMoreBrand("flex")
+        setShowMore("flex")
         let filteredAdsList: IAdInfo[] = []
 
         if (iteration === 0) {
@@ -136,6 +154,12 @@ export const HomeProvider = ({ children }: IHomeContextProps) => {
     }
 
     const handleFilterTagDelete = (val: string) => {
+        setFilterLimitBrand(5)
+        setFilterLimit(5)
+        setShowLessBrand("none")
+        setShowLess("none")
+        setShowMore("flex")
+        setShowMoreBrand("flex")
         setPage(1)
 
         const filtersUsedObject = filtersUsed
@@ -155,6 +179,13 @@ export const HomeProvider = ({ children }: IHomeContextProps) => {
     }
 
     const filterAdsByValue = (min: string, max: string, key: keyof IAdInfo) => {
+        setFilterLimitBrand(5)
+        setFilterLimit(5)
+        setShowLessBrand("none")
+        setShowLess("none")
+        setShowMore("flex")
+        setShowMoreBrand("flex")
+
         if (min && max) {
             setPage(1)
 
@@ -211,8 +242,20 @@ export const HomeProvider = ({ children }: IHomeContextProps) => {
     const globalHomeValues: IHomeContext = {
         page: page,
         query: query,
+        showMoreBrand: showMoreBrand,
+        setShowMoreBrand: setShowMoreBrand,
+        showMore: showMore,
+        setShowMore: setShowMore,
+        filterLimit: filterLimit,
+        setFilterLimit: setFilterLimit,
+        filterLimitBrand: filterLimitBrand,
+        setFilterLimitBrand: setFilterLimitBrand,
+        showLessBrand: showLessBrand,
+        setShowLessBrand: setShowLessBrand,
         setPage: setPage,
         listAds: listAds,
+        showLess: showLess,
+        setShowLess: setShowLess,
         setQuery: setQuery,
         setListAd: setListAd,
         listAdsPag: listAdsPag,

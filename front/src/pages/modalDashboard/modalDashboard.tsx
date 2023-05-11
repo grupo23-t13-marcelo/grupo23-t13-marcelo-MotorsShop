@@ -65,7 +65,8 @@ export const ModalDashboardAddAd = () => {
         register,
         handleSubmit,
         formState: { errors },
-        control
+        control,
+        reset
     } = useForm<INewAd>({
         resolver: yupResolver(adSchema), defaultValues: {
             gallery: [{ file_name: '' }]
@@ -103,6 +104,7 @@ export const ModalDashboardAddAd = () => {
                 apiGetProfile()
                 setLoadingAddAd(false)
                 onClose()
+                reset()
             })
             .catch(function (error) {
                 setLoadingAddAd(false)

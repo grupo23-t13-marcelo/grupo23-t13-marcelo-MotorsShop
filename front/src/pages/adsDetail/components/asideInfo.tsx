@@ -6,6 +6,7 @@ import {
     ModalHeader,
     ModalCloseButton,
     ModalBody,
+    Avatar,
 } from "@chakra-ui/react"
 import { useState } from "react"
 import { IAdDetail } from "../../../context/adsDetail/adsTypes"
@@ -19,7 +20,7 @@ export const AdAsideInfo = (adToShow: IAdDetail) => {
 
 
     const handleImgClick = (img: string) => {
-        setModalImg(img)    
+        setModalImg(img)
         onOpen()
     }
     return (
@@ -36,12 +37,22 @@ export const AdAsideInfo = (adToShow: IAdDetail) => {
                 </Box>
                 <Box marginTop={10} backgroundColor={'white'} p={7} marginBottom={10} borderRadius={5} minWidth={'260px'}>
                     <Flex direction={"column"} alignItems={"center"} gap={10}>
-                        <Image src={adToShow.user?.profile_picture!} alt={"teste"} objectFit={'cover'} maxWidth={'104px'} />
+                        {
+                            adToShow.user?.profile_picture ?
+                                (
+                                    <Image src={adToShow.user?.profile_picture} alt={"teste"} objectFit={'cover'} maxWidth={'104px'} />
+                                )
+                                :
+                                (
+                                    <Avatar display={{ base: "flex", md: "flex" }} name={adToShow.user?.name} />
+                                )
+                        }
+
                         <Text>{adToShow.user?.name}</Text>
                         <Text>
                             {adToShow.user?.description}
                         </Text>
-                        <Button onClick={() => {navigate('/salesdetail')}}   p={7} color={"white"} backgroundColor={"black"}>Ver todos anuncios</Button>
+                        <Button onClick={() => { navigate('/salesdetail') }} p={7} color={"white"} backgroundColor={"black"}>Ver todos anuncios</Button>
                     </Flex>
                 </Box>
             </Flex>

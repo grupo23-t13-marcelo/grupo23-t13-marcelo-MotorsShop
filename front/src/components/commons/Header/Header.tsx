@@ -71,7 +71,11 @@ export const Header = () => {
             <MenuList>
               <MenuItem><ModalEditUser userId={user?.id}/></MenuItem>
               <MenuItem><ModalEditAddress/></MenuItem>
-              <MenuItem as={Link} href="/salesdetail">Ver todos os anúncios</MenuItem>
+              {user?.type === "Anunciante" ? (
+                <MenuItem as={Link} href="/salesdetail">Ver todos os anúncios</MenuItem>
+                ): (
+                null
+              )}
               <MenuItem onClick={handleLogout}>Sair</MenuItem>
             </MenuList>
             <Text mt={3} display={{ base: "none", md: "flex" }} w={'100%'}>

@@ -95,7 +95,7 @@ export const AdCommentSection = (adToShow: IAdDetail, display: Array<string | nu
                                         <Text fontWeight={600}>{comment.user.name} </Text>
                                         <Text color={"gray.500"} fontSize={'12px'}> • {calcDate(comment.createdAt)}</Text>
                                         <Menu>
-                                        {user.id === comment.user.id ? (
+                                        {user && user.id === comment.user.id ? (
                                         <>
                                         <MenuButton><Button marginLeft={2} variant={'gray-1'} size={'xs'}>...</Button></MenuButton>
                                         <MenuList>

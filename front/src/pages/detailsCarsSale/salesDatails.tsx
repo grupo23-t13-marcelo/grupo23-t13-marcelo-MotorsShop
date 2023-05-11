@@ -16,15 +16,20 @@ import { ModalDashboardContext } from "../../context/modalDashboard/modalDashboa
 import { AccessContext } from "../../context/access/accessContext";
 import ModalEditAd from "../../components/ModalEditAd";
 import ModalDeleteAd from "../../components/ModalEditAd/modalDeleteAd";
+import { useNavigate } from "react-router-dom";
 
 export const CarsSalesDetail = () => {
   const { onOpen } = useContext(ModalDashboardContext)
   const {user, userRender, setUserRender,apiGetUser} = useContext(AccessContext)
   const [page, setPage] = useState(1)
+  const navigate = useNavigate()
   useEffect(() => {
     setUserRender(JSON.parse(localStorage.getItem('userRender')!))
     if(user) {
       apiGetUser(user.id)
+    }
+    if(user?.type === "Comprador" && user.id === userRender?.id) {
+      navigate('/')
     }
   }, [user])
 

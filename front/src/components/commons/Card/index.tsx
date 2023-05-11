@@ -17,6 +17,7 @@ import brandPrice from "../../../assets/png/price5.png"
 import { AdDetailContext } from "../../../context/adsDetail/adsDetailContext";
 import { ModalDashboardContext } from "../../../context/modalDashboard/modalDashboard";
 import { currency } from "../../../pages/adsDetail/adsDetail";
+import { useNavigate } from "react-router-dom";
 interface CardProps {
   id: string;
   card: IAdInfo;
@@ -33,21 +34,23 @@ export function CardCars({
   showEditButton = true,
   showPerfil = true,
   showStatus = true,
-  showBrands= true
+  showBrands = true
 }: CardProps) {
 
-  const { is_activated, cover_image, description, mileage, year, price, brand, user, fipe_table_price, model } = card;
+  const { is_activated, cover_image, description, mileage, year, price, brand, user, fipe_table_price, model, id } = card;
   const { editPlaceholderSelection } = useContext(ModalDashboardContext)
+  const { getFullAd } = useContext(AdDetailContext)
+  const navigate = useNavigate()
 
-  const {userRender} = useContext(AccessContext)
-  const {setInputsGallery, setModalEditAd, setEditAd} = useContext(AdDetailContext)
+  const { userRender } = useContext(AccessContext)
+  const { setInputsGallery, setModalEditAd, setEditAd } = useContext(AdDetailContext)
   const showBrand = parseInt(price) < (parseInt(fipe_table_price) * 0.05) || parseInt(price) < parseInt(fipe_table_price);
   return (
     <Card
       minW="320px"
       maxW="250px"
       _hover={is_activated ? { cursor: "pointer" } : {}}
-    
+
     >
       {showStatus && (
         <>
@@ -109,28 +112,28 @@ export function CardCars({
           >
             {showBrands && (
               <>
-            {showBrand && (
-        <Box position="absolute" top="-25px" right="-20px">
-          <Image src={brandPrice} alt="Warning" width="90px" height="90px" />
-        </Box>
-      )}
+                {showBrand && (
+                  <Box position="absolute" top="-25px" right="-20px">
+                    <Image src={brandPrice} alt="Warning" width="90px" height="90px" />
+                  </Box>
+                )}
               </>
             )}
           </Text>
-           <Text color={"#495057"} fontWeight={600} fontSize="sm" fontFamily={"inter"} h={10}>
-              {`${brand} - ${model.split(' ')[0]}`}
+          <Text color={"#495057"} fontWeight={600} fontSize="sm" fontFamily={"inter"} h={10}>
+            {`${brand} - ${model.split(' ')[0]}`}
           </Text>
-          <Text textOverflow={'ellipsis'} w={'100%'} css={'-webkit-line-clamp: 3;'} overflow={'hidden'}  color={"#495057"} fontSize="sm" fontFamily={"inter"} h={10}>
-          {/* {description.length > 50 ? description.slice(0, 50).charAt(0).toUpperCase() + description.slice(1, 74).toLowerCase() + "..." : description.charAt(0).toUpperCase() + description.slice(1)} */}
+          <Text textOverflow={'ellipsis'} w={'100%'} css={'-webkit-line-clamp: 3;'} overflow={'hidden'} color={"#495057"} fontSize="sm" fontFamily={"inter"} h={10}>
+            {/* {description.length > 50 ? description.slice(0, 50).charAt(0).toUpperCase() + description.slice(1, 74).toLowerCase() + "..." : description.charAt(0).toUpperCase() + description.slice(1)} */}
             {`${description}`}
             ...
           </Text>
         </Box>
         {showPerfil && (
           <Stack direction="row" alignItems="center">
-            <Avatar size="sm" name={user? user?.name : userRender?.name} />
+            <Avatar size="sm" name={user ? user?.name : userRender?.name} />
             <Text fontWeight="bold" fontSize="sm">
-              {user? user?.name : userRender?.name}
+              {user ? user?.name : userRender?.name}
             </Text>
           </Stack>
         )}
@@ -154,7 +157,7 @@ export function CardCars({
         {showEditButton && (
           <Flex alignItems="center" marginTop={5}>
             <Button
-              onClick={() => (setEditAd(card), editPlaceholderSelection({brand: card.brand}),setModalEditAd(true))}
+              onClick={() => (setEditAd(card), editPlaceholderSelection({ brand: card.brand }), setModalEditAd(true))}
               fontSize={12}
               w={70}
               h={7}
@@ -176,6 +179,7 @@ export function CardCars({
               marginLeft={4}
               cursor={"pointer"}
               _hover={{ border: "1px" }}
+              onClick={() => { navigate('/detail'), getFullAd(id) }}
             >
               Ver detalhes
             </Button>

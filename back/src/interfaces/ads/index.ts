@@ -1,17 +1,20 @@
+import { IGallery, IGalleryCreate, IGalleryPatch } from "../gallery"
+
 export interface ICreateAds {
     brand: string
     model: string
     year: string
     fuel: string
-    mileage : number
+    mileage: number
     color: string
-    fipe_table_price : string
+    fipe_table_price: string
     price: string
     description: string
-    cover_image: string  
+    cover_image: string
+    gallery: IGalleryCreate[]
 }
 
-export interface IPatchAds{
+export interface IPatchAds {
     brand?: string
     model?: string
     year?: string
@@ -21,7 +24,8 @@ export interface IPatchAds{
     fipe_table_price?: string
     price?: string
     description?: string
-    cover_image?: string  
+    cover_image?: string
+    gallery?: IGalleryPatch[]
 }
 
 
@@ -31,12 +35,13 @@ export interface IAds {
     model: string
     year: string
     fuel: string
-    mileage : number
+    mileage: number
     color: string
-    fipe_table_price : string
+    fipe_table_price: string
     price: string
     description: string
     cover_image: string
-    is_activated: boolean 
+    is_activated: boolean
+    gallery: IGallery[]
 }
 

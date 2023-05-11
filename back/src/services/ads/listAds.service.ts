@@ -4,17 +4,17 @@ import { adArraySerializer } from "../../schemas/ads"
 
 
 const listAdsService = async () => {
-
     const adsRepository = AppDataSource.getRepository(Ads)
 
-    const ads = await adsRepository.findBy({
-        is_activated: true
+    const ads = await adsRepository.find({
+        relations: {
+            gallery: true,
+            user: true,
+        }
     })
 
-    
-
     const validate = adArraySerializer.validate(ads, {
-        stripUnknown:true
+        stripUnknown: true
     })
 
     return validate

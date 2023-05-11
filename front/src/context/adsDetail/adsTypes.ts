@@ -1,6 +1,7 @@
 import { ReactNode } from "react"
 
 export interface IAdDetail {
+    id: string
     brand: string
     model: string
     year: string
@@ -12,8 +13,17 @@ export interface IAdDetail {
     description: string
     cover_image: string
     is_active: string
-    user_id: string
-    gallery: string
+    user: IUserResponseOnAd
+    gallery: [{ id: string, file_name: string }]
+    comments: [{ id: string, content: string, user: { id: string, name: string, profile_picture: string }, createdAt: string }]
+}
+
+export interface IUserResponseOnAd {
+    id: string
+    name: string
+    email: string
+    description: string
+    profile_picture: string
 }
 
 export interface IAdDetailContextProps {
@@ -21,6 +31,19 @@ export interface IAdDetailContextProps {
 }
 
 export interface IAdDetailContext {
-    adToShow: object
-    setAdToShow: React.Dispatch<React.SetStateAction<object>>
+    adToShow: IAdDetail | {}
+    setAdToShow: React.Dispatch<React.SetStateAction<IAdDetail>>,
+    getFullAd: (id: string) => Promise<void>
+    modalEditAd: boolean
+    setModalEditAd: React.Dispatch<React.SetStateAction<boolean>>
+    modalDeleteAd: boolean
+    setModalDeleteAd: React.Dispatch<React.SetStateAction<boolean>>
+    editAdId: string | null
+    setEditAdId: React.Dispatch<React.SetStateAction<any>>
+    editAd: any
+    setEditAd: React.Dispatch<React.SetStateAction<any>>
+    inputsGallery: number | null
+    setInputsGallery: React.Dispatch<React.SetStateAction<number | null>>
+    loadingComment: boolean
+    setLoadingComment: React.Dispatch<React.SetStateAction<boolean>>
 }

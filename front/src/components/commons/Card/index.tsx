@@ -1,123 +1,192 @@
 import {
   Flex,
-  Heading,
   Image,
-  VStack,
   Text,
   Box,
-  HStack,
   Stack,
-  CardFooter,
   CardBody,
-  ButtonGroup,
-  Button,
   Card,
   Avatar,
+  Spacer,
+  Button,
 } from "@chakra-ui/react";
-
+import { IAdInfo } from "../../../context/access/accessTypes";
+import { useContext } from "react";
+import { AccessContext } from "../../../context/access/accessContext";
+import brandPrice from "../../../assets/png/price5.png"
+import { AdDetailContext } from "../../../context/adsDetail/adsDetailContext";
+import { ModalDashboardContext } from "../../../context/modalDashboard/modalDashboard";
+import { currency } from "../../../pages/adsDetail/adsDetail";
+import { useNavigate } from "react-router-dom";
 interface CardProps {
-  title: string;
-  status: string;
-  brand: string;
-  image: {
-    url: string;
-    alt: string;
-  };
-  text: string;
-  mileage: string;
-  year: string;
-  price: string;
+  id: string;
+  card: IAdInfo;
+  showPerfil: Boolean;
+  showStatus: Boolean;
+  showEditButton: boolean;
+  showBrands: Boolean
+
 }
 
-export function CardCars({status}:any) {
-    return (
-      <Card
-  maxW="350px"
-  pointerEvents={!status ? "none" : "auto"}
-  _hover={status ? { filter: "brightness(0.9)", cursor: "pointer" } : {}}
-  onClick={() => {
-    if (status) {
-      console.log("Card clicado!")
-    }
-  }}
->
-  {status ? (
-    <Box
-      position="absolute"
-      left={2}
-      backgroundColor={"#4529E6"}
-      w={16}
-      h={6}
-      display={"flex"}
-      justifyContent={"center"}
-      borderRadius={3}
-      marginTop={2}
+
+export function CardCars({
+  card,
+  showEditButton = true,
+  showPerfil = true,
+  showStatus = true,
+  showBrands = true
+}: CardProps) {
+
+  const { is_activated, cover_image, description, mileage, year, price, brand, user, fipe_table_price, model, id } = card;
+  const { editPlaceholderSelection } = useContext(ModalDashboardContext)
+  const { getFullAd } = useContext(AdDetailContext)
+  const navigate = useNavigate()
+
+  const { userRender } = useContext(AccessContext)
+  const { setInputsGallery, setModalEditAd, setEditAd } = useContext(AdDetailContext)
+  const showBrand = parseInt(price) < (parseInt(fipe_table_price) * 0.05) || parseInt(price) < parseInt(fipe_table_price);
+  return (
+    <Card
+      minW="320px"
+      maxW="250px"
+      _hover={is_activated ? { cursor: "pointer" } : {}}
+
     >
-      <Text color={"#FFFFFF"} fontFamily={"inter"}>
-        Ativo
-      </Text>
-    </Box>
-  ) : (
-    <Box
-      position="absolute"
-      left={2}
-      backgroundColor={"gray"}
-      w={16}
-      h={6}
-      display={"flex"}
-      justifyContent={"center"}
-      borderRadius={3}
-      marginTop={2}
-    >
-      <Text color={"#FFFFFF"} fontFamily={"inter"}>
-        Inativo
-      </Text>
-    </Box>
-  )}
-  <Image
-    src="https://source.unsplash.com/random/800x600"
-    alt="Imagem de exemplo"
-    objectFit="cover"
-    width="350px"
-    height="178.96px"
-  />
-  <CardBody>
-    <Box mt="-3" mb="2">
-      <Text
-        fontWeight={600}
-        fontSize="md"
-        fontFamily={"Lexend"}
-        marginBottom={2}
-      >
-        Carro muito bonito
-      </Text>
-      <Text color="#495057;" fontSize="sm" fontFamily={"inter"}>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at elit
-        tincidunt, rhoncus turpis in, dictum dolor.
-      </Text>
-    </Box>
-    <Stack direction="row" alignItems="center">
-      <Avatar size="sm" name="João Silva" />
-      <Text fontWeight="bold" fontSize="sm">
-        João Silva
-      </Text>
-    </Stack>
-    <Flex alignItems="center" justifyContent="space-between" marginTop={3}>
-      <Box backgroundColor="#EDEAFD" p="1" borderRadius="md">
-        <Text fontWeight="bold" color={" #4529E6"} fontSize="sm">
-          30.000 km
-        </Text>
-      </Box>
-      <Box backgroundColor="#EDEAFD" p="1" borderRadius="md">
-        <Text fontWeight="bold" color={" #4529E6"} fontSize="sm">
-          2020
-        </Text>
-      </Box>
-      <Text color="black" fontSize="14" fontWeight="bold">
-        R$ 50.000,00
-      </Text>
-    </Flex>
-  </CardBody>
-</Card>
-);
+      {showStatus && (
+        <>
+          {is_activated ? (
+            <Box
+              position="absolute"
+              left={2}
+              backgroundColor={"#4529E6"}
+              w={16}
+              h={6}
+              display={"flex"}
+              justifyContent={"center"}
+              borderRadius={3}
+              pointerEvents={!status ? "none" : "auto"}
+              marginTop={2}
+            >
+              <Text color={"#FFFFFF"} fontFamily={"inter"}>
+                Ativo
+              </Text>
+            </Box>
+          ) : (
+            <Box
+              position="absolute"
+              left={2}
+              backgroundColor={"gray"}
+              w={16}
+              h={6}
+              display={"flex"}
+              justifyContent={"center"}
+              borderRadius={3}
+              marginTop={2}
+            >
+              <Text color={"#FFFFFF"} fontFamily={"inter"}>
+                Inativo
+              </Text>
+            </Box>
+          )}
+        </>
+      )}
+      <Image
+        src={cover_image}
+        alt={"imagem de capa do anúncio"}
+        objectFit="cover"
+        width="350px"
+        height="190.96px"
+        _hover={{
+          filter: "brightness(0.9)",
+          cursor: "pointer",
+          border: "2px solid blue",
+        }}
+      />
+      <CardBody>
+        <Box mt="-3" mb="2">
+          <Text
+            fontWeight={600}
+            fontSize="md"
+            fontFamily={"Lexend"}
+            marginBottom={2}
+          >
+            {showBrands && (
+              <>
+                {showBrand && (
+                  <Box position="absolute" top="-25px" right="-20px">
+                    <Image src={brandPrice} alt="Warning" width="90px" height="90px" />
+                  </Box>
+                )}
+              </>
+            )}
+          </Text>
+          <Text color={"#495057"} fontWeight={600} fontSize="sm" fontFamily={"inter"} h={10}>
+            {`${brand} - ${model.split(' ')[0]}`}
+          </Text>
+          <Text textOverflow={'ellipsis'} w={'100%'} css={'-webkit-line-clamp: 3;'} overflow={'hidden'} color={"#495057"} fontSize="sm" fontFamily={"inter"} h={10}>
+            {/* {description.length > 50 ? description.slice(0, 50).charAt(0).toUpperCase() + description.slice(1, 74).toLowerCase() + "..." : description.charAt(0).toUpperCase() + description.slice(1)} */}
+            {`${description}`}
+            ...
+          </Text>
+        </Box>
+        {showPerfil && (
+          <Stack direction="row" alignItems="center">
+            <Avatar size="sm" name={user ? user?.name : userRender?.name} />
+            <Text fontWeight="bold" fontSize="sm">
+              {user ? user?.name : userRender?.name}
+            </Text>
+          </Stack>
+        )}
+        <Flex alignItems="center" justifyContent="start" marginTop={3} gap={2}>
+          <Box backgroundColor="#EDEAFD" p="1" borderRadius="md">
+            <Text fontWeight="bold" color={" #4529E6"} fontSize="11">
+              {mileage}KM
+            </Text>
+          </Box>
+          <Box backgroundColor="#EDEAFD" p="1" borderRadius="md">
+            <Text fontWeight="bold" color={" #4529E6"} fontSize="11">
+              {year}
+            </Text>
+          </Box>
+          <Spacer />
+          <Text color="black" fontSize="11" fontWeight="bold">
+            {currency(parseInt(price))}
+          </Text>
+        </Flex>
+
+        {showEditButton && (
+          <Flex alignItems="center" marginTop={5}>
+            <Button
+              onClick={() => (setEditAd(card), editPlaceholderSelection({ brand: card.brand }), setModalEditAd(true))}
+              fontSize={12}
+              w={70}
+              h={7}
+              _hover={{ border: "1px" }}
+              color={"black"}
+              colorScheme={"blackAlpha"}
+              variant={"ghost"}
+              cursor={"pointer"}
+            >
+              Editar
+            </Button>
+            <Button
+              fontSize={12}
+              w={100}
+              h={7}
+              color={"black"}
+              colorScheme={"blackAlpha"}
+              variant={"ghost"}
+              marginLeft={4}
+              cursor={"pointer"}
+              _hover={{ border: "1px" }}
+              onClick={() => { navigate('/detail'), getFullAd(id) }}
+            >
+              Ver detalhes
+            </Button>
+          </Flex>
+        )}
+      </CardBody>
+    </Card>
+  );
 }
+

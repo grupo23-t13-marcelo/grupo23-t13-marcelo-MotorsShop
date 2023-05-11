@@ -1,8 +1,12 @@
-import { Box, Button, Container, Flex, Heading, Image, Text, Textarea } from "@chakra-ui/react"
+import { Box, Button, Flex, Heading, Image, Text } from "@chakra-ui/react"
+import { AdCommentSection } from "./commentSection"
 import { currency } from "../adsDetail"
-import { adCommentSection } from "./commentSection"
+
 
 export const adMainInfo = (adToShow: any) => {
+
+    const token = localStorage.getItem('motors.token')
+
     return (
         <Box marginLeft={['0%', '0%', '3%', '7%']} marginTop={10} width={['90%', '85%', '57%']} marginRight={0}>
             <Flex direction={'column'} w={'100%'} gap={10}>
@@ -13,15 +17,16 @@ export const adMainInfo = (adToShow: any) => {
                     <Heading marginBottom={10} as='h2' size={'md'}>
                         {`${adToShow.brand} ${adToShow.model}`}
                     </Heading>
-                    <Box display={'flex'} justifyContent={'space-between'} alignItems={'center'}>
+                    <Box display={'flex'} flexDirection={['column', 'row']} justifyContent={'space-between'} alignItems={['flex-start', 'center']} gap={5}>
                         <Box display={'flex'} gap={3} alignItems={'center'}>
                             <Button h={'30px'} backgroundColor={'brand4'} color={'brand2'}>{adToShow.year}</Button>
-                            <Button h={'30px'} backgroundColor={'brand4'} color={'brand2'}>{adToShow.mileage}</Button>
+                            <Button h={'30px'} backgroundColor={'brand4'} color={'brand2'}>{adToShow.mileage} km</Button>
                         </Box>
-                        <Text color={"gray.800"} fontWeight={600}>{`${currency(adToShow.price)}`}</Text>
+                        <Text color={"gray.800"} fontWeight={600}>{currency(adToShow.price)}</Text>
                     </Box>
-                    <Button backgroundColor={'brand2'} w={'100px'} h={'40px'} color={"white"}>Comprar</Button>
+                    <Button as="a" backgroundColor={'brand2'} w={'100px'} h={'40px'} color={"white"} isDisabled={token ? false : true}  href={`https://api.whatsapp.com/send?phone=+55${adToShow.user?.cell_phone}&text=${encodeURIComponent('Olá, venho por meio do seu anuncio no Motors Shop , gostaria de mais informações !')}`}>Comprar</Button>
                 </Box>
+                
                 <Box backgroundColor={'white'} width={'100%'} borderRadius={5} p={7} display={'flex'} flexDirection={'column'} gap={7}>
                     <Heading marginBottom={10} as='h2' size={'md'}>
                         Descrição
@@ -30,7 +35,7 @@ export const adMainInfo = (adToShow: any) => {
                         {adToShow.description}
                     </Text>
                 </Box>
-                {adCommentSection(adToShow, ['none', null, 'block'])}
+                {AdCommentSection(adToShow, ['none', null, 'block'])}
             </Flex >
         </Box >
     )

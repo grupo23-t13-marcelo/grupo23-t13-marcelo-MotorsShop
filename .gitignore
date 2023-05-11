@@ -6,6 +6,8 @@ node_modules
 # testing
 /coverage
 
+**sqlite3**
+
 # production
 /build
 yarn.lock

@@ -17,13 +17,8 @@ const MotorTheme = extendTheme({
     initialColorMode: "light",
   },
   fonts: {
-    body: "Lexend, sans-serif",
-
-    heading: "Lexend, serif"
-  },
-
-
-    heading: "Lexend, serif",
+    body: "Inter, sans-serif",
+    heading: "Inter, sans-serif"
   },
 
   colors: {
@@ -46,10 +41,10 @@ const MotorTheme = extendTheme({
       800: "#212529",
       900: "#0B0D0D",
 
-      whiteFixed: "#FFFFFF",
-
+      
     },
-
+    whiteFixed: "#FFFFFF",
+    
     //Feedback
 
     red: {
@@ -81,7 +76,7 @@ const MotorTheme = extendTheme({
       500: "#E34D8C",
     },
 
-    random:{
+    random: {
       1: "#E34D8C",
       2: "#C04277",
       3: "#7D2A4D",
@@ -102,11 +97,6 @@ const MotorTheme = extendTheme({
     "6xl": "48px",
     "5xl": "36px",
     "4xl": "30px",
-
-    "xl": "20px",
-    "lg": "18px",
-    "md": "16px",
-
     xl: "20px",
     lg: "18px",
     md: "16px",
@@ -119,14 +109,11 @@ const MotorTheme = extendTheme({
     bolder: 700,
   },
 
-
-})
-
   components: {
     Button: {
       variants: {
         "outline-1": {
-          bg: "gray.whiteFixed",
+          bg: "whiteFixed",
           color: "gray.900",
           border: "2px",
           borderColor: "gray.200",
@@ -136,35 +123,45 @@ const MotorTheme = extendTheme({
           },
         },
         "outline-2": {
-          bg: "gray.whiteFixed",
+          bgcolor: "whiteFixed",
           color: "gray.900",
           border: "2px",
           borderColor: "gray.200",
           _hover: {
-            bg: "gray.800",
-            color: "white",
+            bg: "gray.50",
+            color: "gray.800",
+            border: "2px",
+          borderColor: "gray.800",
           },
         },
         "gray-1": {
           bg: "gray.300",
           color: "gray.700",
-         
-         
+
+
           _hover: {
             bg: "gray.400",
             color: "gray.700",
           },
         },
         "button-sender": {
+          color:"whiteFixed",
           bg: "brand1",
           _hover: {
             bg: "brand2",
-          },
+          }
         },
       },
     },
+    Input: {
+      variants:{
+        "teste-1": {
+          
+        }
+      }
+    }
   },
-});
+})
 
 
 export default MotorTheme;
